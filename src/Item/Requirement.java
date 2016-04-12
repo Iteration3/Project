@@ -9,7 +9,7 @@ import Inventory.Inventory;
 public class Requirement {
     /* Attributes */
     private TakeableItem requiredItem;
-    private int requiredLevel;
+    private double requiredLevel;
     private String requiredOccupation;
 
     /* Constructors */
