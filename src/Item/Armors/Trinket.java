@@ -4,5 +4,5 @@ package Item.Armors;
 * Implemented by Peter Camejo
 */
 
-public class Trinket {
+public class Trinket extends Armor  {
 }

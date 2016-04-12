@@ -4,5 +4,5 @@ package Item.Armors;
 * Implemented by Peter Camejo
 */
 
-public class LegArmor {
+public class LegArmor extends Armor  {
 }
