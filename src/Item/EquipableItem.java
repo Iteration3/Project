@@ -30,7 +30,7 @@ public abstract class EquipableItem extends TakeableItem {
     public abstract void unequip(Equipment equipment , Inventory inventory);
 
     public void use(Entity entity){
-       // this.equip(entity.getEquipment() , entity.getInventory());
+       entity.equip(this);
     }
 
     public double getRating(){

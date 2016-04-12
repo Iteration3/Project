@@ -41,11 +41,11 @@ public class Requirement {
         if(requiredOccupation == null){
             return true;
         }
-        return entity.getOccupation() == requiredOccupation;
+        return entity.occupationName() == requiredOccupation;
     }
 
     public Boolean meetsRequirements(Entity entity){
-        return hasOccupation(entity) && hasLevel(entity) && hasItem(entity.getInventory);
+        return hasOccupation(entity) && hasLevel(entity) && hasItem(entity.getInventory());
     }
 
 }

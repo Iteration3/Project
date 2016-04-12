@@ -9,6 +9,7 @@ import Item.*;
 
 import java.util.Map;
 import Inventory.*;
+import Equipment.Equipment;
 
 public abstract class Entity implements Action {
     //
@@ -18,7 +19,7 @@ public abstract class Entity implements Action {
     protected Occupation occupation;
     protected StatContainer stats;
     protected Inventory inventory;
-    //protected Equipment equipment;
+    protected Equipment equipment;
 
     /*
         Methods used in constructors
@@ -81,19 +82,32 @@ public abstract class Entity implements Action {
     public String statName(String stat_to_get) {return this.stats.name(stat_to_get);}
     public void printStats(String stat_to_print) {this.stats.print(stat_to_print);}
     public void printStats() {this.stats.print();}
+    public double getLevel(){ return this.stats.value("LEVEL");}
 
     /*
         Equipment specific functionality
      */
     //
-    //public void equip(Equippable item_to_equip) {}
-    //public void unequip(Equippable item_to_unequip) {}
+    public void equip(EquipableItem item) {
+        item.equip(equipment , inventory);
+    }
+    public void unequip(EquipableItem item) {
+        item.unequip(equipment , inventory);
+    }
+    public Equipment getEquipment(){
+        return this.equipment;
+    }
 
     /*
         Inventory specific functionality
      */
     //
-    public void addItem(Item item) {}
+    public void addItem(TakeableItem item) {
+        inventory.addItem(item);
+    }
     public void moveItem(Item item) {}
     public void dropItem(Item item) {}
+    public Inventory getInventory(){
+        return this.inventory;
+    }
 }
