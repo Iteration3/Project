@@ -4,6 +4,10 @@ import java.awt.image.BufferedImage;
 import Entity.Entity;
 import Location.Location;
 
+/*
+* Implemented by Peter Camejo
+*/
+
 public abstract class TakeableItem extends Item{
     /* Constructors */
     TakeableItem(){
