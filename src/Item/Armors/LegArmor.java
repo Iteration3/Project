@@ -1,8 +1,33 @@
 package Item.Armors;
 
-/*
-* Implemented by Peter Camejo
-*/
+import Equipment.Equipment;
+import Inventory.Inventory;
+import Location.Location;
 
-public class LegArmor extends Armor  {
+import java.awt.image.BufferedImage;
+
+/**
+ *  Implemented by Peter Camejo
+ */
+public class LegArmor extends Armor {
+    /* Constructor */
+    public LegArmor(){
+        super();
+    }
+
+    public LegArmor(BufferedImage image , int id, Location location, String name, double rating){
+        super(image, id, location, name ,rating);
+    }
+
+    /* Methods */
+    public void equip(Equipment equipment, Inventory inventory){
+        equipment.addLegs(this);
+        inventory.removeItem(id);
+    }
+
+    public void unequip(Equipment equipment, Inventory inventory){
+        equipment.removeLegs();
+        inventory.addItem(this);
+    }
+
 }
