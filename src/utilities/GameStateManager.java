@@ -5,6 +5,8 @@ import views.View;
 
 import java.util.Stack;
 
+import java.awt.*;
+
 /**
  * Created by denzel on 4/11/16.
  */
@@ -28,7 +30,7 @@ public class GameStateManager {
     }
 
     //Current State
-    public State getCurrent(){
+    public State getCurrentState(){
         return stateStack.peek();
     }
 
@@ -45,6 +47,7 @@ public class GameStateManager {
     //change state
     public void changeState(State state){
         stateStack.add(state);
+        state.setActiveView(getCurrentView().getCanvas());
     }
 
     //remove state

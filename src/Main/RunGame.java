@@ -1,6 +1,7 @@
 package Main;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by denzel on 4/11/16.
@@ -8,25 +9,21 @@ import javax.swing.*;
 
 
 
-public class RunGame extends JFrame {
+public class RunGame extends JFrame{
 
     public static void main(String[] args){
 
-        Thread thread = new Thread(new GameLoop());
+        GameLoop game = new GameLoop();
+        Thread thread = new Thread(game);
         thread.start();
 
-        Canvas canvas = new Canvas();
-
-
-
-        RunGame gameFrame = new RunGame();
-        gameFrame.setTitle("WTF Game");
-
-        gameFrame.add(canvas);
-
-        gameFrame.setLocationRelativeTo(null);
-        gameFrame.setVisible(true);
-        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        EventQueue.invokeLater(new Runnable() {
+//            @Override
+//            public void run() {
+//                RunGame ex = new RunGame();
+//                ex.setVisible(true);
+//            }
+//        });
     }
-
 }
+

@@ -2,36 +2,40 @@ package views;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 
 /**
  * Created by denzel on 4/11/16.
  */
-public abstract class View extends JPanel{
+public abstract class View{
 
     //the veggies
     protected int height;
     protected int width;
-
-
-
+    protected Canvas canvas;
 
     //constructor
-    public View(int height, int width){
+    public View(int height, int width, Canvas canvas){
         this.height = height;
         this.width = width;
-
-        this.setPreferredSize(new Dimension(width,height));
-
+        this.canvas = canvas;
     }
 
-    public void setFocus(){
-        this.setFocusable(true);
-        this.requestFocus();
+    //returns height
+    public int getHeight(){
+        return height;
+    }
+
+    //returns width
+    public int getWidth(){
+        return width;
+    }
+
+    //returns Canvas
+    public Canvas getCanvas(){
+        return canvas;
     }
 
     //render method
-    protected abstract void render(Graphics2D g);
-
+    protected abstract void render(Graphics g);
 }

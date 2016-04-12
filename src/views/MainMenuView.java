@@ -1,5 +1,6 @@
 package views;
 
+import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -7,14 +8,14 @@ import java.awt.*;
  */
 public class MainMenuView extends View {
 
-    public MainMenuView(){
-        super(300,400);
+    public MainMenuView(int height, int width, Canvas canvas){
+        super(height, width, canvas);
     }
 
     @Override
-    protected void render(Graphics2D g) {
-        g.setColor(Color.red);
-        g.fillRect(0,0,100,100);
+    protected void render(Graphics g) {
+        g.setColor(Color.RED);
+        g.fillRect(20,20,300,300);
     }
 
 }

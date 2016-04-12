@@ -25,9 +25,6 @@ public abstract class Controller {
         loadKeyCommand();
     }
 
-
-
-
     // update method
     public void update(){
         for(KeyCommand i : pending) {

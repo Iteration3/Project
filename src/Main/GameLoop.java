@@ -1,61 +1,72 @@
 package Main;
 
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
-import utilities.GameStateManager;
+import controllers.MainMenuViewController;
+import utilities.*;
+import views.Canvas;
+import views.MainMenuView;
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by denzel on 4/11/16.
  */
+
+
 //The Game Loop
 public class GameLoop implements Runnable {
 
+
     //GameStateManager
-    GameStateManager gsm;
+    private GameStateManager gsm;
+    private JFrame gameFrame;
+    private Canvas canvas = new Canvas(400,400);
 
-    //fps
-    private int fps;
-
-    //timePerTick
+    private final int FPS = 30;
+    private final int TIME_PER_TICK = 1000/FPS;
     private long timePerTick;
+    private boolean isRunning = true;
 
-    //delta
-    private long delta;
+    public GameLoop(){
 
-    //currentTime
-    private long currentTime;
+        //Instantiate the GameStateManager
+        gsm = new GameStateManager();
+        initFrame();
+        gameFrame.add(canvas);
+        gameFrame.pack();
 
-    //lastTime
-    private long lastTime;
+        //create the first state
+        MainMenuView mainMenuView = new MainMenuView(500,500,canvas);
+        MainMenuViewController mainMenuViewController = new MainMenuViewController();
+        State mainMenu = new State(mainMenuView,mainMenuViewController);
 
-    //timer
-    private long timer;
+        //put that into the GameStateManager
+        gsm.changeState(mainMenu);
 
-    //running flag
-    private boolean running = false;
+    }
+
+    public void initFrame(){
+        gameFrame = new JFrame();
+        gameFrame.setTitle("WTF Game");
+        gameFrame.setLocationRelativeTo(null);
+        gameFrame.setVisible(true);
+        gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
 
 
     @Override
     public void run() {
-
-        fps = 30;
+        int fps = 30;
         timePerTick = 1000 / fps;
-        delta = 0;
-        lastTime = System.currentTimeMillis();
-        timer = 0;
 
-
-        running = true;
         long start;
         long elapsed;
         long wait;
 
-        while(running){
+        while(isRunning){
 
             start = System.currentTimeMillis();
-
-            //gsm.update();
-
-
+            update();
+            render();
             elapsed = System.currentTimeMillis() - start;
             wait = timePerTick - elapsed;
 
@@ -66,12 +77,17 @@ public class GameLoop implements Runnable {
                     e.printStackTrace();
                 }
             }
-
-            //delta += (currentTime - lastTime)/timePerTick;
-            //timer += currentTime - lastTime;
-            //lastTime = currentTime;
-            System.out.println(elapsed);
         }
+    }
+
+
+    public void update(){
 
     }
+
+    //frame
+    public void render(){
+
+    }
+
 }
