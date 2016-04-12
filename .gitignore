@@ -1,0 +1,8 @@
+# IGNORE INTELLIJ NONSENSE
+/.idea
+workspace.xml
+*.xml
+
+# IGNORE COMPILED CODE
+/out
+*.class
