@@ -2,12 +2,6 @@ package Main;
 
 import javax.swing.*;
 
-/**
- * Created by denzel on 4/11/16.
- */
-
-
-
 public class RunGame extends JFrame {
 
     public static void main(String[] args){

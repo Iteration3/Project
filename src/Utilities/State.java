@@ -3,10 +3,6 @@ package Utilities;
 import Controller.Controller;
 import View.View;
 
-/**
- * Created by denzel on 4/11/16.
- */
-
 //The state object couples the View and Controller
 public class State {
 

@@ -3,9 +3,6 @@ package Main;
 import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import Utilities.GameStateManager;
 
-/**
- * Created by denzel on 4/11/16.
- */
 //The Game Loop
 public class GameLoop implements Runnable {
 

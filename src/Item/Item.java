@@ -4,9 +4,6 @@ import java.awt.image.BufferedImage;
 import Location.Location;
 import Entity.Entity;
 
-/**
- *  Implemented by Peter Camejo
- * */
 abstract class Item {
     /* Attributes */
     protected BufferedImage image;

@@ -1,9 +1,5 @@
 package Utilities;
 
-/**
- * Created by denzel on 4/11/16.
- */
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 

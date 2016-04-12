@@ -3,9 +3,6 @@ package Main;
 import javax.swing.*;
 import java.awt.*;
 
-/**
- * Created by denzel on 4/11/16.
- */
 public class Canvas extends JPanel{
 
     public static final int WIDTH = 300;

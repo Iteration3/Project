@@ -1,16 +1,11 @@
 package Item;
 
-
-
 import java.awt.image.BufferedImage;
 import Inventory.Inventory;
 import Equipment.Equipment;
 import Location.Location;
 import Entity.Entity;
 
-/**
- *  Implemented by Peter Camejo
- */
 public abstract class EquipableItem extends TakeableItem {
     /* Attributes */
     protected double rating; //meant to be armorRating and attackRating respectively.

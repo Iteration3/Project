@@ -6,11 +6,6 @@ import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.HashSet;
 
-/**
- * Created by denzel on 4/11/16.
- */
-
-
 public abstract class Controller {
 
     // Hashmap of KeyEvents

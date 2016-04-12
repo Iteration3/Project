@@ -2,9 +2,6 @@ package View;
 
 import java.awt.*;
 
-/**
- * Created by denzel on 4/11/16.
- */
 public class MainMenuView extends View {
 
     public MainMenuView(){

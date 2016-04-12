@@ -6,10 +6,6 @@ import View.View;
 import java.util.Stack;
 
 /**
- * Created by denzel on 4/11/16.
- */
-
-/**
  * Responsibilities of GameStateManager is
  * keep a stack of states and check the current state for its view and controller
  */

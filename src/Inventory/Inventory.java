@@ -3,9 +3,6 @@ package Inventory;
 import Item.TakeableItem;
 import ItemContainer.ItemContainer;
 
-/**
- *  Implemented by Peter Camejo
- */
 public class Inventory implements ItemContainer {
     /* Attributes */
     private TakeableItem[] items;
