@@ -17,10 +17,6 @@ public class Canvas extends JPanel{
     }
 
     public void paint(Graphics g){
-
-    }
-
-    public void paint(Graphics g){
         paintComponent(g);
     }
 }

@@ -6,6 +6,7 @@ import Direction.Direction;
 import Occupation.*;
 import StatContainer.*;
 import Item.*;
+import Inventory.*;
 
 public class NPC extends Entity {
     //
@@ -15,7 +16,7 @@ public class NPC extends Entity {
         //setDirection(Direction.South);
         setOccupation(occupation);
         setStats(new NPCStats(occupationModifier(), level));
-        //setInventory(new Inventory());
+        setInventory(new Inventory(12));
         //setEquipment(new Equipment());
     }
 }

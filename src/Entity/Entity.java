@@ -8,8 +8,7 @@ import StatContainer.*;
 import Item.*;
 
 import java.util.Map;
-//import ItemContainer.Inventory;
-//import EquipmentContainer.Equipment;
+import Inventory.*;
 
 public abstract class Entity implements Action {
     //
@@ -18,7 +17,7 @@ public abstract class Entity implements Action {
     protected Direction direction;
     protected Occupation occupation;
     protected StatContainer stats;
-    //protected Inventory inventory;
+    protected Inventory inventory;
     //protected Equipment equipment;
 
     /*
@@ -30,7 +29,7 @@ public abstract class Entity implements Action {
     protected void setDirection(Direction direction) {this.direction = direction;}
     protected void setOccupation(Occupation occupation) {this.occupation = occupation;}
     protected void setStats(StatContainer stats) {this.stats = stats;}
-    //protected void setInventory(Inventory inventory) {this.inventory = inventory};
+    protected void setInventory(Inventory inventory) {this.inventory = inventory;}
     //protected void setEquipment(Equipment equipment) {this.equipment = equipment);
 
     /*

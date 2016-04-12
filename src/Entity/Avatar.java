@@ -5,7 +5,7 @@ import Location.Location;
 import Direction.Direction;
 import Occupation.*;
 import StatContainer.*;
-import Item.*;
+import Inventory.*;
 
 public class Avatar extends Entity {
     //
@@ -15,7 +15,7 @@ public class Avatar extends Entity {
         //setDirection(Direction.South);
         setOccupation(occupation);
         setStats(new AvatarStats(occupationModifier(), level));
-        //setInventory(new Inventory());
+        setInventory(new Inventory(12, 25));
         //setEquipment(new Equipment());
     }
 }

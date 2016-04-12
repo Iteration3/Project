@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import Location.Location;
 import Entity.Entity;
 
-abstract class Item {
+public abstract class Item {
     /* Attributes */
     protected BufferedImage image;
     protected int id;
