@@ -1,4 +1,10 @@
 package Item.InteractiveItems;
 
-public class InteractiveItem {
+
+
+/*
+* Implemented by Peter Camejo
+*/
+
+public class InteractiveItem /* extends Item */{
 }
