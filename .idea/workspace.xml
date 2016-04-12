@@ -2,65 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f2794cdb-c11d-44cb-a24f-ccc3ff94c89f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/controllers/MainMenuViewController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Action/Action.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Decal/Decal.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Entity/Entity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/EquipmentContainer/EquipmentController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Item/Item.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/ItemContainer/ItemContainer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Map/Map.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Occupation/Occupation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Signal/Signal.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Skill/Skill.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/SkillContainer/SkillContainer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Stat/Stat.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/StatContainer/StatContainer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Terrain/Terrain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/models/Tile/Tile.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/utilities/Direction/Direction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/utilities/Location/Location.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/views/Canvas.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/WTF/Main/Canvas.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Action/Action.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/AreaEffect/AreaEffect.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Controller/Controller.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Decal/Decal.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Direction/Direction.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Entity/Entity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/EquipmentContainer/EquipmentController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Item/Item.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/ItemContainer/ItemContainer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Location/Location.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Main/Canvas.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Map/Map.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Occupation/Occupation.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Signal/Signal.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Skill/Skill.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/SkillContainer/SkillContainer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Stat/Stat.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/StatContainer/StatContainer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/State/State.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Terrain/Terrain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Tile/Tile.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/View/View.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WTF/Main/GameLoop.class" afterPath="$PROJECT_DIR$/out/production/WTF/Main/GameLoop.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WTF/Main/RunGame.class" afterPath="$PROJECT_DIR$/out/production/WTF/Main/RunGame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WTF/controllers/Controller.class" afterPath="$PROJECT_DIR$/out/production/WTF/controllers/Controller.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WTF/utilities/GameStateManager.class" afterPath="$PROJECT_DIR$/out/production/WTF/utilities/GameStateManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WTF/utilities/State.class" afterPath="$PROJECT_DIR$/out/production/WTF/utilities/State.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WTF/views/MainMenuView.class" afterPath="$PROJECT_DIR$/out/production/WTF/views/MainMenuView.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/WTF/views/View.class" afterPath="$PROJECT_DIR$/out/production/WTF/views/View.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/GameLoop.java" afterPath="$PROJECT_DIR$/src/Main/GameLoop.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main/RunGame.java" afterPath="$PROJECT_DIR$/src/Main/RunGame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/Controller.java" afterPath="$PROJECT_DIR$/src/controllers/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utilities/GameStateManager.java" afterPath="$PROJECT_DIR$/src/utilities/GameStateManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utilities/State.java" afterPath="$PROJECT_DIR$/src/utilities/State.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/MainMenuView.java" afterPath="$PROJECT_DIR$/src/views/MainMenuView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/View.java" afterPath="$PROJECT_DIR$/src/views/View.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/MainMenuViewController.java" afterPath="$PROJECT_DIR$/src/controllers/MainMenuViewController.java" />
     </list>
     <ignored path="WTF.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -91,9 +33,11 @@
       <file leaf-file-name="MainMenuViewController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controllers/MainMenuViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2734375">
-              <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-              <folding />
+            <state vertical-scroll-proportion="0.6640625">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -128,16 +72,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SkillContainer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/models/SkillContainer/SkillContainer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Stat.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/models/Stat/Stat.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -164,6 +98,18 @@
             <state vertical-scroll-proportion="0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameLoop.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Main/GameLoop.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="38" column="56" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="56" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -306,24 +252,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WTF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WTF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -995,12 +923,12 @@
       <workItem from="1460487861683" duration="1127000" />
       <workItem from="1460489075642" duration="621000" />
       <workItem from="1460489757100" duration="168000" />
-      <workItem from="1460490130345" duration="481000" />
+      <workItem from="1460490130345" duration="1272000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34004000" />
+    <option name="totallyTimeSpent" value="34795000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="826" extended-state="6" />
@@ -1091,7 +1019,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1100,7 +1030,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1110,7 +1040,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1146,7 +1076,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="13" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1156,7 +1086,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="41" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="41" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1176,7 +1106,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1242,7 +1172,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1252,7 +1182,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1310,20 +1240,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main/GameLoop.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2584746">
-          <caret line="21" column="48" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/Canvas.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.44491526">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1352,7 +1275,7 @@
         <state vertical-scroll-proportion="0.40254238">
           <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1362,7 +1285,7 @@
         <state vertical-scroll-proportion="0.42372882">
           <caret line="20" column="29" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1372,7 +1295,7 @@
         <state vertical-scroll-proportion="0.31779662">
           <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1505,11 +1428,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main/GameLoop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="56" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/MainMenuViewController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2734375">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-          <folding />
+        <state vertical-scroll-proportion="0.6640625">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
