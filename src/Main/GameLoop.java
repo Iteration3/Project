@@ -5,6 +5,7 @@ import utilities.*;
 import views.Canvas;
 import views.MainMenuView;
 import javax.swing.*;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by denzel on 4/11/16.
@@ -17,7 +18,7 @@ public class GameLoop implements Runnable{
     //GameStateManager
     private GameStateManager gsm;
     private RunGame gameFrame;
-    private Canvas canvas = new Canvas(400,400);
+    private Canvas canvas = new Canvas();
 
     private final int FPS = 30;
     private final int TIME_PER_TICK = 1000/FPS;
@@ -34,7 +35,7 @@ public class GameLoop implements Runnable{
 
         //create the first state
         //TODO: NOT HERE IN ITS OWN CLASS
-        MainMenuView mainMenuView = new MainMenuView(500,500,canvas);
+        MainMenuView mainMenuView = new MainMenuView();
         MainMenuViewController mainMenuViewController = new MainMenuViewController();
         State mainMenu = new State(mainMenuView,mainMenuViewController);
         //TODO:--------------------------------------------------------
@@ -86,7 +87,9 @@ public class GameLoop implements Runnable{
     }
     //frame
     public void render(){
-      //gsm.render();
+        BufferedImage image = canvas.getImage();
+        gsm.render(image);
+        canvas.repaint(image);
     }
 
 }

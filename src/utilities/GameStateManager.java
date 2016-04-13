@@ -3,6 +3,7 @@ package utilities;
 import controllers.Controller;
 import views.View;
 
+import java.awt.image.BufferedImage;
 import java.util.Stack;
 
 import java.awt.*;
@@ -47,11 +48,14 @@ public class GameStateManager {
     //change state
     public void changeState(State state){
         stateStack.add(state);
-        state.setActiveView(getCurrentView().getCanvas());
     }
 
     public void update(){
         getCurrentController().update();
+    }
+
+    public void render(BufferedImage image){
+        getCurrentView().render(image);
     }
 
     //remove state

@@ -1,6 +1,7 @@
 package views;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 
 /**
@@ -8,33 +9,23 @@ import java.awt.*;
  */
 public abstract class View{
 
-    //the veggies
-    protected int height;
-    protected int width;
-    protected Canvas canvas;
+    private int width = 100;
+    private int height = 100;
 
-    //constructor
-    public View(int height, int width, Canvas canvas){
-        this.height = height;
-        this.width = width;
-        this.canvas = canvas;
+    public int getWidth(){
+        return width;
     }
-
-    //returns height
     public int getHeight(){
         return height;
     }
 
-    //returns width
-    public int getWidth(){
-        return width;
+    public final void render(BufferedImage image){
+        width = image.getWidth();
+        height = image.getWidth();
+
+        Graphics2D g = image.createGraphics();
+        render(g);
     }
 
-    //returns Canvas
-    public Canvas getCanvas(){
-        return canvas;
-    }
-
-    //render method
-    protected abstract void render(Graphics g);
+    protected abstract void render(Graphics2D g);
 }

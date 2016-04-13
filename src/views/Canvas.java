@@ -6,44 +6,33 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 
 /**
  * Created by denzel on 4/12/16.
  */
-public class Canvas extends JPanel implements KeyListener{
+public class Canvas extends JPanel{
 
-    protected View currentView;
+
+    private final static int WIDTH = 500;
+    private final static int HEIGHT = WIDTH*4/5;
+
+    private final static int SCALE = 1;
 
     //Constructs the canvas to paint things on
-    public Canvas(int height, int width){
+    public Canvas(){
         setFocusable(true);
         setBackground(Color.BLACK);
-        setPreferredSize(new Dimension(height, width));
+        setPreferredSize(new Dimension(WIDTH,HEIGHT));
     }
 
-    //sets the current view of things
-    public void setCurrentView(View view){
-        currentView = view;
+    public BufferedImage getImage(){
+        return new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_4BYTE_ABGR);
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        currentView.render(g);
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
+    public void repaint(BufferedImage imageToRender){
+        Graphics g2 = super.getGraphics();
+        g2.drawImage(imageToRender, 0, 0, WIDTH*SCALE, HEIGHT*SCALE, null);
+        g2.dispose();
     }
 }

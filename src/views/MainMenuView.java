@@ -1,5 +1,7 @@
 package views;
 
+import models.StateModel.MainMenuModel;
+
 import java.awt.*;
 
 /**
@@ -7,15 +9,25 @@ import java.awt.*;
  */
 public class MainMenuView extends View {
 
-    public MainMenuView(int height, int width, Canvas canvas){
-        super(height, width, canvas);
+    private MainMenuModel model;
+
+    public MainMenuView(MainMenuModel model){
+        this.model = model;
     }
 
     @Override
-    protected void render(Graphics g) {
-        g.setColor(Color.RED);
-        g.fillRect(20,20,300,300);
+    protected void render(Graphics2D g) {
+        renderBackGround(g);
+        renderOption(g);
     }
 
+    private void renderBackGround(Graphics2D g){
+        g.setColor(Color.BLACK);
+        g.fillRect(0,0,getWidth(),getHeight());
+    }
+
+    private void renderOption(Graphics2D g){
+        
+    }
 }
 
