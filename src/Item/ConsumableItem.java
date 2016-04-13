@@ -1,8 +1,9 @@
 package Item;
 
 import java.awt.image.BufferedImage;
-import Inventory.Inventory;
-import Equipment.Equipment;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import Location.Location;
 import Entity.Entity;
 
@@ -12,26 +13,22 @@ import Entity.Entity;
 
 public abstract class ConsumableItem extends TakeableItem {
     /* Attributes */
-    //StatModifier
+    private Map<String , Double> statModifier;
 
     /* Constructor */
     public ConsumableItem(){
         super();
     }
 
-    public ConsumableItem(BufferedImage image , int id, Location location, String name /* Stat Modifier */){
+    public ConsumableItem(String statName , double modifier , BufferedImage image , int id, Location location, String name){
         super(image, id, location, name);
-        /* this.StatMod = statmod */
+        statModifier = new LinkedHashMap<>();
+        statModifier.put(statName , modifier);
     }
 
     /* Methods */
-
-    public abstract void equip(Equipment equipment , Inventory inventory);
-    public abstract void unequip(Equipment equipment , Inventory inventory);
-
     public void use(Entity entity){
-        // entity.ModifyStats(Stat Modifier)
-        // entity.removeItem(this);
+        entity.modifyStats(this.statModifier);
     }
 
 }
