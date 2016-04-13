@@ -3,3 +3,8 @@
 
 # IGNORE COMPILED CODE
 /out
+
+.idea/
+*.iml
+out/
+/bin/

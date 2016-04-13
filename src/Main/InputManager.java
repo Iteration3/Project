@@ -6,10 +6,12 @@ package Main;
 
 import javafx.beans.Observable;
 import utilities.GameStateManager;
+import utilities.KeyCommand;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.HashSet;
 import java.util.Observer;
 
 /**
@@ -18,12 +20,18 @@ import java.util.Observer;
 
 public class InputManager{
 
-    //the veggies
-    GameStateManager gsm;
+    // HashList
+    static HashSet<Integer> active = new HashSet<>();
 
-    public InputManager(){
-
+    // called by InputManager
+    static void addCommand(KeyEvent event) {
+            active.add(event.getKeyCode());
+    }
+    static void removeCommand(KeyEvent event) {
+            active.remove( event.getKeyCode());
     }
 
-
+    protected static HashSet<Integer> getActiveKey(){
+        return (HashSet<Integer>)active.clone();
+    }
 }

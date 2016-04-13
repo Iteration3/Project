@@ -16,19 +16,16 @@ public class RunGame extends JFrame implements KeyListener{
 
 
     public static void main(String[] args){
-
         GameLoop game = new GameLoop();
         Thread thread = new Thread(game);
         thread.start();
 
-//        EventQueue.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                RunGame ex = new RunGame();
-//                ex.setVisible(true);
-//            }
-//        });
     }
+
+    public RunGame(){
+        this.addKeyListener(this);
+    }
+
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -37,12 +34,12 @@ public class RunGame extends JFrame implements KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        InputManager.addCommand(e);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        InputManager.removeCommand(e);
     }
 }
 
