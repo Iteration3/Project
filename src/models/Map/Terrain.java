@@ -1,6 +1,7 @@
 package models.Map;
 
-import Utilities.Geometry.Hexagon;
+
+import Utilities.Hexagon;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

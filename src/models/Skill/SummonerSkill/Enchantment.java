@@ -10,8 +10,8 @@ public class Enchantment extends SummonerSkill {
     }
 
     //make NPC go to sleep
-    /*public void activate(Entity entity) {
-        entity.goToSleep();
-    }*/
+    public void activate(Entity entity) {
+
+    }
 
 }

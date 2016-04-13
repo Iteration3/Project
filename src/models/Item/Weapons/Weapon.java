@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import models.Entity.Entity;
-import Utilities.Location.Location;
+import Utilities.Location;
 
 /**
  *  Implemented by Peter Camejo

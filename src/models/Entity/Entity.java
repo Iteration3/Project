@@ -10,7 +10,7 @@ import models.Item.*;
 import java.util.Map;
 import models.Inventory.*;
 import models.Equipment.Equipment;
-import Utilities.Location.Location;
+import Utilities.Location;
 
 public abstract class Entity implements Action {
     //
@@ -56,7 +56,7 @@ public abstract class Entity implements Action {
         Location specific functionality
      */
     //
-    public Location location() {return this.location;}
+   // public Location location() {return this.location;}
     //public void changeLocation() {this.location.changeLocation();}
 
     /*
@@ -121,4 +121,21 @@ public abstract class Entity implements Action {
     public Inventory getInventory(){
         return this.inventory;
     }
+
+    public int getLocationX() {
+        return location.getRow();
+    }
+
+    public int getLocationY() {
+        return location.getCol();
+    }
+
+    public int getLocationZ() {
+        return location.getHeight();
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
 }

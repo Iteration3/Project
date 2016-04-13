@@ -7,10 +7,12 @@ import java.util.Map;
 public class SmasherSkill extends Skill {
 
     private double strengthOfAttackModifier;
+    private double weaponRating;
 
     public SmasherSkill(String name, double manaCost, double strengthOfAttackModifier) {
         super(name, manaCost);
         this.strengthOfAttackModifier = strengthOfAttackModifier;
+        weaponRating = 0;
     }
 
     public void activate(Entity entity) {
@@ -25,8 +27,16 @@ public class SmasherSkill extends Skill {
         return map;
     }
 
+    public void setRating(double weaponRating) {
+        weaponRating = weaponRating;
+    }
+
+    public void setRatingToZero() {
+        weaponRating = 0;
+    }
+
     protected double getModifyAmount() {
-        return calculatorMultiplier * level * 5 * strengthOfAttackModifier;
+        return level * 5 + weaponRating;
     }
 
 }

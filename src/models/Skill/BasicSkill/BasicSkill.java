@@ -2,7 +2,7 @@ package models.Skill.BasicSkill;
 import models.Skill.*;
 
 
-public class BasicSkill extends Skill {
+public abstract class BasicSkill extends Skill {
 
     protected String statAbv;
 

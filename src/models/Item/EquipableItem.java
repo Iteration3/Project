@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import models.Inventory.Inventory;
 import models.Equipment.Equipment;
 import models.Entity.Entity;
-import Utilities.Location.Location;
+import Utilities.Location;
 
 /*
 * Implemented by Peter Camejo

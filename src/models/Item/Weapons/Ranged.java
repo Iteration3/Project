@@ -1,6 +1,6 @@
 package models.Item.Weapons;
 
-import Utilities.Location.Location;
+import Utilities.Location;
 
 import java.awt.image.BufferedImage;
 

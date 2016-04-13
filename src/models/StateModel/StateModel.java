@@ -1,6 +1,6 @@
 package models.StateModel;
 
-import Utilities.State.State;
+import State.State;
 
 /**
  * Created by jcvarela on 4/13/2016.
