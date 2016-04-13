@@ -1,6 +1,7 @@
 package controllers;
 
 import com.sun.org.apache.xpath.internal.SourceTree;
+import models.StateModel.MainMenuModel;
 import utilities.GameStateManager;
 import utilities.KeyCommand;
 import views.View;
@@ -13,18 +14,26 @@ import java.awt.event.KeyListener;
  */
 public class MainMenuViewController extends Controller {
 
-    //constructor of the mainMenuController
-    public MainMenuViewController(){
+    private MainMenuModel model;
 
+    //constructor of the mainMenuController
+    public MainMenuViewController(MainMenuModel model){
+        this.model = model;
     }
 
     @Override
     public void loadKeyCommand() {
 
-        map.put(KeyEvent.VK_9, new KeyCommand() {
+        map.put(KeyEvent.VK_UP, new KeyCommand() {
             @Override
             public void execute() {
-                System.out.println("Hello");
+                model.up();
+            }
+        });
+        map.put(KeyEvent.VK_DOWN, new KeyCommand() {
+            @Override
+            public void execute() {
+                model.down();
             }
         });
 

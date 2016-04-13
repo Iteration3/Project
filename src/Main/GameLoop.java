@@ -1,6 +1,7 @@
 package Main;
 
 import controllers.MainMenuViewController;
+import models.StateModel.MainMenuModel;
 import utilities.*;
 import views.Canvas;
 import views.MainMenuView;
@@ -35,8 +36,9 @@ public class GameLoop implements Runnable{
 
         //create the first state
         //TODO: NOT HERE IN ITS OWN CLASS
-        MainMenuView mainMenuView = new MainMenuView();
-        MainMenuViewController mainMenuViewController = new MainMenuViewController();
+        MainMenuModel model = new MainMenuModel();
+        MainMenuView mainMenuView = new MainMenuView(model);
+        MainMenuViewController mainMenuViewController = new MainMenuViewController(model);
         State mainMenu = new State(mainMenuView,mainMenuViewController);
         //TODO:--------------------------------------------------------
 

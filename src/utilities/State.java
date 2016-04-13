@@ -28,6 +28,5 @@ public class State {
     //get Controller
     public Controller getController(){return this.viewController;}
 
-    //set the current view based on the Canvas
-    public void setActiveView(Canvas canvas){canvas.setCurrentView(view);}
+
 }
