@@ -7,6 +7,10 @@ import Item.Requirement;
 import Location.Location;
 
 import java.awt.image.BufferedImage;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import Entity.Entity;
 
 /**
  *  Implemented by Peter Camejo
@@ -46,6 +50,18 @@ public class Weapon extends EquipableItem {
         inventory.addItem(this);
     }
 
-    ;
+
+    public void applyRating(Entity entity){
+        Map<String , Double > statModifier =  new LinkedHashMap<>();
+        statModifier.put("Attack" , this.rating);
+        entity.modifyStats(statModifier);
+    }
+
+    public void unapplyRating(Entity entity){
+        Map<String, Double> statModifier = new LinkedHashMap<>();
+        statModifier.put("Attack" , -this.rating);
+        entity.modifyStats(statModifier);
+    }
+
 
 }

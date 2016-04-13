@@ -28,6 +28,8 @@ public abstract class EquipableItem extends TakeableItem {
 
     public abstract void equip(Equipment equipment , Inventory inventory);
     public abstract void unequip(Equipment equipment , Inventory inventory);
+    public abstract void applyRating(Entity entity);
+    public abstract void unapplyRating(Entity entity);
 
     public void use(Entity entity){
        entity.equip(this);
@@ -40,4 +42,5 @@ public abstract class EquipableItem extends TakeableItem {
         this.rating  = rating;
         return;
     }
+
 }

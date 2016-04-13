@@ -90,10 +90,13 @@ public abstract class Entity implements Action {
     //
     public void equip(EquipableItem item) {
         item.equip(equipment , inventory);
+        item.applyRating(this);
     }
     public void unequip(EquipableItem item) {
         item.unequip(equipment , inventory);
+        item.unapplyRating(this);
     }
+
     public Equipment getEquipment(){
         return this.equipment;
     }
@@ -106,7 +109,10 @@ public abstract class Entity implements Action {
         inventory.addItem(item);
     }
     public void moveItem(Item item) {}
-    public void dropItem(Item item) {}
+    public void dropItem(Item item) {
+        inventory.removeItem(item.getId());
+        //Place item on tile at this location.
+    }
     public Inventory getInventory(){
         return this.inventory;
     }

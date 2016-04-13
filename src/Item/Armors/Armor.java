@@ -3,7 +3,13 @@ package Item.Armors;
 import Item.EquipableItem;
 
 import java.awt.image.BufferedImage;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import Location.Location;
+import Entity.Entity;
+
+
 
 /**
  *  Implemented by Peter Camejo
@@ -18,6 +24,18 @@ public abstract class Armor extends EquipableItem {
 
     public Armor(BufferedImage image , int id, Location location, String name, double rating){
         super(image, id, location, name ,rating);
+    }
+
+    public void applyRating(Entity entity){
+        Map<String , Double > statModifier =  new LinkedHashMap<>();
+        statModifier.put("Armor" , this.rating);
+        entity.modifyStats(statModifier);
+    }
+
+    public void unapplyRating(Entity entity){
+        Map<String, Double> statModifier = new LinkedHashMap<>();
+        statModifier.put("Armor" , -this.rating);
+        entity.modifyStats(statModifier);
     }
 
 }
