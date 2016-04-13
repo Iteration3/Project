@@ -16,7 +16,6 @@ public class MainMenuView extends View {
     private static final int WIDTH = 700;
     private static final int HEIGHT = 700;
 
-
     //title
     private static final String TITLE = "Title Here";
     private static final Font TITLE_FONT = new Font("Calibri (Body)", Font.BOLD, (int)(HEIGHT*0.2));
@@ -31,6 +30,7 @@ public class MainMenuView extends View {
 
     @Override
     public void render(Graphics2D g) {
+
         BufferedImage overImage = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_4BYTE_ABGR);
         Graphics g2 = overImage.getGraphics();
 

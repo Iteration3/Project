@@ -1,11 +1,8 @@
 package views;
 
-import views.View;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
 /**
@@ -19,15 +16,25 @@ public class Canvas extends JPanel{
 
     private final static int SCALE = 1;
 
+    private BufferedImage image;
+    private Graphics2D g;
+
     //Constructs the canvas to paint things on
     public Canvas(){
         setFocusable(true);
         setBackground(Color.BLACK);
         setPreferredSize(new Dimension(WIDTH,HEIGHT));
+
+        image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_4BYTE_ABGR);
+        g = image.createGraphics();
     }
 
     public BufferedImage getImage(){
         return new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_4BYTE_ABGR);
+    }
+
+    public Graphics2D getGraphics(){
+        return g;
     }
 
     public void repaint(BufferedImage imageToRender){
@@ -35,4 +42,5 @@ public class Canvas extends JPanel{
         g2.drawImage(imageToRender, 0, 0, WIDTH*SCALE, HEIGHT*SCALE, null);
         g2.dispose();
     }
+
 }

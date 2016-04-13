@@ -1,18 +1,23 @@
 package models.StateModel;
 
+import utilities.State.State;
+import utilities.State.TestingState;
+
 /**
  * Created by jcvarela on 4/12/2016.
  */
-public class MainMenuModel {
+public class MainMenuModel implements StateModel{
 
     public enum MainMenuOption{
-        Start("Start"),
-        NewGame("New Game"),
-        Exit("Exit");
+        Start("Start", new TestingState()),
+        NewGame("New Game", new TestingState()),
+        Exit("Exit", null);
 
         private String name;
+        private State nextState;
 
-        MainMenuOption(String name){
+        MainMenuOption(String name, State nextState){
+            this.nextState = nextState;
             this.name = name;
         }
 
@@ -31,6 +36,8 @@ public class MainMenuModel {
             return MainMenuOption.values()[pos + 1];
         }
 
+        public State getNextState(){ return nextState; }
+
         @Override
         public String toString(){
             return name;
@@ -38,6 +45,7 @@ public class MainMenuModel {
     }
 
     private MainMenuOption selected;
+    private boolean isActive;
 
     public MainMenuModel(){
         selected = MainMenuOption.Start;
@@ -56,4 +64,26 @@ public class MainMenuModel {
     public void down(){
         selected = MainMenuOption.getAfter(selected);
     }
+
+    public void select(){
+        isActive = true;
+    }
+
+    @Override
+    public void update() {
+
+    }
+
+    @Override
+    public State nextState() {
+        if(isActive){
+            State nextState = selected.getNextState();
+            if(nextState == null){
+                System.exit(0);
+            }
+            return nextState;
+        }
+        return null;
+    }
+
 }

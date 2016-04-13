@@ -24,18 +24,25 @@ public class MainMenuViewController extends Controller {
     @Override
     public void loadKeyCommand() {
 
-        map.put(KeyEvent.VK_UP, new KeyCommand() {
+        map.put(KeyEvent.VK_U, new KeyCommand(){
             @Override
             public void execute() {
                 model.up();
             }
         });
-        map.put(KeyEvent.VK_DOWN, new KeyCommand() {
+
+        map.put(KeyEvent.VK_J, new KeyCommand() {
             @Override
             public void execute() {
                 model.down();
             }
         });
 
+        map.put(KeyEvent.VK_ENTER, new KeyCommand() {
+            @Override
+            public void execute() {
+                model.select();
+            }
+        });
     }
 }

@@ -1,10 +1,7 @@
 package Main;
 
-import controllers.MainMenuViewController;
-import models.StateModel.MainMenuModel;
 import utilities.*;
 import views.Canvas;
-import views.MainMenuView;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 
@@ -33,18 +30,6 @@ public class GameLoop implements Runnable{
         initFrame();
         gameFrame.add(canvas);
         gameFrame.pack();
-
-        //create the first state
-        //TODO: NOT HERE IN ITS OWN CLASS
-        MainMenuModel model = new MainMenuModel();
-        MainMenuView mainMenuView = new MainMenuView(model);
-        MainMenuViewController mainMenuViewController = new MainMenuViewController(model);
-        State mainMenu = new State(mainMenuView,mainMenuViewController);
-        //TODO:--------------------------------------------------------
-
-
-        //put that into the GameStateManager
-        gsm.changeState(mainMenu);
     }
 
     public void initFrame(){

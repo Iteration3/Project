@@ -1,12 +1,9 @@
 package utilities;
 
-import controllers.Controller;
-import views.View;
+import utilities.State.MainMenuState;
+import utilities.State.State;
 
 import java.awt.image.BufferedImage;
-import java.util.Stack;
-
-import java.awt.*;
 
 /**
  * Created by denzel on 4/11/16.
@@ -19,47 +16,39 @@ import java.awt.*;
 
 public class GameStateManager {
 
-    //State
-    private State state;
+    private State currentGameState;
 
-    //Stack of states
-    private Stack<State> stateStack;
-
-    public GameStateManager(){
-        //initialize the stack of states
-        stateStack = new Stack<>();
+    public GameStateManager() {
+        setState(new MainMenuState());
     }
 
-    //Current State
-    public State getCurrentState(){
-        return stateStack.peek();
+    public void setState(State newGameState) {
+        if(currentGameState != newGameState) {
+            currentGameState = newGameState;
+            currentGameState.initMVC();
+        }
     }
 
-    //Current View
-    public View getCurrentView(){
-        return stateStack.peek().getView();
+    public void update() {
+        //TODO: function can throw error
+        if(currentGameState != null) {
+            currentGameState.setNextState(this);
+            currentGameState.handleInput();
+            currentGameState.update();
+        }
+        else {
+            System.err.println("GameStateManager error: null game state");
+        }
+
     }
 
-    //Current Controller
-    public Controller getCurrentController(){
-        return stateStack.peek().getController();
-    }
 
-    //change state
-    public void changeState(State state){
-        stateStack.add(state);
-    }
-
-    public void update(){
-        getCurrentController().update();
-    }
-
-    public void render(BufferedImage image){
-        getCurrentView().render(image);
-    }
-
-    //remove state
-    public void removeState(){
-        stateStack.pop();
+    public void render(BufferedImage image) {
+        //TODO: function can throw error
+        if(currentGameState != null) {
+            currentGameState.render(image);}
+        else{
+            System.err.println("GameStateManager error: null game state");
+        }
     }
 }
