@@ -13,7 +13,6 @@ public abstract class Controller extends InputManager{
     // Hashmap of KeyEvents
     protected HashMap<Integer, KeyCommand> map;
 
-
     public Controller() {
         map = new HashMap<>();
         loadKeyCommand();

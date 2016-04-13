@@ -16,15 +16,13 @@ public class GameLoop implements Runnable{
 
     //GameStateManager
     private GameStateManager gsm;
-    private JFrame gameFrame;
+    private RunGame gameFrame;
     private Canvas canvas = new Canvas(400,400);
 
     private final int FPS = 30;
     private final int TIME_PER_TICK = 1000/FPS;
     private long timePerTick;
     private boolean isRunning = true;
-
-    private InputManager in;
 
     public GameLoop(){
 
@@ -41,14 +39,13 @@ public class GameLoop implements Runnable{
         State mainMenu = new State(mainMenuView,mainMenuViewController);
         //TODO:--------------------------------------------------------
 
-        in = new InputManager();
 
         //put that into the GameStateManager
         gsm.changeState(mainMenu);
     }
 
     public void initFrame(){
-        gameFrame = new JFrame();
+        gameFrame = new RunGame();
         gameFrame.setTitle("WTF Game");
         gameFrame.setLocationRelativeTo(null);
         gameFrame.setVisible(true);

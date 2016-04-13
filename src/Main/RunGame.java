@@ -19,7 +19,6 @@ public class RunGame extends JFrame implements KeyListener{
         GameLoop game = new GameLoop();
         Thread thread = new Thread(game);
         thread.start();
-
     }
 
     public RunGame(){
