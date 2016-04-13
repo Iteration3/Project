@@ -1,9 +1,3 @@
-# IGNORE INTELLIJ NONSENSE
-/.idea
-
-# IGNORE COMPILED CODE
-/out
-
 .idea/
 *.iml
 out/
