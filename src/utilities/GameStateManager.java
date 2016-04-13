@@ -1,7 +1,7 @@
-package utilities;
+package Utilities;
 
-import utilities.State.MainMenuState;
-import utilities.State.State;
+import Utilities.State.MainMenuState;
+import Utilities.State.State;
 
 import java.awt.image.BufferedImage;
 

@@ -10,7 +10,7 @@ import models.Item.*;
 import java.util.Map;
 import models.Inventory.*;
 import models.Equipment.Equipment;
-import utilities.Location.Location;
+import Utilities.Location.Location;
 
 public abstract class Entity implements Action {
     //

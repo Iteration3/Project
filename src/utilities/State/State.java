@@ -1,9 +1,8 @@
-package utilities.State;
+package Utilities.State;
 
 import controllers.Controller;
 import models.StateModel.StateModel;
-import utilities.GameStateManager;
-import views.Canvas;
+import Utilities.GameStateManager;
 import views.View;
 
 import java.awt.image.BufferedImage;
@@ -59,7 +58,7 @@ public abstract class State {
     }
 
     public void render(BufferedImage image){
-        if(view != null) {
+        if(view != null){
             view.render(image);
         }else {
             System.err.println("Current State has no View");
