@@ -1,19 +1,13 @@
 package Main;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.security.Key;
 
 /**
  * Created by denzel on 4/11/16.
  */
-
-
-
 public class RunGame extends JFrame implements KeyListener{
-
 
     public static void main(String[] args){
         GameLoop game = new GameLoop();
@@ -40,5 +34,5 @@ public class RunGame extends JFrame implements KeyListener{
     public void keyReleased(KeyEvent e) {
         InputManager.removeCommand(e);
     }
-}
 
+}

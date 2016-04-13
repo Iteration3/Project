@@ -1,6 +1,7 @@
 package Main;
 
-import utilities.*;
+
+import utilities.GameStateManager;
 import views.Canvas;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
@@ -78,5 +79,4 @@ public class GameLoop implements Runnable{
         gsm.render(image);
         canvas.repaint(image);
     }
-
 }
