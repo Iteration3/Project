@@ -1,13 +1,10 @@
 package Utilities;
 
-import Utilities.State.MainMenuState;
 import Utilities.State.State;
+import controllers.Controller;
+import views.View;
 
-import java.awt.image.BufferedImage;
-
-/**
- * Created by denzel on 4/11/16.
- */
+import java.util.Stack;
 
 /**
  * Responsibilities of GameStateManager is
@@ -16,39 +13,40 @@ import java.awt.image.BufferedImage;
 
 public class GameStateManager {
 
-    private State currentGameState;
+    //State
+    private State state;
 
-    public GameStateManager() {
-        setState(new MainMenuState());
+    //Stack of states
+    private Stack<State> stateStack;
+
+    public GameStateManager(){
+        //initialize the stack of states
+        stateStack = new Stack<>();
     }
 
-    public void setState(State newGameState) {
-        if(currentGameState != newGameState) {
-            currentGameState = newGameState;
-            currentGameState.initMVC();
-        }
+    //Current State
+    public State getCurrent(){
+        return stateStack.peek();
     }
 
-    public void update() {
-        //TODO: function can throw error
-        if(currentGameState != null) {
-            currentGameState.setNextState(this);
-            currentGameState.handleInput();
-            currentGameState.update();
-        }
-        else {
-            System.err.println("GameStateManager error: null game state");
-        }
+//    //Current View
+//    public View getCurrentView(){
+//        return stateStack.peek().getView();
+//    }
+//
+//    //Current Controller
+//    public Controller getCurrentController(){
+//        return stateStack.peek().getController();
+//    }
 
+    //change state
+    public void changeState(State state){
+        stateStack.add(state);
     }
 
-
-    public void render(BufferedImage image) {
-        //TODO: function can throw error
-        if(currentGameState != null) {
-            currentGameState.render(image);}
-        else{
-            System.err.println("GameStateManager error: null game state");
-        }
+    //remove state
+    public void removeState(){
+        stateStack.pop();
     }
+
 }

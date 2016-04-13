@@ -32,7 +32,7 @@ public abstract class State {
     //set it to return a state when it needs to change states
     public final void setNextState(GameStateManager gsm) {
         if(nextGameState != null){
-            gsm.setState(nextGameState);
+//            gsm.setState(nextGameState);
         }
     }
 
