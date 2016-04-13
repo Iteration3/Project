@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import models.Entity.Entity;
-import utilities.Location.Location;
+import Utilities.Location.Location;
 
 /*
 * Implemented by Peter Camejo

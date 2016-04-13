@@ -2,8 +2,8 @@ package models.Skill;
 
 import java.util.ArrayList;
 import java.util.Map;
-import models.Entity.*;
-import utilities.Location.Location;
+
+import Utilities.Location.Location;
 
 public abstract class Skill {
 

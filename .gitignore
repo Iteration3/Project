@@ -1,8 +1,8 @@
-# IGNORE INTELLIJ NONSENSE
-/.idea
-workspace.xml
-*.xml
-
-# IGNORE COMPILED CODE
-/out
-*.class
+.idea/
+*.iml
+out/
+/bin/
+.classpath
+.project
+.DS_Store
+src/res/save_files/*

@@ -1,4 +1,4 @@
-package models.Tile;
+package models.Map;
 
 public class Tile {
 }

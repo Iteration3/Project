@@ -3,7 +3,7 @@ package models.Item.Armors;
 
 import models.Inventory.Inventory;
 import models.Equipment.Equipment;
-import utilities.Location.Location;
+import Utilities.Location.Location;
 
 import java.awt.image.BufferedImage;
 

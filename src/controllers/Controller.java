@@ -1,7 +1,7 @@
 package controllers;
 
 import Main.InputManager;
-import utilities.KeyCommand;
+import Utilities.KeyCommand;
 
 import java.util.HashMap;
 
