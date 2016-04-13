@@ -7,7 +7,6 @@ import views.View;
 /**
  * Created by denzel on 4/11/16.
  */
-
 //The state object couples the View and Controller
 public class State {
 
@@ -27,13 +26,8 @@ public class State {
     }
 
     //get Controller
-    public Controller getController(){
-        return this.viewController;
-    }
+    public Controller getController(){return this.viewController;}
 
     //set the current view based on the Canvas
-    public void setActiveView(Canvas canvas){
-        canvas.setCurrentView(view);
-    }
-
+    public void setActiveView(Canvas canvas){canvas.setCurrentView(view);}
 }

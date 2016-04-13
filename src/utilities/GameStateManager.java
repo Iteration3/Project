@@ -50,9 +50,12 @@ public class GameStateManager {
         state.setActiveView(getCurrentView().getCanvas());
     }
 
+    public void update(){
+        getCurrentController().update();
+    }
+
     //remove state
     public void removeState(){
         stateStack.pop();
     }
-
 }

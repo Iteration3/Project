@@ -1,12 +1,16 @@
 package views;
 
+import views.View;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * Created by denzel on 4/12/16.
  */
-public class Canvas extends JPanel{
+public class Canvas extends JPanel implements KeyListener{
 
     protected View currentView;
 
@@ -26,5 +30,20 @@ public class Canvas extends JPanel{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         currentView.render(g);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }

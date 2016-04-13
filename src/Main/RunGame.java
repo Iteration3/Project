@@ -2,6 +2,9 @@ package Main;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.security.Key;
 
 /**
  * Created by denzel on 4/11/16.
@@ -9,7 +12,8 @@ import java.awt.*;
 
 
 
-public class RunGame extends JFrame{
+public class RunGame extends JFrame implements KeyListener{
+
 
     public static void main(String[] args){
 
@@ -24,6 +28,21 @@ public class RunGame extends JFrame{
 //                ex.setVisible(true);
 //            }
 //        });
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }
 

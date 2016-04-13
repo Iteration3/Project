@@ -5,7 +5,6 @@ import utilities.*;
 import views.Canvas;
 import views.MainMenuView;
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Created by denzel on 4/11/16.
@@ -13,8 +12,7 @@ import java.awt.*;
 
 
 //The Game Loop
-public class GameLoop implements Runnable {
-
+public class GameLoop implements Runnable{
 
     //GameStateManager
     private GameStateManager gsm;
@@ -26,6 +24,8 @@ public class GameLoop implements Runnable {
     private long timePerTick;
     private boolean isRunning = true;
 
+    private InputManager in;
+
     public GameLoop(){
 
         //Instantiate the GameStateManager
@@ -35,13 +35,16 @@ public class GameLoop implements Runnable {
         gameFrame.pack();
 
         //create the first state
+        //TODO: NOT HERE IN ITS OWN CLASS
         MainMenuView mainMenuView = new MainMenuView(500,500,canvas);
         MainMenuViewController mainMenuViewController = new MainMenuViewController();
         State mainMenu = new State(mainMenuView,mainMenuViewController);
+        //TODO:--------------------------------------------------------
+
+        in = new InputManager();
 
         //put that into the GameStateManager
         gsm.changeState(mainMenu);
-
     }
 
     public void initFrame(){
@@ -51,7 +54,6 @@ public class GameLoop implements Runnable {
         gameFrame.setVisible(true);
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-
 
     @Override
     public void run() {
@@ -65,8 +67,10 @@ public class GameLoop implements Runnable {
         while(isRunning){
 
             start = System.currentTimeMillis();
+
             update();
             render();
+
             elapsed = System.currentTimeMillis() - start;
             wait = timePerTick - elapsed;
 
@@ -80,14 +84,12 @@ public class GameLoop implements Runnable {
         }
     }
 
-
     public void update(){
-
+        gsm.update();
     }
-
     //frame
     public void render(){
-
+      //gsm.render();
     }
 
 }
