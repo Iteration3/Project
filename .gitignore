@@ -6,3 +6,4 @@ workspace.xml
 # IGNORE COMPILED CODE
 /out
 *.class
+*.iml
