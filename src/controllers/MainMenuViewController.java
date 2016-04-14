@@ -2,13 +2,13 @@ package controllers;
 
 import models.StateModel.MainMenuModel;
 import utilities.KeyCommand;
-
 import java.awt.event.KeyEvent;
 
 /**
  * Created by denzel on 4/11/16.
  */
 public class MainMenuViewController extends Controller {
+
 
     private MainMenuModel model;
 
@@ -23,6 +23,7 @@ public class MainMenuViewController extends Controller {
         map.put(KeyEvent.VK_U, new KeyCommand(){
             @Override
             public void execute() {
+                System.out.println("I'm Entering");
                 model.up();
             }
         });
@@ -30,6 +31,7 @@ public class MainMenuViewController extends Controller {
         map.put(KeyEvent.VK_J, new KeyCommand() {
             @Override
             public void execute() {
+                System.out.println("I'm Entering");
                 model.down();
             }
         });
@@ -37,6 +39,7 @@ public class MainMenuViewController extends Controller {
         map.put(KeyEvent.VK_ENTER, new KeyCommand() {
             @Override
             public void execute() {
+                System.out.println("I'm Entering");
                 model.select();
             }
         });

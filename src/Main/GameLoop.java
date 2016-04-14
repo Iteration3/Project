@@ -1,8 +1,13 @@
 package Main;
 
 
+import controllers.MainMenuViewController;
+import models.StateModel.MainMenuModel;
 import utilities.GameStateManager;
+import utilities.State.State;
 import views.Canvas;
+import views.MainMenuView;
+
 import javax.swing.*;
 import java.awt.image.BufferedImage;
 
@@ -31,6 +36,16 @@ public class GameLoop implements Runnable{
         initFrame();
         gameFrame.add(canvas);
         gameFrame.pack();
+
+        //create the first state
+        MainMenuModel mainMenuModel = new MainMenuModel();
+        MainMenuView mainMenuView = new MainMenuView(300,300,canvas,mainMenuModel);
+        MainMenuViewController mainMenuViewController = new MainMenuViewController(mainMenuModel);
+        State mainMenuState = new State(mainMenuView,mainMenuViewController);
+
+        //push the first state into the GSM
+        gsm.changeState(mainMenuState);
+
     }
 
     public void initFrame(){
@@ -70,13 +85,13 @@ public class GameLoop implements Runnable{
         }
     }
 
+    //update
     public void update(){
-//        gsm.update();
+        gsm.update();
     }
-    //frame
+
+    //render
     public void render(){
-        BufferedImage image = canvas.getImage();
-//        gsm.render(image);
-        canvas.repaint(image);
+        gsm.render();
     }
 }

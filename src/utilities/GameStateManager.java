@@ -1,7 +1,9 @@
 package utilities;
 
 
+import controllers.Controller;
 import utilities.State.State;
+import views.View;
 
 import java.util.Stack;
 
@@ -23,29 +25,36 @@ public class GameStateManager {
         stateStack = new Stack<>();
     }
 
-    //Current State
-    public State getCurrent(){
-        return stateStack.peek();
+    //Current View
+    public View getCurrentView(){
+        return stateStack.peek().getView();
     }
 
-//    //Current View
-//    public View getCurrentView(){
-//        return stateStack.peek().getView();
-//    }
-//
-//    //Current Controller
-//    public Controller getCurrentController(){
-//        return stateStack.peek().getController();
-//    }
+    //Current Controller
+    public Controller getCurrentController(){
+        return stateStack.peek().getController();
+    }
 
     //change state
     public void changeState(State state){
         stateStack.add(state);
+        getCurrentView().getCanvas().setActiveView(state.getView());
     }
 
     //remove state
     public void removeState(){
         stateStack.pop();
+    }
+
+
+    //update
+    public void update(){
+        getCurrentController().handleInput();
+    }
+
+    //render
+    public void render(){
+        getCurrentView().getCanvas().repaint();
     }
 
 }
