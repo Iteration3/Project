@@ -1,7 +1,9 @@
 package Utilities;
 
-import Controller.Controller;
-import View.View;
+
+import Utilities.State.State;
+import controllers.Controller;
+import views.View;
 
 import java.util.Stack;
 
