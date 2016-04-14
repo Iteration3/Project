@@ -1,7 +1,7 @@
 package controllers;
 
 import models.StateModel.MainMenuModel;
-import Utilities.KeyCommand;
+import Utilities.KeyCommand.KeyCommand;
 
 import java.awt.event.KeyEvent;
 

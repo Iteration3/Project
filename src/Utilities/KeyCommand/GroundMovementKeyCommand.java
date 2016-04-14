@@ -6,6 +6,6 @@ package Utilities.KeyCommand;
 public class GroundMovementKeyCommand extends MovementKeyCommand {
     @Override
     public void execute() {
-        
+
     }
 }
