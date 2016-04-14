@@ -2,7 +2,7 @@ package models.Item;
 
 import java.awt.image.BufferedImage;
 import models.Entity.Entity;
-import Utilities.Location.Location;
+import utilities.Location.Location;
 
 /*
 * Implemented by Peter Camejo

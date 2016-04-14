@@ -1,14 +1,11 @@
 package models.Item.Armors;
 
 import models.Item.EquipableItem;
-
 import java.awt.image.BufferedImage;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-
 import models.Entity.Entity;
-import Utilities.Location.Location;
+import utilities.Location.Location;
 
 
 /**
@@ -23,7 +20,7 @@ public abstract class Armor extends EquipableItem {
     }
 
     public Armor(BufferedImage image , int id, Location location, String name, double rating){
-        super(image, id, location, name ,rating);
+        super(image,id,location,name,rating);
     }
 
     public void applyRating(Entity entity){

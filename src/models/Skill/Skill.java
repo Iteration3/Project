@@ -3,7 +3,8 @@ package models.Skill;
 import java.util.ArrayList;
 import java.util.Map;
 
-import Utilities.Location.Location;
+import utilities.Location.Location;
+import utilities.Location.Location;
 
 public abstract class Skill {
 
