@@ -1,4 +1,4 @@
-package Utilities.State;
+package utilities.State;
 
 import controllers.MainMenuViewController;
 import models.StateModel.MainMenuModel;

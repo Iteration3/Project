@@ -1,8 +1,7 @@
-package Utilities;
+package utilities;
 
-import Utilities.State.State;
-import controllers.Controller;
-import views.View;
+
+import utilities.State.State;
 
 import java.util.Stack;
 

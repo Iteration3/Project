@@ -1,7 +1,7 @@
 package models.StateModel;
 
-import Utilities.State.State;
-import Utilities.State.TestingState;
+import utilities.State.State;
+import utilities.State.TestingState;
 
 /**
  * Created by jcvarela on 4/12/2016.

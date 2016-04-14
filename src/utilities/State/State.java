@@ -1,8 +1,8 @@
-package Utilities.State;
+package utilities.State;
 
 import controllers.Controller;
 import models.StateModel.StateModel;
-import Utilities.GameStateManager;
+import utilities.GameStateManager;
 import views.View;
 
 import java.awt.image.BufferedImage;
@@ -51,7 +51,7 @@ public abstract class State {
     public void update() {
         if (stateModel != null){
             stateModel.update();
-            changeGameState(stateModel.nextState());
+            changeGameState(nextGameState);
         }else {
             System.err.println("Current State has no Model");
         }

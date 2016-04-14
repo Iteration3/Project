@@ -1,7 +1,7 @@
 package Main;
 
 
-import Utilities.GameStateManager;
+import utilities.GameStateManager;
 import views.Canvas;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
