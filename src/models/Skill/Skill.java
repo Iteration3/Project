@@ -1,9 +1,7 @@
 package models.Skill;
 
-import java.util.ArrayList;
 import java.util.Map;
-
-import Utilities.Location.Location;
+import models.Entity.*;
 
 public abstract class Skill {
 
@@ -12,7 +10,7 @@ public abstract class Skill {
     protected double manaCost;
     protected double calculatorMultiplier;
     protected double manaCostMultiplier;
-    private ArrayList<Location> locationArrayList;
+    protected int radius;
 
     public Skill(String name, double manaCost) {
         this.name = name;
@@ -20,11 +18,16 @@ public abstract class Skill {
         this.calculatorMultiplier = 5;
         this.manaCostMultiplier = 1;
         this.manaCost = manaCost * manaCostMultiplier;
+
+        radius = 3;
     }
-/*
+
+    public abstract void activate(Entity entity);
+
     public boolean canUseSkill(Entity entity) {
         boolean canPerform = canPerform();
-        double hasEnoughMana = entity.getMana();
+        //double hasEnoughMana = entity.getMana();
+        double hasEnoughMana = 100;
         if (hasEnoughMana >= manaCost && canPerform) {
             Map<String, Double> modifyManaCostMap = getManaCostMap();
             entity.modifyStats(modifyManaCostMap);
@@ -32,7 +35,7 @@ public abstract class Skill {
         }
         return false;
     }
-*/
+
     protected Map<String, Double> getManaCostMap() {
         Map<String, Double> manaCostMap = null;
         double manaCost = getManaCost();
@@ -48,9 +51,9 @@ public abstract class Skill {
         return false;
     }
 
-   /* private void initializeAttackLocations(Location location, Orientation orientation) {
-
-    }*/
+    public int getRadius() {
+        return radius;
+    }
 
     public void levelUpSkill() {
         level++;

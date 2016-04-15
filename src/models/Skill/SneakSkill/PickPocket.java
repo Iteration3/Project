@@ -11,13 +11,14 @@ public class PickPocket extends SneakSkill {
         super("Pick Pocket", 10.0);
     }
 
-    /*public void activate(Entity entity) {
-        avatar.addItem(entity.getRandomItem());
-    }*/
+    public void activate(Entity entity) {
+        //avatar.addItem(entity.getRandomItem());
+    }
 
-    /*public boolean canUseSkill(Entity entity) {
+    public boolean canUseSkill(Entity entity) {
         boolean canPerform = canPerform();
-        double hasEnoughMana = entity.getMana();
+        //double hasEnoughMana = entity.getMana();
+        double hasEnoughMana = 100;
         if (hasEnoughMana >= manaCost && canPerform) {
             Map<String, Double> modifyManaCostMap = getManaCostMap();
             entity.modifyStats(modifyManaCostMap);
@@ -25,5 +26,5 @@ public class PickPocket extends SneakSkill {
             return true;
         }
         return false;
-    }*/
+    }
 }

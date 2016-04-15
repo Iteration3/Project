@@ -1,4 +1,4 @@
-package Utilities.Geometry;
+package Utilities;
 
 import java.awt.*;
 

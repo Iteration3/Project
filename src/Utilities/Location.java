@@ -1,4 +1,4 @@
-package Utilities.Location;
+package Utilities;
 
 /**
  * Created by walkhard on 4/7/16.
