@@ -4,6 +4,7 @@ import models.Entity.Entity;
 import models.Equipment.Equipment;
 import models.Inventory.Inventory;
 import utilities.Location.Location;
+import views.Assets;
 
 import java.awt.image.BufferedImage;
 
@@ -17,8 +18,8 @@ public class Trinket extends Armor {
         super();
     }
 
-    public Trinket(BufferedImage image , int id, Location location, String name, double rating){
-        super(image, id, location, name ,rating);
+    public Trinket( int id, Location location, String name, double rating){
+        super(Assets.trinket, id, location, name ,rating);
     }
 
     /* Methods */

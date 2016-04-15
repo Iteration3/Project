@@ -1,6 +1,7 @@
 package models.Item.Weapons;
 
 import utilities.Location.Location;
+import views.Assets;
 
 import java.awt.image.BufferedImage;
 
@@ -14,13 +15,13 @@ import java.awt.image.BufferedImage;
 public class Staff extends Weapon{
     /* Constructors */
     //No level requirement
-    public Staff(BufferedImage image , int id, Location location, String name , double attackRating){
-        super(1.00 , "Summoner" , image, id, location, name, attackRating);
+    public Staff( int id, Location location, String name , double attackRating){
+        super(1.00 , "Summoner" , Assets.staff, id, location, name, attackRating);
     }
 
     //Level requirement
-    public Staff(int requiredLevel ,  BufferedImage image , int id, Location location, String name , double attackRating){
-        super(1.00 , "Summoner" , requiredLevel , image, id, location, name, attackRating);
+    public Staff(int requiredLevel, int id, Location location, String name , double attackRating){
+        super(1.00 , "Summoner" , requiredLevel , Assets.staff, id, location, name, attackRating);
     }
 }
 

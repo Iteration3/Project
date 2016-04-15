@@ -4,6 +4,7 @@ import models.Entity.Entity;
 import models.Equipment.Equipment;
 import models.Inventory.Inventory;
 import utilities.Location.Location;
+import views.Assets;
 
 import java.awt.image.BufferedImage;
 
@@ -16,8 +17,8 @@ public class LegArmor extends Armor {
         super();
     }
 
-    public LegArmor(BufferedImage image , int id, Location location, String name, double rating){
-        super(image, id, location, name ,rating);
+    public LegArmor( int id, Location location, String name, double rating){
+        super(Assets.legArmor, id, location, name ,rating);
     }
 
     /* Methods */

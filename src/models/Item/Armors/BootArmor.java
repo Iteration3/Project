@@ -4,6 +4,7 @@ import models.Entity.Entity;
 import models.Equipment.Equipment;
 import models.Inventory.Inventory;
 import utilities.Location.Location;
+import views.Assets;
 
 
 import java.awt.image.BufferedImage;
@@ -18,8 +19,8 @@ public class BootArmor extends Armor{
         super();
     }
 
-    public BootArmor(BufferedImage image , int id, Location location, String name, double rating){
-        super(image, id, location, name ,rating);
+    public BootArmor( int id, Location location, String name, double rating){
+        super(Assets.bootArmor , id, location, name ,rating);
     }
 
     /* Methods */

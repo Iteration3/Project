@@ -1,6 +1,7 @@
 package models.Item.Weapons;
 
 import utilities.Location.Location;
+import views.Assets;
 
 import java.awt.image.BufferedImage;
 
@@ -14,12 +15,12 @@ import java.awt.image.BufferedImage;
 public class TwoHand extends Weapon{
     /* Constructors */
     //No level requirement
-    public TwoHand(BufferedImage image , int id, Location location, String name , double attackRating){
-        super(1.00 , "Smasher" , image, id, location, name, attackRating);
+    public TwoHand( int id, Location location, String name , double attackRating){
+        super(1.00 , "Smasher" , Assets.twoHand , id, location, name, attackRating);
     }
 
     //Level requirement
-    public TwoHand(int requiredLevel ,  BufferedImage image , int id, Location location, String name , double attackRating){
-        super(1.00 , "Smasher" , requiredLevel , image, id, location, name, attackRating);
+    public TwoHand(int requiredLevel , int id, Location location, String name , double attackRating){
+        super(1.00 , "Smasher" , requiredLevel , Assets.twoHand, id, location, name, attackRating);
     }
 }

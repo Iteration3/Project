@@ -5,6 +5,7 @@ import models.Entity.Entity;
 import models.Inventory.Inventory;
 import models.Equipment.Equipment;
 import utilities.Location.Location;
+import views.Assets;
 
 import java.awt.image.BufferedImage;
 
@@ -17,8 +18,8 @@ public class HeadArmor extends Armor{
         super();
     }
 
-    public HeadArmor(BufferedImage image , int id, Location location, String name, double rating){
-        super(image, id, location, name ,rating);
+    public HeadArmor(int id, Location location, String name, double rating){
+        super(Assets.headArmor, id, location, name ,rating);
     }
 
 
