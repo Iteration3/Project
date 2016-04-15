@@ -57,6 +57,7 @@ public abstract class Entity implements Action {
      */
     //
     public Location location() {return this.location;}
+    public void changeLocation(Location l) {setLocation(l);}        //added this for teleportation.
     //public void changeLocation() {this.location.changeLocation();}
 
     /*

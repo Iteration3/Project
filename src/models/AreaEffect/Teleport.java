@@ -9,7 +9,17 @@ import utilities.Location.Location;
 public class Teleport extends AreaEffect {
     Location toLoc;
 
-    public void execute(Entity e){}
+    public Teleport(Location l){
+        toLoc = l;
+    }
+
+    public void execute(Entity e){
+        teleportEntity(e);
+    }
+
+    private void teleportEntity(Entity e){
+        e.changeLocation(toLoc);
+    }
 
 
 }
