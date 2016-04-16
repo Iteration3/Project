@@ -51,13 +51,7 @@ public class GameStateManager {
     }
 
     //update
-    public void update(){
-
+    public void update(Canvas canvas){
+        canvas.repaint();
     }
-
-    //render
-    public void render(){
-        getCurrentView().getCanvas().repaint();
-    }
-
 }

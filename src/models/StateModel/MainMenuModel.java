@@ -39,6 +39,7 @@ public class MainMenuModel{
         public String toString(){
             return name;
         }
+
     }
 
     private MainMenuOption selected;
@@ -59,7 +60,6 @@ public class MainMenuModel{
     }
 
     public void down(){
-        System.out.println("MainMenuModel: Down()");
         selected = MainMenuOption.getAfter(selected);
     }
 

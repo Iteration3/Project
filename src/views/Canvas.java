@@ -12,6 +12,8 @@ import java.awt.image.BufferedImage;
 /**
  * Created by denzel on 4/12/16.
  */
+
+
 public class Canvas extends JPanel implements KeyListener{
 
     private final static int WIDTH = 500;
@@ -19,7 +21,6 @@ public class Canvas extends JPanel implements KeyListener{
     private final static int SCALE = 1;
 
     private View currentView;
-    private Graphics2D g;
     private InputManager inputManager;
 
     //Constructs the canvas to paint things on
@@ -38,10 +39,6 @@ public class Canvas extends JPanel implements KeyListener{
         requestFocus();
     }
 
-
-    public Graphics2D getGraphics(){
-        return g;
-    }
 
     //set the active view
     public void setActiveView(View view){

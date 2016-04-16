@@ -24,7 +24,7 @@ public class MainMenuViewController extends Controller {
     @Override
     public void loadKeyCommand() {
 
-        map.put(KeyEvent.VK_5, new KeyCommand(){
+        map.put(KeyEvent.VK_U, new KeyCommand(){
             @Override
             public void execute() {
                 System.out.println("fuck everything");
