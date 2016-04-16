@@ -56,9 +56,10 @@ public abstract class Entity implements Action {
         Location specific functionality
      */
     //
-    public Location location() {return this.location;}
+    public Location getLocation() {return this.location;}
     public void changeLocation(Location l) {setLocation(l);}        //added this for teleportation.
-    //public void changeLocation() {this.location.changeLocation();}
+    //public void changeLocation() {this.getLocation.changeLocation();}
+
 
     /*
         models.Direction specific functionality
@@ -91,11 +92,11 @@ public abstract class Entity implements Action {
      */
     //
     public void equip(EquipableItem item) {
-        item.equip(equipment , inventory);
+ //       item.equip(equipment , inventory);
         item.applyRating(this);
     }
     public void unequip(EquipableItem item) {
-        item.unequip(equipment , inventory);
+ //       item.unequip(equipment , inventory);
         item.unapplyRating(this);
     }
 
@@ -113,7 +114,7 @@ public abstract class Entity implements Action {
     public void moveItem(Item item) {}
     public void dropItem(Item item) {
         inventory.removeItem(item.getId());
-        //Place item on tile at this location.
+        //Place item on tile at this getLocation.
     }
     public void useItem(TakeableItem item){
         item.use(this);

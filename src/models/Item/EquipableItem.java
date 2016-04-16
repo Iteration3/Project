@@ -26,8 +26,8 @@ public abstract class EquipableItem extends TakeableItem {
 
     /* Methods */
 
-    public abstract void equip(Equipment equipment , Inventory inventory);
-    public abstract void unequip(Equipment equipment , Inventory inventory);
+    public abstract void equip(Entity entity , Equipment equipment , Inventory inventory);
+    public abstract void unequip(Entity entity, Equipment equipment , Inventory inventory);
     public abstract void applyRating(Entity entity);
     public abstract void unapplyRating(Entity entity);
 

@@ -32,10 +32,9 @@ public abstract class State {
     //set it to return a state when it needs to change states
     public final void setNextState(GameStateManager gsm) {
         if(nextGameState != null){
-//            gsm.setState(nextGameState);
+            gsm.setState(nextGameState);
         }
     }
-
     protected final void changeGameState(State gs){
         nextGameState = gs;
     }
@@ -51,14 +50,14 @@ public abstract class State {
     public void update() {
         if (stateModel != null){
             stateModel.update();
-            changeGameState(nextGameState);
+            changeGameState(stateModel.nextState());
         }else {
             System.err.println("Current State has no Model");
         }
     }
 
     public void render(BufferedImage image){
-        if(view != null){
+        if(view != null) {
             view.render(image);
         }else {
             System.err.println("Current State has no View");

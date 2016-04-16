@@ -1,7 +1,8 @@
-package views;
+package views.stateView;
 
 import models.StateModel.MainMenuModel;
 import models.StateModel.MainMenuModel.MainMenuOption;
+import views.View;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;

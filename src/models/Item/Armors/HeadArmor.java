@@ -1,9 +1,11 @@
 package models.Item.Armors;
 
 
+import models.Entity.Entity;
 import models.Inventory.Inventory;
 import models.Equipment.Equipment;
 import utilities.Location.Location;
+import views.Assets;
 
 import java.awt.image.BufferedImage;
 
@@ -16,13 +18,13 @@ public class HeadArmor extends Armor{
         super();
     }
 
-    public HeadArmor(BufferedImage image , int id, Location location, String name, double rating){
-        super(image, id, location, name ,rating);
+    public HeadArmor(int id, Location location, String name, double rating){
+        super(Assets.headArmor, id, location, name ,rating);
     }
 
 
     /* Methods */
-    public void equip(Equipment equipment , Inventory inventory) {
+    public void equip(Entity entity, Equipment equipment , Inventory inventory) {
         /*
         if(equipment.hasHead()){
             equipment.getHead().unequip(equipment , inventory); //NOT OOP. Should probably do this within models.Equipment State
@@ -30,11 +32,13 @@ public class HeadArmor extends Armor{
         */
         equipment.addHead(this);
         inventory.removeItem(id);
+        this.applyRating(entity);
     }
 
-    public void unequip(Equipment equipment, Inventory inventory) {
+    public void unequip(Entity entity, Equipment equipment, Inventory inventory) {
         inventory.addItem(this);
         equipment.removeHead();
+        this.unapplyRating(entity);
     }
 
 }

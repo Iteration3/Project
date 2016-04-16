@@ -15,10 +15,12 @@ public class RunGame extends JFrame implements KeyListener{
         thread.start();
     }
 
-    public RunGame(){
+    @Override
+    // method called internally by toolkit
+    public void addNotify() {
+        super.addNotify();
         this.addKeyListener(this);
     }
-
 
     @Override
     public void keyTyped(KeyEvent e) {

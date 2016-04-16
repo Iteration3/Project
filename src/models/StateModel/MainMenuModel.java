@@ -1,5 +1,6 @@
 package models.StateModel;
 
+import utilities.State.PlayState;
 import utilities.State.State;
 import utilities.State.TestingState;
 
@@ -9,8 +10,11 @@ import utilities.State.TestingState;
 public class MainMenuModel implements StateModel{
 
     public enum MainMenuOption{
-        Start("Start", new TestingState()),
-        NewGame("New Game", new TestingState()),
+        Start("Start", new PlayState()),
+        what("what", new PlayState()),
+        NewGar("do", new PlayState()),
+        NewGas("you", new PlayState()),
+        NewGw("MEAN!!!!", new PlayState()),
         Exit("Exit", null);
 
         private String name;
