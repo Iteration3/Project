@@ -14,20 +14,20 @@ import java.util.HashMap;
 public abstract class Controller{
 
     // Hashmap of KeyEvents
-    protected HashMap<Integer, KeyCommand> map;
+    protected HashMap<Integer, KeyCommand> keyMap;
 
     //GameStateManager
     protected GameStateManager gsm;
 
     public Controller( GameStateManager gsm) {
-        map = new HashMap<>();
+        keyMap = new HashMap<>();
         this.gsm = gsm;
         loadKeyCommand();
     }
 
     // update method
     public void handleInput(KeyEvent e){
-        map.get(e.getKeyCode()).execute();
+        keyMap.get(e.getKeyCode()).execute();
     }
 
     public abstract void loadKeyCommand();

@@ -9,7 +9,7 @@ public class Terrestrial extends Locomotion {
 
     @Override
     public void move(Terrain terrain) {
-
+        if terrain.toString() !=
     }
 
 }

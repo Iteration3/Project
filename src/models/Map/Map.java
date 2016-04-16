@@ -11,7 +11,7 @@ public class Map {
 
     private HashMap<Location, Tile> tiles;
 
-    //maximum size of the map once its been created cannot be change
+    //maximum size of the keyMap once its been created cannot be change
     private int rowSize;
     private int colSize;
     private int heightSize;

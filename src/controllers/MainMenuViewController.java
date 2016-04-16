@@ -29,21 +29,21 @@ public class MainMenuViewController extends Controller {
     @Override
     public void loadKeyCommand() {
 
-        map.put(KeyEvent.VK_U, new KeyCommand(){
+        keyMap.put(KeyEvent.VK_U, new KeyCommand(){
             @Override
             public void execute() {
                 model.up();
             }
         });
 
-        map.put(KeyEvent.VK_J, new KeyCommand() {
+        keyMap.put(KeyEvent.VK_J, new KeyCommand() {
             @Override
             public void execute() {
                 model.down();
             }
         });
 
-        map.put(KeyEvent.VK_ENTER, new KeyCommand() {
+        keyMap.put(KeyEvent.VK_ENTER, new KeyCommand() {
             @Override
             public void execute() {
                 if(model.getSelected() == MainMenuModel.MainMenuOption.Start){
