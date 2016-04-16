@@ -1,7 +1,8 @@
 package views;
 
+
 import java.awt.image.BufferedImage;
-import java.nio.Buffer;
+
 
 /**
  * Implemented by Peter Camejo
@@ -24,8 +25,15 @@ public class Assets {
     public static BufferedImage bootArmor;
     public static BufferedImage trinket;
 
+    /* Terrain */
+    public static BufferedImage grassTerrain;
+    public static BufferedImage mountainTerrain;
+    public static BufferedImage airTerrain;
+
+
     /* Methods */
     public static void init() {
+
 
         SpriteSheet oneHandSheet = new SpriteSheet(new ImageLoader().loadImage("/oneHand.png"));
         SpriteSheet twoHandSheet = new SpriteSheet(new ImageLoader().loadImage("/twoHand.png"));
@@ -53,5 +61,11 @@ public class Assets {
         bootArmor = bootArmorSheet.crop(0 , 0 , width , height);
         trinket = trinketSheet.crop(0 , 0 , width , height);
 
+        /*
+        grassTerrain = DrawTerrainImages.getGrassImage();
+        mountainTerrain = DrawTerrainImages.getMountainImage();
+        airTerrain = DrawTerrainImages.getAirImage();
+        */
     }
 }
+

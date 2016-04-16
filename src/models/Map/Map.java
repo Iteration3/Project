@@ -1,7 +1,82 @@
 package models.Map;
 
-/**
- * Created by walkhard on 4/7/16.
- */
+import utilities.Geometry.Hexagon;
+import utilities.Location.Location;
+
+import java.util.HashMap;
+
+
 public class Map {
+
+
+    private HashMap<Location, Tile> tiles;
+
+    //maximum size of the map once its been created cannot be change
+    private int rowSize;
+    private int colSize;
+    private int heightSize;
+
+    public Map(int rowSize, int colSize, int heightSize){
+        this.rowSize = rowSize;
+        this.colSize = colSize;
+        this.heightSize = heightSize;
+        tiles = new HashMap<>();
+    }
+
+    public boolean isOutOfBound(Location loc){
+        if (loc.getRow() < 0 || loc.getRow() >= getRowSize()) {
+            return true;
+        }
+        if (loc.getCol() < 0 || loc.getCol() >= getColSize()) {
+            return true;
+        }
+        if (loc.getHeight() < 0 || loc.getHeight() >= getHeightSize()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isTileEmpty(Location loc){
+        if(isOutOfBound(loc)) {
+            return false;
+        }
+        return tiles.containsKey(loc);
+    }
+
+    public int getRowSize(){return rowSize;}
+    public int getColSize(){return colSize;}
+    public int getHeightSize(){return heightSize;}
+
+    public Tile getTileAt(Location loc){
+        if(isOutOfBound(loc)) {
+            return null;
+        }
+        if(!tiles.containsKey(loc)) {
+            return getDefaultTile();
+        }
+        else {
+            return tiles.get(loc);
+        }
+    }
+
+    public Tile getDefaultTile(){
+        Tile temp = new Tile(Terrain.Air);
+        return temp;
+    }
+
+    public void addTileAt(Tile tile, Location loc){
+        if(isOutOfBound(loc)) {
+            return;
+        }
+        else {
+            tiles.put(loc, tile);
+        }
+    }
+    public void removeTileAt(Location loc){
+        if(tiles.containsKey(loc)){
+            tiles.remove(loc);
+        }
+    }
 }
+
+

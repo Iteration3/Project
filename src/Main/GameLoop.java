@@ -71,12 +71,12 @@ public class GameLoop implements Runnable{
     }
 
     public void update(){
-//        gsm.update();
+        gsm.update();
     }
     //frame
     public void render(){
         BufferedImage image = canvas.getImage();
-//        gsm.render(image);
+        gsm.render(image);
         canvas.repaint(image);
     }
 }

@@ -2,7 +2,7 @@ package utilities.State;
 
 import controllers.MainMenuViewController;
 import models.StateModel.MainMenuModel;
-import views.MainMenuView;
+import views.stateView.MainMenuView;
 
 /**
  * Created by jcvarela on 4/13/2016.
