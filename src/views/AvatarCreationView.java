@@ -71,7 +71,7 @@ public class AvatarCreationView extends View {
         Color defaultColor = Color.YELLOW;
         Color selectedColor = Color.RED;
 
-        for(MainMenuModel.MainMenuOption option: MainMenuModel.MainMenuOption.values()){
+        for(AvatarCreationModel.AvatarCreationMenu option: AvatarCreationModel.AvatarCreationMenu.values()){
             Rectangle2D rectangle = fm.getStringBounds(option.toString(),g);
 
             if(option.toString().equals(model.getSelected().toString())){

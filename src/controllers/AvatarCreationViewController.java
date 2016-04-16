@@ -1,5 +1,6 @@
 package controllers;
 
+import models.StateModel.AvatarCreationModel;
 import models.StateModel.MainMenuModel;
 import utilities.GameStateManager;
 import utilities.KeyCommand;
@@ -17,7 +18,7 @@ public class AvatarCreationViewController extends Controller {
     private AvatarCreationModel model;
 
     //Constructor of the AvatarCreationController
-    public AvatarCreationViewController(MainMenuModel model, GameStateManager gsm){
+    public AvatarCreationViewController(AvatarCreationModel model, GameStateManager gsm){
         super(gsm);
         this.model = model;
     }
@@ -44,8 +45,8 @@ public class AvatarCreationViewController extends Controller {
         map.put(KeyEvent.VK_ENTER, new KeyCommand() {
             @Override
             public void execute() {
-                if(model.getSelected() == MainMenuModel.MainMenuOption.Start){
-                    // playStateTransition();
+                if(model.getSelected() == AvatarCreationModel.AvatarCreationMenu.SMASHER){
+                    System.out.println("Selected Smasher");
                 }
             }
         });

@@ -1,10 +1,12 @@
 package controllers;
 
 import Main.InputManager;
+import models.StateModel.AvatarCreationModel;
 import models.StateModel.MainMenuModel;
 import utilities.GameStateManager;
 import utilities.KeyCommand;
 import utilities.State.State;
+import views.AvatarCreationView;
 import views.View;
 
 import java.awt.event.KeyEvent;
@@ -54,8 +56,8 @@ public class MainMenuViewController extends Controller {
 
     private void avatarCreationStateTransition() {
         AvatarCreationModel model = new AvatarCreationModel();
-        View view = new AvatarCreationView(model, gsm);
-        Controller controller = new AvatarCreationController(model, gsm);
+        View view = new AvatarCreationView(500,500,gsm.getCurrentView().getCanvas(),model);
+        Controller controller = new AvatarCreationViewController(model, gsm);
         State state = new State(view, controller);
         gsm.changeState(state);
     }
