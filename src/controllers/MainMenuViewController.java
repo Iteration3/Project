@@ -1,10 +1,9 @@
 package controllers;
 
-import Main.InputManager;
 import models.StateModel.AvatarCreationModel;
 import models.StateModel.MainMenuModel;
 import utilities.GameStateManager;
-import utilities.KeyCommand;
+import utilities.KeyCommand.KeyCommand;
 import utilities.State.State;
 import views.AvatarCreationView;
 import views.View;

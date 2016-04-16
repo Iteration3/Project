@@ -1,7 +1,7 @@
 package controllers;
 
 import utilities.GameStateManager;
-import utilities.KeyCommand;
+import utilities.KeyCommand.KeyCommand;
 
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
