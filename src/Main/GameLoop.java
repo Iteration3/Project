@@ -22,7 +22,7 @@ public class GameLoop implements Runnable{
     //GameStateManager
     private GameStateManager gsm;
     private RunGame gameFrame;
-    private Canvas canvas = new Canvas();
+
 
     private final int FPS = 30;
     private final int TIME_PER_TICK = 1000/FPS;
@@ -33,6 +33,9 @@ public class GameLoop implements Runnable{
 
         //Instantiate the GameStateManager
         gsm = new GameStateManager();
+        InputManager inputManager = new InputManager(gsm);
+        Canvas canvas = new Canvas(inputManager);
+
         initFrame();
         gameFrame.add(canvas);
         gameFrame.pack();
@@ -40,7 +43,7 @@ public class GameLoop implements Runnable{
         //create the first state
         MainMenuModel mainMenuModel = new MainMenuModel();
         MainMenuView mainMenuView = new MainMenuView(300,300,canvas,mainMenuModel);
-        MainMenuViewController mainMenuViewController = new MainMenuViewController(mainMenuModel);
+        MainMenuViewController mainMenuViewController = new MainMenuViewController(mainMenuModel,gsm);
         State mainMenuState = new State(mainMenuView,mainMenuViewController);
 
         //push the first state into the GSM

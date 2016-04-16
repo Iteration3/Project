@@ -1,8 +1,10 @@
 package utilities;
 
 
+import Main.InputManager;
 import controllers.Controller;
 import utilities.State.State;
+import views.Canvas;
 import views.View;
 
 import java.util.Stack;
@@ -16,6 +18,7 @@ public class GameStateManager {
 
     //State
     private State state;
+
 
     //Stack of states
     private Stack<State> stateStack;
@@ -38,6 +41,7 @@ public class GameStateManager {
     //change state
     public void changeState(State state){
         stateStack.add(state);
+        //TODO: This should not be written like this
         getCurrentView().getCanvas().setActiveView(state.getView());
     }
 
@@ -46,10 +50,9 @@ public class GameStateManager {
         stateStack.pop();
     }
 
-
     //update
     public void update(){
-        getCurrentController().handleInput();
+
     }
 
     //render

@@ -1,6 +1,8 @@
 package controllers;
 
+import Main.InputManager;
 import models.StateModel.MainMenuModel;
+import utilities.GameStateManager;
 import utilities.KeyCommand;
 import java.awt.event.KeyEvent;
 
@@ -11,20 +13,22 @@ public class MainMenuViewController extends Controller {
 
 
     private MainMenuModel model;
+    private GameStateManager gsm;
 
     //constructor of the mainMenuController
-    public MainMenuViewController(MainMenuModel model){
+    public MainMenuViewController(MainMenuModel model, GameStateManager gsm){
+        System.out.println(map.clone());
         this.model = model;
+        this.gsm = gsm;
     }
 
     @Override
     public void loadKeyCommand() {
-
-        map.put(KeyEvent.VK_U, new KeyCommand(){
+        System.out.println("What");
+        map.put(KeyEvent.VK_5, new KeyCommand(){
             @Override
             public void execute() {
-                System.out.println("I'm Entering");
-                model.up();
+                System.out.println("fuck everything");
             }
         });
 
@@ -43,5 +47,7 @@ public class MainMenuViewController extends Controller {
                 model.select();
             }
         });
+
+        System.out.println("Added the keys");
     }
 }

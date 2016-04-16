@@ -34,7 +34,7 @@ public class MainMenuView extends View {
         renderBackground(g);
         renderTitle(g);
         renderButtons(g);
-        Toolkit.getDefaultToolkit().sync();
+//        Toolkit.getDefaultToolkit().sync();
     }
 
     private void renderBackground(Graphics g) {
@@ -68,13 +68,11 @@ public class MainMenuView extends View {
             if(option.toString().equals(model.getSelected().toString())){
                 g.setColor(selectedColor);
                 g.drawString(option.toString(), x, y);
-            } else {
+            } else if(option.toString() != null) {
                 g.setColor(defaultColor);
                 g.drawString(option.toString(), x, y);
             }
             y += fm.getHeight();
         }
     }
-
-
 }

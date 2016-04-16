@@ -5,6 +5,13 @@ package Main;
  */
 
 
+import javafx.event.Event;
+import javafx.event.EventDispatchChain;
+import javafx.event.EventDispatcher;
+import utilities.GameStateManager;
+
+import java.awt.*;
+import java.awt.event.ComponentAdapter;
 import java.awt.event.KeyEvent;
 import java.util.HashSet;
 /**
@@ -13,18 +20,30 @@ import java.util.HashSet;
 
 public class InputManager{
 
+    //GameStateManager
+    private GameStateManager gsm;
+
     // HashList
     static HashSet<Integer> active = new HashSet<>();
 
-    // called by InputManager
-    static void addCommand(KeyEvent event) {
-            active.add(event.getKeyCode());
-    }
-    static void removeCommand(KeyEvent event) {
-            active.remove( event.getKeyCode());
+    public InputManager(GameStateManager gsm){
+        this.gsm = gsm;
     }
 
-    protected static HashSet<Integer> getActiveKey(){
-        return (HashSet<Integer>)active.clone();
+    // called by InputManager
+    public static void addCommand(KeyEvent event) {
+        active.add(event.getKeyCode());
     }
+
+    public static void removeCommand(KeyEvent event) {
+        active.remove( event.getKeyCode());
+    }
+
+    //send the key to the controller
+    public void getActiveKey(KeyEvent e){
+        System.out.println("I'm trying to send: " + e.getKeyCode() + " to " + gsm.getCurrentController());
+        gsm.getCurrentController().handleInput(e);
+    }
+
+
 }
