@@ -1,9 +1,10 @@
 package models.StateModel;
 
-import models.Direction.Direction;
 import models.Entity.Avatar;
+import models.Entity.EnittyForTesting;
 import models.Entity.Entity;
 import models.Map.MapEditor.MapOperator;
+import utilities.Direction.Direction;
 import utilities.Location.Location;
 import utilities.State.State;
 import views.other.MapView;
@@ -20,10 +21,13 @@ public class PlayStateModel implements StateModel{
     public PlayStateModel() {
         mapOperator = new MapOperator(20,20,10);
 
-        //avatar = new Avatar();
+        focus  = new EnittyForTesting();
+        ((EnittyForTesting)focus).setLocation(new Location(0,0,0));
+        focus.getLocation();
+
         mapOperator.addNewEntityAt(avatar,new Location(0,0,0));
 
-        setDefaultFocus();
+        //setDefaultFocus();
     }
 
     @Override
@@ -51,6 +55,7 @@ public class PlayStateModel implements StateModel{
 
     //TODO:fast function, remove
     public void setFocusDirection(Direction dir){
+        ((EnittyForTesting)focus).setLocation(dir.getNextLocation(focus.getLocation()));
         //avatar.setDirection(dir);
         //avatar.setAction(Action.Move);
     }

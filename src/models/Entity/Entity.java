@@ -2,7 +2,6 @@ package models.Entity;
 
 
 import models.Action.Action;
-import models.Direction.Direction;
 import models.Occupation.*;
 import models.StatContainer.*;
 import models.Item.*;
@@ -10,6 +9,7 @@ import models.Item.*;
 import java.util.Map;
 import models.Inventory.*;
 import models.Equipment.Equipment;
+import utilities.Direction.Direction;
 import utilities.Location.Location;
 
 public abstract class Entity implements Action {

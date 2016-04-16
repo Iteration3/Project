@@ -1,14 +1,22 @@
 package utilities.Geometry;
 
+import utilities.Direction.Direction;
+import utilities.Location.Location;
+
 import java.awt.*;
 
 /**
  * Created by jcvarela on 4/13/2016.
+ *
+ * Hexagon math formulas
  */
+
 public class Hexagon {
 
     public static final int X_LENGTH = 30;
     public static final int Y_LENGTH = 15;
+
+
 
     public static Point hexCorner(Point center, int i){
         return hexCorner(center,X_LENGTH,Y_LENGTH,i);
@@ -57,4 +65,7 @@ public class Hexagon {
         value[1] = hexCorner(center,xLength,yLength,2);
         return value;
     }
+
+
+
 }
