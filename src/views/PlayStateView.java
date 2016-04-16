@@ -1,6 +1,8 @@
 package views;
 
 import models.StateModel.PlayStateModel;
+import utilities.Location.Location;
+
 import java.awt.*;
 
 
@@ -22,7 +24,7 @@ public class PlayStateView extends View {
         mapView = this.model.getMapView();
 
         mapView.setCenter(this.model.getFocus());
-        //mapView.setCenter(new Location(0,0,0));
+
     }
 
     @Override

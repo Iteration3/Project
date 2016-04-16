@@ -16,6 +16,9 @@ public class PlayStateModel{
     private MapOperator mapOperator;
 
     public PlayStateModel() {
+
+        //TODO Instantiate avatar
+
         mapOperator = new MapOperator(20,20,10);
 
         focus  = new Location(0,0,0);
