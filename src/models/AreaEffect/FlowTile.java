@@ -8,6 +8,7 @@ import utilities.Location.Location;
  */
 public class FlowTile extends AreaEffect {
 
+    private int flowRate;
 
     public void execute(Entity e){
         flow(e);
