@@ -116,6 +116,9 @@ public abstract class Entity implements Action {
         inventory.removeItem(item.getId());
         //Place item on tile at this getLocation.
     }
+    public void destroyItem(int id){
+        inventory.removeItem(id);
+    }
     public void useItem(TakeableItem item){
         item.use(this);
     }

@@ -19,8 +19,8 @@ public abstract class EquipableItem extends TakeableItem {
         super();
     }
 
-    public EquipableItem(BufferedImage image , int id, Location location, String name , double rating){
-        super(image, id, location, name);
+    public EquipableItem(BufferedImage image , int id, String name , double rating){
+        super(image, id, name);
         this.rating = rating;
     }
 

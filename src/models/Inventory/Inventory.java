@@ -9,9 +9,10 @@ import models.ItemContainer.ItemContainer;
 
 public class Inventory implements ItemContainer {
     /* Attributes */
+    public int size;
     private TakeableItem[] items;
     private int goldAmount;
-    private int size;
+
 
     /* Constructors */
     public Inventory(){
@@ -59,6 +60,12 @@ public class Inventory implements ItemContainer {
             System.out.println("Remove models.Item failed: models.Item not found");
         }
 
+        return itemCopy;
+    }
+
+    public TakeableItem removeItemByIndex(int index){
+        TakeableItem itemCopy  = items[index];
+        items[index] = null;
         return itemCopy;
     }
 

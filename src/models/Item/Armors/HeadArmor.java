@@ -18,8 +18,8 @@ public class HeadArmor extends Armor{
         super();
     }
 
-    public HeadArmor(int id, Location location, String name, double rating){
-        super(Assets.headArmor, id, location, name ,rating);
+    public HeadArmor(int id, String name, double rating){
+        super(Assets.headArmor, id,  name ,rating);
     }
 
 
