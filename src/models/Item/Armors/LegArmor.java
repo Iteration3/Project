@@ -21,6 +21,10 @@ public class LegArmor extends Armor {
         super(Assets.legArmor, id, name ,rating);
     }
 
+    public LegArmor( int id,  String name, double rating , int requiredLevel){
+        super(Assets.legArmor, id, name ,rating , requiredLevel);
+    }
+
     /* Methods */
     public void equip(Entity entity , Equipment equipment, Inventory inventory){
         equipment.addLegs(this);

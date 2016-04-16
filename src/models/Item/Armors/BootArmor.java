@@ -23,6 +23,10 @@ public class BootArmor extends Armor{
         super(Assets.bootArmor , id, name ,rating);
     }
 
+    public BootArmor( int id, String name, double rating , int requiredLevel){
+        super(Assets.bootArmor , id, name ,rating ,requiredLevel);
+    }
+
     /* Methods */
     public void equip(Entity entity, Equipment equipment, Inventory inventory){
         equipment.addBoots(this);

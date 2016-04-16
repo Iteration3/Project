@@ -21,6 +21,10 @@ public class ChestArmor extends Armor {
         super(Assets.chestArmor , id, name ,rating);
     }
 
+    public ChestArmor( int id,  String name, double rating, int requiredLevel){
+        super(Assets.chestArmor , id, name ,rating , requiredLevel);
+    }
+
     /* Methods */
     public void equip(Entity entity , Equipment equipment , Inventory inventory){
         equipment.addChest(this);
