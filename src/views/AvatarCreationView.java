@@ -30,9 +30,6 @@ public class AvatarCreationView extends View {
         this.model = model;
     }
 
-
-
-
     @Override
     public void render(Graphics g) {
 
