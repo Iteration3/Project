@@ -19,8 +19,8 @@ public class BootArmor extends Armor{
         super();
     }
 
-    public BootArmor( int id, Location location, String name, double rating){
-        super(Assets.bootArmor , id, location, name ,rating);
+    public BootArmor( int id, String name, double rating){
+        super(Assets.bootArmor , id, name ,rating);
     }
 
     /* Methods */

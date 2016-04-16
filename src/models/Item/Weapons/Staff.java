@@ -15,13 +15,13 @@ import java.awt.image.BufferedImage;
 public class Staff extends Weapon{
     /* Constructors */
     //No level requirement
-    public Staff( int id, Location location, String name , double attackRating){
-        super(1.00 , "Summoner" , Assets.staff, id, location, name, attackRating);
+    public Staff( int id, String name , double attackRating){
+        super(1.00 , "Summoner" , Assets.staff, id, name, attackRating);
     }
 
     //Level requirement
-    public Staff(int requiredLevel, int id, Location location, String name , double attackRating){
-        super(1.00 , "Summoner" , requiredLevel , Assets.staff, id, location, name, attackRating);
+    public Staff(int requiredLevel, int id, String name , double attackRating){
+        super(1.00 , "Summoner" , requiredLevel , Assets.staff, id, name, attackRating);
     }
 }
 

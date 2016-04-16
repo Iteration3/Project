@@ -25,14 +25,14 @@ public class Weapon extends EquipableItem {
         requirement = new Requirement();
     }
 
-    public Weapon(double weaponSpeed, String requiredOccupation, BufferedImage image, int id, Location location, String name, double attackRating) {
-        super(image, id, location, name, attackRating);
+    public Weapon(double weaponSpeedString,String requiredOccupation, BufferedImage image, int id, String name, double attackRating) {
+        super(image, id, name, attackRating);
         requirement = new Requirement(null, 0, requiredOccupation);
         this.weaponSpeed = weaponSpeed;
     }
 
-    public Weapon(double weaponSpeed, String requiredOccupation, int requiredLevel, BufferedImage image, int id, Location location, String name, double attackRating) {
-        super(image, id, location, name, attackRating);
+    public Weapon(double weaponSpeed, String requiredOccupation, int requiredLevel, BufferedImage image, int id, String name, double attackRating) {
+        super(image, id, name, attackRating);
         requirement = new Requirement(null, requiredLevel, requiredOccupation);
         this.weaponSpeed = weaponSpeed;
 

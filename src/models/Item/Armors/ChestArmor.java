@@ -17,8 +17,8 @@ public class ChestArmor extends Armor {
         super();
     }
 
-    public ChestArmor( int id, Location location, String name, double rating){
-        super(Assets.chestArmor , id, location, name ,rating);
+    public ChestArmor( int id,  String name, double rating){
+        super(Assets.chestArmor , id, name ,rating);
     }
 
     /* Methods */

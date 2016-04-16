@@ -19,8 +19,8 @@ public abstract class Armor extends EquipableItem {
         super();
     }
 
-    public Armor(BufferedImage image , int id, Location location, String name, double rating){
-        super(image,id,location,name,rating);
+    public Armor(BufferedImage image , int id, String name, double rating){
+        super(image,id,name,rating);
     }
 
     public void applyRating(Entity entity){

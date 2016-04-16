@@ -20,8 +20,8 @@ public abstract class ConsumableItem extends TakeableItem {
         super();
     }
 
-    public ConsumableItem(String statName , double modifier , BufferedImage image , int id, Location location, String name){
-        super(image, id, location, name);
+    public ConsumableItem(String statName , double modifier , BufferedImage image , int id, String name){
+        super(image, id, name);
         statModifier = new LinkedHashMap<>();
         statModifier.put(statName , modifier);
     }

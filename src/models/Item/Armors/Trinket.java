@@ -18,8 +18,8 @@ public class Trinket extends Armor {
         super();
     }
 
-    public Trinket( int id, Location location, String name, double rating){
-        super(Assets.trinket, id, location, name ,rating);
+    public Trinket( int id,  String name, double rating){
+        super(Assets.trinket, id,name ,rating);
     }
 
     /* Methods */

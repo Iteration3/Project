@@ -15,12 +15,12 @@ import views.Assets;
 public class OneHand extends Weapon{
     /* Constructors */
     //No level requirement
-    public OneHand( int id, Location location, String name , double attackRating){
-        super(2.00 , "Smasher" , Assets.oneHand, id, location, name, attackRating);
+    public OneHand( int id,  String name , double attackRating){
+        super(2.00 , "Smasher" , Assets.oneHand, id, name, attackRating);
     }
 
     //Level requirement
-    public OneHand(int requiredLevel ,   int id, Location location, String name , double attackRating){
-        super(2.00 , "Smasher" , requiredLevel , Assets.oneHand, id, location, name, attackRating);
+    public OneHand(int requiredLevel ,   int id, String name , double attackRating){
+        super(2.00 , "Smasher" , requiredLevel , Assets.oneHand, id, name, attackRating);
     }
 }

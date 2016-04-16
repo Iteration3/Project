@@ -14,12 +14,12 @@ import java.awt.image.BufferedImage;
 public class Fist extends Weapon{
     /* Constructors */
     //No level requirement
-    public Fist(int id, Location location, String name , double attackRating){
-        super(3.00 , "Smasher" , Assets.fist , id, location, name, attackRating);
+    public Fist(int id, String name , double attackRating){
+        super(3.00 , "Smasher" , Assets.fist , id, name, attackRating);
     }
 
     //Level requirement
-    public Fist(int requiredLevel ,  int id, Location location, String name , double attackRating){
-        super(3.00 , "Smasher" , requiredLevel , Assets.fist, id, location, name, attackRating);
+    public Fist(int requiredLevel ,  int id,  String name , double attackRating){
+        super(3.00 , "Smasher" , requiredLevel , Assets.fist, id,  name, attackRating);
     }
 }
