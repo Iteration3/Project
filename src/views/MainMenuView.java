@@ -75,11 +75,9 @@ public class MainMenuView extends View {
             Rectangle2D rectangle = fm.getStringBounds(option.toString(),g);
 
             if(option.toString().equals(model.getSelected().toString())){
-                System.out.println("IF state");
                 g.setColor(selectedColor);
                 g.drawString(option.toString(), x, y);
             } else {
-                System.out.println("ELSE state");
                 g.setColor(defaultColor);
                 g.drawString(option.toString(), x, y);
             }

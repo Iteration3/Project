@@ -27,14 +27,13 @@ public class MainMenuViewController extends Controller {
         map.put(KeyEvent.VK_U, new KeyCommand(){
             @Override
             public void execute() {
-                System.out.println("fuck everything");
+                model.up();
             }
         });
 
         map.put(KeyEvent.VK_J, new KeyCommand() {
             @Override
             public void execute() {
-                System.out.println("I'm Entering");
                 model.down();
             }
         });
@@ -42,11 +41,8 @@ public class MainMenuViewController extends Controller {
         map.put(KeyEvent.VK_ENTER, new KeyCommand() {
             @Override
             public void execute() {
-                System.out.println("I'm Entering");
                 model.select();
             }
         });
-
-        System.out.println("Added the keys");
     }
 }
