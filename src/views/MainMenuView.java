@@ -4,6 +4,7 @@ import models.StateModel.MainMenuModel;
 import views.View;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.PackedColorModel;
 
 public class MainMenuView extends View {
 
@@ -11,8 +12,9 @@ public class MainMenuView extends View {
     private final String TITLE = "Kanye 2020";
 
     // Scalable variables.
-    private int buttonWidth;
-    private int buttonHeight;
+    private static final int WIDTH = 700;
+    private static final int HEIGHT = 700;
+
     // Styling properties
     private Font titleFont;
     private Font generalFont;
@@ -38,17 +40,24 @@ public class MainMenuView extends View {
     }
 
     private void renderBackground(Graphics g) {
+        g.setColor(new Color(125,59,191));
+        g.fillRect(0, 0, WIDTH, HEIGHT);
 
     }
 
     private void renderTitle(Graphics g) {
         g.setFont(titleFont);
         FontMetrics fm = g.getFontMetrics();
-        int titleWidth = fm.stringWidth(TITLE);
-        int x = getScreenWidth() / 2 - titleWidth / 2;
-        int y = fm.getHeight();
-        g.setColor(Color.white);
+
+        Rectangle2D rectangle = fm.getStringBounds(TITLE,g);
+
+
+        int x = WIDTH / 2 - (int)rectangle.getWidth() / 2;
+        int y = (int)rectangle.getHeight();
+
+        g.setColor(new Color(0,100,255));
         g.drawString(TITLE, x, y);
+
     }
 
     private void renderButtons(Graphics g) {
@@ -56,8 +65,8 @@ public class MainMenuView extends View {
         g.setFont(titleFont);
         FontMetrics fm = g.getFontMetrics();
 
-        int x = getScreenWidth()*6/10;
-        int y = getScreenHeight()*4/10;
+        int x = WIDTH*6/10;
+        int y = HEIGHT*4/10;
 
         Color defaultColor = Color.YELLOW;
         Color selectedColor = Color.RED;
@@ -68,10 +77,11 @@ public class MainMenuView extends View {
             if(option.toString().equals(model.getSelected().toString())){
                 g.setColor(selectedColor);
                 g.drawString(option.toString(), x, y);
-            } else if(option.toString() != null) {
+            } else {
                 g.setColor(defaultColor);
                 g.drawString(option.toString(), x, y);
             }
+
             y += fm.getHeight();
         }
     }
