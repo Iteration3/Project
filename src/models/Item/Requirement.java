@@ -56,4 +56,6 @@ public class Requirement {
         return this.requiredLevel;
     }
 
+    public String getRequiredItemName(){ return this.requiredItem.getName();}
+
 }

@@ -14,8 +14,8 @@ public abstract class TakeableItem extends Item{
         super();
     }
 
-    TakeableItem(BufferedImage image , int id, Location location, String name){
-        super(image, id, location, name);
+    TakeableItem(BufferedImage image , int id, String name){
+        super(image, id,name);
     }
 
     /* Methods */

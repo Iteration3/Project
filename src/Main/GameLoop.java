@@ -2,6 +2,7 @@ package Main;
 
 
 import utilities.GameStateManager;
+import views.Assets;
 import views.Canvas;
 import javax.swing.*;
 import java.awt.image.BufferedImage;
@@ -39,6 +40,8 @@ public class GameLoop implements Runnable{
         gameFrame.setLocationRelativeTo(null);
         gameFrame.setVisible(true);
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Assets.init();
     }
 
     @Override

@@ -17,8 +17,8 @@ public class LegArmor extends Armor {
         super();
     }
 
-    public LegArmor( int id, Location location, String name, double rating){
-        super(Assets.legArmor, id, location, name ,rating);
+    public LegArmor( int id,  String name, double rating){
+        super(Assets.legArmor, id, name ,rating);
     }
 
     /* Methods */
