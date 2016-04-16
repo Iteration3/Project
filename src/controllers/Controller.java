@@ -1,6 +1,5 @@
 package controllers;
 
-import Main.InputManager;
 import utilities.KeyCommand;
 
 import java.awt.event.KeyEvent;
@@ -23,10 +22,7 @@ public abstract class Controller{
 
     // update method
     public void handleInput(KeyEvent e){
-        System.out.println(map.get(e));
-        if(map.containsKey(e)){
-            map.get(e).execute();
-        }
+        map.get(e.getKeyCode()).execute();
     }
 
     public abstract void loadKeyCommand();

@@ -17,14 +17,13 @@ public class MainMenuViewController extends Controller {
 
     //constructor of the mainMenuController
     public MainMenuViewController(MainMenuModel model, GameStateManager gsm){
-        System.out.println(map.clone());
         this.model = model;
         this.gsm = gsm;
     }
 
     @Override
     public void loadKeyCommand() {
-        System.out.println("What");
+
         map.put(KeyEvent.VK_5, new KeyCommand(){
             @Override
             public void execute() {

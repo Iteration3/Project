@@ -26,6 +26,7 @@ public class MainMenuModel{
             return MainMenuOption.values()[pos -1];
         }
         public static MainMenuOption getAfter(MainMenuOption selected){
+            
             int pos = selected.ordinal();
             if(pos == MainMenuOption.values().length-1){
                 return MainMenuOption.values()[0];
