@@ -8,9 +8,9 @@ import utilities.State.State;
 public class MainMenuModel{
 
     public enum MainMenuOption{
-        Start("FUCK"),
-        NewGame("YOU"),
-        Exit("OOP");
+        Start("Create Game"),
+        NewGame("Load Game"),
+        Exit("Exit Game");
 
         private String name;
 
@@ -43,7 +43,6 @@ public class MainMenuModel{
     }
 
     private MainMenuOption selected;
-    private boolean isActive;
 
     public MainMenuModel(){
         selected = MainMenuOption.Start;
@@ -61,10 +60,6 @@ public class MainMenuModel{
 
     public void down(){
         selected = MainMenuOption.getAfter(selected);
-    }
-
-    public void select(){
-        isActive = true;
     }
 
 }

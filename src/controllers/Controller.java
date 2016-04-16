@@ -1,5 +1,6 @@
 package controllers;
 
+import utilities.GameStateManager;
 import utilities.KeyCommand;
 
 import java.awt.event.KeyEvent;
@@ -15,8 +16,12 @@ public abstract class Controller{
     // Hashmap of KeyEvents
     protected HashMap<Integer, KeyCommand> map;
 
-    public Controller() {
+    //GameStateManager
+    protected GameStateManager gsm;
+
+    public Controller( GameStateManager gsm) {
         map = new HashMap<>();
+        this.gsm = gsm;
         loadKeyCommand();
     }
 

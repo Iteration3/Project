@@ -13,13 +13,14 @@ public class MainMenuViewController extends Controller {
 
 
     private MainMenuModel model;
-    private GameStateManager gsm;
 
     //constructor of the mainMenuController
     public MainMenuViewController(MainMenuModel model, GameStateManager gsm){
+        super(gsm);
         this.model = model;
-        this.gsm = gsm;
     }
+
+
 
     @Override
     public void loadKeyCommand() {
@@ -41,8 +42,12 @@ public class MainMenuViewController extends Controller {
         map.put(KeyEvent.VK_ENTER, new KeyCommand() {
             @Override
             public void execute() {
-                model.select();
+                if(model.getSelected() == MainMenuModel.MainMenuOption.Start){
+                    System.out.println("I am going to start");
+                }
             }
         });
     }
+
+
 }
