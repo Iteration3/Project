@@ -1,11 +1,8 @@
 package controllers;
 
 import models.StateModel.AvatarCreationModel;
-import models.StateModel.MainMenuModel;
 import utilities.GameStateManager;
-import utilities.KeyCommand;
-import utilities.State.State;
-import views.View;
+import utilities.KeyCommand.KeyCommand;
 
 import java.awt.event.KeyEvent;
 
