@@ -39,6 +39,20 @@ public class ItemFactory {
     private static final int POWERFUL_BOOT_ARMOR = 21;
     private static final int POWERFUL_TRINKET = 22;
 
+    private static final int HEALTH_POTION = 23;
+    private static final int POISON_POTION = 24;
+    private static final int STRENGTH_POTION = 25;
+    private static final int AGILITY_POTION = 26;
+    private static final int INTELLECT_POTION = 27;
+    private static final int EXPERIENCE_POTION = 28;
+
+    private static final int ITEM_CHEST = 29;
+    private static final int DOOR = 30;
+    private static final int DOOR_KEY = 31;
+
+
+
+
     /* Constructor */
     public ItemFactory(){};
 
