@@ -9,8 +9,9 @@ import utilities.Location.Location;
 public class Teleport extends AreaEffect {
     Location toLoc;
 
-    public Teleport(Location l){
-        toLoc = l;
+    public Teleport(Location from,Location to){
+        loc = from;
+        toLoc = to;
     }
 
     public void execute(Entity e){

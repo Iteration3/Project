@@ -1,6 +1,7 @@
 package models.AreaEffect;
 
 import models.Entity.Entity;
+import utilities.Location.Location;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,10 +14,10 @@ public class GainHealth extends AreaEffect {
     int health;
 
 
-    public void test(){
-        getLocation();
-        setLocation(loc);
-    }
+   public GainHealth(Location l, int h){
+       loc = l;
+       health = h;
+   }
 
     public void execute(Entity e){
         System.out.println("Should add health.");

@@ -10,6 +10,11 @@ public class FlowTile extends AreaEffect {
 
     private int flowRate;
 
+    public FlowTile(Location l, int rate){
+        loc = l;
+        flowRate = rate;
+    }
+
     public void execute(Entity e){
         flow(e);
     }

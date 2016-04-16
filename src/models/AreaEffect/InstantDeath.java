@@ -1,6 +1,7 @@
 package models.AreaEffect;
 
 import models.Entity.Entity;
+import utilities.Location.Location;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +10,10 @@ import java.util.Map;
  * Created by Andy on 4/14/2016.
  */
 public class InstantDeath extends AreaEffect {
+
+    public InstantDeath(Location l){
+        loc = l;
+    }
 
     public void execute(Entity e){
         killEntity(e);

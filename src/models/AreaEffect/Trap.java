@@ -1,6 +1,7 @@
 package models.AreaEffect;
 
 import models.Entity.Entity;
+import utilities.Location.Location;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,9 @@ import java.util.Map;
  */
 public class Trap extends AreaEffect {
 
+    public Trap(Location l){
+        loc = l;
+    }
     public void execute(Entity e){
         trap(e);
     }

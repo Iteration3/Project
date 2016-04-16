@@ -1,6 +1,7 @@
 package models.AreaEffect;
 
 import models.Entity.Entity;
+import utilities.Location.Location;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,12 @@ import java.util.Map;
  */
 public class LevelUp extends AreaEffect {
 
+    private int levels;
+
+    public LevelUp(Location l, int lev){
+        loc = l;
+        levels = lev;
+    }
     public void execute(Entity e){
         levelUp(e);
     }
