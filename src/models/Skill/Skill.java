@@ -49,7 +49,7 @@ public abstract class Skill {
         return false;
     }
 
-   /* private void initializeAttackLocations(Location location, Orientation orientation) {
+   /* private void initializeAttackLocations(Location getLocation, Orientation orientation) {
 
     }*/
 
