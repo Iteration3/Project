@@ -41,7 +41,7 @@ public class GameLoop implements Runnable{
         gameFrame.setVisible(true);
         gameFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Assets.init();
+        //Assets.init();
     }
 
     @Override

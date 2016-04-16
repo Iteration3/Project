@@ -17,8 +17,9 @@ public class PlayStateView extends View {
         this.model = model;
 
         mapView = this.model.getMapView();
-        //mapView.setCenter(this.model.getFocus().getLocation());
-        mapView.setCenter(new Location(0,0,0));
+
+        mapView.setCenter(this.model.getFocus().getLocation());
+        //mapView.setCenter(new Location(0,0,0));
     }
 
     @Override
@@ -27,7 +28,7 @@ public class PlayStateView extends View {
         int height = getHeight();
 
         BufferedImage image = new BufferedImage(width,height,1);
-        //mapView.setCenter(model.getFocus().getLocation());
+        mapView.setCenter(model.getFocus().getLocation());
         mapView.render(image);
 
         g.drawImage(image,0,0,width,height,null);

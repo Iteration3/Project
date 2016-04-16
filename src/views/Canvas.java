@@ -10,7 +10,6 @@ import java.awt.image.BufferedImage;
  */
 public class Canvas extends JPanel{
 
-
     private final static int WIDTH = 500;
     private final static int HEIGHT = WIDTH*4/5;
 
@@ -29,6 +28,11 @@ public class Canvas extends JPanel{
         g = image.createGraphics();
     }
 
+    @Override
+    public Dimension getPreferredSize(){
+        return new Dimension(WIDTH*SCALE,HEIGHT*SCALE);
+    }
+
     public BufferedImage getImage(){
         return new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_4BYTE_ABGR);
     }
@@ -39,8 +43,7 @@ public class Canvas extends JPanel{
 
     public void repaint(BufferedImage imageToRender){
         Graphics g2 = super.getGraphics();
-        g2.drawImage(imageToRender, 0, 0, WIDTH*SCALE, HEIGHT*SCALE, null);
+        g2.drawImage(imageToRender, 0, 0, this.getWidth(), this.getHeight(), null);
         g2.dispose();
     }
-
 }

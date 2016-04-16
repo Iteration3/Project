@@ -1,4 +1,4 @@
-package Utilities.Direction;
+package utilities.Direction;
 
 import utilities.Location.Location;
 
