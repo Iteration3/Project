@@ -4,6 +4,9 @@ import Main.InputManager;
 import models.StateModel.MainMenuModel;
 import utilities.GameStateManager;
 import utilities.KeyCommand;
+import utilities.State.State;
+import views.View;
+
 import java.awt.event.KeyEvent;
 
 /**
@@ -43,10 +46,18 @@ public class MainMenuViewController extends Controller {
             @Override
             public void execute() {
                 if(model.getSelected() == MainMenuModel.MainMenuOption.Start){
-                    System.out.println("I am going to start");
+                    avatarCreationStateTransition();
                 }
             }
         });
+    }
+
+    private void avatarCreationStateTransition() {
+        AvatarCreationModel model = new AvatarCreationModel();
+        View view = new AvatarCreationView(model, gsm);
+        Controller controller = new AvatarCreationController(model, gsm);
+        State state = new State(view, controller);
+        gsm.changeState(state);
     }
 
 
