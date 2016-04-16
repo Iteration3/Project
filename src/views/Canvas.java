@@ -49,9 +49,7 @@ public class Canvas extends JPanel implements KeyListener{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        if(currentView!=null){
-            currentView.render(g);
-        }
+        currentView.render(g);
     }
 
     @Override
