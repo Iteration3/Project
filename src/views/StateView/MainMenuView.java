@@ -1,4 +1,4 @@
-package views.stateView;
+package views.StateView;
 
 import models.StateModel.MainMenuModel;
 import models.StateModel.MainMenuModel.MainMenuOption;

@@ -1,4 +1,4 @@
-package views.stateView;
+package views.StateView;
 
 import models.StateModel.PlayStateModel;
 import utilities.Location.Location;

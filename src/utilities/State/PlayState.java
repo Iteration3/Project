@@ -3,7 +3,7 @@ package utilities.State;
 import controllers.PlayStateController;
 import models.StateModel.PlayStateModel;
 import views.Assets;
-import views.stateView.PlayStateView;
+import views.StateView.PlayStateView;
 
 /**
  * Created by jcvarela on 4/15/2016.
