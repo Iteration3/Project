@@ -23,8 +23,9 @@ public class FlowTile extends AreaEffect {
         //yeah I should probably figure this out.
         int x,y;
         Location temp = loc;
-        y =temp.getCol();
+        y = temp.getCol();
         
         e.getLocation();
+        e.changeLocation
     }
 }
