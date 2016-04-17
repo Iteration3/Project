@@ -9,6 +9,7 @@ import utilities.GameStateManager;
 import utilities.KeyCommand.KeyCommand;
 import utilities.KeyCommand.MovementKeyCommand;
 import utilities.KeyCommand.SkillKeyCommand;
+import utilities.KeyCommand.StatsKeyCommand;
 
 import java.awt.event.KeyEvent;
 
@@ -85,8 +86,12 @@ public class PlayStateController extends Controller {
         moveNorth = new SkillKeyCommand(map, avatar);
         keyMap.put(KeyEvent.VK_F, moveNorth);
 
+        moveNorth = new StatsKeyCommand(avatar, gsm);
+        keyMap.put(KeyEvent.VK_K, moveNorth);
+
 ;
     }
+
 
     //TODO:REMOVE
     long wait = 0;

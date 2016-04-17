@@ -37,7 +37,6 @@ public class LinearSkillSignal extends SkillSignal {
                     Entity entityToAttack = map.getTileAt(nextLocation).getEntity();
 
                     skill.activate(entityToAttack);
-                    System.out.println("Location Attacked!");
                     avatarLocation = nextLocation;
 
                     if (currentRadius == radius) {

@@ -37,6 +37,12 @@ public class Tile {
             this.terrain = terrain;
         }
     }
+    public boolean isGround() {
+        boolean isGround = terrain.equals(new GroundTerrain(DrawTerrainImages.getGrassImage()));
+        boolean isMountain = terrain.equals(new MountainTerrain(DrawTerrainImages.getMountainImage()));
+        System.out.println(terrain);
+        return (!isGround && !isMountain);
+    }
 
     //Enity
     public void addEntity(Entity entity){

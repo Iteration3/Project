@@ -26,11 +26,8 @@ public abstract class StatContainer {
         member's modify() method
      */
     public void modifyStats(Map<String, Double> stat_to_modify) {
-
         stat_to_modify.forEach((k, v) -> value().get(k).modify(v));
         value().forEach((k, v)-> v.calculate());
-
-        System.out.println(stats);
     }
 
     /*
@@ -45,4 +42,11 @@ public abstract class StatContainer {
     //
     protected abstract void setStats(double base_modifier, Map<String, Double> occupation_modifier, int level);
     public abstract void levelUp();
+
+
+
+
+    public Set<Map.Entry<String,Stat>> getMap() {
+        return stats.entrySet();
+    }
 }

@@ -1,9 +1,10 @@
-package models.Signal.SkillSignal;
+package models.Signal.SkillSignal.RadialSkill;
 
 import models.Decal.Decal;
 import models.Decal.FireBallDecal;
 import models.Entity.Entity;
 import models.Map.Map;
+import models.Signal.SkillSignal.SkillSignal;
 import models.Skill.Skill;
 import utilities.Direction.Direction;
 import utilities.Location.Location;
@@ -13,11 +14,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class RadialSkillSignal extends SkillSignal {
+public abstract class RadialSkill extends SkillSignal {
 
     Direction dir;
 
-    public RadialSkillSignal(Map map, Entity avatar, Skill skill) {
+    public RadialSkill(Map map, Entity avatar, Skill skill) {
         super(map, avatar, skill);
         dir = avatar.getDirection();
     }
@@ -42,7 +43,7 @@ public class RadialSkillSignal extends SkillSignal {
                         map.getTileAt(nextLocation.get(i)).removeDecal();
                     }
 
-                    nextLocation = getLocationArray2(allLocation);
+                    nextLocation = getLocationArray2(allLocation, currentRadius);
                     allLocation.addAll(nextLocation);
 
 
@@ -52,8 +53,6 @@ public class RadialSkillSignal extends SkillSignal {
                         Entity entityToAttack = map.getTileAt(locationToAttack).getEntity();
                         skill.activate(entityToAttack);
                     }
-
-                    System.out.println("FIREBALL");
 
                     currentRadius++;
                     if (currentRadius == 4) {
@@ -69,45 +68,6 @@ public class RadialSkillSignal extends SkillSignal {
         }
     }
 
-
-
-    private ArrayList<Location> getLocationArray2(ArrayList<Location> list){
-        ArrayList<Location> newList = new ArrayList<>();
-
-        for (int i = 0; i < list.size(); ++i) {
-            Direction nextDirection = dir;
-            Location currentLocation = list.get(i);
-            newList.add(nextDirection.getNextLocation(currentLocation));
-            nextDirection = nextDirection.clockwise(nextDirection);
-            newList.add(nextDirection.getNextLocation(currentLocation));
-            nextDirection = nextDirection.clockwise(nextDirection);
-            newList.add(nextDirection.getNextLocation(currentLocation));
-            nextDirection = nextDirection.clockwise(nextDirection);
-            newList.add(nextDirection.getNextLocation(currentLocation));
-            nextDirection = nextDirection.clockwise(nextDirection);
-            newList.add(nextDirection.getNextLocation(currentLocation));
-            nextDirection = nextDirection.clockwise(nextDirection);
-            newList.add(nextDirection.getNextLocation(currentLocation));
-        }
-
-        for (int i = newList.size() - 1; i > -1; --i) {
-            for (int j = 0; j < list.size(); ++j) {
-                if (list.get(j).equals(newList.get(i))) {
-                    newList.remove(i);
-                    j = list.size();
-                }
-            }
-        }
-
-        for (int i = newList.size() - 1; i > -1; --i) {
-            Location locationToAttack = newList.get(i);
-            if (map.isOutOfBound(locationToAttack)) {
-                newList.remove(i);
-            }
-        }
-
-        return newList;
-    }
-
+    protected abstract ArrayList<Location> getLocationArray2(ArrayList<Location> list, int n);
 
 }
