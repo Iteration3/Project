@@ -7,7 +7,7 @@ public class DetectRemoveTrap extends SneakSkill {
         super("Detect and Remove Trap", 5);
     }
 
-    /*public void activate(Entity entity) {
-        avatar.addItem(entity.getRandomItem());
-    }*/
+    public void activate(Entity entity) {
+        //avatar.addItem(entity.getRandomItem());
+    }
 }

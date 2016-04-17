@@ -1,6 +1,7 @@
 package models.Map;
 
 import models.AreaEffect.AreaEffect;
+import models.Decal.Decal;
 import models.Entity.Entity;
 import models.Item.Item;
 import views.DrawTerrainImages;
@@ -12,6 +13,7 @@ public class Tile {
     private Entity entity;
     private AreaEffect areaEffect;
     private Item item;
+    private Decal decal;
 
     private int count;
 
@@ -71,5 +73,19 @@ public class Tile {
         item = null;
     }
     public Item getItem(){return item; }
+
+    //Decal
+    public void addDecal(Decal decal) {
+        this.decal = decal;
+    }
+    public boolean hasDecal() {
+        return decal != null;
+    }
+    public void removeDecal() {
+        decal = null;
+    }
+    public Decal getDecal() {
+        return decal;
+    }
 }
 

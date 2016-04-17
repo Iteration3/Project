@@ -11,9 +11,9 @@ public class PickPocket extends SneakSkill {
         super("Pick Pocket", 10.0);
     }
 
-    /*public void activate(Entity entity) {
-        avatar.addItem(entity.getRandomItem());
-    }*/
+    public void activate(Entity entity) {
+       // avatar.addItem(entity.getRandomItem());
+    }
 
     /*public boolean canUseSkill(Entity entity) {
         boolean canPerform = canPerform();

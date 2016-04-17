@@ -2,6 +2,8 @@ package views;
 
 
 
+import models.Decal.FireBallDecal;
+import models.Entity.Entity;
 import models.Map.Map;
 import models.Map.Terrain;
 import models.Map.Tile;
@@ -152,12 +154,12 @@ public class MapView {
     }
 
     private void renderEntityAt(int x, int y, Tile tile, Graphics g){
-//        Entity temp = tile.getEntity();
-//        if(temp == null) {
-//            return;
-//        }
-        // BufferedImage image = temp.getImage();
-        // g.drawImage(image,x - image.getWidth()/2,y - image.getHeight()/2,null);
+        Entity temp = tile.getEntity();
+        if(temp == null) {
+            return;
+        }
+        BufferedImage image = new FireBallDecal().getBufferedImage();
+        g.drawImage(image,x - image.getWidth()/2,y - image.getHeight()/2,null);
     }
 
 
