@@ -11,11 +11,14 @@ import java.util.Random;
 
 /**
  * Implemented by Peter Camejo
+ *
+ * This factory is suppose to be capable of generating every item found in the game.
  */
 public class ItemFactory {
     /* Attributes */
-    private static final int CHEST_KEY = 0;
-
+    /*
+     * Basic Equipment is the lowest tier equipment and has no item level.
+     */
     private static final int BASIC_ONEHAND = 1;
     private static final int BASIC_TWOHAND = 2;
     private static final int BASIC_FIST = 3;
@@ -29,6 +32,9 @@ public class ItemFactory {
     private static final int BASIC_BOOT_ARMOR = 10;
     private static final int BASIC_TRINKET = 11;
 
+    /*
+     * Powerful Equipment is the second and highest tier equipment and requires a level of 5 to equip.
+     */
     private static final int POWERFUL_ONEHAND = 12;
     private static final int POWERFUL_TWOHAND = 13;
     private static final int POWERFUL_FIST = 14;
@@ -41,7 +47,9 @@ public class ItemFactory {
     private static final int POWERFUL_GLOVE_ARMOR = 20;
     private static final int POWERFUL_BOOT_ARMOR = 21;
     private static final int POWERFUL_TRINKET = 22;
-
+    /*
+     * Potions are consumable from the inventory and buff the stat in their name.
+     */
     private static final int HEALTH_POTION = 23;
     private static final int MANA_POTION = 24;
     private static final int STRENGTH_POTION = 25;
@@ -49,9 +57,15 @@ public class ItemFactory {
     private static final int INTELLECT_POTION = 27;
     private static final int EXPERIENCE_POTION = 28;
 
+    /*
+     * Item chests come with 3 random items in them.
+     * Doors are supposed to dissappear/become passable when interacted with
+     * The Keys are required to interact with them.
+     */
     private static final int ITEM_CHEST = 29;
     private static final int DOOR = 30;
     private static final int DOOR_KEY = 31;
+    private static final int CHEST_KEY = 32;
 
 
 

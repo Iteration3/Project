@@ -35,6 +35,6 @@ public class Chest extends InteractiveItem{
             entity.addItem(inventory.removeItemByIndex(i));
         }
 
-        entity.destroyItem(0); // Chest Key
+        entity.destroyItem(32); // Destroy a Chest Key
     }
 }
