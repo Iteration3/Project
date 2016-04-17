@@ -158,8 +158,9 @@ public class MapView {
         if(temp == null) {
             return;
         }
-        BufferedImage image = new FireBallDecal().getBufferedImage();
-        g.drawImage(image,x - image.getWidth()/2,y - image.getHeight()/2,null);
+
+        Image image = temp.getImage();
+        g.drawImage(image,x - image.getWidth(null)/2,y - image.getHeight(null)/2,null);
     }
 
 

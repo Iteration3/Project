@@ -8,9 +8,15 @@ public class Mana extends Secondary {
         setStatTwo(stat_two);
         calculate();
     }
-    //
-    public void calculate() {setValue(((0.5 * stat_two.value()) + 50 + stat_one.value()) * stat_two.value());}
-    //
+
+
+    //TODO Fix this, causes a crash when initiating a pet
+    public void calculate() {
+//        setValue(((0.5 * stat_two.value()) + 50 + stat_one.value()) * stat_two.value());
+        setValue(400);
+    }
+
+
     @Override
     public void print() {System.out.println(name() + ": " + (int)value());}
 }

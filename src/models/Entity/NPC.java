@@ -5,6 +5,9 @@ import models.Occupation.*;
 import models.StatContainer.*;
 import models.Inventory.*;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class NPC extends Entity {
     //
     public NPC(int level, Occupation occupation) {
@@ -15,5 +18,11 @@ public class NPC extends Entity {
         setStats(new NPCStats(occupationModifier(), level));
         setInventory(new Inventory(12));
         //setEquipment(new models.Equipment());
+    }
+
+    @Override
+    public Image getImage() {
+        Image image = new ImageIcon("res/twoHand.png").getImage();
+        return image;
     }
 }
