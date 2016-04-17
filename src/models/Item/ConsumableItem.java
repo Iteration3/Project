@@ -11,7 +11,7 @@ import utilities.Location.Location;
 * Implemented by Peter Camejo
 */
 
-public abstract class ConsumableItem extends TakeableItem {
+public class ConsumableItem extends TakeableItem {
     /* Attributes */
     private Map<String , Double> statModifier;
 

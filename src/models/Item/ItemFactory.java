@@ -4,6 +4,7 @@ import models.Item.Weapons.*;
 import models.Item.Armors.*;
 import models.Item.*;
 import models.Item.InteractiveItems.*;
+import views.Assets;
 
 
 /**
@@ -40,7 +41,7 @@ public class ItemFactory {
     private static final int POWERFUL_TRINKET = 22;
 
     private static final int HEALTH_POTION = 23;
-    private static final int POISON_POTION = 24;
+    private static final int MANA_POTION = 24;
     private static final int STRENGTH_POTION = 25;
     private static final int AGILITY_POTION = 26;
     private static final int INTELLECT_POTION = 27;
@@ -84,6 +85,16 @@ public class ItemFactory {
     public static GloveArmor getPowerfulGloveArmor(){ return new GloveArmor(POWERFUL_GLOVE_ARMOR, "Powerful Gloves" , 15.00 , 5);}
     public static BootArmor getPowerfulBootArmor(){ return new BootArmor(POWERFUL_BOOT_ARMOR , "Powerful Boots" , 15.00 , 5);}
     public static Trinket getPowerfulTrinket(){ return new Trinket(POWERFUL_TRINKET , "Powerful Trinket", 7.50 , 5);}
+
+    /* Potions */
+    public static ConsumableItem getHealthPotion(){ return new ConsumableItem("CurrentLife" , 10 , Assets.healthPotion , HEALTH_POTION , "Health Potion" );}
+    public static ConsumableItem getManaPotion(){ return new ConsumableItem("CurrentMana" , 10 , Assets.manaPotion , MANA_POTION , "Mana Potion");}
+    public static ConsumableItem getStrengthPotion(){ return new ConsumableItem("Strength" , 20 , Assets.strengthPotion , STRENGTH_POTION , "Strength Potion");}
+    public static ConsumableItem getIntellectPotion(){ return new ConsumableItem("Intellect" , 20 , Assets.intellectPotion, INTELLECT_POTION , "Intellect Potion");}
+    public static ConsumableItem getAgilityPotion(){ return new ConsumableItem("Agility" , 20, Assets.agilityPotion , AGILITY_POTION , "Agility Potion");}
+    public static ConsumableItem getExperiencePotion(){ return new ConsumableItem("Experience" , 20 , Assets.experiencePotion , EXPERIENCE_POTION , "Experience Potion");}
+
+
     
 
 
