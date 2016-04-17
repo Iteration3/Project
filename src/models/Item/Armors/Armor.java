@@ -1,6 +1,8 @@
 package models.Item.Armors;
 
 import models.Item.EquipableItem;
+
+import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -27,13 +29,13 @@ public abstract class Armor extends EquipableItem {
 
     public void applyRating(Entity entity){
         Map<String , Double > statModifier =  new LinkedHashMap<>();
-        statModifier.put("Armor" , this.rating);
+        statModifier.put("Armor", this.rating);
         entity.modifyStats(statModifier);
     }
 
     public void unapplyRating(Entity entity){
         Map<String, Double> statModifier = new LinkedHashMap<>();
-        statModifier.put("Armor" , -this.rating);
+        statModifier.put("Armor", -this.rating);
         entity.modifyStats(statModifier);
     }
 
@@ -43,7 +45,16 @@ public abstract class Armor extends EquipableItem {
     public Element generateXml(Document document) {
         Element element = document.createElement(getXmlTagName());
         element.setAttribute("rating", Double.toString(rating));
+        element.setAttribute("name", name);
+        element.setAttribute("id", Integer.toString(id));
         return element;
+    }
+
+    @Override
+    public void initWithXmlElement(Element element) {
+        this.rating = Double.valueOf(element.getAttribute("rating"));
+        this.name = element.getAttribute("name");
+        this.id = Integer.parseInt(element.getAttribute("id"));
     }
 
 }

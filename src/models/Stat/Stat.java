@@ -2,6 +2,7 @@ package models.Stat;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import utilities.SaveLoad.Saveable;
 
 public abstract class Stat implements Saveable {
@@ -24,5 +25,12 @@ public abstract class Stat implements Saveable {
         element.setAttribute("name", name);
         element.setTextContent(Double.toString(value));
         return element;
+    }
+
+    public static Stat fromXmlElement(Element element) {
+        Stat s =  new Primary() { };
+        s.name = element.getAttribute("name");
+        s.value = Double.parseDouble(element.getTextContent());
+        return s;
     }
 }

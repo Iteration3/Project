@@ -37,4 +37,8 @@ public enum Direction implements Saveable {
         element.setTextContent(toString());
         return element;
     }
+
+    public static Direction fromXmlElement(Element element) {
+        return Direction.valueOf(element.getTextContent());
+    }
 }

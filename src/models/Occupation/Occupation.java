@@ -1,6 +1,8 @@
 package models.Occupation;
 
 import models.SkillContainer.*;
+import org.w3c.dom.Element;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import utilities.SaveLoad.Saveable;
 
 import java.util.HashMap;
@@ -37,4 +39,8 @@ public abstract class Occupation implements Saveable {
      */
     //
     public Map<String, Double> occupationModifier() {return this.occupation_modifier;}
+
+    public static Occupation fromXmlElement(Element element) {
+        throw new NotImplementedException();
+    }
 }

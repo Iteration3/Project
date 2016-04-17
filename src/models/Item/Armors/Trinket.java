@@ -3,6 +3,8 @@ package models.Item.Armors;
 import models.Entity.Entity;
 import models.Equipment.Equipment;
 import models.Inventory.Inventory;
+import models.Item.Item;
+import org.w3c.dom.Element;
 import utilities.Location.Location;
 import views.Assets;
 
@@ -16,6 +18,16 @@ public class Trinket extends Armor {
     /* Constructor */
     public Trinket(){
         super();
+    }
+
+    @Override
+    public Item clone() {
+        return new Trinket(id, name, rating);
+    }
+
+    @Override
+    public void initWithXmlElement(Element element) {
+
     }
 
     public Trinket( int id,  String name, double rating){

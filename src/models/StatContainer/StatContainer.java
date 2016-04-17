@@ -3,8 +3,10 @@ package models.StatContainer;
 import models.Stat.Stat;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import utilities.SaveLoad.Saveable;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -60,11 +62,33 @@ public abstract class StatContainer implements Saveable {
 
         Element statsElement = document.createElement("stats");
         for (String key : stats.keySet())  {
-            Element stat = document.createElement("stat");
-            stat.setAttribute("key", key);
-            stat.appendChild(stats.get(key).generateXml(document));
+            Element statElement = stats.get(key).generateXml(document);
+            if (statElement != null) {
+                statElement.setAttribute("key", key);
+                statsElement.appendChild(statElement);
+            }
         }
         element.appendChild(statsElement);
         return element;
+    }
+
+    public static StatContainer fromXmlElement(Element element) {
+        Map<String, Double> occupationModifier = new HashMap<>();
+        Element occupationModifierElement = (Element) element.getElementsByTagName("occupation-modifier").item(0);
+        NodeList modifiers = occupationModifierElement.getElementsByTagName("modifier");
+        for (int i = 0; i < modifiers.getLength(); ++i) {
+            Element modifier = (Element) modifiers.item(i);
+            occupationModifier.put(modifier.getAttribute("key"), Double.valueOf(modifier.getAttribute("value")));
+        }
+        StatContainer s = new AvatarStats(occupationModifier, 0);
+
+        Element stats = (Element) element.getElementsByTagName("stats").item(0);
+        NodeList statsList = stats.getElementsByTagName("stat");
+        for (int i = 0; i < statsList.getLength(); ++i) {
+            Element stat = (Element) statsList.item(i);
+            Stat value = Stat.fromXmlElement(stat);
+            s.stats.put(stat.getAttribute("key"), value);
+        }
+        return s;
     }
 }

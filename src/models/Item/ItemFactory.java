@@ -4,6 +4,9 @@ import models.Item.Weapons.*;
 import models.Item.Armors.*;
 import models.Item.*;
 import models.Item.InteractiveItems.*;
+import org.w3c.dom.Element;
+
+import java.util.HashMap;
 
 
 /**
@@ -19,8 +22,25 @@ public class ItemFactory {
     private static final int BASIC_RANGED = 4;
     private static final int BASIC_STAFF = 5;
 
+    private static final HashMap<String, Item> itemPrototypes = new HashMap<>();
+
+    static {
+        itemPrototypes.put("boot-armor", new BootArmor(0, "boots", 0));
+        itemPrototypes.put("chest-armor", new ChestArmor(0, "chest", 0));
+        itemPrototypes.put("glove-armor", new GloveArmor(0, "gloves", 0));
+        itemPrototypes.put("head-armor", new HeadArmor(0, "helmet", 0));
+        itemPrototypes.put("leg-armor", new LegArmor(0, "pants", 0));
+        itemPrototypes.put("trinket", new Trinket(0, "trinket", 0));
+        itemPrototypes.put("chest", new Chest());
+        itemPrototypes.put("fist-weapon", new Fist(0, "fist", 0));
+        itemPrototypes.put("one-hand-weapon", new OneHand(0, "sword", 0));
+        itemPrototypes.put("ranged-weapon", new Ranged(0, "bow", 0));
+        itemPrototypes.put("staff-weapon", new Staff(0, "staff", 0));
+        itemPrototypes.put("two-hand-weapon", new TwoHand(0, "longsword", 0));
+    }
+
     /* Constructor */
-    public ItemFactory(){};
+    public ItemFactory() { };
 
     /** Methods **/
     /* Weapons */
@@ -38,5 +58,9 @@ public class ItemFactory {
     }
     public static Staff getBasicStaff(){ return new Staff(BASIC_STAFF , "Basic Staff" , 2.50);}
 
-
+    public static Item fromXmlElement(Element element) {
+        Item item = itemPrototypes.get(element.getTagName()).clone();
+        item.initWithXmlElement(element);
+        return item;
+    }
 }

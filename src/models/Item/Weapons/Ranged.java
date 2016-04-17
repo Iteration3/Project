@@ -23,4 +23,6 @@ public class Ranged extends Weapon{
     public Ranged(int requiredLevel , int id,  String name , double attackRating){
         super(2.00 , "Sneak" , requiredLevel , Assets.ranged, id, name, attackRating);
 }
+
+    protected String getXmlTagName() { return "ranged-weapon"; }
 }

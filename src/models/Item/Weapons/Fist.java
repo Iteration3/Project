@@ -22,4 +22,6 @@ public class Fist extends Weapon{
     public Fist(int requiredLevel ,  int id,  String name , double attackRating){
         super(3.00 , "Smasher" , requiredLevel , Assets.fist, id,  name, attackRating);
     }
+
+    protected String getXmlTagName() { return "fist-weapon"; }
 }

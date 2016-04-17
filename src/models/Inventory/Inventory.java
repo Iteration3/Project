@@ -1,9 +1,11 @@
 package models.Inventory;
 
+import models.Item.ItemFactory;
 import models.Item.TakeableItem;
 import models.ItemContainer.ItemContainer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 import utilities.SaveLoad.Saveable;
 
 /*
@@ -112,5 +114,21 @@ public class Inventory implements ItemContainer, Saveable {
         }
 
         return element;
+    }
+
+    public static Inventory fromXmlElement(Element element) {
+        int size = Integer.parseInt(element.getAttribute("size"));
+        int gold = Integer.parseInt(element.getAttribute("gold"));
+        Inventory in = new Inventory(size, gold);
+
+        Element items = (Element) element.getElementsByTagName("items").item(0);
+        NodeList itemsList = items.getChildNodes();
+        for (int i = 0; i < itemsList.getLength(); ++i) {
+            Element itemElement = (Element) itemsList.item(i);
+            TakeableItem item = (TakeableItem) ItemFactory.fromXmlElement(itemElement);
+            in.addItem(item);
+        }
+
+        return in;
     }
 }

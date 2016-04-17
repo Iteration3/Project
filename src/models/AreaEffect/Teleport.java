@@ -15,6 +15,11 @@ public class Teleport extends AreaEffect {
         toLoc = l;
     }
 
+    public Teleport(Element element) {
+        this(Location.fromXmlElement((Element) element.getFirstChild()));
+        loc = Location.fromXmlElement((Element) element.getLastChild());
+    }
+
     public void execute(Entity e){
         teleportEntity(e);
     }

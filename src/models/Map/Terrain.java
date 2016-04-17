@@ -30,5 +30,9 @@ public enum Terrain implements Saveable {
         element.setTextContent(this.toString());
         return element;
     }
+
+    public static Terrain fromXmlElement(Element terrain) {
+        return Terrain.valueOf(terrain.getTextContent());
+    }
 }
 

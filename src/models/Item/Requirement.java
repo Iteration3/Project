@@ -66,7 +66,19 @@ public class Requirement implements Saveable {
         Element element = doc.createElement("requirement");
         element.setAttribute("level", Integer.toString(requiredLevel));
         element.setAttribute("occupation", requiredOccupation);
-        element.appendChild(requiredItem.generateXml(doc));
+        if (requiredItem != null) {
+            element.appendChild(requiredItem.generateXml(doc));
+        }
         return element;
+    }
+
+    public static Requirement fromXmlElement(Element element) {
+        Requirement r = new Requirement();
+        r.requiredLevel = Integer.parseInt(element.getAttribute("level"));
+        r.requiredOccupation = element.getAttribute("occupation");
+        if (element.hasChildNodes()) {
+            r.requiredItem = (TakeableItem) ItemFactory.fromXmlElement((Element) element.getFirstChild());
+        }
+        return r;
     }
 }

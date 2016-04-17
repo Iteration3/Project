@@ -4,6 +4,7 @@ package models.Item.Armors;
 import models.Entity.Entity;
 import models.Inventory.Inventory;
 import models.Equipment.Equipment;
+import models.Item.Item;
 import utilities.Location.Location;
 import views.Assets;
 
@@ -16,6 +17,11 @@ public class HeadArmor extends Armor {
     /*Constructors*/
     public HeadArmor(){
         super();
+    }
+
+    @Override
+    public Item clone() {
+        return new HeadArmor(id, name, rating);
     }
 
     public HeadArmor(int id, String name, double rating){

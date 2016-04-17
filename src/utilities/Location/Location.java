@@ -112,4 +112,12 @@ public class Location implements Saveable {
         element.setAttribute("height", Integer.toString(height));
         return element;
     }
+
+    public static Location fromXmlElement(Element location) {
+        int row, col, height;
+        row = Integer.parseInt(location.getAttribute("row"));
+        col = Integer.parseInt(location.getAttribute("col"));
+        height = Integer.parseInt(location.getAttribute("height"));
+        return new Location(row, col, height);
+    }
 }

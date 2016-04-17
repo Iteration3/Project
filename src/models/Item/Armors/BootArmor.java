@@ -3,6 +3,8 @@ package models.Item.Armors;
 import models.Entity.Entity;
 import models.Equipment.Equipment;
 import models.Inventory.Inventory;
+import models.Item.Item;
+import org.w3c.dom.Element;
 import utilities.Location.Location;
 import views.Assets;
 
@@ -18,6 +20,12 @@ public class BootArmor extends Armor{
     public BootArmor(){
         super();
     }
+
+    @Override
+    public Item clone() {
+        return null;
+    }
+
 
     public BootArmor( int id, String name, double rating){
         super(Assets.bootArmor , id, name ,rating);

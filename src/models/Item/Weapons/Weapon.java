@@ -3,6 +3,7 @@ package models.Item.Weapons;
 import models.Item.EquipableItem;
 import models.Inventory.Inventory;
 import models.Equipment.Equipment;
+import models.Item.Item;
 import models.Item.Requirement;
 import java.awt.image.BufferedImage;
 import java.util.LinkedHashMap;
@@ -25,6 +26,16 @@ public class Weapon extends EquipableItem {
     public Weapon() {
         super();
         requirement = new Requirement();
+    }
+
+    @Override
+    public Item clone() {
+        return new Weapon(weaponSpeed, requirement.getRequiredOccupation(), image, id, name, rating);
+    }
+
+    @Override
+    public void initWithXmlElement(Element element) {
+
     }
 
     public Weapon(double weaponSpeedString,String requiredOccupation, BufferedImage image, int id, String name, double attackRating) {
@@ -57,7 +68,6 @@ public class Weapon extends EquipableItem {
         this.unapplyRating(entity);
     }
 
-
     public void applyRating(Entity entity){
         Map<String , Double > statModifier =  new LinkedHashMap<>();
         statModifier.put("Attack" , this.rating);
@@ -70,13 +80,15 @@ public class Weapon extends EquipableItem {
         entity.modifyStats(statModifier);
     }
 
+    protected String getXmlTagName() { return "weapon"; }
 
     @Override
     public Element generateXml(Document doc) {
-        Element element = doc.createElement("weapon");
+        Element element = doc.createElement(getXmlTagName());
         element.setAttribute("rating", Double.toString(rating));
         element.setAttribute("speed", Double.toString(weaponSpeed));
         element.appendChild(requirement.generateXml(doc));
         return element;
     }
+
 }

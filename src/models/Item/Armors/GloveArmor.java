@@ -3,6 +3,7 @@ package models.Item.Armors;
 import models.Entity.Entity;
 import models.Equipment.Equipment;
 import models.Inventory.Inventory;
+import models.Item.Item;
 import utilities.Location.Location;
 import views.Assets;
 
@@ -16,6 +17,11 @@ public class GloveArmor extends Armor {
     /* Constructor */
     public GloveArmor(){
         super();
+    }
+
+    @Override
+    public Item clone() {
+        return new GloveArmor(id, name, rating);
     }
 
     public GloveArmor(int id,  String name, double rating){

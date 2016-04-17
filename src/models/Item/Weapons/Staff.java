@@ -23,5 +23,7 @@ public class Staff extends Weapon{
     public Staff(int requiredLevel, int id, String name , double attackRating){
         super(1.00 , "Summoner" , requiredLevel , Assets.staff, id, name, attackRating);
     }
+
+    protected String getXmlTagName() { return "staff-weapon"; }
 }
 

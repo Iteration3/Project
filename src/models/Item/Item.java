@@ -2,7 +2,7 @@ package models.Item;
 
 import java.awt.image.BufferedImage;
 import models.Entity.Entity;
-import utilities.Location.Location;
+import org.w3c.dom.Element;
 import utilities.SaveLoad.Saveable;
 
 
@@ -37,4 +37,13 @@ public abstract class Item implements Saveable {
     public BufferedImage getImage (){ return this.image;}
     public String getName(){ return this.name;}
 
+    /**
+     * @return a distinct copy of this item
+     */
+    public abstract Item clone();
+
+    /**
+     * initialize this item with an xml element. used in itemfactory when loading a game from an xml file
+     */
+    public abstract void initWithXmlElement(Element element);
 }

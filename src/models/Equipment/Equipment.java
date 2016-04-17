@@ -2,16 +2,23 @@ package models.Equipment;
 
 import models.ArmorContainer.ArmorContainer;
 import models.Item.Armors.*;
+import models.Item.Item;
+import models.Item.ItemFactory;
 import models.Item.Weapons.Weapon;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import utilities.SaveLoad.Saveable;
 
 
 /**
  *  Implemented by Peter Camejo
  */
-public class Equipment implements ArmorContainer{
+public class Equipment implements ArmorContainer, Saveable {
     /* Attributes */
-    Armor[] armor;
-    Weapon equippedWeapon;
+    protected Armor[] armor;
+    protected Weapon equippedWeapon;
 
     /* Constructors */
     public Equipment(){
@@ -191,5 +198,48 @@ public class Equipment implements ArmorContainer{
     public void setEquippedWeapon(Weapon weapon){
         this.equippedWeapon = weapon;
         return;
+    }
+
+    public Element generateXml(Document document) {
+        Element e = document.createElement("equipment");
+        Element armor = document.createElement("armor");
+        e.appendChild(armor);
+        for (Armor a : this.armor) {
+            if (a != null) {
+                armor.appendChild(a.generateXml(document));
+            } else {
+                armor.appendChild(document.createElement("null-armor"));
+            }
+        }
+        Element weapon = document.createElement("weapon");
+        if (equippedWeapon != null) {
+            weapon.appendChild(equippedWeapon.generateXml(document));
+        }
+        e.appendChild(weapon);
+        return e;
+    }
+
+    public static Equipment fromXmlElement(Element element) {
+
+        Equipment equipment = new Equipment();
+
+        Element armorElement = (Element) element.getElementsByTagName("armor").item(0);
+        NodeList armorList = armorElement.getChildNodes();
+        for (int i = 0; i < armorList.getLength(); ++i) {
+            Element e = (Element) armorList.item(i);
+            if (element.getTagName().equals("null-armor")) {
+                equipment.armor[i] = null;
+            } else {
+                Item item = ItemFactory.fromXmlElement(e);
+                equipment.armor[i] = (Armor) item;
+            }
+        }
+        NodeList weaponList = element.getElementsByTagName("weapon");
+        if (weaponList.getLength() > 0) {
+            Element weapon = (Element) weaponList.item(0).getFirstChild();
+            equipment.equippedWeapon = (Weapon) ItemFactory.fromXmlElement(weapon);
+        }
+        return equipment;
+
     }
 }

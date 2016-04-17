@@ -27,4 +27,23 @@ public abstract class AreaEffect implements Saveable {
         element.appendChild(loc.generateXml(doc));
         return element;
     }
+
+    public static AreaEffect fromXmlElement(Element element) {
+        String tagName = element.getTagName();
+        AreaEffect a = null;
+        switch (tagName) {
+            case "flow-tile-area-effect": a = new FlowTile(); break;
+            case "gain-health-area-effect": a = new GainHealth(); break;
+            case "instant-death-area-effect": a =  new InstantDeath(); break;
+            case "level-up-area-effect": a = new LevelUp(); break;
+            case "lose-health-area-effect": a = new LoseHealth(); break;
+            case "teleport-area-effect": return new Teleport(element);
+            case "trap-area-effect": a = new Trap(); break;
+        }
+        a.initWithXml(element);
+        return a;
+    }
+
+    protected void initWithXml(Element element) {
+    }
 }

@@ -3,6 +3,7 @@ package models.Map;
 import models.AreaEffect.AreaEffect;
 import models.Entity.Entity;
 import models.Item.Item;
+import models.Item.ItemFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import utilities.SaveLoad.Saveable;
@@ -78,16 +79,46 @@ public class Tile implements Saveable {
     public Element generateXml(Document doc) {
         Element element = doc.createElement("tile");
         element.appendChild(terrain.generateXml(doc));
+
+        Element entityContainer = doc.createElement("entity");
+        element.appendChild(entityContainer);
         if (entity != null) {
-            element.appendChild(entity.generateXml(doc));
+            entityContainer.appendChild(entity.generateXml(doc));
         }
+
+        Element areaEffectContainer = doc.createElement("areaEffect");
+        element.appendChild(areaEffectContainer);
         if (areaEffect != null) {
-            element.appendChild(areaEffect.generateXml(doc));
+            areaEffectContainer.appendChild(areaEffect.generateXml(doc));
         }
+
+        Element itemContainer = doc.createElement("item");
+        element.appendChild(itemContainer);
         if (item != null) {
-            element.appendChild(item.generateXml(doc));
+            itemContainer.appendChild(item.generateXml(doc));
         }
         return element;
+    }
+
+    public static Tile fromXmlElement(Element tile) {
+        Terrain terrain = Terrain.fromXmlElement((Element) tile.getElementsByTagName("terrain").item(0));
+        Tile t = new Tile(terrain);
+
+        Element entityContainer = (Element) tile.getElementsByTagName("entity").item(0);
+        if (entityContainer.hasChildNodes()) {
+            t.entity = Entity.fromXmlElement((Element) entityContainer.getFirstChild());
+        }
+
+        Element areaEffectContainer = (Element) tile.getElementsByTagName("areaEffect").item(0);
+        if (areaEffectContainer.hasChildNodes()) {
+            t.areaEffect = AreaEffect.fromXmlElement((Element) areaEffectContainer.getFirstChild());
+        }
+
+        Element itemContainer = (Element) tile.getElementsByTagName("item").item(0);
+        if (itemContainer.hasChildNodes()) {
+            t.item = ItemFactory.fromXmlElement((Element) itemContainer.getFirstChild());
+        }
+        return t;
     }
 }
 

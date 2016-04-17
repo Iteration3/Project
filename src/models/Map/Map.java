@@ -2,6 +2,8 @@ package models.Map;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import utilities.Geometry.Hexagon;
 import utilities.Location.Location;
 import utilities.SaveLoad.Saveable;
@@ -84,6 +86,9 @@ public class Map implements Saveable {
     @Override
     public Element generateXml(Document doc) {
         Element e = doc.createElement("map");
+        e.setAttribute("rows", Integer.toString(rowSize));
+        e.setAttribute("cols", Integer.toString(colSize));
+        e.setAttribute("height", Integer.toString(heightSize));
         for (Location l : tiles.keySet()) {
             Element tile = doc.createElement("map-tile");
             tile.appendChild(l.generateXml(doc));
@@ -91,6 +96,22 @@ public class Map implements Saveable {
             e.appendChild(tile);
         }
         return e;
+    }
+
+    public static Map fromXmlDocument(Document doc) {
+        Element e = (Element)doc.getElementsByTagName("map").item(0);
+        int rowSize = Integer.parseInt(e.getAttribute("rows"));
+        int colSize = Integer.parseInt(e.getAttribute("cols"));
+        int heightSize = Integer.parseInt(e.getAttribute("height"));
+        Map m = new Map(rowSize,  colSize, heightSize);
+        NodeList nodes = e.getElementsByTagName("map-tile");
+        for (int i = 0; i < nodes.getLength(); ++i) {
+            Element tile = (Element) nodes.item(i);
+            Location l = Location.fromXmlElement((Element) tile.getElementsByTagName("location").item(0));
+            Tile t = Tile.fromXmlElement((Element) tile.getElementsByTagName("tile").item(0));
+            m.tiles.put(l, t);
+        }
+        return m;
     }
 }
 

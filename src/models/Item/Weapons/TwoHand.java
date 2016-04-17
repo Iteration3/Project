@@ -23,4 +23,6 @@ public class TwoHand extends Weapon{
     public TwoHand(int requiredLevel , int id,  String name , double attackRating){
         super(1.00 , "Smasher" , requiredLevel , Assets.twoHand, id, name, attackRating);
     }
+
+    protected String getXmlTagName() { return "two-hand-weapon"; }
 }

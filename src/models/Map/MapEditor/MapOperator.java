@@ -7,6 +7,7 @@ import models.Map.Terrain;
 import models.Map.Tile;
 import utilities.Location.Location;
 import utilities.SaveLoad.XmlGenerator;
+import utilities.SaveLoad.XmlReader;
 import views.other.MapView;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -46,7 +47,6 @@ public class MapOperator {
             }
         }
     }
-
 
     public boolean addNewEntityAt(Entity entity, Location loc){
         Tile tile = map.getTileAt(loc);

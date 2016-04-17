@@ -3,6 +3,7 @@ package models.Item.Armors;
 import models.Entity.Entity;
 import models.Equipment.Equipment;
 import models.Inventory.Inventory;
+import models.Item.Item;
 import utilities.Location.Location;
 import views.Assets;
 
@@ -15,6 +16,11 @@ public class ChestArmor extends Armor {
     /* Constructor */
     public ChestArmor(){
         super();
+    }
+
+    @Override
+    public Item clone() {
+        return new ChestArmor(id, name, rating);
     }
 
     public ChestArmor( int id,  String name, double rating){

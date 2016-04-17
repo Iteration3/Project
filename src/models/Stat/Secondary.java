@@ -1,5 +1,8 @@
 package models.Stat;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import static java.lang.Math.abs;
 
 public abstract class Secondary extends Stat {
@@ -35,5 +38,10 @@ public abstract class Secondary extends Stat {
             setValue(this.value + amt);
         if(value() < 0)
             setValue(0);
+    }
+
+    @Override
+    public Element generateXml(Document document) {
+        return null;
     }
 }

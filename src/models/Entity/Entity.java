@@ -83,7 +83,7 @@ public abstract class Entity implements Action, Saveable {
      */
     //
     public void modifyStats(Map<String, Double> stat_to_modify) {this.stats.modifyStats(stat_to_modify);}
-    public void levelUp() {this.stats.levelUp();}
+    public void levelUp() { this.stats.levelUp();}
     public double statValue(String stat_to_get) {return this.stats.value(stat_to_get);}
     public String statName(String stat_to_get) {return this.stats.name(stat_to_get);}
     public void printStats(String stat_to_print) {this.stats.print(stat_to_print);}
@@ -134,12 +134,33 @@ public abstract class Entity implements Action, Saveable {
         Element element = document.createElement(tagName);
 
         element.setAttribute("name", name);
+        element.setAttribute("level", String.valueOf(getLevel()));
         element.appendChild(location.generateXml(document));
         element.appendChild(direction.generateXml(document));
         element.appendChild(occupation.generateXml(document));
         element.appendChild(stats.generateXml(document));
         element.appendChild(inventory.generateXml(document));
-//        element.appendChild(equipment.generateXml(document));
+        element.appendChild(equipment.generateXml(document));
         return element;
+    }
+
+    public static Entity fromXmlElement(Element element) {
+        Entity entity = null;
+        int level = Integer.parseInt(element.getAttribute("level"));
+        Occupation occupation = Occupation.fromXmlElement((Element) element.getElementsByTagName("occupation").item(0));
+
+        switch (element.getTagName()) {
+            case "avatar": entity = new Avatar(level, occupation); break;
+            case "mount": entity = new Mount(level, occupation); break;
+            case "npc": entity = new NPC(level, occupation); break;
+            case "pet": entity = new Pet(level, occupation); break;
+            case "entity-for-test": entity = new EnittyForTesting(); break;
+        }
+        entity.setLocation(Location.fromXmlElement((Element) element.getElementsByTagName("location").item(0)));
+        entity.setDirection(Direction.fromXmlElement((Element) element.getElementsByTagName("direction").item(0)));
+        entity.setStats(StatContainer.fromXmlElement((Element) element.getElementsByTagName("stats-container").item(0)));
+        entity.setInventory(Inventory.fromXmlElement((Element) element.getElementsByTagName("inventory").item(0)));
+        entity.equipment = Equipment.fromXmlElement((Element) element.getElementsByTagName("equipment").item(0));
+        return entity;
     }
 }
