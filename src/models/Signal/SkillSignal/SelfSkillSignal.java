@@ -9,8 +9,7 @@ public class SelfSkillSignal extends SkillSignal {
 
 
     public SelfSkillSignal(Map map, Entity avatar, Skill skill) {
-        //super(map, avatar, skill);
-        super(map, null);
+        super(map, avatar, skill);
     }
 
     protected void useSkill(Skill skill) {

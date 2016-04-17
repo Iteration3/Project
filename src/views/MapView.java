@@ -2,6 +2,7 @@ package views;
 
 
 
+import models.Decal.Decal;
 import models.Decal.FireBallDecal;
 import models.Entity.Entity;
 import models.Map.Map;
@@ -155,7 +156,8 @@ public class MapView {
 
     private void renderEntityAt(int x, int y, Tile tile, Graphics g){
         Entity temp = tile.getEntity();
-        if(temp == null) {
+        Decal decal = tile.getDecal();
+        if(temp == null && decal == null) {
             return;
         }
 

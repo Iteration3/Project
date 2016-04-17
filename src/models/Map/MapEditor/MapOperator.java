@@ -39,6 +39,9 @@ public class MapOperator {
                     } else if (random < 1) {
                         map.addTileAt(new Tile(new GroundTerrain(DrawTerrainImages.getGrassImage())),loc);
                     }
+                    else {
+                        map.addTileAt(new Tile(new GroundTerrain(DrawTerrainImages.getAirImage())),loc);
+                    }
                 }
             }
         }

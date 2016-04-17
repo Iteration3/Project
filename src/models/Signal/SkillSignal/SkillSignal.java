@@ -14,16 +14,17 @@ public abstract class SkillSignal {
     protected Entity avatar;
     protected int radius;
     protected int currentRadius;
+    protected Skill skill;
 
     protected Location avatarLocation;
     protected Direction direction;
 
 
-    public SkillSignal(Map map, Entity avatar) {
-        //public SkillSignal(Map map, Entity avatar, Skill skill) {
+    public SkillSignal(Map map, Entity avatar, Skill skill) {
         this.map = map;
         this.avatar = avatar;
-        Skill skill = new Staff();
+        this.skill = skill;
+
         radius = skill.getRadius();
         currentRadius = 0;
         setAvatarLocations();

@@ -1,5 +1,7 @@
 package models.Skill.BasicSkill;
 import models.Entity.*;
+
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -9,12 +11,14 @@ public class Observation extends BasicSkill {
     }
 
     public void activate(Entity entity) {
-        Map<String, Double> observationAmountMap = getObservationAmountMap();
-        entity.modifyStats(observationAmountMap);
+        if (entity != null) {
+            Map<String, Double> observationAmountMap = getObservationAmountMap();
+            entity.modifyStats(observationAmountMap);
+        }
     }
 
     public Map<String, Double> getObservationAmountMap() {
-        Map<String, Double> map = null;
+        Map<String, Double> map = new HashMap<>();
         double modifyByAmount = getModifyAmount(5);
         map.put(statAbv, modifyByAmount);
         return map;
