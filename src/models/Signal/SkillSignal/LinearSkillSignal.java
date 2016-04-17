@@ -14,13 +14,10 @@ import java.util.TimerTask;
 public class LinearSkillSignal extends SkillSignal {
 
 
-    public LinearSkillSignal(Map map, Entity avatar) {
-        super(map, avatar);
-    }
 
-//    public LinearSkillSignal(Map map, Entity avatar, Skill skill) {
-//        super(map, avatar, skill);
-//    }
+    public LinearSkillSignal(Map map, Entity avatar, Skill skill) {
+        super(map, avatar, skill);
+    }
 
 
     protected void useSkill(Skill skill) {
@@ -34,6 +31,8 @@ public class LinearSkillSignal extends SkillSignal {
                     currentRadius++;
 
                     map.getTileAt(avatarLocation).removeDecal();
+
+
                     Location nextLocation = direction.getNextLocation(avatarLocation);
                  //   Location nextLocation = new Location(currentRadius,0,0);
 
@@ -41,7 +40,7 @@ public class LinearSkillSignal extends SkillSignal {
                    // Entity entityToAttack = map.getTileAt(nextLocation).getEntity();
 
                     //skill.activate(entityToAttack);
-                    System.out.println("TESTTESTTEST");
+                    System.out.println("FIREBALL");
                     avatarLocation = nextLocation;
 
                     if (currentRadius == radius) {

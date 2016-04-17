@@ -8,6 +8,7 @@ import utilities.Direction.Direction;
 import utilities.GameStateManager;
 import utilities.KeyCommand.KeyCommand;
 import utilities.KeyCommand.MovementKeyCommand;
+import utilities.KeyCommand.SkillKeyCommand;
 
 import java.awt.event.KeyEvent;
 
@@ -78,6 +79,11 @@ public class PlayStateController extends Controller {
 
         moveNorth = new MovementKeyCommand(map, avatar, Direction.North, locomotion);
         keyMap.put(KeyEvent.VK_W, moveNorth);
+
+
+
+        moveNorth = new SkillKeyCommand(map, avatar);
+        keyMap.put(KeyEvent.VK_F, moveNorth);
 
 ;
     }
