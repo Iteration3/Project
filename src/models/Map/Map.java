@@ -79,5 +79,16 @@ public class Map {
             tiles.remove(loc);
         }
     }
+
+    public boolean groundTileAbove(Location location) {
+        Location tmpLocation = location.add(0,0,1);
+        if (isOutOfBound(tmpLocation)) {
+            return false;
+        }
+        if (getTileAt(tmpLocation).isGround()) {
+            return true;
+        }
+        return false;
+    }
 }
 

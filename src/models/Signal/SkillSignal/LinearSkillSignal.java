@@ -14,20 +14,17 @@ import java.util.TimerTask;
 public class LinearSkillSignal extends SkillSignal {
 
 
-    public LinearSkillSignal(Map map, Entity avatar) {
-        super(map, avatar);
-    }
 
-//    public LinearSkillSignal(Map map, Entity avatar, Skill skill) {
-//        super(map, avatar, skill);
-//    }
+    public LinearSkillSignal(Map map, Entity avatar, Skill skill) {
+        super(map, avatar, skill);
+    }
 
 
     protected void useSkill(Skill skill) {
 
         Decal decal = new FireBallDecal();
 
-       //if (skill.canUseSkill(avatar)) {
+       if (skill.canUseSkill(avatar)) {
             Timer t = new Timer();
             t.schedule(new TimerTask() {
                 public void run() {
@@ -35,13 +32,11 @@ public class LinearSkillSignal extends SkillSignal {
 
                     map.getTileAt(avatarLocation).removeDecal();
                     Location nextLocation = direction.getNextLocation(avatarLocation);
-                 //   Location nextLocation = new Location(currentRadius,0,0);
 
                     map.getTileAt(nextLocation).addDecal(decal);
-                   // Entity entityToAttack = map.getTileAt(nextLocation).getEntity();
+                    Entity entityToAttack = map.getTileAt(nextLocation).getEntity();
 
-                    //skill.activate(entityToAttack);
-                    System.out.println("TESTTESTTEST");
+                    skill.activate(entityToAttack);
                     avatarLocation = nextLocation;
 
                     if (currentRadius == radius) {
@@ -50,7 +45,7 @@ public class LinearSkillSignal extends SkillSignal {
                     }
                 }
             }, 0, 1000);
-       // }
+       }
     }
 
 

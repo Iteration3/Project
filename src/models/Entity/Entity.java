@@ -87,6 +87,9 @@ public abstract class Entity implements Action {
     public void printStats(String stat_to_print) {this.stats.print(stat_to_print);}
     public void printStats() {this.stats.print();}
     public double getLevel(){ return this.stats.value("LEVEL");}
+    public StatContainer getStatContainer() {
+        return stats;
+    }
 
     /*
         models.Equipment specific functionality

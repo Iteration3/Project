@@ -9,7 +9,9 @@ public class Creep extends SneakSkill {
     }
 
     public void activate(Entity entity) {
+        if (entity != null) {
 
+        }
     }
 
 }

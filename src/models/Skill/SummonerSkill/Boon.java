@@ -1,25 +1,29 @@
 package models.Skill.SummonerSkill;
 import models.Entity.*;
+
+import java.util.HashMap;
 import java.util.Map;
 
 
 public class Boon extends SummonerSkill {
 
     public Boon() {
-        super("Boon", 15);
+        super("Boon", 15, 0);
     }
 
     public void activate(Entity entity) {
-        Map<String, Double> statsBuffMap = getStatsBuffMap();
-        entity.modifyStats(statsBuffMap);
+        if (entity != null) {
+            Map<String, Double> statsBuffMap = getStatsBuffMap();
+            entity.modifyStats(statsBuffMap);
+        }
     }
 
     public Map<String, Double> getStatsBuffMap() {
-        Map<String, Double> map = null;
+        Map<String, Double> map = new HashMap<>();
         double modifyAmountArray[] = getModifyAmount();
-        map.put("int", modifyAmountArray[0]);
-        map.put("hard", modifyAmountArray[1]);
-        map.put("mov", modifyAmountArray[2]);
+        map.put("INTELLECT", modifyAmountArray[0]);
+        map.put("HARDINESS", modifyAmountArray[1]);
+        map.put("MOVEMENT", modifyAmountArray[2]);
         return map;
     }
 

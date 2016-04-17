@@ -1,6 +1,7 @@
 package models.Skill;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import models.Entity.Entity;
@@ -14,19 +15,21 @@ public abstract class Skill {
     protected double manaCost;
     protected double calculatorMultiplier;
     protected double manaCostMultiplier;
+    protected int radius;
 
-    public Skill(String name, double manaCost) {
+    public Skill(String name, double manaCost, int radius) {
         this.name = name;
         this.level = 1;
         this.calculatorMultiplier = 5;
         this.manaCostMultiplier = 1;
+        this.radius = radius;
         this.manaCost = manaCost * manaCostMultiplier;
     }
 
     public abstract void activate(Entity entity);
 
     public int getRadius() {
-        return 5;
+        return radius;
     }
 
     public boolean canUseSkill(Entity entity) {
@@ -41,9 +44,9 @@ public abstract class Skill {
     }
 
     protected Map<String, Double> getManaCostMap() {
-        Map<String, Double> manaCostMap = null;
+        Map<String, Double> manaCostMap = new HashMap<>();
         double manaCost = getManaCost();
-        manaCostMap.put("mana", -manaCost);
+        manaCostMap.put("CURRENT_MANA", -manaCost);
         return manaCostMap;
     }
 
