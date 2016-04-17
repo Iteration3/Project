@@ -1,5 +1,7 @@
 package controllers;
 
+import models.Entity.Avatar;
+import utilities.GameStateManager;
 import models.Entity.Entity;
 import models.Map.Map;
 import utilities.Direction.*;
@@ -7,6 +9,7 @@ import utilities.GameStateManager;
 import utilities.KeyCommand.KeyCommand;
 import utilities.KeyCommand.MovementKeyCommand;
 import java.awt.event.KeyEvent;
+
 
 /**
  * Created by clayhausen on 4/16/16.
@@ -22,6 +25,7 @@ public class AvatarViewController extends Controller {
         this.model = model;
         this.map = map;
     }
+
 
     @Override
     public void loadKeyCommand() {

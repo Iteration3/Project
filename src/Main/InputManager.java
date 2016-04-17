@@ -41,7 +41,6 @@ public class InputManager{
 
     //send the key to the controller
     public void getActiveKey(KeyEvent e){
-        System.out.println("I'm trying to send: " + e.getKeyCode() + " to " + gsm.getCurrentController());
         gsm.getCurrentController().handleInput(e);
     }
 

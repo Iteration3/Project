@@ -1,8 +1,12 @@
 package controllers;
 
+import models.Stat.Stat;
 import models.StateModel.AvatarCreationModel;
+import models.StateModel.PlayStateModel;
 import utilities.GameStateManager;
 import utilities.KeyCommand.KeyCommand;
+import utilities.State.State;
+import views.PlayStateView;
 
 import java.awt.event.KeyEvent;
 
@@ -43,7 +47,7 @@ public class AvatarCreationViewController extends Controller {
             @Override
             public void execute() {
                 if(model.getSelected() == AvatarCreationModel.AvatarCreationMenu.SMASHER){
-                    System.out.println("Selected Smasher");
+                    playStateTransition();
                 }
             }
         });
@@ -51,14 +55,14 @@ public class AvatarCreationViewController extends Controller {
 
     // TODO change to appropriate state transition
     private void playStateTransition() {
-        /*
-        AvatarCreationModel model = new AvatarCreationModel();
-        View view = new AvatarCreationView(model, gsm);
-        Controller controller = new AvatarCreationController(model, gsm);
-        State state = new State(view, controller);
-        gsm.changeState(state);
-        */
+
+        PlayStateModel model = new PlayStateModel();
+        PlayStateView view = new PlayStateView(500,500,gsm.getCurrentView().getCanvas(),model);
+        PlayStateController controller = new PlayStateController(model,gsm);
+        State playState = new State(view,controller);
+        gsm.changeState(playState);
     }
+
 
 
 }

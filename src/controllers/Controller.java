@@ -27,7 +27,11 @@ public abstract class Controller{
 
     // update method
     public void handleInput(KeyEvent e){
-        keyMap.get(e.getKeyCode()).execute();
+        if(keyMap.get(e.getKeyCode())!= null) {
+            keyMap.get(e.getKeyCode()).execute();
+        }else{
+            System.out.println("Key Mapping Does Not Exist");
+        }
     }
 
     public abstract void loadKeyCommand();

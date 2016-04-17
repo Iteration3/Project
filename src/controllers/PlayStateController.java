@@ -1,5 +1,6 @@
 package controllers;
 
+import models.StateModel.PlayStateModel;
 import utilities.GameStateManager;
 
 /**
@@ -7,12 +8,23 @@ import utilities.GameStateManager;
  */
 public class PlayStateController extends Controller {
 
-    public PlayStateController(GameStateManager gsm){
+    private PlayStateModel model;
+
+    public PlayStateController(PlayStateModel model, GameStateManager gsm){
         super(gsm);
+        this.model = model;
     }
 
     @Override
     public void loadKeyCommand() {
+
+        //movement keys
+
+        //inventory key
+
+        //equipment key
+
+        //pause key
 
     }
 
