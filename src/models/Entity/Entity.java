@@ -2,6 +2,7 @@ package models.Entity;
 
 
 import models.Action.Action;
+import models.Map.Terrain;
 import utilities.Direction.Direction;
 import models.Occupation.*;
 import models.StatContainer.*;
@@ -21,7 +22,6 @@ public abstract class Entity implements Action {
     protected StatContainer stats;
     protected Inventory inventory;
     protected Equipment equipment;
-    protected Locomotion locomotion;
 
     /*
         Methods used in constructors
@@ -34,7 +34,6 @@ public abstract class Entity implements Action {
     protected void setStats(StatContainer stats) {this.stats = stats;}
     protected void setInventory(Inventory inventory) {this.inventory = inventory;}
     //protected void setEquipment(models.Equipment equipment) {this.equipment = equipment;)
-    protected void setLocomotion(Locomotion locomotion) { this.locomotion = locomotion; }
 
     /*
         Action << interface >> implementation
@@ -55,18 +54,17 @@ public abstract class Entity implements Action {
     }
 
     /*
-        Locotion specific functionality
+        Location specific functionality
      */
     //
-    public Location getLocation() {return this.location;}
-    //public void changeLocation() {this.getLocation.changeLocation();}
-    public Locomotion getLocomotion() { return this.locomotion; }
+    public Location getLocation() { return location; }
+    public void changeLocation(Location location) { this.location = location; }
 
     /*
         models.Direction specific functionality
      */
     //
-    public Direction direction() {return this.direction;}
+    public Direction getDirection() {return this.direction;}
     public void changeDirection(Direction direction) {this.direction = direction;}
 
     /*

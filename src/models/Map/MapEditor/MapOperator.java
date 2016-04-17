@@ -2,10 +2,9 @@ package models.Map.MapEditor;
 
 
 import models.Entity.Entity;
-import models.Map.Map;
-import models.Map.Terrain;
-import models.Map.Tile;
+import models.Map.*;
 import utilities.Location.Location;
+import views.DrawTerrainImages;
 import views.MapView;
 
 import java.util.Random;
@@ -36,9 +35,9 @@ public class MapOperator {
                     double random =   rng.nextGaussian();
 
                     if (random < -0.5) {
-                        map.addTileAt(new Tile(Terrain.Mountain),loc);
+                        map.addTileAt(new Tile(new MountainTerrain(DrawTerrainImages.getMountainImage())),loc);
                     } else if (random < 1) {
-                        map.addTileAt(new Tile(Terrain.Grass),loc);
+                        map.addTileAt(new Tile(new GroundTerrain(DrawTerrainImages.getGrassImage())),loc);
                     }
                 }
             }
