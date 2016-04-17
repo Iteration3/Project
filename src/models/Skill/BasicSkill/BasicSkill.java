@@ -1,8 +1,9 @@
 package models.Skill.BasicSkill;
+import models.Entity.Entity;
 import models.Skill.*;
 
 
-public class BasicSkill extends Skill {
+public abstract class BasicSkill extends Skill {
 
     protected String statAbv;
 
@@ -10,5 +11,5 @@ public class BasicSkill extends Skill {
         super(name, manaCost);
         statAbv = abv;
     }
-
+    public abstract void activate(Entity entity);
 }

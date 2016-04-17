@@ -1,5 +1,10 @@
 package controllers;
 
+import models.Entity.Avatar;
+import models.Entity.Entity;
+import models.Occupation.Smasher;
+import models.Occupation.Sneak;
+import models.Occupation.Summoner;
 import models.Stat.Stat;
 import models.StateModel.AvatarCreationModel;
 import models.StateModel.PlayStateModel;
@@ -47,18 +52,26 @@ public class AvatarCreationViewController extends Controller {
             @Override
             public void execute() {
                 if(model.getSelected() == AvatarCreationModel.AvatarCreationMenu.SMASHER){
-                    playStateTransition();
+                    Entity newAvatar = new Avatar(1, new Smasher());
+                    playStateTransition(newAvatar);
+                }
+                if(model.getSelected() == AvatarCreationModel.AvatarCreationMenu.SNEAK){
+                    Entity newAvatar = new Avatar(1, new Sneak());
+                    playStateTransition(newAvatar);
+                }
+                if(model.getSelected() == AvatarCreationModel.AvatarCreationMenu.SUMMONER){
+                    Entity newAvatar = new Avatar(1, new Summoner());
+                    playStateTransition(newAvatar);
                 }
             }
         });
     }
 
     // TODO change to appropriate state transition
-    private void playStateTransition() {
-
-        PlayStateModel model = new PlayStateModel();
+    private void playStateTransition(Entity avatar) {
+        PlayStateModel model = new PlayStateModel(avatar);
         PlayStateView view = new PlayStateView(500,500,gsm.getCurrentView().getCanvas(),model);
-        PlayStateController controller = new PlayStateController(model,gsm);
+        PlayStateController controller = new PlayStateController(model,gsm, avatar);
         State playState = new State(view,controller);
         gsm.changeState(playState);
     }

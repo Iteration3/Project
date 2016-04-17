@@ -72,4 +72,8 @@ public class MapOperator {
         return new MapView(map);
     }
 
+    public Map getMap() {
+        return map;
+    }
+
 }
