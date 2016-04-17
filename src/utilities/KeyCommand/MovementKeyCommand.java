@@ -1,7 +1,7 @@
 package utilities.KeyCommand;
 import models.Entity.Entity;
 import models.Map.Map;
-import models.Direction.Direction;
+import utilities.Direction.Direction;
 import models.Map.Tile;
 
 /**
@@ -17,6 +17,12 @@ public class MovementKeyCommand implements KeyCommand {
     private Entity entity;
     private Direction direction;
 
+    public MovementKeyCommand(Map map, Entity entity, Direction direction) {
+        this.map = map;
+        this.entity = entity;
+        this.direction = direction;
+    }
+
 
     @Override
     public void execute() {
@@ -24,7 +30,7 @@ public class MovementKeyCommand implements KeyCommand {
         entity.changeDirection(direction);
 
         boolean canMove = true;
-        /* Tile tile = map.getTile( direction );
+        /* Tile tile = keyMap.getTile( direction );
 
         if ( checkForEntities() || checkForObstacles() ) {
             canMove = false;

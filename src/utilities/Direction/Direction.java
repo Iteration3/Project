@@ -1,4 +1,4 @@
-package Utilities.Direction;
+package utilities.Direction;
 
 import utilities.Location.Location;
 
@@ -13,7 +13,9 @@ public enum Direction {
     SouthWest(new Location(0,-1,0), new Location(1,-1,0)),
     South(new Location(1,0,0), new Location(1,0,0)),
     SouthEast(new Location(0,1,0), new Location(1,1,0)),
-    NorthEast(new Location(-1,1,0), new Location(0,1,0));
+    NorthEast(new Location(-1,1,0), new Location(0,1,0)),
+    Up( new Location(0,0,1), new Location(0,0,1) ),
+    Down( new Location(0,0,-1), new Location(0,0,-1) );
 
     private Location evenCol;
     private Location oddCol;
