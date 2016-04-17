@@ -22,6 +22,10 @@ public class Trinket extends Armor {
         super(Assets.trinket, id,name ,rating);
     }
 
+    public Trinket( int id,  String name, double rating , int requiredLevel){
+        super(Assets.trinket, id,name ,rating , requiredLevel);
+    }
+
     /* Methods */
     public void equip(Entity entity, Equipment equipment , Inventory inventory){
         equipment.addTrinket(this);
