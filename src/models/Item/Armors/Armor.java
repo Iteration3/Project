@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import models.Entity.Entity;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import utilities.Location.Location;
 
 
@@ -33,6 +35,15 @@ public abstract class Armor extends EquipableItem {
         Map<String, Double> statModifier = new LinkedHashMap<>();
         statModifier.put("Armor" , -this.rating);
         entity.modifyStats(statModifier);
+    }
+
+    protected abstract String getXmlTagName();
+
+    @Override
+    public Element generateXml(Document document) {
+        Element element = document.createElement(getXmlTagName());
+        element.setAttribute("rating", Double.toString(rating));
+        return element;
     }
 
 }

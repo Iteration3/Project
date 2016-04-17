@@ -3,9 +3,12 @@ package models.Map;
 import models.AreaEffect.AreaEffect;
 import models.Entity.Entity;
 import models.Item.Item;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import utilities.SaveLoad.Saveable;
 
 //Tile is just a contianer
-public class Tile {
+public class Tile implements Saveable {
 
     private Terrain terrain;
     private Entity entity;
@@ -70,6 +73,22 @@ public class Tile {
         item = null;
     }
     public Item getItem(){return item; }
+
+    @Override
+    public Element generateXml(Document doc) {
+        Element element = doc.createElement("tile");
+        element.appendChild(terrain.generateXml(doc));
+        if (entity != null) {
+            element.appendChild(entity.generateXml(doc));
+        }
+        if (areaEffect != null) {
+            element.appendChild(areaEffect.generateXml(doc));
+        }
+//        if (item != null) {
+//            element.appendChild(item.generateXml(doc));
+//        }
+        return element;
+    }
 }
 
 

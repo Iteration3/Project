@@ -36,5 +36,9 @@ public class BootArmor extends Armor{
         this.unapplyRating(entity);
     }
 
+    @Override
+    protected String getXmlTagName() {
+        return "boot-armor";
+    }
 
 }

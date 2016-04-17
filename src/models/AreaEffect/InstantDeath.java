@@ -1,6 +1,8 @@
 package models.AreaEffect;
 
 import models.Entity.Entity;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,5 +23,11 @@ public class InstantDeath extends AreaEffect {
         statChange.put("Life",a);
         e.modifyStats(statChange);
 
+    }
+
+
+    @Override
+    public Element generateXml(Document doc) {
+        return super.generateDefaultXml(doc, "death-area-effect");
     }
 }

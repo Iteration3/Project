@@ -19,6 +19,7 @@ public class RunGame extends JFrame implements KeyListener{
     // method called internally by toolkit
     public void addNotify() {
         super.addNotify();
+        setFocusable(true);
         this.addKeyListener(this);
     }
 

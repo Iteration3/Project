@@ -2,11 +2,14 @@ package models.Item;
 
 import models.Entity.Entity;
 import models.Inventory.Inventory;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import utilities.SaveLoad.Saveable;
 
 /**
  *  Implemented by Peter Camejo
  */
-public class Requirement {
+public class Requirement implements Saveable {
     /* Attributes */
     private TakeableItem requiredItem;
     private int requiredLevel;
@@ -58,4 +61,12 @@ public class Requirement {
 
     public String getRequiredItemName(){ return this.requiredItem.getName();}
 
+    @Override
+    public Element generateXml(Document doc) {
+        Element element = doc.createElement("requirement");
+        element.setAttribute("level", Integer.toString(requiredLevel));
+        element.setAttribute("occupation", requiredOccupation);
+        element.appendChild(requiredItem.generateXml(doc));
+        return element;
+    }
 }

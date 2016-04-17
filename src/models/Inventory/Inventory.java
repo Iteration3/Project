@@ -2,12 +2,15 @@ package models.Inventory;
 
 import models.Item.TakeableItem;
 import models.ItemContainer.ItemContainer;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import utilities.SaveLoad.Saveable;
 
 /*
 * Implemented by Peter Camejo
 */
 
-public class Inventory implements ItemContainer {
+public class Inventory implements ItemContainer, Saveable {
     /* Attributes */
     public int size;
     private TakeableItem[] items;
@@ -96,4 +99,18 @@ public class Inventory implements ItemContainer {
         return goldAmount;
     }
 
+    @Override
+    public Element generateXml(Document doc) {
+        Element element = doc.createElement("inventory");
+        element.setAttribute("size", Integer.toString(size));
+        element.setAttribute("gold", Integer.toString(goldAmount));
+        Element items = doc.createElement("items");
+        element.appendChild(items);
+
+        for (TakeableItem item : this.items) {
+            items.appendChild(item.generateXml(doc));
+        }
+
+        return element;
+    }
 }

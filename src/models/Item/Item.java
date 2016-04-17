@@ -3,12 +3,13 @@ package models.Item;
 import java.awt.image.BufferedImage;
 import models.Entity.Entity;
 import utilities.Location.Location;
+import utilities.SaveLoad.Saveable;
 
 
 /*
 * Implemented by Peter Camejo
 */
-public abstract class Item {
+public abstract class Item implements Saveable {
     /* Attributes */
     protected BufferedImage image;
     protected int id;

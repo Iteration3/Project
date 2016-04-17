@@ -10,10 +10,13 @@ import models.Entity.Entity;
 import models.Item.Item;
 import models.Item.Requirement;
 import models.Item.TakeableItem;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import utilities.SaveLoad.Saveable;
 
 import java.awt.image.BufferedImage;
 
-abstract class InteractiveItem extends Item {
+abstract class InteractiveItem extends Item implements Saveable {
     /* Attributes */
     protected Requirement requirement;
 
@@ -37,5 +40,13 @@ abstract class InteractiveItem extends Item {
         }
 
         passReqActivation(entity);
+    }
+
+    protected Element generateDefaultXml(Document doc, String tagName) {
+        Element element = doc.createElement(tagName);
+        element.appendChild(requirement.generateXml(doc));
+        element.setAttribute("name", name);
+        element.setAttribute("id", Integer.toString(id));
+        return element;
     }
 }

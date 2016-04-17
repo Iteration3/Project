@@ -35,4 +35,10 @@ public class GloveArmor extends Armor {
         this.unapplyRating(entity);
     }
 
+    @Override
+    protected String getXmlTagName() {
+        return "glove-armor";
+    }
+
+
 }

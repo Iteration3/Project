@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 /**
  *  Implemented by Peter Camejo
  */
-public class HeadArmor extends Armor{
+public class HeadArmor extends Armor {
     /*Constructors*/
     public HeadArmor(){
         super();
@@ -21,7 +21,6 @@ public class HeadArmor extends Armor{
     public HeadArmor(int id, String name, double rating){
         super(Assets.headArmor, id,  name ,rating);
     }
-
 
     /* Methods */
     public void equip(Entity entity, Equipment equipment , Inventory inventory) {
@@ -39,6 +38,11 @@ public class HeadArmor extends Armor{
         inventory.addItem(this);
         equipment.removeHead();
         this.unapplyRating(entity);
+    }
+
+    @Override
+    protected String getXmlTagName() {
+        return "head-armor";
     }
 
 }

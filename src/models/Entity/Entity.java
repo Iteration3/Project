@@ -9,10 +9,13 @@ import models.Item.*;
 import java.util.Map;
 import models.Inventory.*;
 import models.Equipment.Equipment;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import utilities.Direction.Direction;
 import utilities.Location.Location;
+import utilities.SaveLoad.Saveable;
 
-public abstract class Entity implements Action {
+public abstract class Entity implements Action, Saveable {
     //
     protected String name;
     protected Location location;
@@ -125,5 +128,18 @@ public abstract class Entity implements Action {
 
     public Inventory getInventory(){
         return this.inventory;
+    }
+
+    protected Element generateXml(Document document, String tagName) {
+        Element element = document.createElement(tagName);
+
+        element.setAttribute("name", name);
+        element.appendChild(location.generateXml(document));
+        element.appendChild(direction.generateXml(document));
+        element.appendChild(occupation.generateXml(document));
+        element.appendChild(stats.generateXml(document));
+        element.appendChild(inventory.generateXml(document));
+//        element.appendChild(equipment.generateXml(document));
+        return element;
     }
 }

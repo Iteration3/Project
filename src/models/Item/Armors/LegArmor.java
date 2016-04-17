@@ -34,4 +34,10 @@ public class LegArmor extends Armor {
         this.unapplyRating(entity);
     }
 
+    @Override
+    protected String getXmlTagName() {
+        return "leg-armor";
+    }
+
+
 }

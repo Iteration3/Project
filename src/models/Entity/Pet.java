@@ -3,6 +3,8 @@ package models.Entity;
 
 import models.Occupation.*;
 import models.StatContainer.*;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 public class Pet extends Entity {
     //
@@ -14,5 +16,10 @@ public class Pet extends Entity {
         setStats(new PetStats(occupationModifier(), level));
         //setInventory(new models.Inventory());
         //setEquipment(new models.Equipment());
+    }
+
+    @Override
+    public Element generateXml(Document doc) {
+        return super.generateXml(doc, "pet");
     }
 }

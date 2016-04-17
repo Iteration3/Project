@@ -6,8 +6,10 @@ import models.Map.Map;
 import models.Map.Terrain;
 import models.Map.Tile;
 import utilities.Location.Location;
+import utilities.SaveLoad.XmlGenerator;
 import views.other.MapView;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.util.Random;
 
 /**

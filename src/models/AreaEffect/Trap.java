@@ -1,6 +1,8 @@
 package models.AreaEffect;
 
 import models.Entity.Entity;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,5 +22,10 @@ public class Trap extends AreaEffect {
         e.modifyStats(statChange);
 
         //okay so how the fuck do i do this. Need to wait a certain amount of time and then do something.
+    }
+
+    @Override
+    public Element generateXml(Document doc) {
+        return super.generateDefaultXml(doc, "trap-area-effect");
     }
 }

@@ -34,4 +34,9 @@ public class Trinket extends Armor {
         inventory.addItem(this);
         this.unapplyRating(entity);
     }
+
+    @Override
+    protected String getXmlTagName() {
+        return "trinket";
+    }
 }

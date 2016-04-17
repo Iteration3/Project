@@ -1,6 +1,8 @@
 package models.AreaEffect;
 
 import models.Entity.Entity;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import utilities.Location.Location;
 
 /**
@@ -20,5 +22,12 @@ public class FlowTile extends AreaEffect {
         y =temp.getCol();
         
         e.getLocation();
+    }
+
+    @Override
+    public Element generateXml(Document doc) {
+        Element element = doc.createElement("flow-tile-area-effect");
+        element.appendChild(loc.generateXml(doc));
+        return element;
     }
 }

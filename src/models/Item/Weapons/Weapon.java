@@ -9,6 +9,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import models.Entity.Entity;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import utilities.Location.Location;
 
 /**
@@ -69,4 +71,12 @@ public class Weapon extends EquipableItem {
     }
 
 
+    @Override
+    public Element generateXml(Document doc) {
+        Element element = doc.createElement("weapon");
+        element.setAttribute("rating", Double.toString(rating));
+        element.setAttribute("speed", Double.toString(weaponSpeed));
+        element.appendChild(requirement.generateXml(doc));
+        return element;
+    }
 }

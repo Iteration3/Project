@@ -1,10 +1,14 @@
 package models.StatContainer;
 
 import models.Stat.Stat;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import utilities.SaveLoad.Saveable;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public abstract class StatContainer {
+public abstract class StatContainer implements Saveable {
     //
     protected double BASE_MODIFIER;
     protected Map<String, Double> OCCUPATION_MODIFIER;
@@ -39,4 +43,28 @@ public abstract class StatContainer {
     //
     protected abstract void setStats(double base_modifier, Map<String, Double> occupation_modifier, int level);
     public abstract void levelUp();
+
+    @Override
+    public Element generateXml(Document document) {
+        Element element = document.createElement("stats-container");
+        element.setAttribute("baseModifier", Double.toString(BASE_MODIFIER));
+
+        Element occupationModifier = document.createElement("occupation-modifier");
+        for (String key : OCCUPATION_MODIFIER.keySet()) {
+            Element modifier = document.createElement("modifier");
+            modifier.setAttribute("key", key);
+            modifier.setAttribute("value", OCCUPATION_MODIFIER.get(key).toString());
+            occupationModifier.appendChild(modifier);
+        }
+        element.appendChild(occupationModifier);
+
+        Element statsElement = document.createElement("stats");
+        for (String key : stats.keySet())  {
+            Element stat = document.createElement("stat");
+            stat.setAttribute("key", key);
+            stat.appendChild(stats.get(key).generateXml(document));
+        }
+        element.appendChild(statsElement);
+        return element;
+    }
 }

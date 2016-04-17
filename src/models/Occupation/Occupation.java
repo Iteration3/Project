@@ -1,11 +1,12 @@
 package models.Occupation;
 
 import models.SkillContainer.*;
+import utilities.SaveLoad.Saveable;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Occupation {
+public abstract class Occupation implements Saveable {
     //
     protected String name;
     protected SkillContainer basic_skills;

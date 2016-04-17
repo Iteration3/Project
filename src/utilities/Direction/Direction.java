@@ -1,11 +1,14 @@
 package utilities.Direction;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import utilities.Location.Location;
+import utilities.SaveLoad.Saveable;
 
 /**
  * Created by walkhard on 4/7/16.
  */
-public enum Direction {
+public enum Direction implements Saveable {
     //TODO: I DONT THINK THIS ONE SHOULD CREATE NEXT LOCATION
 
     North(new Location(-1,0,0), new Location(-1,0,0)),
@@ -26,5 +29,12 @@ public enum Direction {
     public Location getNextLocation(Location now){
         Location move = (now.getCol()%2 == 0)?evenCol :oddCol;
         return now.add(move);
+    }
+
+    @Override
+    public Element generateXml(Document document) {
+        Element element = document.createElement("direction");
+        element.setTextContent(toString());
+        return element;
     }
 }

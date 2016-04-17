@@ -1,6 +1,8 @@
 package models.AreaEffect;
 
 import models.Entity.Entity;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import utilities.Location.Location;
 
 /**
@@ -22,4 +24,11 @@ public class Teleport extends AreaEffect {
     }
 
 
+    @Override
+    public Element generateXml(Document doc) {
+        Element element = doc.createElement("teleport-area-effect");
+        element.appendChild(toLoc.generateXml(doc));
+        element.appendChild(loc.generateXml(doc));
+        return element;
+    }
 }

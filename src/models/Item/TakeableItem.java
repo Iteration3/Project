@@ -8,7 +8,7 @@ import utilities.Location.Location;
 * Implemented by Peter Camejo
 */
 
-public abstract class TakeableItem extends Item{
+public abstract class TakeableItem extends Item {
     /* Constructors */
     TakeableItem(){
         super();

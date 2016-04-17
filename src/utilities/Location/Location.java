@@ -1,9 +1,13 @@
 package utilities.Location;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import utilities.SaveLoad.Saveable;
+
 /**
  * Created by walkhard on 4/7/16.
  */
-public class Location {
+public class Location implements Saveable {
 
     public static final int ROW_MAX_LENGTH = 1000;
     public static final int COL_MAX_LENGTH = 1000;
@@ -98,5 +102,14 @@ public class Location {
         value += (col - COL_MIN_LENGTH)*(ROW_COUNT + 1);
         value += (height - HEIGHT_MIN_LENGTH)*((ROW_COUNT+1)*(COL_COUNT+1));
         return value;
+    }
+
+    @Override
+    public Element generateXml(Document doc) {
+        Element element = doc.createElement("location");
+        element.setAttribute("row", Integer.toString(row));
+        element.setAttribute("col", Integer.toString(col));
+        element.setAttribute("height", Integer.toString(height));
+        return element;
     }
 }

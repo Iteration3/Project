@@ -1,6 +1,10 @@
 package models.Stat;
 
-public abstract class Stat {
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import utilities.SaveLoad.Saveable;
+
+public abstract class Stat implements Saveable {
     //
     protected String name;
     protected double value;
@@ -14,4 +18,11 @@ public abstract class Stat {
     public abstract void scale(double amt);
     public abstract void modify(double amt);
     public abstract void calculate();
+
+    public Element generateXml(Document document) {
+        Element element = document.createElement("stat");
+        element.setAttribute("name", name);
+        element.setTextContent(Double.toString(value));
+        return element;
+    }
 }

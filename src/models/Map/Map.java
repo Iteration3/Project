@@ -1,12 +1,15 @@
 package models.Map;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import utilities.Geometry.Hexagon;
 import utilities.Location.Location;
+import utilities.SaveLoad.Saveable;
 
 import java.util.HashMap;
 
 
-public class Map {
+public class Map implements Saveable {
 
 
     private HashMap<Location, Tile> tiles;
@@ -76,6 +79,18 @@ public class Map {
         if(tiles.containsKey(loc)){
             tiles.remove(loc);
         }
+    }
+
+    @Override
+    public Element generateXml(Document doc) {
+        Element e = doc.createElement("map");
+        for (Location l : tiles.keySet()) {
+            Element tile = doc.createElement("map-tile");
+            tile.appendChild(l.generateXml(doc));
+            tile.appendChild(tiles.get(l).generateXml(doc));
+            e.appendChild(tile);
+        }
+        return e;
     }
 }
 

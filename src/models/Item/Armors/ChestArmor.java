@@ -34,4 +34,9 @@ public class ChestArmor extends Armor {
         this.unapplyRating(entity);
     }
 
+    @Override
+    protected String getXmlTagName() {
+        return "chest-armor";
+    }
+
 }
