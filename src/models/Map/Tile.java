@@ -3,6 +3,7 @@ package models.Map;
 import models.AreaEffect.AreaEffect;
 import models.Entity.Entity;
 import models.Item.Item;
+import views.DrawTerrainImages;
 
 //Tile is just a contianer
 public class Tile {
@@ -28,7 +29,7 @@ public class Tile {
     }
     public void setTerrain(Terrain terrain){
         if(terrain == null){
-            this.terrain = Terrain.Air;
+            this.terrain = new AirTerrain(DrawTerrainImages.getAirImage());
         }
         else {
             this.terrain = terrain;

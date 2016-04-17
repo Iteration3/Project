@@ -2,6 +2,7 @@ package models.Map;
 
 import utilities.Geometry.Hexagon;
 import utilities.Location.Location;
+import views.DrawTerrainImages;
 
 import java.util.HashMap;
 
@@ -60,7 +61,8 @@ public class Map {
     }
 
     public Tile getDefaultTile(){
-        Tile temp = new Tile(Terrain.Air);
+        Terrain terrain = new AirTerrain(DrawTerrainImages.getAirImage());
+        Tile temp = new Tile(terrain);
         return temp;
     }
 

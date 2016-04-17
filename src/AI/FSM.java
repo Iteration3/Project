@@ -10,6 +10,6 @@ public class FSM {
     }
 
     public void nextState(){
-        
+
     }
 }
