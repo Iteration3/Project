@@ -13,7 +13,7 @@ import java.awt.event.KeyEvent;
 public class InventoryEquipmentController extends Controller{
     private InventoryEquipmentModel model;
 
-    InventoryEquipmentController(InventoryEquipmentModel model){
+    public InventoryEquipmentController(InventoryEquipmentModel model){
         this.model = model;
     }
 

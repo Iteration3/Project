@@ -21,7 +21,7 @@ public class InventoryEquipmentState extends State {
 
     public void initMVC(){
         InventoryEquipmentModel model = new InventoryEquipmentModel(entity);
-        InventoryEquipmentController controller = new InventoryEquipmentController();
+        InventoryEquipmentController controller = new InventoryEquipmentController(model);
         InventoryEquipmentView view = new InventoryEquipmentView();
 
         setMVC(model,view,controller);
