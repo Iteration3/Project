@@ -160,5 +160,4 @@ public class MapView {
         // g.drawImage(image,x - image.getWidth()/2,y - image.getHeight()/2,null);
     }
 
-
 }
