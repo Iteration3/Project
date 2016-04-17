@@ -49,11 +49,11 @@ public class MovementKeyCommand implements KeyCommand {
             // Locomotion determines whether the Entity can move to the Terrain.
             // If (entity can move)
             //   updateMap()
-            if ( locomotion.move(terrain) ) {
-                Tile oldTile = map.getTileAt(currentLocation);
-                oldTile.removeEntity();
-                nextTile.addEntity(entity);
-            }
+//            if ( locomotion.move(terrain) ) {
+//                Tile oldTile = map.getTileAt(currentLocation);
+//                oldTile.removeEntity();
+//                nextTile.addEntity(entity);
+//            }
         }
 
 
