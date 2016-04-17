@@ -27,68 +27,49 @@ public class RadialSkillSignal extends SkillSignal {
 
         Decal decal = new FireBallDecal();
 
-        //if (skill.canUseSkill(avatar)) {
-        Timer t = new Timer();
-        t.schedule(new TimerTask() {
-            ArrayList<Location> nextLocation = new ArrayList<Location>();
-            public void run() {
+        if (skill.canUseSkill(avatar)) {
+            Timer t = new Timer();
+            t.schedule(new TimerTask() {
+                ArrayList<Location> nextLocation = new ArrayList<Location>();
+                ArrayList<Location> allLocation = new ArrayList<Location>();
 
+                public void run() {
 
+                    nextLocation.add(avatarLocation);
+                    allLocation.add(avatarLocation);
 
-                for (int i = 0; i < nextLocation.size(); ++i) {
-                    map.getTileAt(nextLocation.get(i)).removeDecal();
-                }
-
-
-                if (currentRadius == 0) {
-                    nextLocation = getLocationArray(1);
-                }
-                if (currentRadius == 1) {
-                    nextLocation = getLocationArray2(nextLocation);
-                }
-
-                for (int i = 0; i < nextLocation.size(); ++i) {
-                    System.out.println(nextLocation.get(i));
-                    map.getTileAt(nextLocation.get(i)).addDecal(decal);
-                }
-                // Entity entityToAttack = map.getTileAt(nextLocation).getEntity();
-
-                //skill.activate(entityToAttack);
-                System.out.println("FIREBALL");
-                //avatarLocation = nextLocation.get(1);
-
-                currentRadius++;
-                if (currentRadius == 3) {
                     for (int i = 0; i < nextLocation.size(); ++i) {
                         map.getTileAt(nextLocation.get(i)).removeDecal();
                     }
-                    t.cancel();
+
+                    nextLocation = getLocationArray2(allLocation);
+                    allLocation.addAll(nextLocation);
+
+
+                    for (int i = 0; i < nextLocation.size(); ++i) {
+                        Location locationToAttack = nextLocation.get(i);
+                        map.getTileAt(locationToAttack).addDecal(decal);
+                        Entity entityToAttack = map.getTileAt(locationToAttack).getEntity();
+                        skill.activate(entityToAttack);
+                    }
+
+                    System.out.println("FIREBALL");
+
+                    currentRadius++;
+                    if (currentRadius == 4) {
+                        for (int i = 0; i < nextLocation.size(); ++i) {
+                            Location locationToAttack = nextLocation.get(i);
+                            map.getTileAt(nextLocation.get(i)).removeDecal();
+                        }
+                        t.cancel();
+                    }
+
                 }
-
-            }
-        }, 0, 1000);
-        // }
-    }
-
-    private ArrayList<Location> getLocationArray(int n){
-        ArrayList<Location> list = new ArrayList<>();
-        Direction nextDirection = dir;
-        if (n == 1) {
-            list.add(nextDirection.getNextLocation(avatarLocation));
-            nextDirection = nextDirection.clockwise(nextDirection);
-            list.add(nextDirection.getNextLocation(avatarLocation));
-            nextDirection = nextDirection.clockwise(nextDirection);
-            list.add(nextDirection.getNextLocation(avatarLocation));
-            nextDirection = nextDirection.clockwise(nextDirection);
-            list.add(nextDirection.getNextLocation(avatarLocation));
-            nextDirection = nextDirection.clockwise(nextDirection);
-            list.add(nextDirection.getNextLocation(avatarLocation));
-            nextDirection = nextDirection.clockwise(nextDirection);
-            list.add(nextDirection.getNextLocation(avatarLocation));
+            }, 0, 1000);
         }
-
-        return list;
     }
+
+
 
     private ArrayList<Location> getLocationArray2(ArrayList<Location> list){
         ArrayList<Location> newList = new ArrayList<>();
@@ -117,6 +98,14 @@ public class RadialSkillSignal extends SkillSignal {
                 }
             }
         }
+
+        for (int i = newList.size() - 1; i > -1; --i) {
+            Location locationToAttack = newList.get(i);
+            if (map.isOutOfBound(locationToAttack)) {
+                newList.remove(i);
+            }
+        }
+
         return newList;
     }
 

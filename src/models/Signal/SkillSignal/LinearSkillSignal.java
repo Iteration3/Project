@@ -24,23 +24,20 @@ public class LinearSkillSignal extends SkillSignal {
 
         Decal decal = new FireBallDecal();
 
-       //if (skill.canUseSkill(avatar)) {
+       if (skill.canUseSkill(avatar)) {
             Timer t = new Timer();
             t.schedule(new TimerTask() {
                 public void run() {
                     currentRadius++;
 
                     map.getTileAt(avatarLocation).removeDecal();
-
-
                     Location nextLocation = direction.getNextLocation(avatarLocation);
-                 //   Location nextLocation = new Location(currentRadius,0,0);
 
                     map.getTileAt(nextLocation).addDecal(decal);
-                   // Entity entityToAttack = map.getTileAt(nextLocation).getEntity();
+                    Entity entityToAttack = map.getTileAt(nextLocation).getEntity();
 
-                    //skill.activate(entityToAttack);
-                    System.out.println("FIREBALL");
+                    skill.activate(entityToAttack);
+                    System.out.println("Location Attacked!");
                     avatarLocation = nextLocation;
 
                     if (currentRadius == radius) {
@@ -49,7 +46,7 @@ public class LinearSkillSignal extends SkillSignal {
                     }
                 }
             }, 0, 1000);
-       // }
+       }
     }
 
 

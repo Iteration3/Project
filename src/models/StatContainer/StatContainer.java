@@ -1,8 +1,11 @@
 package models.StatContainer;
 
 import models.Stat.Stat;
+
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 public abstract class StatContainer {
     //
@@ -23,8 +26,11 @@ public abstract class StatContainer {
         member's modify() method
      */
     public void modifyStats(Map<String, Double> stat_to_modify) {
+
         stat_to_modify.forEach((k, v) -> value().get(k).modify(v));
         value().forEach((k, v)-> v.calculate());
+
+        System.out.println(stats);
     }
 
     /*
