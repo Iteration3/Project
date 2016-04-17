@@ -6,6 +6,8 @@ import org.w3c.dom.Element;
 import utilities.Location.Location;
 import utilities.SaveLoad.Saveable;
 
+import java.util.HashMap;
+
 public abstract class AreaEffect implements Saveable {
     Location loc;
 
@@ -28,22 +30,25 @@ public abstract class AreaEffect implements Saveable {
         return element;
     }
 
-    public static AreaEffect fromXmlElement(Element element) {
-        String tagName = element.getTagName();
-        AreaEffect a = null;
-        switch (tagName) {
-            case "flow-tile-area-effect": a = new FlowTile(); break;
-            case "gain-health-area-effect": a = new GainHealth(); break;
-            case "instant-death-area-effect": a =  new InstantDeath(); break;
-            case "level-up-area-effect": a = new LevelUp(); break;
-            case "lose-health-area-effect": a = new LoseHealth(); break;
-            case "teleport-area-effect": return new Teleport(element);
-            case "trap-area-effect": a = new Trap(); break;
-        }
-        a.initWithXml(element);
-        return a;
+
+    private static HashMap<String, AreaEffect> prototypes = new HashMap<>();
+    static {
+        prototypes.put("flow-tile-area-effect", new FlowTile(null, 0));
+        prototypes.put("gain-health-area-effect", new GainHealth(null, 0));
+        prototypes.put("instant-death-area-effect", new InstantDeath(null));
+        prototypes.put("level-up-area-effect", new LevelUp(null, 0));
+        prototypes.put("lose-health-area-effect", new LoseHealth(null, 0));
+        prototypes.put("teleport-area-effect", new Teleport(null, null));
+        prototypes.put("trap-area-effect", new Trap(null));
     }
 
-    protected void initWithXml(Element element) {
+    public static AreaEffect fromXmlElement(Element element) {
+        String tagName = element.getTagName();
+        AreaEffect effect = prototypes.get(tagName).clone();
+        effect.initWithXml(element);
+        return effect;
     }
+
+    protected abstract AreaEffect clone();
+    protected abstract void initWithXml(Element element);
 }

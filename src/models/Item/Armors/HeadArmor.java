@@ -28,6 +28,10 @@ public class HeadArmor extends Armor {
         super(Assets.headArmor, id,  name ,rating);
     }
 
+    public HeadArmor(int id, String name, double rating , int requiredLevel){
+        super(Assets.headArmor, id,  name ,rating , requiredLevel);
+    }
+
     /* Methods */
     public void equip(Entity entity, Equipment equipment , Inventory inventory) {
         /*

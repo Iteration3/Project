@@ -95,12 +95,10 @@ public abstract class Entity implements Action, Saveable {
      */
     //
     public void equip(EquipableItem item) {
- //       item.equip(equipment , inventory);
-        item.applyRating(this);
+        item.equip(this, equipment , inventory);
     }
     public void unequip(EquipableItem item) {
- //       item.unequip(equipment , inventory);
-        item.unapplyRating(this);
+        item.unequip(this, equipment , inventory);
     }
 
     public Equipment getEquipment(){

@@ -3,6 +3,7 @@ package models.AreaEffect;
 import models.Entity.Entity;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import utilities.Location.Location;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,6 +12,10 @@ import java.util.Map;
  * Created by Andy on 4/14/2016.
  */
 public class InstantDeath extends AreaEffect {
+
+    public InstantDeath(Location l){
+        loc = l;
+    }
 
     public void execute(Entity e){
         killEntity(e);
@@ -25,9 +30,19 @@ public class InstantDeath extends AreaEffect {
 
     }
 
-
     @Override
     public Element generateXml(Document doc) {
         return super.generateDefaultXml(doc, "death-area-effect");
+    }
+
+    @Override
+    protected AreaEffect clone() {
+        return new InstantDeath(loc);
+    }
+
+    @Override
+    protected void initWithXml(Element element) {
+        Element location = (Element) element.getElementsByTagName("location").item(0);
+        loc = Location.fromXmlElement(location);
     }
 }

@@ -11,13 +11,9 @@ import utilities.Location.Location;
 public class Teleport extends AreaEffect {
     Location toLoc;
 
-    public Teleport(Location l){
-        toLoc = l;
-    }
-
-    public Teleport(Element element) {
-        this(Location.fromXmlElement((Element) element.getFirstChild()));
-        loc = Location.fromXmlElement((Element) element.getLastChild());
+    public Teleport(Location from,Location to){
+        loc = from;
+        toLoc = to;
     }
 
     public void execute(Entity e){
@@ -32,8 +28,21 @@ public class Teleport extends AreaEffect {
     @Override
     public Element generateXml(Document doc) {
         Element element = doc.createElement("teleport-area-effect");
-        element.appendChild(toLoc.generateXml(doc));
         element.appendChild(loc.generateXml(doc));
+        element.appendChild(toLoc.generateXml(doc));
         return element;
+    }
+
+    @Override
+    protected AreaEffect clone() {
+        return new Teleport(loc, toLoc);
+    }
+
+    @Override
+    protected void initWithXml(Element element) {
+        Element location = (Element) element.getElementsByTagName("location").item(0);
+        loc = Location.fromXmlElement(location);
+        Element toLocation = (Element) element.getElementsByTagName("location").item(1);
+        toLoc = Location.fromXmlElement(toLocation);
     }
 }

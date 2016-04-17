@@ -28,6 +28,10 @@ public class GloveArmor extends Armor {
         super(Assets.gloveArmor , id, name ,rating);
     }
 
+    public GloveArmor(int id,  String name, double rating , int requiredLevel){
+        super(Assets.gloveArmor , id, name ,rating , requiredLevel);
+    }
+
     /* Methods */
     public void equip(Entity entity , Equipment equipment , Inventory inventory){
         equipment.addGloves(this);

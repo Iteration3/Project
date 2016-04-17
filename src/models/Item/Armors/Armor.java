@@ -9,6 +9,7 @@ import java.util.Map;
 import models.Entity.Entity;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import models.Item.Requirement;
 import utilities.Location.Location;
 
 
@@ -18,13 +19,24 @@ import utilities.Location.Location;
  *  Class is meant to insure that armor pieces are of the type Armor
  */
 public abstract class Armor extends EquipableItem {
+    /* Attributes */
+    protected Requirement requirement;
+
     /* Constructor */
     public Armor(){
         super();
+        requirement = new Requirement();
     }
 
+    //No Level requirement
     public Armor(BufferedImage image , int id, String name, double rating){
         super(image,id,name,rating);
+        requirement = new Requirement();
+    }
+
+    public Armor(BufferedImage image , int id, String name, double rating , int requiredLevel){
+        super(image,id,name,rating);
+        requirement = new Requirement(null , requiredLevel , null);
     }
 
     public void applyRating(Entity entity){

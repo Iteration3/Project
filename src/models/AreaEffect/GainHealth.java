@@ -3,6 +3,7 @@ package models.AreaEffect;
 import models.Entity.Entity;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import utilities.Location.Location;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,11 +15,10 @@ public class GainHealth extends AreaEffect {
 
     int health;
 
-
-    public void test(){
-        getLocation();
-        setLocation(loc);
-    }
+   public GainHealth(Location l, int h){
+       loc = l;
+       health = h;
+   }
 
     public void execute(Entity e){
         System.out.println("Should add health.");
@@ -33,9 +33,20 @@ public class GainHealth extends AreaEffect {
 
     @Override
     public Element generateXml(Document doc) {
-        Element element = doc.createElement("gain-health-area-effect");
+        Element element = super.generateDefaultXml(doc, "gain-health-area-effect");
         element.setAttribute("amount", Integer.toString(health));
-        element.appendChild(loc.generateXml(doc));
         return element;
+    }
+
+    @Override
+    protected AreaEffect clone() {
+        return new GainHealth(loc, health);
+    }
+
+    @Override
+    protected void initWithXml(Element element) {
+        Element location = (Element) element.getElementsByTagName("location").item(0);
+        loc = Location.fromXmlElement(location);
+        health = Integer.parseInt(element.getAttribute("health"));
     }
 }

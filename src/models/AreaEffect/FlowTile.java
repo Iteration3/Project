@@ -10,24 +10,49 @@ import utilities.Location.Location;
  */
 public class FlowTile extends AreaEffect {
 
+    private int flowRate;
+
+    public FlowTile(Location l, int rate){
+        loc = l;
+        flowRate = rate;
+    }
 
     public void execute(Entity e){
         flow(e);
     }
 
+
     private void flow(Entity e){
         //yeah I should probably figure this out.
-        int x,y;
-        Location temp = loc;
-        y =temp.getCol();
-        
-        e.getLocation();
+        Location l = getMoveLocation();
+        e.changeLocation(l);
+    }
+
+    private Location getMoveLocation(){
+        int x,y,z;
+        x = loc.getRow();
+        y = loc.getCol()-1;
+        z = loc.getHeight();
+        Location temp = new Location(x,y,z);
+        return temp;
     }
 
     @Override
     public Element generateXml(Document doc) {
-        Element element = doc.createElement("flow-tile-area-effect");
-        element.appendChild(loc.generateXml(doc));
+        Element element = super.generateDefaultXml(doc, "flow-tile-area-effect");
+        element.setAttribute("flowRate", String.valueOf(flowRate));
         return element;
+    }
+
+    @Override
+    protected AreaEffect clone() {
+        return new FlowTile(loc,  flowRate);
+    }
+
+    @Override
+    protected void initWithXml(Element element) {
+        Element location = (Element) element.getElementsByTagName("location").item(0);
+        loc = Location.fromXmlElement(location);
+        flowRate = Integer.parseInt(element.getAttribute("flowRate"));
     }
 }
