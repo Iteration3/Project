@@ -24,6 +24,7 @@ public class MiscItem extends TakeableItem{
     /* Methods */
     public void use(Entity entity){
         System.out.println("OAK : Red, there is a time and place for everything. But not now.");
+        return; //do nothing
     }
 
 }

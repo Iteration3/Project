@@ -6,6 +6,8 @@ import models.Item.*;
 import models.Item.InteractiveItems.*;
 import views.Assets;
 
+import java.util.Random;
+
 
 /**
  * Implemented by Peter Camejo
@@ -94,6 +96,43 @@ public class ItemFactory {
     public static ConsumableItem getAgilityPotion(){ return new ConsumableItem("Agility" , 20, Assets.agilityPotion , AGILITY_POTION , "Agility Potion");}
     public static ConsumableItem getExperiencePotion(){ return new ConsumableItem("Experience" , 20 , Assets.experiencePotion , EXPERIENCE_POTION , "Experience Potion");}
 
+    /* Interactive Items */
+    public static Chest getItemChest(){
+        Random rand = new Random();
+        TakeableItem[] loot = new TakeableItem[3];
+        TakeableItem tempItem = null;
+
+        //Generate random loot
+        for(int i = 0 ; i < 3 ; i++){
+            switch(rand.nextInt(8)){
+                case 0 : tempItem = getHealthPotion();
+                    break;
+                case 1 : tempItem = getManaPotion();
+                    break;
+                case 2 : tempItem = getStrengthPotion();
+                    break;
+                case 3 :  tempItem = getIntellectPotion();
+                    break;
+                case 4 : tempItem = getAgilityPotion();
+                    break;
+                case 5 : tempItem = getExperiencePotion();
+                    break;
+                case 6 : tempItem = getPowerfulChestArmor();
+                    break;
+                case 7 : tempItem = getPowerfulLegArmor();
+                    break;
+                case 8 : tempItem = getPowerfulTrinket();
+                    break;
+            }
+            loot[i] = tempItem;
+        }
+
+        return new Chest(Assets.itemChest , ITEM_CHEST , "Item Chest" , getChestKey() , loot , rand.nextInt(51));
+    }
+
+    /* Misc Items */
+    public static MiscItem getChestKey(){return new MiscItem(Assets.chestKey , CHEST_KEY , "Item Chest Key");}
+    public static MiscItem getDoorKey(){ return new MiscItem(Assets.doorKey  , DOOR_KEY , "Door Key");}
 
     
 

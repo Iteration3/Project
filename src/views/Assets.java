@@ -38,6 +38,13 @@ public class Assets {
     public static BufferedImage mountainTerrain;
     public static BufferedImage airTerrain;
 
+    /* Interactive Item */
+    public static BufferedImage itemChest;
+
+    /* Misc Items */
+    public static BufferedImage chestKey;
+    public static BufferedImage doorKey;
+
 
     /* Methods */
     public static void init() {
@@ -63,6 +70,11 @@ public class Assets {
         SpriteSheet agilityPotionSheet = new SpriteSheet( new ImageLoader().loadImage("/agilityPotion.png"));
         SpriteSheet experiencePotionSheet = new SpriteSheet( new ImageLoader().loadImage("/experiencePotion.png"));
 
+        SpriteSheet itemChestSheet = new SpriteSheet( new ImageLoader().loadImage("/itemChest.png"));
+
+        SpriteSheet chestKeySheet = new SpriteSheet( new ImageLoader().loadImage("/chestKey.png"));
+        SpriteSheet doorKeySheet = new SpriteSheet( new ImageLoader().loadImage("/doorKey.png"));
+
 
 
         oneHand = oneHandSheet.crop(0 , 0, width , height);
@@ -84,6 +96,11 @@ public class Assets {
         intellectPotion = intellectPotionSheet.crop(0 , 0 , width , height);
         agilityPotion = agilityPotionSheet.crop(0 , 0 , width , height);
         experiencePotion = experiencePotionSheet.crop(0 , 0 , width , height);
+
+        itemChest = itemChestSheet.crop(0,0,width,height);
+
+        chestKey = chestKeySheet.crop(0 ,0 , width , height);
+        doorKey  = doorKeySheet.crop(0 , 0 , width , height);
 
         /*
         grassTerrain = DrawTerrainImages.getGrassImage();
