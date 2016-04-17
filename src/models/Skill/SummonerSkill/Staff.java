@@ -1,23 +1,27 @@
 package models.Skill.SummonerSkill;
 import models.Entity.*;
+
+import java.util.HashMap;
 import java.util.Map;
 
 
 public class Staff extends SummonerSkill {
 
     public Staff() {
-        super("Staff", 0);
+        super("Staff", 0, 1);
     }
 
     public void activate(Entity entity) {
-        Map<String, Double> damageAmountMap = getDamageAmountMap();
-        entity.modifyStats(damageAmountMap);
+        if (entity != null) {
+            Map<String, Double> damageAmountMap = getDamageAmountMap();
+            entity.modifyStats(damageAmountMap);
+        }
     }
 
     public Map<String, Double> getDamageAmountMap() {
-        Map<String, Double> map = null;
+        Map<String, Double> map = new HashMap<>();
         double modifyAmount = getModifyAmount();
-        map.put("hp", -modifyAmount);
+        map.put("CURRENT_LIFE", -modifyAmount);
         return map;
     }
 

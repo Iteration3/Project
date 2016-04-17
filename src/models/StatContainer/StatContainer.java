@@ -1,8 +1,11 @@
 package models.StatContainer;
 
 import models.Stat.Stat;
+
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 public abstract class StatContainer {
     //
@@ -39,4 +42,11 @@ public abstract class StatContainer {
     //
     protected abstract void setStats(double base_modifier, Map<String, Double> occupation_modifier, int level);
     public abstract void levelUp();
+
+
+
+
+    public Set<Map.Entry<String,Stat>> getMap() {
+        return stats.entrySet();
+    }
 }

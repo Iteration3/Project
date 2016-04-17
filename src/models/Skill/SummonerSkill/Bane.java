@@ -1,24 +1,28 @@
 package models.Skill.SummonerSkill;
 import models.Entity.Entity;
 
+import java.util.HashMap;
 import java.util.Map;
 
 
 public class Bane extends SummonerSkill {
 
     public Bane() {
-        super("Bane", 5);
+        super("Bane", 5, 3);
     }
 
     public void activate(Entity entity) {
-        Map<String, Double> damageModifyAmountMap = getDamageMap();
-        entity.modifyStats(damageModifyAmountMap);
+        if (entity != null) {
+            Map<String, Double> damageModifyAmountMap = getDamageMap();
+            System.out.println("DAMAGED ENTITY: " + getDamageMap());
+            entity.modifyStats(damageModifyAmountMap);
+        }
     }
 
     public Map<String, Double> getDamageMap() {
-        Map<String, Double> map = null;
+        Map<String, Double> map = new HashMap<>();
         double modifyAmount = getModifyAmount();
-        map.put("hp", -modifyAmount);
+        map.put("CURRENT_LIFE", -modifyAmount);
         return map;
     }
 

@@ -14,8 +14,8 @@ public abstract class View{
     private Canvas canvas;
 
     public View(int width, int height, Canvas canvas){
-        this.width = width;
-        this.height = height;
+        this.width = canvas.getWidth();
+        this.height = canvas.getHeight();
         this.canvas = canvas;
     }
 
@@ -27,5 +27,11 @@ public abstract class View{
     }
     public Canvas getCanvas(){ return canvas; }
 
+    public void renderInCanvas(Graphics g){
+        this.width = canvas.getWidth();
+        this.height = canvas.getHeight();
+
+        render(g);
+    }
     protected abstract void render(Graphics g);
 }

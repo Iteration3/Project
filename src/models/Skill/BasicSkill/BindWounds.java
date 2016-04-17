@@ -1,21 +1,25 @@
 package models.Skill.BasicSkill;
 import models.Entity.*;
+
+import java.util.HashMap;
 import java.util.Map;
 
 
 public class BindWounds extends BasicSkill {
 
     public BindWounds() {
-        super("Bind Wounds", 5, "hp");
+        super("Bind Wounds", 5, "CURRENT_LIFE");
     }
 
     public void activate(Entity entity) {
-        Map<String, Double> healAmountMap = getHealAmountMap();
-        entity.modifyStats(healAmountMap);
+        if (entity != null ) {
+            Map<String, Double> healAmountMap = getHealAmountMap();
+            entity.modifyStats(healAmountMap);
+        }
     }
 
     public Map<String, Double> getHealAmountMap() {
-        Map<String, Double> map = null;
+        Map<String, Double> map = new HashMap<>();
         double modifyByAmount = getModifyAmount();
         map.put(statAbv, modifyByAmount);
         return map;

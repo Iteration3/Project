@@ -16,8 +16,8 @@ import java.awt.image.BufferedImage;
 
 public class Canvas extends JPanel implements KeyListener{
 
-    private final static int WIDTH = 500;
-    private final static int HEIGHT = WIDTH*4/5;
+    public final static int WIDTH = 500;
+    public final static int HEIGHT = WIDTH*4/5;
     private final static int SCALE = 1;
 
     private View currentView;
@@ -49,7 +49,7 @@ public class Canvas extends JPanel implements KeyListener{
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        currentView.render(g);
+        currentView.renderInCanvas(g);
     }
 
     @Override
