@@ -21,11 +21,18 @@ public class FlowTile extends AreaEffect {
 
     private void flow(Entity e){
         //yeah I should probably figure this out.
-        int x,y;
-        Location temp = loc;
-        y = temp.getCol();
-        
-        e.getLocation();
-        e.changeLocation
+        Location l = getMoveLocation();
+        e.changeLocation(l);
+    }
+
+    
+
+    private Location getMoveLocation(){
+        int x,y,z;
+        x = loc.getRow();
+        y = loc.getCol()-1;
+        z = loc.getHeight();
+        Location temp = new Location(x,y,z);
+        return temp;
     }
 }
