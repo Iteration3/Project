@@ -84,9 +84,9 @@ public class Tile implements Saveable {
         if (areaEffect != null) {
             element.appendChild(areaEffect.generateXml(doc));
         }
-//        if (item != null) {
-//            element.appendChild(item.generateXml(doc));
-//        }
+        if (item != null) {
+            element.appendChild(item.generateXml(doc));
+        }
         return element;
     }
 }
