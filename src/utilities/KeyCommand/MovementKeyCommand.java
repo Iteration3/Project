@@ -1,8 +1,11 @@
 package utilities.KeyCommand;
 import models.Entity.Entity;
+import models.Entity.Locomotion;
 import models.Map.Map;
+import models.Map.Terrain;
 import utilities.Direction.Direction;
 import models.Map.Tile;
+import utilities.Location.Location;
 
 /**
  * Created by clayhausen on 4/13/16.
@@ -16,11 +19,13 @@ public class MovementKeyCommand implements KeyCommand {
     private Map map;
     private Entity entity;
     private Direction direction;
+    private Locomotion locomotion;
 
     public MovementKeyCommand(Map map, Entity entity, Direction direction) {
         this.map = map;
         this.entity = entity;
         this.direction = direction;
+        this.locomotion = entity.getLocomotion();
     }
 
 
@@ -30,17 +35,27 @@ public class MovementKeyCommand implements KeyCommand {
         entity.changeDirection(direction);
 
         boolean canMove = true;
-        /* Tile tile = keyMap.getTile( direction );
+        Location currentLocation = entity.getLocation();
+        Location nextLocation = direction.getNextLocation(currentLocation);
+        Tile nextTile = map.getTileAt(nextLocation);
 
-        if ( checkForEntities() || checkForObstacles() ) {
+        if ( checkForEntities(nextTile) || checkForObstacles(nextTile) ) {
             canMove = false;
         }
-        */
+
 
         if ( canMove ) {
-            // Terrain terrain = tile.getTerrain();
-            // entity.move(terrain);
+            Terrain terrain = nextTile.getTerrain();
+            // Locomotion determines whether the Entity can move to the Terrain.
+            // If (entity can move)
+            //   updateMap()
+            if ( locomotion.move(terrain) ) {
+                Tile oldTile = map.getTileAt(currentLocation);
+                oldTile.removeEntity();
+                nextTile.addEntity(entity);
+            }
         }
+
 
     }
 
@@ -48,13 +63,13 @@ public class MovementKeyCommand implements KeyCommand {
     //TODO modify once Map/Obstacle have been implemented
     // Returns true if an Entity is occupying the Tile to be moved to
     private boolean checkForEntities(Tile tile) {
-        /*
-        boolean occupied = true;
 
-        if ( tile.getEntity == null ) { occupied = false; }
-            return occupied;
-         */
-            return true;
+        boolean isOccupied = true;
+
+        if ( tile.hasEntity() == false ) { isOccupied = false; }
+
+        return isOccupied;
+
     }
 
 
