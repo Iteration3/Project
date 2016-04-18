@@ -67,6 +67,12 @@ public class RadialSphericalSkillSignal extends RadialSkill {
             if (map.isOutOfBound(locationToAttack)) {
                 newList.remove(i);
             }
+            else if (map.getTileAt(locationToAttack).isMountain()) {
+                newList.remove(i);
+            }
+            else if (map.getTileAt(locationToAttack).isGround()) {
+                newList.remove(i);
+            }
         }
 
         return newList;

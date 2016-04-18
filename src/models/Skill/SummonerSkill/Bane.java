@@ -17,7 +17,6 @@ public class Bane extends SummonerSkill {
     public void activate(Entity entity) {
         if (entity != null) {
             Map<String, Double> damageModifyAmountMap = getDamageMap();
-            System.out.println("DAMAGED ENTITY: " + getDamageMap());
             entity.modifyStats(damageModifyAmountMap);
         }
     }

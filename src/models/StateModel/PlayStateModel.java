@@ -89,6 +89,7 @@ public class PlayStateModel{
     public PlayStateModel(Map map) {
         mapOperator = new MapOperator(map);
         avatar = map.findAvatar();
+        System.out.println(avatar);
         statusView = new StatusView(avatar);
         focus = avatar.getLocation();
         for (Entity e : map.entities()) {

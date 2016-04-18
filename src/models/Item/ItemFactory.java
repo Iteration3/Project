@@ -1,5 +1,6 @@
 package models.Item;
 
+import jdk.nashorn.internal.ir.IfNode;
 import models.Item.Weapons.*;
 import models.Item.Armors.*;
 import models.Item.*;
@@ -131,6 +132,9 @@ public class ItemFactory {
     public static ConsumableItem getExperiencePotion(){ return new ConsumableItem("Experience" , 20 , Assets.experiencePotion , EXPERIENCE_POTION , "Experience Potion");}
 
     public static Item fromXmlElement(Element element) {
+        if (element.getTagName().equals("null-armor")) {
+            return null;
+        }
         Item item = itemPrototypes.get(element.getTagName()).clone();
         item.initWithXmlElement(element);
         return item;

@@ -141,7 +141,7 @@ public abstract class Entity extends Observable implements Action, Saveable {
         if(item == null){
             return;
         }
-        item.unequip(this, equipment , inventory);
+        item.unequip(this, equipment, inventory);
     }
 
     public Equipment getEquipment(){
@@ -180,7 +180,11 @@ public abstract class Entity extends Observable implements Action, Saveable {
         element.setAttribute("name", name);
         element.setAttribute("level", Integer.toString((int) getLevel()));
         element.appendChild(location.generateXml(document));
-        element.appendChild(direction.generateXml(document));
+        if (direction != null) {
+            element.appendChild(direction.generateXml(document));
+        } else {
+            element.appendChild(Direction.Down.generateXml(document));
+        }
 
         Element occupationContainer = document.createElement("occupation");
         occupationContainer.appendChild(occupation.generateXml(document));
@@ -219,6 +223,15 @@ public abstract class Entity extends Observable implements Action, Saveable {
     //skills
     public Skill getActiveSkill(int n) {
         return occupation.getActiveSkill(n);
+    }
+
+
+    public void levelUpIfReady() {
+        double currXP = statValue("CURRENT_EXPERIENCE");
+        double maxXP = statValue("EXPERIENCE");
+        if (currXP >= maxXP) {
+            levelUp();
+        }
     }
 
 

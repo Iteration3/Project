@@ -28,7 +28,7 @@ import java.util.Random;
 public class MapOperator {
 
     private Map map;
-    private ArrayList<entityObserver> observers;
+    private ArrayList<entityObserver> observers =  new ArrayList<>();
     private Location startLocation;
 
     public MapOperator(int maxRowSize, int maxColSize, int maxHeightSize){
@@ -38,9 +38,9 @@ public class MapOperator {
 
     public MapOperator(Map map) {
         this.map = map;
-        initMap();
         this.observers = new ArrayList<>();
         this.startLocation = new Location(44,0,0);
+        initMap();
     }
 
     public void initMap(){

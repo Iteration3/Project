@@ -51,6 +51,7 @@ public abstract class RadialSkill extends SkillSignal {
                         map.getTileAt(locationToAttack).addDecal(decal);
                         Entity entityToAttack = map.getTileAt(locationToAttack).getEntity();
                         skill.activate(entityToAttack);
+                        checkForExperienceGain(entityToAttack);
                     }
 
                     currentRadius++;

@@ -12,8 +12,8 @@ public class AvatarCreationView extends View {
     private static final String TITLE = "Avatar Creation";
 
     // Scalable variables.
-    private static final int WIDTH = 700;
-    private static final int HEIGHT = 700;
+    private static int WIDTH = 700;
+    private static int HEIGHT = 700;
 
     // Styling properties
     private Font titleFont;
@@ -32,6 +32,8 @@ public class AvatarCreationView extends View {
 
     @Override
     public void render(Graphics g) {
+        this.WIDTH = getScreenWidth();
+        this.HEIGHT = getScreenHeight();
 
         renderBackground(g);
         renderTitle(g);

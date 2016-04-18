@@ -1,6 +1,7 @@
 package models.Equipment;
 
 import com.sun.xml.internal.ws.message.MimeAttachmentSet;
+import jdk.nashorn.internal.runtime.regexp.joni.constants.NodeType;
 import models.ArmorContainer.ArmorContainer;
 import models.Item.Armors.*;
 import models.Item.Item;
@@ -11,6 +12,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import utilities.SaveLoad.Saveable;
+import utilities.SaveLoad.XmlReader;
 
 
 /**
@@ -18,11 +20,11 @@ import utilities.SaveLoad.Saveable;
  */
 public class Equipment implements ArmorContainer, Saveable {
     /* Attributes */
-    protected Armor[] armor;
+    protected Armor[] armor = new Armor[MAX_CONTAINER_SIZE];
     protected Weapon equippedWeapon;
 
     /* Constructors */
-    public Equipment(){
+    public Equipment() {
         armor = new Armor[MAX_CONTAINER_SIZE];
         equippedWeapon = null;
         init();
@@ -234,18 +236,22 @@ public class Equipment implements ArmorContainer, Saveable {
         Element armorElement = (Element) element.getElementsByTagName("armor").item(0);
         NodeList armorList = armorElement.getChildNodes();
         for (int i = 0; i < armorList.getLength(); ++i) {
-            Element e = (Element) armorList.item(i);
-            if (element.getTagName().equals("null-armor")) {
-                equipment.armor[i] = null;
-            } else {
-                Item item = ItemFactory.fromXmlElement(e);
-                equipment.armor[i] = (Armor) item;
+            if (armorList.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                Element e = (Element) armorList.item(i);
+                if (!e.getTagName().equals("null-armor")) {
+                    Item item = ItemFactory.fromXmlElement(e);
+                    if (item != null) {
+                        equipment.armor[i] = (Armor) item;
+                    }
+                }
             }
         }
         NodeList weaponList = element.getElementsByTagName("weapon");
         if (weaponList.getLength() > 0) {
-            Element weapon = (Element) weaponList.item(0).getFirstChild();
-            equipment.equippedWeapon = (Weapon) ItemFactory.fromXmlElement(weapon);
+            Element weapon =  XmlReader.getFirstChildElement(weaponList.item(0));
+            if (weapon != null) {
+                equipment.equippedWeapon = (Weapon) ItemFactory.fromXmlElement(weapon);
+            }
         }
         return equipment;
 
