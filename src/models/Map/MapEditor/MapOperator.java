@@ -32,7 +32,7 @@ public class MapOperator {
         for(int r = 0; r < row; r++){
             for(int c = 0; c < col; c++){
                 for(int h =0; h < height; h++){
-                    
+
                     Tile tile = map.getTileAt(new Location(r,c,h));
                     map.addTileAt(tile,new Location(r,c,h));
                 }

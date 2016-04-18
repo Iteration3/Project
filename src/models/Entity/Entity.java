@@ -76,7 +76,7 @@ public abstract class Entity implements Action {
         Location specific functionality
      */
     //
-    public Location getLocation() { return location; }
+    public Location getLocation() { return this.location; }
     public void changeLocation(Location location) { this.location = location; }
 
     /*

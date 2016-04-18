@@ -16,7 +16,7 @@ import java.util.HashMap;
 /**
  * Created by clayhausen on 4/15/16.
  */
-public abstract class Locomotion {
+public abstract class Locomotion{
 
     protected Entity entity;
     protected Map map;

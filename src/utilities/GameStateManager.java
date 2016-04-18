@@ -61,9 +61,26 @@ public class GameStateManager {
     }
 
     public void updateModel() {
-        getCurrentController().updateModel();
-        for(int i=0;i<currentNPCs.size();i++){
-            currentNPCs.get(i).act();
+
+        int fps = 1;
+        long timePerTick = 1000 / fps;
+
+        long start;
+        long elapsed;
+        long wait;
+
+        start = System.currentTimeMillis();
+
+
+        elapsed = System.currentTimeMillis() - start;
+        wait = timePerTick - elapsed;
+
+        if(wait > 0 ) {
+            System.out.println(wait);
+            getCurrentController().updateModel();
+            for (int i = 0; i < currentNPCs.size(); i++) {
+                currentNPCs.get(i).act();
+            }
         }
     }
 
