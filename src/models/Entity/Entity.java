@@ -109,7 +109,10 @@ public abstract class Entity extends Observable implements Action {
         setChanged();
         notifyObservers();
     }
-    public void levelUp() {this.stats.levelUp();}
+    public void levelUp() {
+        this.stats.levelUp();
+        occupation.addSkillPoints();
+    }
     public double statValue(String stat_to_get) {return this.stats.value(stat_to_get);}
     public String statName(String stat_to_get) {return this.stats.name(stat_to_get);}
     public void printStats(String stat_to_print) {this.stats.print(stat_to_print);}

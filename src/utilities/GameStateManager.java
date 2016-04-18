@@ -62,7 +62,7 @@ public class GameStateManager {
 
     public void updateModel() {
 
-        int fps = 1;
+        int fps = 30;
         long timePerTick = 1000 / fps;
 
         long start;

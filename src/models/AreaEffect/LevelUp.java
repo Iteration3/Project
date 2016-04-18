@@ -22,8 +22,9 @@ public class LevelUp extends AreaEffect {
     }
 
     private void levelUp(Entity e){
-        Map<String, Double> statChange = new HashMap<>();
-        statChange.put("LEVEL",levels);
-        e.modifyStats(statChange);
+//        Map<String, Double> statChange = new HashMap<>();
+//        statChange.put("LEVEL",levels);
+//        e.modifyStats(statChange);
+        e.levelUp();
     }
 }
