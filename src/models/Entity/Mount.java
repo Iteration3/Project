@@ -4,6 +4,7 @@ package models.Entity;
 import models.Occupation.*;
 import models.StatContainer.*;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class Mount extends Entity {
@@ -21,6 +22,8 @@ public class Mount extends Entity {
 
     @Override
     public Image getImage() {
+
+        Image image = new ImageIcon("res/fireball.png").getImage();
         return null;
     }
 }

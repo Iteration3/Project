@@ -19,20 +19,20 @@ public abstract class EquipableItem extends TakeableItem {
         super();
     }
 
-    public EquipableItem(BufferedImage image , int id, Location location, String name , double rating){
-        super(image, id, location, name);
+    public EquipableItem(BufferedImage image , int id, String name , double rating){
+        super(image, id, name);
         this.rating = rating;
     }
 
     /* Methods */
 
-    public abstract void equip(Equipment equipment , Inventory inventory);
-    public abstract void unequip(Equipment equipment , Inventory inventory);
+    public abstract void equip(Entity entity , Equipment equipment , Inventory inventory);
+    public abstract void unequip(Entity entity, Equipment equipment , Inventory inventory);
     public abstract void applyRating(Entity entity);
     public abstract void unapplyRating(Entity entity);
 
     public void use(Entity entity){
-       entity.equip(this);
+        entity.equip(this);
     }
 
     public double getRating(){

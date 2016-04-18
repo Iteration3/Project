@@ -13,6 +13,8 @@ public interface ItemContainer {
     /* Methods */
     void addItem(TakeableItem item);
     TakeableItem removeItem(int id);
+    TakeableItem removeItemByIndex(int index);
+    TakeableItem getItemByIndex(int index);
 
 
 }

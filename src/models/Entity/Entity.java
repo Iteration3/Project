@@ -38,7 +38,8 @@ public abstract class Entity implements Action {
      */
     //
     public void setName(String name) {this.name = name;}
-    public void setLocation(Location location) {this.location = location;}
+    public void setLocation(Location location) {this.location = location;
+        }
     public void setDirection(Direction direction) {this.direction = direction;}
     public void setOccupation(Occupation occupation) {this.occupation = occupation;}
     public void setStats(StatContainer stats) {this.stats = stats;}
@@ -111,16 +112,14 @@ public abstract class Entity implements Action {
     }
 
     /*
-        models.Equipment specific functionality
-     */
+          models.Equipment specific functionality
+       */
     //
     public void equip(EquipableItem item) {
-        item.equip(equipment , inventory);
-        item.applyRating(this);
+        item.equip(this, equipment , inventory);
     }
     public void unequip(EquipableItem item) {
-        item.unequip(equipment , inventory);
-        item.unapplyRating(this);
+        item.unequip(this, equipment , inventory);
     }
 
     public Equipment getEquipment(){
@@ -138,6 +137,9 @@ public abstract class Entity implements Action {
     public void dropItem(Item item) {
         inventory.removeItem(item.getId());
         //Place item on tile at this getLocation.
+    }
+    public void destroyItem(int id){
+        inventory.removeItem(id);
     }
     public void useItem(TakeableItem item){
         item.use(this);

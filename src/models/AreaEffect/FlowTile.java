@@ -1,6 +1,8 @@
 package models.AreaEffect;
 
 import models.Entity.Entity;
+import models.Map.Map;
+import utilities.Direction.Direction;
 import utilities.Location.Location;
 
 /**
@@ -9,10 +11,14 @@ import utilities.Location.Location;
 public class FlowTile extends AreaEffect {
 
     private int flowRate;
+    private Direction d;
+    private Map map; //i fucking hate this
 
-    public FlowTile(Location l, int rate){
+    public FlowTile(Location l, int rate, Direction di, Map m){
         loc = l;
         flowRate = rate;
+        d = di;
+        map = m;
     }
 
     public void execute(Entity e){
@@ -21,8 +27,13 @@ public class FlowTile extends AreaEffect {
 
     private void flow(Entity e){
         //yeah I should probably figure this out.
-        Location l = getMoveLocation();
-        e.changeLocation(l);
+        //Location l = getMoveLocation();
+        //e.changeLocation(l);
+        e.changeDirection(d);
+        e.changeLocation(d.getNextLocation(loc));
+        //map.getTileAt(loc).removeEntity();
+        map.removeEntityAt(loc);
+
     }
 
     
