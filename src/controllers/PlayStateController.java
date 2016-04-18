@@ -1,6 +1,5 @@
 package controllers;
 
-import models.Entity.Avatar;
 import models.Entity.Entity;
 import models.Map.Map;
 import models.StateModel.PlayStateModel;
@@ -18,6 +17,9 @@ public class PlayStateController extends Controller {
     private PlayStateModel model;
     private Entity avatar;
     private Map map;
+    boolean inAction;
+
+    long action = 0;
 
     public PlayStateController(PlayStateModel model, GameStateManager gsm, Entity avatar){
         super(gsm);
@@ -25,6 +27,7 @@ public class PlayStateController extends Controller {
         this.avatar = avatar;
         map = model.getMap();
         keyCommand();
+        inAction = false;
     }
 
     @Override
@@ -34,7 +37,7 @@ public class PlayStateController extends Controller {
 
     public void keyCommand() {
 
-        Locomotion locomotion = new Terrestrial(avatar, map);
+        Locomotion locomotion = new Amphibious(avatar, map);
         // Movement
         KeyCommand moveNorth = new MovementKeyCommand(map, avatar, Direction.North, locomotion);
         keyMap.put(KeyEvent.VK_8, moveNorth);
@@ -102,14 +105,30 @@ public class PlayStateController extends Controller {
     long wait = 0;
     @Override
     public void handleInput(KeyEvent e) {
-        long time = System.currentTimeMillis();
+       /* long time = System.currentTimeMillis();
         if(time - wait > 500){
             if(keyMap.get(e.getKeyCode())!= null) {
-                keyMap.get(e.getKeyCode()).execute();
+                if (inAction) {
+                    // do nothing
+                } else {
+                    inAction = true;;
+                    keyMap.get(e.getKeyCode()).execute();
+                    inAction = false;
+                }
                 wait = time;
             }else{
                 System.out.println("Key Mapping Does Not Exist");
             }
+        }*/
+
+        if (keyMap.get(e.getKeyCode()) != null) {
+            keyMap.get(e.getKeyCode()).execute();
+        } else {
+            System.out.println("Key mapping does not exist");
         }
+    }
+
+    public void updateModel() {
+
     }
 }

@@ -31,12 +31,12 @@ public abstract class Entity implements Action {
         Methods used in constructors
      */
     //
-    protected void setName(String name) {this.name = name;}
+    public void setName(String name) {this.name = name;}
     public void setLocation(Location location) {this.location = location;}
-    protected void setDirection(Direction direction) {this.direction = direction;}
-    protected void setOccupation(Occupation occupation) {this.occupation = occupation;}
-    protected void setStats(StatContainer stats) {this.stats = stats;}
-    protected void setInventory(Inventory inventory) {this.inventory = inventory;}
+    public void setDirection(Direction direction) {this.direction = direction;}
+    public void setOccupation(Occupation occupation) {this.occupation = occupation;}
+    public void setStats(StatContainer stats) {this.stats = stats;}
+    public void setInventory(Inventory inventory) {this.inventory = inventory;}
     //protected void setEquipment(models.Equipment equipment) {this.equipment = equipment;)
 
     /*

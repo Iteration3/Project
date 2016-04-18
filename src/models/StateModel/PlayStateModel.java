@@ -12,6 +12,7 @@ import models.Occupation.Summoner;
 import utilities.Direction.Direction;
 import utilities.Location.Location;
 import views.MapView;
+import views.StatusView;
 
 
 /**
@@ -22,6 +23,7 @@ public class PlayStateModel{
     private Location focus;
     private Entity avatar;
     private MapOperator mapOperator;
+    private StatusView statusView;
 
     private Pet pet;
 
@@ -43,10 +45,16 @@ public class PlayStateModel{
 
         mapOperator = new MapOperator(20,20,10);
 
+        statusView = new StatusView(avatar);
+
         focus  = new Location(0,0,0);
 
-        mapOperator.addNewEntityAt(avatar,new Location(49,0,0));
+
+        //mapOperator.addNewEntityAt(avatar,new Location(49,0,0));
         //mapOperator.addNewAreaEffect(tp,l);
+
+        mapOperator.addNewEntityAt(avatar,new Location(43,4,2));
+
 
 //        mapOperator.addNewEntityAt(pet,new Location(0,1,0));
 //        mapOperator.addNewEntityAt(npc, new Location(0,2,0));
@@ -68,6 +76,10 @@ public class PlayStateModel{
     }
     public Map getMap() {
         return mapOperator.getMap();
+    }
+
+    public StatusView getStatusView() {
+        return statusView;
     }
 
 //    //TODO:fast function, remove
