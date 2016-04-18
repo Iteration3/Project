@@ -65,6 +65,12 @@ public class InventoryViewController extends Controller{
                 gameStateTransition();
             }
         });
+        keyMap.put(KeyEvent.VK_I, new KeyCommand() {
+            @Override
+            public void execute() {
+                gameStateTransition();
+            }
+        });
     }
 
     @Override

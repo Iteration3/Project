@@ -62,8 +62,12 @@ public class PlayStateController extends Controller {
         KeyCommand pause = new PauseKeyCommand(gsm);
         keyMap.put(KeyEvent.VK_ESCAPE,pause);
 
-        KeyCommand inventory = new InventoryKeyCommand(gsm , avatar);
-        keyMap.put(KeyEvent.VK_I , inventory);
+        KeyCommand config = new ConfigKeyCommand(gsm, avatar);
+        keyMap.put(KeyEvent.VK_P, config);
+
+        KeyCommand inventory = new InventoryKeyCommand(gsm, avatar);
+        keyMap.put(KeyEvent.VK_I, inventory);
+
 
     }
 
@@ -90,9 +94,11 @@ public class PlayStateController extends Controller {
                     // do nothing
                 } else {
 
+
                     inAction = true;;
                     keyMap.get(e.getKeyCode()).execute();
                     inAction = false;
+
 
                 }
                 wait = time;

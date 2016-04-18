@@ -54,7 +54,7 @@ public class InventoryView extends View{
         FontMetrics fm = g.getFontMetrics();
 
         Color selectedColor = Color.WHITE;
-        Color regularColor = Color.BLACK;
+        Color regularColor = Color.WHITE;
         g.setColor(regularColor);
 
         int xpos = 50;
@@ -68,7 +68,7 @@ public class InventoryView extends View{
                 g.fillRect(xpos++ , ypos , 10 , 10);
 
             }
-            g.drawImage(model.getItemImageAt(i) , 0 , 0 , 10 , 10 , null );
+            g.drawImage(model.getItemImageAt(i) , 0 , 0 , 50 , 50 , null );
         }
 
 

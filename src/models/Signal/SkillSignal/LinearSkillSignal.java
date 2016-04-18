@@ -43,6 +43,8 @@ public class LinearSkillSignal extends SkillSignal {
                             Entity entityToAttack = map.getTileAt(nextLocation).getEntity();
 
                             skill.activate(entityToAttack);
+                            checkForExperienceGain(entityToAttack);
+
                             avatarLocation = nextLocation;
                         }
                     }

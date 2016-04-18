@@ -170,6 +170,15 @@ public abstract class Entity extends Observable implements Action {
     }
 
 
+    public void levelUpIfReady() {
+        double currXP = statValue("CURRENT_EXPERIENCE");
+        double maxXP = statValue("EXPERIENCE");
+        if (currXP >= maxXP) {
+            levelUp();
+        }
+    }
+
+
     //Every entity is in charge of getting its own image
     public abstract Image getImage();
 
