@@ -2,24 +2,22 @@ package controllers;
 
 import models.Entity.Entity;
 import models.Map.Map;
-import models.Map.Terrain;
-import models.Map.Tile;
 import utilities.Direction.Direction;
 import utilities.Location.Location;
 
 import java.util.HashMap;
 
 /**
- * Created by clayhausen on 4/15/16.
+ * Created by clayhausen on 4/18/16.
  */
-public class Amphibious extends Locomotion {
+public class Terrestrial extends Locomotion {
 
     // Used for checking the maximum Mountain height an Entity can scale
     private int climbDelta = 0;
     // The maximum Mountain height an Entity can scale
     private int maxClimbHeight = 1;
 
-    public Amphibious(Entity entity, Map map) { super(entity, map); }
+    public Terrestrial(Entity entity, Map map) { super(entity, map); }
 
     // Can move to Ground
     // If falling, take damage based on movement speed
@@ -78,11 +76,16 @@ public class Amphibious extends Locomotion {
         }
     }
 
-    // Can move in water
-    // No additional behavior if falling
+    // Cannot move in water
+    // Dies if falling
     @Override
     public void moveToWater() {
-        updateEntityLocation();
+        // if falling
+        if ( entity.getDirection() == Direction.Down ) {
+            HashMap<String, Double> livesMap = new HashMap<>();
+            livesMap.put("CURRENT_LIVES", -1d);
+            entity.modifyStats(livesMap);
+        }
     }
 
     // If the Amphibious Entity moves to an Air tile it falls until it reaches a non-air terrain
@@ -95,7 +98,7 @@ public class Amphibious extends Locomotion {
     public void moveToAir() {
         if ( entity.getDirection() == Direction.Up ) {
 
-           // implement jump?
+            // implement jump?
 
         } else {
             Direction oldD = entity.getDirection();

@@ -80,6 +80,10 @@ public class Map {
         }
     }
 
+    public void removeEntityAt(Location loc){
+        tiles.get(loc).removeEntity();
+    }
+
     public boolean groundTileAbove(Location location) {
         Location tmpLocation = location.add(0,0,1);
         if (isOutOfBound(tmpLocation)) {

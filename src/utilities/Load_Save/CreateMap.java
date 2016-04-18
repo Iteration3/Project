@@ -34,13 +34,18 @@ public class CreateMap {
             addFirstLayerGrass(10,10,w);
             addLader(7, 4, 5,w);
 
+            makeGOTWall(10,5,10,w);
+            makeBridgeNorth(new Location(11,4,4),2,4,w);
+            makeGOTWall(14,5,10,w);
+            makeRiverEast(new Location(11,0,2),3,10,w);
+
             w.close();
         } catch (IOException e) {
             System.err.println("Problem writing to the file Map.txt");
         }
     }
 
-    public void addFirstLayerGrass(int row, int col,Writer w){
+    private void addFirstLayerGrass(int row, int col,Writer w){
         for(int c =0; c < col; c++){
             for(int r = 0; r <row; r++) {
                 write(rowSize - r -1 ,c,0,1,w);
@@ -48,7 +53,7 @@ public class CreateMap {
         }
     }
 
-    public void addLader(int rowStart,int c ,int height, Writer w){
+    private void addLader(int rowStart,int c ,int height, Writer w){
 
         Location loc = new Location(rowSize - rowStart, c, 0);
 
@@ -65,12 +70,43 @@ public class CreateMap {
         }
     }
 
-    public void makeGOTWall(int rowStart, int hight, int colEnd, Writer w){
+    //Game of Throne
+    private void makeGOTWall(int rowStart, int height, int colEnd, Writer w){
         Location loc = new Location(rowSize - rowStart,0, 0);
 
+        for(int c = 0; c < colEnd;c++){
+            for(int h = 0; h < height;h++){
+                if(h == height-1) {
+                    write(loc.add(0, c, h),1 , w);
+                }
+                else {
+                    write(loc.add(0, c, h), 2, w);
+                }
+            }
+        }
     }
 
-    public void write(Location loc,int t,Writer w){
+    private void makeBridgeNorth(Location start, int width, int length, Writer w){
+        start = new Location(rowSize - start.getRow() ,start.getCol(),start.getHeight());
+
+        for(int c= 0; c < width; c++){
+            for(int r = 0; r < length; r++){
+                write(start.sub(r,c,0),6,w);
+            }
+        }
+    }
+
+    private void makeRiverEast(Location start, int width, int length,Writer w){
+        start = new Location(rowSize - start.getRow() ,start.getCol(),start.getHeight());
+
+        for(int c = 0; c < length; c++){
+            for(int r = 0; r < width; r++){
+                write(start.sub(r,-c,start.getHeight()),3,w);
+            }
+        }
+    }
+
+    private void write(Location loc,int t,Writer w){
         this.write(loc.getRow(),loc.getCol(),loc.getHeight(),t,w);
     }
     public void write(int r,int c, int h, int t, Writer w){

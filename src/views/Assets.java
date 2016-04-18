@@ -25,10 +25,27 @@ public class Assets {
     public static BufferedImage bootArmor;
     public static BufferedImage trinket;
 
+    /* Potions */
+    public static BufferedImage healthPotion;
+    public static BufferedImage manaPotion;
+    public static BufferedImage strengthPotion;
+    public static BufferedImage intellectPotion;
+    public static BufferedImage agilityPotion;
+    public static BufferedImage experiencePotion;
+
     /* Terrain */
     public static BufferedImage grassTerrain;
     public static BufferedImage mountainTerrain;
     public static BufferedImage airTerrain;
+    
+    /* Interactive Item */
+    public static BufferedImage itemChest;
+
+    /* Misc Items */
+    public static BufferedImage chestKey;
+    public static BufferedImage doorKey;
+
+    public static BufferedImage BGIMAGE;
 
 
     /* Methods */
@@ -48,6 +65,20 @@ public class Assets {
         SpriteSheet bootArmorSheet = new SpriteSheet(new ImageLoader().loadImage("/bootArmor.png"));
         SpriteSheet trinketSheet = new SpriteSheet(new ImageLoader().loadImage("/trinket.png"));
 
+        SpriteSheet healthPotionSheet = new SpriteSheet(new ImageLoader().loadImage("/healthPotion.png"));
+        SpriteSheet manaPotionSheet = new SpriteSheet( new ImageLoader().loadImage("/manaPotion.png"));
+        SpriteSheet strengthPotionSheet = new SpriteSheet( new ImageLoader().loadImage("/strengthPotion.png"));
+        SpriteSheet intellectPotionSheet = new SpriteSheet( new ImageLoader().loadImage("/intellectPotion.png"));
+        SpriteSheet agilityPotionSheet = new SpriteSheet( new ImageLoader().loadImage("/agilityPotion.png"));
+        SpriteSheet experiencePotionSheet = new SpriteSheet( new ImageLoader().loadImage("/experiencePotion.png"));
+
+        SpriteSheet itemChestSheet = new SpriteSheet( new ImageLoader().loadImage("/itemChest.png"));
+
+        SpriteSheet chestKeySheet = new SpriteSheet( new ImageLoader().loadImage("/chestKey.png"));
+        SpriteSheet doorKeySheet = new SpriteSheet( new ImageLoader().loadImage("/doorKey.png"));
+
+
+
         oneHand = oneHandSheet.crop(0 , 0, width , height);
         twoHand = twoHandSheet.crop(0, 0 , width , height);
         fist = fistSheet.crop(0 , 0 , width , height);
@@ -61,12 +92,24 @@ public class Assets {
         bootArmor = bootArmorSheet.crop(0 , 0 , width , height);
         trinket = trinketSheet.crop(0 , 0 , width , height);
 
+        healthPotion = healthPotionSheet.crop(0 , 0 , width , height);
+        manaPotion = manaPotionSheet.crop( 0 , 0 , width , height);
+        strengthPotion = strengthPotionSheet.crop(0 , 0 , width , height);
+        intellectPotion = intellectPotionSheet.crop(0 , 0 , width , height);
+        agilityPotion = agilityPotionSheet.crop(0 , 0 , width , height);
+        experiencePotion = experiencePotionSheet.crop(0 , 0 , width , height);
+
+        itemChest = itemChestSheet.crop(0,0,width,height);
+
+        chestKey = chestKeySheet.crop(0 ,0 , width , height);
+        doorKey  = doorKeySheet.crop(0 , 0 , width , height);
+
         /*
         grassTerrain = DrawTerrainImages.getGrassImage();
         mountainTerrain = DrawTerrainImages.getMountainImage();
         airTerrain = DrawTerrainImages.getAirImage();
         */
 
-
+        BGIMAGE = new ImageLoader().loadImage("/BackGround.jpg");
     }
 }

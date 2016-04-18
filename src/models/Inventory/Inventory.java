@@ -9,9 +9,10 @@ import models.ItemContainer.ItemContainer;
 
 public class Inventory implements ItemContainer {
     /* Attributes */
+    public int size;
     private TakeableItem[] items;
     private int goldAmount;
-    private int size;
+
 
     /* Constructors */
     public Inventory(){
@@ -62,6 +63,12 @@ public class Inventory implements ItemContainer {
         return itemCopy;
     }
 
+    public TakeableItem removeItemByIndex(int index){
+        TakeableItem itemCopy  = items[index];
+        items[index] = null;
+        return itemCopy;
+    }
+
     public Boolean hasItemInstance(int id){
         for(int i = 0 ; i < size; i++){
             if(items[i].getId() == id){
@@ -69,6 +76,10 @@ public class Inventory implements ItemContainer {
             }
         }
         return false;
+    }
+
+    public TakeableItem getItemByIndex(int index){
+        return items[index];
     }
 
     public void addGold(int amount){
