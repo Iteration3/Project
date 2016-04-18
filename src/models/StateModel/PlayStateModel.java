@@ -1,8 +1,7 @@
 package models.StateModel;
 
 
-import models.AreaEffect.AreaEffect;
-import models.AreaEffect.LoseHealth;
+import models.AreaEffect.*;
 import models.Entity.Entity;
 import models.Entity.NPC;
 import models.Entity.Pet;
@@ -34,14 +33,20 @@ public class PlayStateModel{
         Pet pet = new Pet(3,new Sneak());
         NPC npc = new NPC(3,new Summoner());
         Location l = new Location(48,0,0);
-        LoseHealth lh = new LoseHealth(l,20);
+        Location l2 = new Location(46,0,0);
+       // LoseHealth lh = new LoseHealth(l,20); works
+        //GainHealth gh = new GainHealth(l,20); works
+        //LevelUp lu = new LevelUp(l,1); works
+       // InstantDeath id = new InstantDeath(l); works
+       // Teleport tp = new Teleport(l,l2); works
+        //Trap tp = new Trap(l); not working yet
 
         mapOperator = new MapOperator(20,20,10);
 
         focus  = new Location(0,0,0);
 
         mapOperator.addNewEntityAt(avatar,new Location(49,0,0));
-        mapOperator.addNewAreaEffect(lh,l);
+        //mapOperator.addNewAreaEffect(tp,l);
 
 //        mapOperator.addNewEntityAt(pet,new Location(0,1,0));
 //        mapOperator.addNewEntityAt(npc, new Location(0,2,0));
