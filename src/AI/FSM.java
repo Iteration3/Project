@@ -5,6 +5,9 @@ package AI;
  */
 public class FSM {
 
+
+    //every FSM needs a state
+
     public FSM(){
 
     }

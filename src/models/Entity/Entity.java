@@ -9,7 +9,9 @@ import models.Occupation.*;
 import models.StatContainer.*;
 import models.Item.*;
 
-import java.util.ArrayList;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Map;
 import models.Inventory.*;
 import models.Equipment.Equipment;
@@ -132,4 +134,7 @@ public abstract class Entity implements Action {
         return this.inventory;
     }
 
+
+    //Every entity is in charge of getting its own image
+    public abstract Image getImage();
 }
