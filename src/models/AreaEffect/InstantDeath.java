@@ -23,7 +23,7 @@ public class InstantDeath extends AreaEffect {
         //double a = e.statValue("Life");
         //a = a*-1;
         Map<String, Double> statChange = new HashMap<>();
-        statChange.put("LIVES",-1.0);
+        statChange.put("CURRENT_LIVES",-1.0);
         e.modifyStats(statChange);
 
     }
