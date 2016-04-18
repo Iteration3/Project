@@ -126,8 +126,6 @@ public abstract class Locomotion{
         Direction direction = entity.getDirection();
         Location newLocation = direction.getNextLocation(oldLocation);
         entity.changeLocation(newLocation);
-        System.out.println("Old Location: " + oldLocation.toString() );
-        System.out.println("New Location: " + newLocation.toString() );
 
     }
 
