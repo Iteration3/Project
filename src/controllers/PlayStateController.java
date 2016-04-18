@@ -111,6 +111,9 @@ public class PlayStateController extends Controller {
 
         KeyCommand pause = new PauseKeyCommand(gsm);
         keyMap.put(KeyEvent.VK_ESCAPE,pause);
+
+        KeyCommand config = new ConfigKeyCommand(gsm);
+        keyMap.put(KeyEvent.VK_P, config);
     }
 
 
