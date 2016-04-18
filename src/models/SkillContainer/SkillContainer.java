@@ -41,4 +41,8 @@ public abstract class SkillContainer {
         return listOfSkills;
     }
 
+    public Skill getSkill(int n) {
+        return listOfSkills.get(n);
+    }
+
 }

@@ -14,4 +14,8 @@ public class Enchantment extends SummonerSkill {
         //entity.goToSleep();
     }
 
+    public void createSignal(models.Map.Map map, Entity entity) {
+
+    }
+
 }

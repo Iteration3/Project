@@ -47,6 +47,6 @@ public class StatusViewController {
     }
 
     public String getSkillsString() {
-        return "Skill 1:" + skill1 + " 2:" + skill2 + " 3:" + skill3 + " 4:" + skill4;
+        return "1:" + skill1 + " 2:" + skill2 + " 3:" + skill3 + " 4:" + skill4;
     }
 }

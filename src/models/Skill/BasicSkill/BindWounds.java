@@ -1,5 +1,6 @@
 package models.Skill.BasicSkill;
 import models.Entity.*;
+import models.Signal.SkillSignal.SelfSkillSignal;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +24,10 @@ public class BindWounds extends BasicSkill {
         double modifyByAmount = getModifyAmount();
         map.put(statAbv, modifyByAmount);
         return map;
+    }
+
+    public void createSignal(models.Map.Map map, Entity entity) {
+        new SelfSkillSignal(map, entity, this);
     }
 
     protected double getModifyAmount() {

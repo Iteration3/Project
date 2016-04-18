@@ -135,6 +135,12 @@ public abstract class Entity implements Action {
     }
 
 
+    //skills
+    public Skill getActiveSkill(int n) {
+        return occupation.getActiveSkill(n);
+    }
+
+
     //Every entity is in charge of getting its own image
     public abstract Image getImage();
 }

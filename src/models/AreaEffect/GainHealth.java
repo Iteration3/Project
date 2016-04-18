@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class GainHealth extends AreaEffect {
 
-    int health;
+    double health;
 
 
    public GainHealth(Location l, int h){
@@ -25,8 +25,8 @@ public class GainHealth extends AreaEffect {
     }
 
     private void healEntity(Entity e){
-        Map statChange = new HashMap<>();
-        statChange.put("Life",10);
+        Map<String, Double> statChange = new HashMap<>();
+        statChange.put("CURRENT_LIFE",health);
         e.modifyStats(statChange);
     }
 }
