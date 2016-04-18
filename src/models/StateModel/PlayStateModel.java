@@ -64,7 +64,7 @@ public class PlayStateModel{
         entityController.add(npcController);
 
         mapOperator.addNewEntityAt(avatar,new Location(44,0,0));
-//        mapOperator.addNewEntityAt(pet,new Location(0,1,0));
+        mapOperator.addNewEntityAt(pet,new Location(43,0,0));
 //        mapOperator.addNewEntityAt(npc, new Location(44,4,0));
 
         //setDefaultFocus();

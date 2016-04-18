@@ -9,7 +9,6 @@ import models.Map.Tile;
 import utilities.Geometry.Hexagon;
 import utilities.Location.Location;
 import views.MapHelper.MapSightView;
-import views.View;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -138,16 +137,17 @@ public class MapView {
         if(tile == null) {
             return;
         }
+
         if( tile.getTerrain() == Terrain.Air && !loc.equals(center)){
             return;
         }
+
         Location temp = new Location(loc.getRow(),loc.getCol(),0);
         if(!sight.containsKey(temp)){
             return;
         }
 
         float value = (float)(radius - sight.get(temp))/radius;
-
 
         float[] scales = { value, value, value, 1f};
         float[] offsets = new float[4];
@@ -157,9 +157,9 @@ public class MapView {
 
 
 
-        if(loc.equals(center)){
-            renderEntityAt(x,y,tile,g);
-        }
+
+        renderElements(x,y,tile,g);
+
     }
 
     private void renderTerrain(int x,int y, Tile tile, Graphics2D g,  RescaleOp rop){
@@ -180,15 +180,15 @@ public class MapView {
 
 
 
-    private void renderEntityAt(int x, int y, Tile tile, Graphics2D g){
-//        Entity temp = tile.getEntity();
+    private void renderElements(int x, int y, Tile tile, Graphics2D g){
+        Entity temp = tile.getEntity();
+        if(temp == null){
+            return;
+        }
 
-        g.setColor(Color.RED);
-        g.fillRect(x-20,y-20,40,40);
 
-
-//         Image image = temp.getImage();
-//         g.drawImage(image,x - image.getWidth(null)/2,y - image.getHeight(null)/2,null);
+         Image image = temp.getImage();
+         g.drawImage(image,x - image.getWidth(null)/2,y - image.getHeight(null)/2,null);
     }
 
 
