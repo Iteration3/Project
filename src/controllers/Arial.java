@@ -30,7 +30,7 @@ public class Arial extends Locomotion {
     @Override
     public void moveToMountain() {
         if ( entity.getDirection() == Direction.Down ) {
-            updateEntityLocation();
+            // Do nothing
         } else {
 
             Direction direction = entity.getDirection();

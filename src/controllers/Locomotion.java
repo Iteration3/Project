@@ -36,12 +36,12 @@ public abstract class Locomotion {
         Tile nextTile = map.getTileAt(nextLocation);
 
 
-        // If Entity attempts to move out of bounds, remove a life
+        // If Entity attempts to move out of bounds, remove a life and prevent movement
         if ( nextTile == null ) {
             HashMap<String, Double> livesMap = new HashMap<>();
             livesMap.put("LIVES", -1d);
             entity.modifyStats(livesMap);
-            return;
+            tileBlocked = true;
         }
 
         if ( checkForEntities(nextTile) || checkForObstacles(nextTile) ) { tileBlocked = true; }
