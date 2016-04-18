@@ -34,12 +34,18 @@ public class LinearSkillSignal extends SkillSignal {
                     map.getTileAt(avatarLocation).removeDecal();
                     Location nextLocation = direction.getNextLocation(avatarLocation);
 
-                    map.getTileAt(nextLocation).addDecal(decal);
-                    Entity entityToAttack = map.getTileAt(nextLocation).getEntity();
+                    if (!map.isOutOfBound(nextLocation)) {
 
-                    skill.activate(entityToAttack);
-                    avatarLocation = nextLocation;
+                        if (map.getTileAt(nextLocation).isMountain()) {
+                            currentRadius = radius;
+                        } else {
+                            map.getTileAt(nextLocation).addDecal(decal);
+                            Entity entityToAttack = map.getTileAt(nextLocation).getEntity();
 
+                            skill.activate(entityToAttack);
+                            avatarLocation = nextLocation;
+                        }
+                    }
                     if (currentRadius == radius) {
                         map.getTileAt(avatarLocation).removeDecal();
                         t.cancel();

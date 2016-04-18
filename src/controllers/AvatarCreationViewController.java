@@ -34,6 +34,20 @@ public class AvatarCreationViewController extends Controller {
     @Override
     public void loadKeyCommand() {
 
+        keyMap.put(KeyEvent.VK_UP, new KeyCommand(){
+            @Override
+            public void execute() {
+                model.up();
+            }
+        });
+
+        keyMap.put(KeyEvent.VK_DOWN, new KeyCommand() {
+            @Override
+            public void execute() {
+                model.down();
+            }
+        });
+
         keyMap.put(KeyEvent.VK_U, new KeyCommand(){
             @Override
             public void execute() {

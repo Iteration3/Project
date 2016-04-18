@@ -43,6 +43,20 @@ public class MainMenuViewController extends Controller {
             }
         });
 
+        keyMap.put(KeyEvent.VK_UP, new KeyCommand(){
+            @Override
+            public void execute() {
+                model.up();
+            }
+        });
+
+        keyMap.put(KeyEvent.VK_DOWN, new KeyCommand() {
+            @Override
+            public void execute() {
+                model.down();
+            }
+        });
+
         keyMap.put(KeyEvent.VK_ENTER, new KeyCommand() {
             @Override
             public void execute() {
