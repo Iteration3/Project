@@ -13,4 +13,8 @@ public class DetectRemoveTrap extends SneakSkill {
         }
         //avatar.addItem(entity.getRandomItem());
     }
+
+    public void createSignal(models.Map.Map map, Entity entity) {
+
+    }
 }
