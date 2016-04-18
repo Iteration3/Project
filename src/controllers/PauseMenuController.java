@@ -46,6 +46,11 @@ public class PauseMenuController extends Controller {
         });
     }
 
+    @Override
+    public void updateModel() {
+
+    }
+
     private void statsStateTransition() {
         gsm.removeState();
         View view = gsm.getCurrentView();

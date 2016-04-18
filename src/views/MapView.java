@@ -51,7 +51,6 @@ public class MapView {
         this.width = width;
 
         sight = MapSightView.basicArea(map,center,radius);
-        System.out.println("size ->" +sight.size());
 
 
 
