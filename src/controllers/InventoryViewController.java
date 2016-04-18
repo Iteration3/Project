@@ -1,7 +1,80 @@
 package controllers;
 
+import models.Inventory.Inventory;
+import models.Item.ConsumableItem;
+import models.StateModel.InventoryViewModel;
+import utilities.GameStateManager;
+import java.awt.event.KeyEvent;
+
 /**
- * Created by Andy on 4/16/2016.
+ * Implemented by Peter Camejo
  */
-public class InventoryViewController {
+public class InventoryViewController extends Controller{
+
+    private InventoryViewModel model;
+
+    public InventoryViewController(GameStateManager gsm , InventoryViewModel model){
+        super(gsm);
+        this.model = model;
+    }
+   /* private InventoryEquipmentModel model;
+
+    public InventoryEquipmentController(InventoryEquipmentModel model){
+        this.model = model;
+    }
+
+    public void loadKeyCommand() {
+
+        map.put(KeyEvent.VK_NUMPAD8, new KeyCommand(){
+            @Override
+            public void execute() {
+                model.up();
+            }
+        });
+
+        map.put(KeyEvent.VK_NUMPAD2, new KeyCommand() {
+            @Override
+            public void execute() {
+                model.down();
+            }
+        });
+
+        map.put(KeyEvent.VK_NUMPAD4, new KeyCommand() {
+            @Override
+            public void execute() {
+                model.left();
+            }
+        });
+
+        map.put(KeyEvent.VK_NUMPAD6, new KeyCommand() {
+            @Override
+            public void execute() {
+                model.right();
+            }
+        });
+
+
+        map.put(KeyEvent.VK_ENTER, new KeyCommand() {
+            @Override
+            public void execute() {
+                model.select();
+            }
+        });
+
+        /* map.put(KeyEvent.VK_ESC ============= go back to last state */
+
+    @Override
+    public void handleInput(KeyEvent e) {
+        super.handleInput(e);
+    }
+
+    @Override
+    public void updateModel() {
+
+    }
+
+    @Override
+    public void loadKeyCommand() {
+
+    }
 }
