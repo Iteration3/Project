@@ -1,8 +1,10 @@
 package models.Item.Armors;
 
+import models.Entity.Entity;
 import models.Equipment.Equipment;
 import models.Inventory.Inventory;
 import utilities.Location.Location;
+import views.Assets;
 
 import java.awt.image.BufferedImage;
 
@@ -16,19 +18,25 @@ public class GloveArmor extends Armor {
         super();
     }
 
-    public GloveArmor(BufferedImage image , int id, Location location, String name, double rating){
-        super(image, id, location, name ,rating);
+    public GloveArmor(int id,  String name, double rating){
+        super(Assets.gloveArmor , id, name ,rating);
+    }
+
+    public GloveArmor(int id,  String name, double rating , int requiredLevel){
+        super(Assets.gloveArmor , id, name ,rating , requiredLevel);
     }
 
     /* Methods */
-    public void equip(Equipment equipment , Inventory inventory){
+    public void equip(Entity entity , Equipment equipment , Inventory inventory){
         equipment.addGloves(this);
         inventory.removeItem(id);
+        this.applyRating(entity);
     }
 
-    public void unequip(Equipment equipment, Inventory inventory){
+    public void unequip(Entity entity , Equipment equipment, Inventory inventory){
         equipment.removeGloves();
         inventory.addItem(this);
+        this.unapplyRating(entity);
     }
 
 }
