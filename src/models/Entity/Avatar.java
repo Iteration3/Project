@@ -2,6 +2,7 @@ package models.Entity;
 
 
 import controllers.Amphibious;
+import controllers.Arial;
 import controllers.Locomotion;
 import models.Occupation.*;
 import models.StatContainer.*;
@@ -42,7 +43,7 @@ public class Avatar extends Entity {
     public void setKeyCommand(Map map){
 
         keyMap = new HashMap<>();
-        Locomotion locomotion = new Amphibious(this, map);
+        Locomotion locomotion = new Arial(this, map);
         // Movement
         KeyCommand moveNorth = new MovementKeyCommand(map, this, Direction.North, locomotion);
         keyMap.put(KeyEvent.VK_8, moveNorth);
