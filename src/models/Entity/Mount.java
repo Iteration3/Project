@@ -4,6 +4,8 @@ package models.Entity;
 import models.Occupation.*;
 import models.StatContainer.*;
 
+import java.awt.*;
+
 public class Mount extends Entity {
     //
     public Mount(int level, Occupation occupation) {
@@ -14,5 +16,10 @@ public class Mount extends Entity {
         setStats(new MountStats());
         //setInventory(new models.Inventory());
         //setEquipment(new models.Equipment());
+    }
+
+    @Override
+    public Image getImage() {
+        return null;
     }
 }

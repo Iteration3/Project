@@ -3,11 +3,15 @@ package models.Entity;
 
 import models.Action.Action;
 import models.Map.Terrain;
+import models.Skill.Skill;
 import utilities.Direction.Direction;
 import models.Occupation.*;
 import models.StatContainer.*;
 import models.Item.*;
 
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Map;
 import models.Inventory.*;
 import models.Equipment.Equipment;
@@ -27,12 +31,12 @@ public abstract class Entity implements Action {
         Methods used in constructors
      */
     //
-    protected void setName(String name) {this.name = name;}
-    protected void setLocation(Location location) {this.location = location;}
-    protected void setDirection(Direction direction) {this.direction = direction;}
-    protected void setOccupation(Occupation occupation) {this.occupation = occupation;}
-    protected void setStats(StatContainer stats) {this.stats = stats;}
-    protected void setInventory(Inventory inventory) {this.inventory = inventory;}
+    public void setName(String name) {this.name = name;}
+    public void setLocation(Location location) {this.location = location;}
+    public void setDirection(Direction direction) {this.direction = direction;}
+    public void setOccupation(Occupation occupation) {this.occupation = occupation;}
+    public void setStats(StatContainer stats) {this.stats = stats;}
+    public void setInventory(Inventory inventory) {this.inventory = inventory;}
     //protected void setEquipment(models.Equipment equipment) {this.equipment = equipment;)
 
     /*
@@ -74,6 +78,10 @@ public abstract class Entity implements Action {
     public String occupationName() {return this.occupation.name();}
     protected Map<String, Double> occupationModifier() {return this.occupation.occupationModifier();}
 
+    public Occupation getOccupation() {
+        return occupation;
+    }
+
     /*
         models.StatContainer specific functionality
      */
@@ -85,7 +93,9 @@ public abstract class Entity implements Action {
     public void printStats(String stat_to_print) {this.stats.print(stat_to_print);}
     public void printStats() {this.stats.print();}
     public double getLevel(){ return this.stats.value("LEVEL");}
-    public double getMovement(){ return this.stats.value("Movement");}
+    public StatContainer getStatContainer() {
+        return stats;
+    }
 
     /*
         models.Equipment specific functionality
@@ -124,4 +134,7 @@ public abstract class Entity implements Action {
         return this.inventory;
     }
 
+
+    //Every entity is in charge of getting its own image
+    public abstract Image getImage();
 }

@@ -6,6 +6,10 @@ import models.StatContainer.*;
 import models.Inventory.*;
 import utilities.Location.Location;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
 public class Avatar extends Entity {
     //
     public Avatar(int level, Occupation occupation) {
@@ -16,5 +20,10 @@ public class Avatar extends Entity {
         setStats(new AvatarStats(occupationModifier(), level));
         setInventory(new Inventory(12, 25));
         //setEquipment(new models.Equipment());
+    }
+
+    public Image getImage(){
+        Image image = new ImageIcon("res/fireball.png").getImage();
+        return image;
     }
 }

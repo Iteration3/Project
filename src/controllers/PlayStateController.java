@@ -5,8 +5,7 @@ import models.Map.Map;
 import models.StateModel.PlayStateModel;
 import utilities.Direction.Direction;
 import utilities.GameStateManager;
-import utilities.KeyCommand.KeyCommand;
-import utilities.KeyCommand.MovementKeyCommand;
+import utilities.KeyCommand.*;
 
 import java.awt.event.KeyEvent;
 
@@ -82,8 +81,22 @@ public class PlayStateController extends Controller {
         moveNorth = new MovementKeyCommand(map, avatar, Direction.North, locomotion);
         keyMap.put(KeyEvent.VK_W, moveNorth);
 
+
+
+        KeyCommand useFireball = new SkillKeyCommand(map, avatar);
+        keyMap.put(KeyEvent.VK_F, useFireball);
+
+        KeyCommand openStats = new StatsKeyCommand(avatar, gsm);
+        keyMap.put(KeyEvent.VK_K, openStats);
+
+        KeyCommand openSkillTree = new SkillTreeKeyCommand(avatar, gsm);
+        keyMap.put(KeyEvent.VK_T, openSkillTree);
+
 ;
     }
+
+
+    
 
     //TODO:REMOVE
     long wait = 0;

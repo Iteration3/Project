@@ -6,7 +6,7 @@ public class Enchantment extends SummonerSkill {
 
 
     public Enchantment() {
-        super("Enchantment", 15);
+        super("Enchantment", 15, 3);
     }
 
     //make NPC go to sleep

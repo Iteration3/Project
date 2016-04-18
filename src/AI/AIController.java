@@ -1,7 +1,5 @@
 package AI;
 
-
-
 import models.Entity.Entity;
 
 /**
@@ -9,18 +7,28 @@ import models.Entity.Entity;
  */
 
 
-
 public abstract class AIController {
 
-    private Entity entity;
-    private FSM fsm;
+    //Whether the State Machine is running
+    public enum States{
+        SUCCESS,
+        FAILURE,
+        RUNNING
+    }
 
-    //Takes in the entity to be AI'ed and the FSM to do the AI'ing
+    protected States currentState;
+
     public AIController(){
 
     }
 
-    public void update(){
-
+    //starting function
+    public void start(){
+        this.currentState = States.RUNNING;
     }
+
+    //Every subController will define the reset state
+    public abstract void reset();
+
+    //
 }

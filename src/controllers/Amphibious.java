@@ -67,6 +67,9 @@ public class Amphibious extends Locomotion {
             // Maybe implement jump?
 
         } else {
+            Direction oldD = entity.getDirection();
+
+            entity.setDirection(Direction.Down);
             updateMap();
 
             // As the Entity is falling, deal increase speed
@@ -79,6 +82,8 @@ public class Amphibious extends Locomotion {
             // Leaving recursion...change the movement speed back
             HashMap<String, Double> incrementSpeedMap = new HashMap();
             incrementSpeedMap.put("Movement", speedDelta);
+
+            entity.setDirection(oldD);
         }
     }
 

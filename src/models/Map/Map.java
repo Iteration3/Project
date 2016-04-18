@@ -61,7 +61,7 @@ public class Map {
     }
 
     public Tile getDefaultTile(){
-        Terrain terrain = new AirTerrain(DrawTerrainImages.getAirImage());
+        Terrain terrain = Terrain.Air;
         Tile temp = new Tile(terrain);
         return temp;
     }
@@ -78,6 +78,17 @@ public class Map {
         if(tiles.containsKey(loc)){
             tiles.remove(loc);
         }
+    }
+
+    public boolean groundTileAbove(Location location) {
+        Location tmpLocation = location.add(0,0,1);
+        if (isOutOfBound(tmpLocation)) {
+            return false;
+        }
+        if (getTileAt(tmpLocation).isGround()) {
+            return true;
+        }
+        return false;
     }
 }
 
