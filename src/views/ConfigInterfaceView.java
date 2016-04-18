@@ -78,7 +78,7 @@ public class ConfigInterfaceView extends View {
         Color regularColor = Color.BLACK;
         g.setColor(regularColor);
 
-        for(int i = 0; i < model.getSize(); ++i){
+        for(int i = 0; i < 5; ++i){
             if (model.getCurrentPoint() == i ) {
                 g.setColor(selectedColor);
             }
@@ -86,7 +86,7 @@ public class ConfigInterfaceView extends View {
                 g.setColor(regularColor);
             }
 
-            g.drawString("Skill 1", x, y);
+            g.drawString(model.getKey(i), x, y);
             y += fm.getHeight();
 
             if (i == 10) {
