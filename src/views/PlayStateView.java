@@ -15,6 +15,7 @@ import java.awt.*;
 public class PlayStateView extends View {
 
     private MapView mapView;
+    private StatusView statusView;
     protected PlayStateModel model;
 
     public PlayStateView(int width, int height, Canvas canvas, PlayStateModel model) {
@@ -22,6 +23,7 @@ public class PlayStateView extends View {
         this.model = model;
 
         mapView = this.model.getMapView();
+        statusView = this.model.getStatusView();
 
         mapView.setCenter(this.model.getFocus());
 
@@ -31,6 +33,8 @@ public class PlayStateView extends View {
     protected void render(Graphics g) {
         mapView.setCenter(model.getFocus());
         mapView.render(getScreenWidth(),getScreenHeight(),g);
+        statusView.updateStatsSkill();
+        statusView.render(getScreenWidth(),getScreenHeight(),g);
     }
 
 
