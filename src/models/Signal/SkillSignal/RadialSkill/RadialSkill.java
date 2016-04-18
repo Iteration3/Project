@@ -46,7 +46,6 @@ public abstract class RadialSkill extends SkillSignal {
                     nextLocation = getLocationArray2(allLocation, currentRadius);
                     allLocation.addAll(nextLocation);
 
-
                     for (int i = 0; i < nextLocation.size(); ++i) {
                         Location locationToAttack = nextLocation.get(i);
                         map.getTileAt(locationToAttack).addDecal(decal);
@@ -66,6 +65,7 @@ public abstract class RadialSkill extends SkillSignal {
             }, 0, 1000);
         }
     }
+
 
     protected abstract ArrayList<Location> getLocationArray2(ArrayList<Location> list, int n);
 

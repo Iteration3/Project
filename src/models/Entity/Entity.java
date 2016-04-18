@@ -38,7 +38,8 @@ public abstract class Entity implements Action {
      */
     //
     public void setName(String name) {this.name = name;}
-    public void setLocation(Location location) {this.location = location;}
+    public void setLocation(Location location) {this.location = location;
+        }
     public void setDirection(Direction direction) {this.direction = direction;}
     public void setOccupation(Occupation occupation) {this.occupation = occupation;}
     public void setStats(StatContainer stats) {this.stats = stats;}

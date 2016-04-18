@@ -34,8 +34,9 @@ public class PetController extends AIController{
         if(pet.getCurrentState() == Entity.States.WANDER){
 
             //change direction
-            pet.setLocation(new Location(0,1,0));
-
+            pet.getLocation().add(1,0,0);
+            pet.getLocation().add(0,1,0);
+            
             //check range of vision of tiles
 
             //if entity registered
