@@ -4,7 +4,11 @@ package models.Entity;
 import controllers.Amphibious;
 import controllers.Arial;
 import controllers.Locomotion;
+
+import models.Equipment.Equipment;
+
 import controllers.Terrestrial;
+
 import models.Occupation.*;
 import models.StatContainer.*;
 import models.Inventory.*;
@@ -31,9 +35,9 @@ public class Avatar extends Entity {
         setDirection(utilities.Direction.Direction.South);
         setOccupation(occupation);
         setStats(new AvatarStats(occupationModifier(), level));
-        setInventory(new Inventory(12, 25));
+        setInventory(new Inventory(25));
         setCurrentState(States.ATTACK);
-        //setEquipment(new models.Equipment());
+        setEquipment(new Equipment());
     }
 
     public Image getImage(){
