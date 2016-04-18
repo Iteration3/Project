@@ -47,4 +47,31 @@ public class InventoryView extends View{
         g.drawString(TITLE, x, y);
 
     }
+
+    private void renderSlots(Graphics g){
+        titleFont = new Font("Serif", Font.BOLD, (int) (getScreenHeight() * .05));
+        g.setFont(titleFont);
+        FontMetrics fm = g.getFontMetrics();
+
+        Color selectedColor = Color.WHITE;
+        Color regularColor = Color.BLACK;
+        g.setColor(regularColor);
+
+        int xpos = 50;
+        int ypos = 50;
+        for(int  i = 0 ; i < 22 ; i++){
+            if(model.getCurrentIndex() == i){
+                g.setColor(selectedColor);
+                g.fillRect(xpos++ , ypos , 10 ,10);
+            }else{
+                g.setColor(regularColor);
+                g.fillRect(xpos++ , ypos , 10 , 10);
+
+            }
+            g.drawImage(model.getItemImageAt(i) , 0 , 0 , 10 , 10 , null );
+        }
+
+
+
+    }
 }

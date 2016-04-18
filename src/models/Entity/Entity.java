@@ -120,6 +120,9 @@ public abstract class Entity implements Action {
         item.equip(this, equipment , inventory);
     }
     public void unequip(EquipableItem item) {
+        if(item == null){
+            return;
+        }
         item.unequip(this, equipment , inventory);
     }
 
@@ -143,6 +146,9 @@ public abstract class Entity implements Action {
         inventory.removeItem(id);
     }
     public void useItem(TakeableItem item){
+        if(item == null){
+            return;
+        }
         item.use(this);
     }
 
