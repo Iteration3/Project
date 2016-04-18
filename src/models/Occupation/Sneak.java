@@ -1,5 +1,6 @@
 package models.Occupation;
 
+import models.SkillContainer.ActiveSkillContianer;
 import models.SkillContainer.BasicSkillContainer;
 import models.SkillContainer.SneakSkillContainer;
 
@@ -15,5 +16,6 @@ public class Sneak extends Occupation {
     protected void setSkillContainer() {
         basic_skills = new BasicSkillContainer();
         specific_skills = new SneakSkillContainer();
+        activeSkills = new ActiveSkillContianer(basic_skills, specific_skills);
     }
 }
