@@ -4,7 +4,11 @@ package models.Entity;
 import controllers.Amphibious;
 import controllers.Arial;
 import controllers.Locomotion;
+
 import models.Equipment.Equipment;
+
+import controllers.Terrestrial;
+
 import models.Occupation.*;
 import models.StatContainer.*;
 import models.Inventory.*;
@@ -44,7 +48,7 @@ public class Avatar extends Entity {
     public void setKeyCommand(Map map){
 
         keyMap = new HashMap<>();
-        Locomotion locomotion = new Arial(this, map);
+        Locomotion locomotion = new Terrestrial(this, map);
         // Movement
         KeyCommand moveNorth = new MovementKeyCommand(map, this, Direction.North, locomotion);
         keyMap.put(KeyEvent.VK_8, moveNorth);

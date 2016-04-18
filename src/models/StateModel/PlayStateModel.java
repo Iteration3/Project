@@ -2,6 +2,8 @@ package models.StateModel;
 
 
 import AI.AIController;
+import controllers.Controller;
+import controllers.MainMenuViewController;
 import controllers.NPCController;
 import controllers.PetController;
 import models.AreaEffect.*;
@@ -14,9 +16,8 @@ import models.Occupation.Sneak;
 import models.Occupation.Summoner;
 import utilities.Direction.Direction;
 import utilities.Location.Location;
-import views.Assets;
-import views.MapView;
-import views.StatusView;
+import utilities.State.State;
+import views.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -32,12 +33,14 @@ public class PlayStateModel{
     private MapOperator mapOperator;
     private StatusView statusView;
     private ArrayList<AIController> entityController = new ArrayList<>();
+    private Location startLocation;
 
     private Pet pet;
 
     public PlayStateModel(Entity avatar) {
 
         this.avatar = avatar;
+        this.startLocation = new Location(44,0,0);
 
         //TODO Place any model instantiation here
         Pet pet = new Pet(3,new Sneak());
@@ -78,7 +81,7 @@ public class PlayStateModel{
         entityController.add(npcController);
 
 
-        mapOperator.addNewEntityAt(avatar,new Location(44,0,0));
+        mapOperator.addNewEntityAt(avatar, startLocation);
         mapOperator.addNewEntityAt(pet,new Location(43,0,0));
 //        mapOperator.addNewEntityAt(npc, new Location(44,4,0));
 
@@ -116,5 +119,9 @@ public class PlayStateModel{
     //get the entity controllers
     public ArrayList<AIController> getEntityControllers(){
         return entityController;
+    }
+
+    public void update() {
+
     }
 }
