@@ -46,6 +46,7 @@ public abstract class Entity extends Observable implements Action {
     public void setOccupation(Occupation occupation) {this.occupation = occupation;}
     public void setStats(StatContainer stats) {this.stats = stats;}
     public void setInventory(Inventory inventory) {this.inventory = inventory;}
+    public void setEquipment(Equipment equipment){this.equipment = equipment;}
 
     //state functions
     public States getCurrentState(){ return state;}
@@ -126,6 +127,9 @@ public abstract class Entity extends Observable implements Action {
         item.equip(this, equipment , inventory);
     }
     public void unequip(EquipableItem item) {
+        if(item == null){
+            return;
+        }
         item.unequip(this, equipment , inventory);
     }
 
@@ -149,6 +153,9 @@ public abstract class Entity extends Observable implements Action {
         inventory.removeItem(id);
     }
     public void useItem(TakeableItem item){
+        if(item == null){
+            return;
+        }
         item.use(this);
     }
 

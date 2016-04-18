@@ -7,6 +7,8 @@ import models.Item.EquipableItem;
 import models.Item.TakeableItem;
 import utilities.State.State;
 
+import java.awt.image.BufferedImage;
+
 /**
  * Implemented by Peter Camejo
  */
@@ -45,6 +47,7 @@ public class InventoryViewModel{
     }
 
     public void update() {
+        int count = 0;
         items[0] = equipment.getHead();
         items[1] = equipment.getChest();
         items[2] = equipment.getGloves();
@@ -54,11 +57,12 @@ public class InventoryViewModel{
         items[6] = equipment.getWeapon();
 
         for(int i = 7; i < 22; i++){
-            items[i] = inventory.getItemByIndex(index++);
+            items[i] = inventory.getItemByIndex(count++);
         }
 
         goldAmount = inventory.getGold();
         currentItem = items[index];
+        System.out.println( " Current index: " + index);
     }
 
     public void up(){
@@ -68,8 +72,10 @@ public class InventoryViewModel{
                 return;
             }
         }else{ //Index is in Equipment portion.
-            index--;
-            return;
+            if(index - 1 >= 0) {
+                index--;
+                return;
+            }
         }
     }
 
@@ -87,7 +93,9 @@ public class InventoryViewModel{
 
     public void right(){
         if(index > 6){
-            index++;
+            if(index + 1 < 22) {
+                index++;
+            }
         }else{
             index = 7;
         }
@@ -100,7 +108,9 @@ public class InventoryViewModel{
         }else if(index < 7){
             return; //do nothing
         }else{
-            index--;
+            if(index - 1 >= 0 ){
+                index--;
+            }
         }
     }
 
@@ -110,5 +120,18 @@ public class InventoryViewModel{
         }else{
             entity.useItem(currentItem);
         }
+    }
+
+    public TakeableItem getCurrentItem(){
+        return this.currentItem;
+    }
+
+
+    public BufferedImage getItemImageAt(int index){
+        return items[index].getImage();
+    }
+
+    public int getCurrentIndex(){
+        return this.index;
     }
 }
