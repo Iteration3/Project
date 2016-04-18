@@ -56,17 +56,17 @@ public class PetController extends AIController {
 
 
         long nowTime = System.currentTimeMillis();
-
-        if(pet.getAvatarLocation() != pet.getLocation()){
-
-            if(rand > 0.75){
-                System.out.println("Pet: " + pet.getLocation().getRow());
-//                petLoco.move(Direction.South);
-            }
-            else if(rand > 0.1){
-                System.out.println("North Pet: " + pet.getLocation().getRow());
-                petLoco.move(Direction.North);
-            }
-        }
+//
+//        if(pet.getAvatarLocation() != pet.getLocation()){
+//
+//            if(rand > 0.75){
+//                System.out.println("Pet: " + pet.getLocation().getRow());
+////                petLoco.move(Direction.South);
+//            }
+//            else if(rand > 0.1){
+//                System.out.println("North Pet: " + pet.getLocation().getRow());
+//                petLoco.move(Direction.North);
+//            }
+//        }
     }
 }
