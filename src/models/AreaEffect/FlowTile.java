@@ -21,7 +21,6 @@ public class FlowTile extends AreaEffect {
         flow(e);
     }
 
-
     private void flow(Entity e){
         //yeah I should probably figure this out.
         Location l = getMoveLocation();

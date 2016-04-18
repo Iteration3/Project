@@ -6,6 +6,8 @@ import models.StatContainer.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import java.awt.*;
+
 public class Mount extends Entity {
     //
     public Mount(int level, Occupation occupation) {
@@ -21,5 +23,10 @@ public class Mount extends Entity {
     @Override
     public Element generateXml(Document doc) {
         return super.generateXml(doc, "mount");
+    }
+
+    @Override
+    public Image getImage() {
+        return null;
     }
 }

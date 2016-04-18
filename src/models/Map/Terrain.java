@@ -1,18 +1,38 @@
 package models.Map;
 
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import utilities.SaveLoad.Saveable;
-import views.Assets;
-import views.other.DrawTerrainImages;
+import views.DrawTerrainImages;
 
+import controllers.Locomotion;
 import java.awt.image.BufferedImage;
 
 public enum Terrain implements Saveable {
-    Grass(DrawTerrainImages.getGrassImage())
-    ,Mountain(DrawTerrainImages.getMountainImage())
-    ,Air(DrawTerrainImages.getAirImage());
+    Air(DrawTerrainImages.getAirImage()){
+        @Override
+        public void moveTo(Locomotion locomotion) {
+            locomotion.moveToAir();
+        }
+    }
+    ,Grass(DrawTerrainImages.getGrassImage()){
+        @Override
+        public void moveTo(Locomotion locomotion) {
+            locomotion.moveToGround();
+        }
+    }
+    ,Mountain(DrawTerrainImages.getMountainImage()){
+        @Override
+        public void moveTo(Locomotion locomotion) {
+            locomotion.moveToWater();
+        }
+    }
+    ,Water(DrawTerrainImages.getAirImage()){
+        @Override
+        public void moveTo(Locomotion locomotion) {
+            locomotion.moveToWater();
+        }
+    };
 
     private BufferedImage image;
 
@@ -34,5 +54,7 @@ public enum Terrain implements Saveable {
     public static Terrain fromXmlElement(Element terrain) {
         return Terrain.valueOf(terrain.getTextContent());
     }
+
+    public abstract void moveTo(Locomotion locomotion);
 }
 

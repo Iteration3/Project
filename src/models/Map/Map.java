@@ -7,16 +7,17 @@ import org.w3c.dom.NodeList;
 import utilities.Geometry.Hexagon;
 import utilities.Location.Location;
 import utilities.SaveLoad.Saveable;
+import utilities.Geometry.Hexagon;
+import utilities.Location.Location;
+import views.DrawTerrainImages;
 
 import java.util.HashMap;
 
-
 public class Map implements Saveable {
-
 
     private HashMap<Location, Tile> tiles;
 
-    //maximum size of the map once its been created cannot be change
+    //maximum size of the keyMap once its been created cannot be change
     private int rowSize;
     private int colSize;
     private int heightSize;
@@ -65,7 +66,8 @@ public class Map implements Saveable {
     }
 
     public Tile getDefaultTile(){
-        Tile temp = new Tile(Terrain.Air);
+        Terrain terrain = Terrain.Air;
+        Tile temp = new Tile(terrain);
         return temp;
     }
 
@@ -113,6 +115,15 @@ public class Map implements Saveable {
         }
         return m;
     }
+
+    public boolean groundTileAbove(Location location) {
+        Location tmpLocation = location.add(0,0,1);
+        if (isOutOfBound(tmpLocation)) {
+            return false;
+        }
+        if (getTileAt(tmpLocation).isGround()) {
+            return true;
+        }
+        return false;
+    }
 }
-
-

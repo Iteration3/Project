@@ -1,62 +1,75 @@
 package models.StateModel;
 
-import models.Entity.Avatar;
-import models.Entity.EnittyForTesting;
 import models.Entity.Entity;
 import models.Map.MapEditor.MapOperator;
 import utilities.Direction.Direction;
 import utilities.Location.Location;
-import utilities.State.State;
-import views.other.MapView;
+import models.Entity.NPC;
+import models.Entity.Pet;
+import models.Map.Map;
+import models.Occupation.Sneak;
+import models.Occupation.Summoner;
+import utilities.SaveLoad.XmlGenerator;
+import utilities.SaveLoad.XmlReader;
+import views.MapView;
 
-/**
- * Created by jcvarela on 4/15/2016.
- */
-public class PlayStateModel implements StateModel{
+import javax.xml.parsers.ParserConfigurationException;
 
-    private Entity focus;
-    private Avatar avatar;
+public class PlayStateModel{
+
+    private Location focus;
+    private Entity avatar;
     private MapOperator mapOperator;
 
-    public PlayStateModel() {
+    private Pet pet;
+
+    public PlayStateModel(Entity avatar) {
+
+        this.avatar = avatar;
+
+        //TODO Place any model instantiation here
+        Pet pet = new Pet(3,new Sneak());
+        NPC npc = new NPC(3,new Summoner());
+
         mapOperator = new MapOperator(20,20,10);
 
-        focus  = new EnittyForTesting();
-        ((EnittyForTesting)focus).setLocation(new Location(0,0,0));
-        focus.getLocation();
+        focus  = new Location(0,0,0);
 
-        mapOperator.addNewEntityAt(avatar,new Location(0,0,0));
+        mapOperator.addNewEntityAt(avatar,new Location(49,0,0));
+
+        try {
+            String xml = new XmlGenerator().generateXml(mapOperator.getMap());
+            System.out.println(xml);
+            new XmlReader().getMapFromXmlString(xml);
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+//        mapOperator.addNewEntityAt(pet,new Location(0,1,0));
+//        mapOperator.addNewEntityAt(npc, new Location(0,2,0));
 
         //setDefaultFocus();
     }
 
-    @Override
-    public State nextState() {
-        return null;
-    }
-
-
-    @Override
-    public void update() {
-
-    }
-
-
     public void setDefaultFocus(){
-        setFocus(avatar);
+        setFocus(avatar.getLocation());
     }
-    public void setFocus(Entity focus){
+    public void setFocus(Location focus){
         this.focus = focus;
     }
-    public Entity getFocus(){return focus;}
+    public Location getFocus(){return avatar.getLocation();}
 
-    public Avatar getAvatar(){return avatar;}
-    public MapView getMapView(){return mapOperator.getMapView();}
+    public Entity getAvatar(){return avatar;}
+    public MapView getMapView() {
+        return mapOperator.getMapView();
+    }
+    public Map getMap() {
+        return mapOperator.getMap();
+    }
 
-    //TODO:fast function, remove
+//    //TODO:fast function, remove
     public void setFocusDirection(Direction dir){
-        ((EnittyForTesting)focus).setLocation(dir.getNextLocation(focus.getLocation()));
-        //avatar.setDirection(dir);
+       avatar.changeLocation(dir.getNextLocation(avatar.getLocation()));
+        avatar.changeDirection(dir);
         //avatar.setAction(Action.Move);
     }
 }

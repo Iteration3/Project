@@ -11,12 +11,15 @@ import utilities.SaveLoad.Saveable;
 public enum Direction implements Saveable {
     //TODO: I DONT THINK THIS ONE SHOULD CREATE NEXT LOCATION
 
-    North(new Location(-1,0,0), new Location(-1,0,0)),
     NorthWest(new Location(-1,-1,0), new Location(0,-1,0)),
-    SouthWest(new Location(0,-1,0), new Location(1,-1,0)),
-    South(new Location(1,0,0), new Location(1,0,0)),
+    North(new Location(-1,0,0), new Location(-1,0,0)),
+    NorthEast(new Location(-1,1,0), new Location(0,1,0)),
     SouthEast(new Location(0,1,0), new Location(1,1,0)),
-    NorthEast(new Location(-1,1,0), new Location(0,1,0));
+    South(new Location(1,0,0), new Location(1,0,0)),
+    SouthWest(new Location(0,-1,0), new Location(1,-1,0)),
+    //TODO:SHOULD NOT BE HERE
+    Up( new Location(0,0,1), new Location(0,0,1) ),
+    Down( new Location(0,0,-1), new Location(0,0,-1) );
 
     private Location evenCol;
     private Location oddCol;
@@ -40,5 +43,21 @@ public enum Direction implements Saveable {
 
     public static Direction fromXmlElement(Element element) {
         return Direction.valueOf(element.getTextContent());
+    }
+
+    public static Direction counterCloclwise(Direction selected){
+        int pos = selected.ordinal();
+        if(pos == 0){
+            return Direction.values()[Direction.values().length -3];
+        }
+        return Direction.values()[pos -1];
+    }
+    public static Direction clockwise(Direction selected){
+
+        int pos = selected.ordinal();
+        if(pos == Direction.values().length-3){
+            return Direction.values()[0];
+        }
+        return Direction.values()[pos + 1];
     }
 }

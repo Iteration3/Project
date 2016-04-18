@@ -56,7 +56,7 @@ public class Trap extends AreaEffect {
         this.timer.schedule(action, 5000); //this starts the task
     }
 
-    private void disable(){
+    private void disable() {
         active = false;
     }
 

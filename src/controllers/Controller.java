@@ -1,31 +1,36 @@
 package controllers;
 
-import Main.InputManager;
-import utilities.KeyCommand;
+import utilities.GameStateManager;
+import utilities.KeyCommand.KeyCommand;
 
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
 /**
  * Created by denzel on 4/11/16.
  */
-public abstract class Controller extends InputManager{
+
+//TODO: I don't think controllers should extend the inputmanager. AI Controllers dont need input
+public abstract class Controller{
 
     // Hashmap of KeyEvents
-    protected HashMap<Integer, KeyCommand> map;
+    protected HashMap<Integer, KeyCommand> keyMap;
 
-    public Controller() {
-        map = new HashMap<>();
+    //GameStateManager
+    protected GameStateManager gsm;
+
+    public Controller( GameStateManager gsm) {
+        keyMap = new HashMap<>();
+        this.gsm = gsm;
         loadKeyCommand();
     }
 
     // update method
-    public void handleInput(){
-
-
-        for(Integer i: super.getActiveKey()){
-            if(map.containsKey(i)){
-                map.get(i).execute();
-            }
+    public void handleInput(KeyEvent e){
+        if(keyMap.get(e.getKeyCode())!= null) {
+            keyMap.get(e.getKeyCode()).execute();
+        }else{
+            System.out.println("Key Mapping Does Not Exist");
         }
     }
 

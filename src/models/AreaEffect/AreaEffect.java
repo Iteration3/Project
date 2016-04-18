@@ -9,6 +9,7 @@ import utilities.SaveLoad.Saveable;
 import java.util.HashMap;
 
 public abstract class AreaEffect implements Saveable {
+
     Location loc;
 
     public Location getLocation(){

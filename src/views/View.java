@@ -9,23 +9,29 @@ import java.awt.image.BufferedImage;
  */
 public abstract class View{
 
-    private int width = 100;
-    private int height = 100;
+    private int width;
+    private int height;
+    private Canvas canvas;
 
-    public int getWidth(){
+    public View(int width, int height, Canvas canvas){
+        this.width = canvas.getWidth();
+        this.height = canvas.getHeight();
+        this.canvas = canvas;
+    }
+
+    public int getScreenWidth(){
         return width;
     }
-    public int getHeight(){
+    public int getScreenHeight(){
         return height;
     }
+    public Canvas getCanvas(){ return canvas; }
 
-    public final void render(BufferedImage image){
-        width = image.getWidth();
-        height = image.getWidth();
+    public void renderInCanvas(Graphics g){
+        this.width = canvas.getWidth();
+        this.height = canvas.getHeight();
 
-        Graphics2D g = image.createGraphics();
         render(g);
     }
-
-    protected abstract void render(Graphics2D g);
+    protected abstract void render(Graphics g);
 }

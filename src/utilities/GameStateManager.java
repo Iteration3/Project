@@ -1,42 +1,57 @@
 package utilities;
 
-import utilities.State.MainMenuState;
-import utilities.State.State;
 
-import java.awt.image.BufferedImage;
+import Main.InputManager;
+import controllers.Controller;
+import utilities.State.State;
+import views.Canvas;
+import views.View;
+
+import java.util.Stack;
+
+/**
+ * Responsibilities of GameStateManager is
+ * keep a stack of states and check the current state for its view and controller
+ */
 
 public class GameStateManager {
 
-    private State currentGameState;
+    //State
+    private State state;
 
-    public GameStateManager() {
-        setState(new MainMenuState());
+
+    //Stack of states
+    private Stack<State> stateStack;
+
+    public GameStateManager(){
+        //initialize the stack of states
+        stateStack = new Stack<>();
     }
 
-    public void setState(State newGameState) {
-        if(currentGameState != newGameState){
-            currentGameState = newGameState;
-            currentGameState.initMVC();
-        }
+    //Current View
+    public View getCurrentView(){
+        return stateStack.peek().getView();
     }
 
-    public void update() {
-        if(currentGameState != null) {
-            currentGameState.setNextState(this);
-            currentGameState.handleInput();
-            currentGameState.update();
-        }
-        else {
-            System.err.println("GameStateManager error: null game state");
-        }
+    //Current Controller
+    public Controller getCurrentController(){
+        return stateStack.peek().getController();
     }
 
-    public void render(BufferedImage image) {
-        //TODO: function can throw error
-        if(currentGameState != null) {
-            currentGameState.render(image);}
-        else{
-            System.err.println("GameStateManager error: null game state");
-        }
+    //change state
+    public void changeState(State state){
+        stateStack.add(state);
+        //TODO: This should not be written like this
+        getCurrentView().getCanvas().setActiveView(state.getView());
+    }
+
+    //remove state
+    public void removeState(){
+        stateStack.pop();
+    }
+
+    //update
+    public void update(Canvas canvas){
+        canvas.repaint();
     }
 }

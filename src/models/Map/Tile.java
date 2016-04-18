@@ -8,6 +8,12 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import utilities.SaveLoad.Saveable;
 
+import models.Decal.Decal;
+import models.Entity.Entity;
+import models.Item.Item;
+import utilities.SaveLoad.XmlReader;
+import views.DrawTerrainImages;
+
 //Tile is just a contianer
 public class Tile implements Saveable {
 
@@ -15,6 +21,7 @@ public class Tile implements Saveable {
     private Entity entity;
     private AreaEffect areaEffect;
     private Item item;
+    private Decal decal;
 
     private int count;
 
@@ -37,6 +44,11 @@ public class Tile implements Saveable {
         else {
             this.terrain = terrain;
         }
+    }
+    public boolean isGround() {
+        boolean isGround = terrain.equals(Terrain.Grass);
+        boolean isMountain = terrain.equals(Terrain.Mountain);
+        return (!isGround && !isMountain);
     }
 
     //Enity
@@ -106,20 +118,32 @@ public class Tile implements Saveable {
 
         Element entityContainer = (Element) tile.getElementsByTagName("entity").item(0);
         if (entityContainer.hasChildNodes()) {
-            t.entity = Entity.fromXmlElement((Element) entityContainer.getFirstChild());
+            t.entity = Entity.fromXmlElement(XmlReader.getFirstChildElement(entityContainer));
         }
 
         Element areaEffectContainer = (Element) tile.getElementsByTagName("areaEffect").item(0);
         if (areaEffectContainer.hasChildNodes()) {
-            t.areaEffect = AreaEffect.fromXmlElement((Element) areaEffectContainer.getFirstChild());
+            t.areaEffect = AreaEffect.fromXmlElement(XmlReader.getFirstChildElement(areaEffectContainer));
         }
 
         Element itemContainer = (Element) tile.getElementsByTagName("item").item(0);
         if (itemContainer.hasChildNodes()) {
-            t.item = ItemFactory.fromXmlElement((Element) itemContainer.getFirstChild());
+            t.item = ItemFactory.fromXmlElement(XmlReader.getFirstChildElement(itemContainer));
         }
         return t;
     }
+
+    //Decal
+    public void addDecal(Decal decal) {
+        this.decal = decal;
+    }
+    public boolean hasDecal() {
+        return decal != null;
+    }
+    public void removeDecal() {
+        decal = null;
+    }
+    public Decal getDecal() {
+        return decal;
+    }
 }
-
-

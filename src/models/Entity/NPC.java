@@ -7,6 +7,9 @@ import models.Inventory.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import javax.swing.*;
+import java.awt.*;
+
 public class NPC extends Entity {
     //
     public NPC(int level, Occupation occupation) {
@@ -22,5 +25,9 @@ public class NPC extends Entity {
     @Override
     public Element generateXml(Document doc) {
         return super.generateXml(doc, "npc");
+    }
+    public Image getImage() {
+        Image image = new ImageIcon("res/twoHand.png").getImage();
+        return image;
     }
 }

@@ -2,6 +2,8 @@ package utilities.SaveLoad;
 
 import models.Map.Map;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
@@ -48,5 +50,15 @@ public class XmlReader {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static Element getFirstChildElement(Node node)
+    {
+        node = node.getFirstChild();
+        while (node != null && node.getNodeType() != Node.ELEMENT_NODE)
+        {
+            node = node.getNextSibling();
+        }
+        return (Element)node;
     }
 }

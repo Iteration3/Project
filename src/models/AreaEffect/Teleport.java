@@ -24,7 +24,6 @@ public class Teleport extends AreaEffect {
         e.changeLocation(toLoc);
     }
 
-
     @Override
     public Element generateXml(Document doc) {
         Element element = doc.createElement("teleport-area-effect");

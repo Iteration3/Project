@@ -7,8 +7,10 @@ import org.w3c.dom.NodeList;
 import utilities.SaveLoad.Saveable;
 
 import java.util.HashMap;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 public abstract class StatContainer implements Saveable {
     //
@@ -90,5 +92,9 @@ public abstract class StatContainer implements Saveable {
             s.stats.put(stat.getAttribute("key"), value);
         }
         return s;
+    }
+
+    public Set<Map.Entry<String,Stat>> getMap() {
+        return stats.entrySet();
     }
 }

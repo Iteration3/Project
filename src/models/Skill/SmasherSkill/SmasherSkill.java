@@ -1,32 +1,45 @@
 package models.Skill.SmasherSkill;
 import models.Entity.*;
 import models.Skill.*;
+
+import java.util.HashMap;
 import java.util.Map;
 
 
-public class SmasherSkill extends Skill {
+public abstract class SmasherSkill extends Skill {
 
     private double strengthOfAttackModifier;
+    private double weaponRating;
 
     public SmasherSkill(String name, double manaCost, double strengthOfAttackModifier) {
-        super(name, manaCost);
+        super(name, manaCost, 1);
         this.strengthOfAttackModifier = strengthOfAttackModifier;
     }
 
     public void activate(Entity entity) {
-        Map<String, Double> damageMap = getDamageMap();
-        entity.modifyStats(damageMap);
+        if (entity != null) {
+            Map<String, Double> damageMap = getDamageMap();
+            entity.modifyStats(damageMap);
+        }
     }
 
     public Map<String, Double> getDamageMap() {
-        Map<String, Double> map = null;
+        Map<String, Double> map = new HashMap<>();
         double modifyByAmount = getModifyAmount();
-        map.put("hp", -modifyByAmount);
+        map.put("CURRENT_LIFE", -modifyByAmount);
         return map;
     }
 
     protected double getModifyAmount() {
-        return calculatorMultiplier * level * 5 * strengthOfAttackModifier;
+        return level * 5  + weaponRating;
+    }
+
+    public void setRating(double weaponRating) {
+        this.weaponRating = weaponRating;
+    }
+
+    public void setRatingToZero() {
+        weaponRating = 0;
     }
 
 }

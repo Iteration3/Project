@@ -110,7 +110,9 @@ public class Inventory implements ItemContainer, Saveable {
         element.appendChild(items);
 
         for (TakeableItem item : this.items) {
-            items.appendChild(item.generateXml(doc));
+            if (item != null) {
+                items.appendChild(item.generateXml(doc));
+            }
         }
 
         return element;

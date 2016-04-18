@@ -1,49 +1,62 @@
 package views;
 
 
+import Main.InputManager;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 
-/**
- * Created by denzel on 4/12/16.
- */
-public class Canvas extends JPanel{
+public class Canvas extends JPanel implements KeyListener{
 
-    private final static int WIDTH = 500;
-    private final static int HEIGHT = WIDTH*4/5;
-
+    public final static int WIDTH = 500;
+    public final static int HEIGHT = WIDTH*4/5;
     private final static int SCALE = 1;
 
-    private BufferedImage image;
-    private Graphics2D g;
+    private View currentView;
+    private InputManager inputManager;
 
     //Constructs the canvas to paint things on
-    public Canvas(){
+    public Canvas(InputManager inputManager){
+        this.inputManager = inputManager;
         setFocusable(true);
         setBackground(Color.BLACK);
         setPreferredSize(new Dimension(WIDTH,HEIGHT));
-
-        image = new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_4BYTE_ABGR);
-        g = image.createGraphics();
+        addKeyListener(this);
     }
 
     @Override
-    public Dimension getPreferredSize(){
-        return new Dimension(WIDTH*SCALE,HEIGHT*SCALE);
+    public void addNotify() {
+        super.addNotify();
+        requestFocus();
     }
 
-    public BufferedImage getImage(){
-        return new BufferedImage(WIDTH,HEIGHT,BufferedImage.TYPE_4BYTE_ABGR);
+    //set the active view
+    public void setActiveView(View view){
+        this.currentView = view;
     }
 
-    public Graphics2D getGraphics(){
-        return g;
+    //Render the current view
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        currentView.renderInCanvas(g);
     }
 
-    public void repaint(BufferedImage imageToRender){
-        Graphics g2 = super.getGraphics();
-        g2.drawImage(imageToRender, 0, 0, this.getWidth(), this.getHeight(), null);
-        g2.dispose();
+    @Override
+    public void keyReleased(KeyEvent e) {
+       inputManager.removeCommand(e);
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        inputManager.getActiveKey(e);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
     }
 }

@@ -1,27 +1,64 @@
 package models.Skill.SneakSkill;
+import java.util.HashMap;
 import java.util.Map;
 import models.Entity.*;
+import models.Skill.Skill;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 public class RangedWeapon extends SneakSkill {
 
+    private double weaponRating;
+
     public RangedWeapon() {
-        super("Ranged Weapon", 2);
+        super("Ranged Weapon", 2, 3);
+        weaponRating = 0;
     }
 
     public void activate(Entity entity) {
-        Map<String, Double> damageMap = getDamageMap();
-        entity.modifyStats(damageMap);
+        if (entity != null) {
+            Map<String, Double> damageMap = getDamageMap();
+            entity.modifyStats(damageMap);
+        }
     }
 
     public Map<String, Double> getDamageMap() {
-        Map<String, Double> map = null;
+        Map<String, Double> map = new HashMap<>();
         double modifyByAmount = getModifyAmount();
-        map.put("hp", -modifyByAmount);
+        map.put("CURRENT_LIFE", -modifyByAmount);
         return map;
     }
 
     protected double getModifyAmount() {
-        return calculatorMultiplier * level * 5 ;
+        return level * 5 + weaponRating ;
+    }
+
+    public void setRating(double weaponRating) {
+        this.weaponRating = weaponRating;
+    }
+
+    public void setRatingToZero() {
+        weaponRating = 0;
+    }
+
+    @Override
+    public Element generateXml(Document doc) {
+        Element element = super.generateDefaultXml(doc);
+        element.setAttribute("weaponRating", String.valueOf(weaponRating));
+        return element;
+    }
+
+    @Override
+    protected String getXmlTagName() {
+        return "ranged-weapon";
+    }
+
+    @Override
+    protected Skill cloneInitializedWithXmlElement(Element element) {
+        RangedWeapon weapon = new RangedWeapon();
+        weapon.getAttributesFromXmlElement(element);
+        weapon.setRating(Double.parseDouble(element.getAttribute("weaponRating")));
+        return weapon;
     }
 
 }

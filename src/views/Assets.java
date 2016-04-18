@@ -63,8 +63,6 @@ public class Assets {
         SpriteSheet agilityPotionSheet = new SpriteSheet( new ImageLoader().loadImage("/agilityPotion.png"));
         SpriteSheet experiencePotionSheet = new SpriteSheet( new ImageLoader().loadImage("/experiencePotion.png"));
 
-
-
         oneHand = oneHandSheet.crop(0 , 0, width , height);
         twoHand = twoHandSheet.crop(0, 0 , width , height);
         fist = fistSheet.crop(0 , 0 , width , height);
@@ -85,13 +83,5 @@ public class Assets {
         agilityPotion = agilityPotionSheet.crop(0 , 0 , width , height);
         experiencePotion = experiencePotionSheet.crop(0 , 0 , width , height);
 
-        /*
-        grassTerrain = DrawTerrainImages.getGrassImage();
-        mountainTerrain = DrawTerrainImages.getMountainImage();
-        airTerrain = DrawTerrainImages.getAirImage();
-        */
-
-
     }
 }
-

@@ -1,7 +1,7 @@
-package views.other;
+package views;
 
 import utilities.Geometry.Hexagon;
-import views.other.MapView;
+import views.MapView;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

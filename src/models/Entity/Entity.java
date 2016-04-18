@@ -2,18 +2,21 @@ package models.Entity;
 
 
 import models.Action.Action;
+import utilities.Direction.Direction;
 import models.Occupation.*;
 import models.StatContainer.*;
 import models.Item.*;
 
+
+import java.awt.*;
 import java.util.Map;
 import models.Inventory.*;
 import models.Equipment.Equipment;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import utilities.Direction.Direction;
 import utilities.Location.Location;
 import utilities.SaveLoad.Saveable;
+import utilities.SaveLoad.XmlReader;
 
 public abstract class Entity implements Action, Saveable {
     //
@@ -30,12 +33,12 @@ public abstract class Entity implements Action, Saveable {
      */
     //
     protected void setName(String name) {this.name = name;}
-    protected void setLocation(Location location) {this.location = location;}
+    public void setLocation(Location location) {this.location = location;}
     protected void setDirection(Direction direction) {this.direction = direction;}
     protected void setOccupation(Occupation occupation) {this.occupation = occupation;}
     protected void setStats(StatContainer stats) {this.stats = stats;}
     protected void setInventory(Inventory inventory) {this.inventory = inventory;}
-    //protected void setEquipment(models.Equipment equipment) {this.equipment = equipment);
+    //protected void setEquipment(models.Equipment equipment) {this.equipment = equipment;)
 
     /*
         Action << interface >> implementation
@@ -59,16 +62,14 @@ public abstract class Entity implements Action, Saveable {
         Location specific functionality
      */
     //
-    public Location getLocation() {return this.location;}
-    public void changeLocation(Location l) {setLocation(l);}        //added this for teleportation.
-    //public void changeLocation() {this.getLocation.changeLocation();}
-
+    public Location getLocation() { return location; }
+    public void changeLocation(Location location) { this.location = location; }
 
     /*
         models.Direction specific functionality
      */
     //
-    public Direction direction() {return this.direction;}
+    public Direction getDirection() {return this.direction;}
     public void changeDirection(Direction direction) {this.direction = direction;}
 
     /*
@@ -77,6 +78,10 @@ public abstract class Entity implements Action, Saveable {
     //
     public String occupationName() {return this.occupation.name();}
     protected Map<String, Double> occupationModifier() {return this.occupation.occupationModifier();}
+
+    public Occupation getOccupation() {
+        return occupation;
+    }
 
     /*
         models.StatContainer specific functionality
@@ -89,6 +94,9 @@ public abstract class Entity implements Action, Saveable {
     public void printStats(String stat_to_print) {this.stats.print(stat_to_print);}
     public void printStats() {this.stats.print();}
     public double getLevel(){ return this.stats.value("LEVEL");}
+    public StatContainer getStatContainer() {
+        return stats;
+    }
 
     /*
         models.Equipment specific functionality
@@ -132,33 +140,44 @@ public abstract class Entity implements Action, Saveable {
         Element element = document.createElement(tagName);
 
         element.setAttribute("name", name);
-        element.setAttribute("level", String.valueOf(getLevel()));
+        element.setAttribute("level", Integer.toString((int) getLevel()));
         element.appendChild(location.generateXml(document));
         element.appendChild(direction.generateXml(document));
-        element.appendChild(occupation.generateXml(document));
+
+        Element occupationContainer = document.createElement("occupation");
+        occupationContainer.appendChild(occupation.generateXml(document));
+        element.appendChild(occupationContainer);
+
         element.appendChild(stats.generateXml(document));
         element.appendChild(inventory.generateXml(document));
-        element.appendChild(equipment.generateXml(document));
+        if (equipment != null) {
+            element.appendChild(equipment.generateXml(document));
+        }
         return element;
     }
 
     public static Entity fromXmlElement(Element element) {
         Entity entity = null;
         int level = Integer.parseInt(element.getAttribute("level"));
-        Occupation occupation = Occupation.fromXmlElement((Element) element.getElementsByTagName("occupation").item(0));
+        Element occupationContainer = (Element) element.getElementsByTagName("occupation").item(0);
+        Occupation occupation = Occupation.fromXmlElement(XmlReader.getFirstChildElement(occupationContainer));
 
         switch (element.getTagName()) {
             case "avatar": entity = new Avatar(level, occupation); break;
             case "mount": entity = new Mount(level, occupation); break;
             case "npc": entity = new NPC(level, occupation); break;
             case "pet": entity = new Pet(level, occupation); break;
-            case "entity-for-test": entity = new EnittyForTesting(); break;
         }
         entity.setLocation(Location.fromXmlElement((Element) element.getElementsByTagName("location").item(0)));
         entity.setDirection(Direction.fromXmlElement((Element) element.getElementsByTagName("direction").item(0)));
         entity.setStats(StatContainer.fromXmlElement((Element) element.getElementsByTagName("stats-container").item(0)));
         entity.setInventory(Inventory.fromXmlElement((Element) element.getElementsByTagName("inventory").item(0)));
-        entity.equipment = Equipment.fromXmlElement((Element) element.getElementsByTagName("equipment").item(0));
+        if (element.getElementsByTagName("equipment").getLength() > 0) {
+            entity.equipment = Equipment.fromXmlElement((Element) element.getElementsByTagName("equipment").item(0));
+        }
         return entity;
     }
+
+    //Every entity is in charge of getting its own image
+    public abstract Image getImage();
 }

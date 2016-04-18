@@ -1,31 +1,40 @@
 package models.Skill;
 
-import java.util.ArrayList;
+import models.Entity.Entity;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import utilities.SaveLoad.Saveable;
+
+import java.util.HashMap;
 import java.util.Map;
 
-import utilities.Location.Location;
-import utilities.Location.Location;
-
-public abstract class Skill {
+public abstract class Skill implements Saveable {
 
     protected int level;
     protected String name;
     protected double manaCost;
     protected double calculatorMultiplier;
     protected double manaCostMultiplier;
-    private ArrayList<Location> locationArrayList;
+    protected int radius;
 
-    public Skill(String name, double manaCost) {
+    public Skill(String name, double manaCost, int radius) {
         this.name = name;
         this.level = 1;
         this.calculatorMultiplier = 5;
         this.manaCostMultiplier = 1;
+        this.radius = radius;
         this.manaCost = manaCost * manaCostMultiplier;
     }
-/*
+
+    public abstract void activate(Entity entity);
+
+    public int getRadius() {
+        return radius;
+    }
+
     public boolean canUseSkill(Entity entity) {
         boolean canPerform = canPerform();
-        double hasEnoughMana = entity.getMana();
+        double hasEnoughMana = 100;
         if (hasEnoughMana >= manaCost && canPerform) {
             Map<String, Double> modifyManaCostMap = getManaCostMap();
             entity.modifyStats(modifyManaCostMap);
@@ -33,11 +42,11 @@ public abstract class Skill {
         }
         return false;
     }
-*/
+
     protected Map<String, Double> getManaCostMap() {
-        Map<String, Double> manaCostMap = null;
+        Map<String, Double> manaCostMap = new HashMap<>();
         double manaCost = getManaCost();
-        manaCostMap.put("mana", -manaCost);
+        manaCostMap.put("CURRENT_MANA", -manaCost);
         return manaCostMap;
     }
 
@@ -48,10 +57,6 @@ public abstract class Skill {
         }
         return false;
     }
-
-   /* private void initializeAttackLocations(Location getLocation, Orientation orientation) {
-
-    }*/
 
     public void levelUpSkill() {
         level++;
@@ -83,6 +88,29 @@ public abstract class Skill {
 
     public void printSkill() {
         System.out.println("Name: " + getName() + "\nMana Cost: " + getManaCost() + "\nLevel: " + getLevel());
+    }
+
+    protected abstract String getXmlTagName();
+    protected abstract Skill cloneInitializedWithXmlElement(Element element);
+
+    protected void getAttributesFromXmlElement(Element element) {
+        level = Integer.parseInt(element.getAttribute("level"));
+        name = element.getAttribute("name");
+        manaCost = Double.parseDouble(element.getAttribute("manaCost"));
+        calculatorMultiplier = Double.parseDouble(element.getAttribute("calculatorMultiplier"));
+        manaCostMultiplier = Double.parseDouble(element.getAttribute("manaCostMultiplier"));
+        radius = Integer.parseInt(element.getAttribute("radius"));
+    }
+
+    public Element generateDefaultXml(Document doc) {
+        Element element = doc.createElement(getXmlTagName());
+        element.setAttribute("level", String.valueOf(level));
+        element.setAttribute("name", String.valueOf(name));
+        element.setAttribute("manaCost", String.valueOf(manaCost));
+        element.setAttribute("calculatorMultiplier", String.valueOf(calculatorMultiplier));
+        element.setAttribute("manaCostMultiplier", String.valueOf(manaCostMultiplier));
+        element.setAttribute("radius", String.valueOf(radius));
+        return element;
     }
 
 }
