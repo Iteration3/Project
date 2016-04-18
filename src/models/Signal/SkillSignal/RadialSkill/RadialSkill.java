@@ -57,7 +57,6 @@ public abstract class RadialSkill extends SkillSignal {
                     currentRadius++;
                     if (currentRadius == 4) {
                         for (int i = 0; i < nextLocation.size(); ++i) {
-                            Location locationToAttack = nextLocation.get(i);
                             map.getTileAt(nextLocation.get(i)).removeDecal();
                         }
                         t.cancel();

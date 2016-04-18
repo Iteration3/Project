@@ -61,7 +61,7 @@ public class Map {
     }
 
     public Tile getDefaultTile(){
-        Terrain terrain = new AirTerrain(DrawTerrainImages.getAirImage());
+        Terrain terrain = Terrain.Air;
         Tile temp = new Tile(terrain);
         return temp;
     }

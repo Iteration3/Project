@@ -1,14 +1,12 @@
 package models.StateModel;
 
-import models.Action.Action;
-import models.Entity.Avatar;
+
+import models.AreaEffect.*;
 import models.Entity.Entity;
-//import models.Entity.Pet;
 import models.Entity.NPC;
 import models.Entity.Pet;
 import models.Map.Map;
 import models.Map.MapEditor.MapOperator;
-import models.Occupation.Occupation;
 import models.Occupation.Sneak;
 import models.Occupation.Summoner;
 import utilities.Direction.Direction;
@@ -36,6 +34,14 @@ public class PlayStateModel{
         //TODO Place any model instantiation here
         Pet pet = new Pet(3,new Sneak());
         NPC npc = new NPC(3,new Summoner());
+        Location l = new Location(48,0,0);
+        Location l2 = new Location(46,0,0);
+       // LoseHealth lh = new LoseHealth(l,20); works
+        //GainHealth gh = new GainHealth(l,20); works
+        //LevelUp lu = new LevelUp(l,1); works
+       // InstantDeath id = new InstantDeath(l); works
+       // Teleport tp = new Teleport(l,l2); works
+        //Trap tp = new Trap(l); not working yet
 
         mapOperator = new MapOperator(20,20,10);
 
@@ -43,9 +49,15 @@ public class PlayStateModel{
 
         focus  = new Location(0,0,0);
 
-        mapOperator.addNewEntityAt(avatar,new Location(0,0,0));
-        mapOperator.addNewEntityAt(pet,new Location(0,1,0));
-        mapOperator.addNewEntityAt(npc, new Location(0,2,0));
+
+        //mapOperator.addNewEntityAt(avatar,new Location(49,0,0));
+        //mapOperator.addNewAreaEffect(tp,l);
+
+        mapOperator.addNewEntityAt(avatar,new Location(43,4,2));
+
+
+//        mapOperator.addNewEntityAt(pet,new Location(0,1,0));
+//        mapOperator.addNewEntityAt(npc, new Location(0,2,0));
 
         //setDefaultFocus();
     }

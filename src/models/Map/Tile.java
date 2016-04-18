@@ -31,15 +31,15 @@ public class Tile {
     }
     public void setTerrain(Terrain terrain){
         if(terrain == null){
-            this.terrain = new AirTerrain(DrawTerrainImages.getAirImage());
+            this.terrain = Terrain.Air;
         }
         else {
             this.terrain = terrain;
         }
     }
     public boolean isGround() {
-        boolean isGround = terrain.equals(new GroundTerrain(DrawTerrainImages.getGrassImage()));
-        boolean isMountain = terrain.equals(new MountainTerrain(DrawTerrainImages.getMountainImage()));
+        boolean isGround = terrain.equals(Terrain.Grass);
+        boolean isMountain = terrain.equals(Terrain.Mountain);
         return (!isGround && !isMountain);
     }
 
@@ -66,6 +66,7 @@ public class Tile {
         areaEffect = null;
     }
     public AreaEffect getAreaEffect(){return areaEffect;}
+    public void activateAreaEffect(Entity e){areaEffect.execute(e);}
 
     //Item
     public void addItem(Item item){

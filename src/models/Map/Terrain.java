@@ -1,17 +1,39 @@
 package models.Map;
 
 
-
 import controllers.Locomotion;
 import views.DrawTerrainImages;
-
 import java.awt.image.BufferedImage;
 
-public abstract class Terrain {
+public enum Terrain {
+    Air(DrawTerrainImages.getAirImage()){
+        @Override
+        public void moveTo(Locomotion locomotion) {
+            locomotion.moveToAir();
+        }
+    }
+    ,Grass(DrawTerrainImages.getGrassImage()){
+        @Override
+        public void moveTo(Locomotion locomotion) {
+            locomotion.moveToGround();
+        }
+    }
+    ,Mountain(DrawTerrainImages.getMountainImage()){
+        @Override
+        public void moveTo(Locomotion locomotion) {
+            locomotion.moveToWater();
+        }
+    }
+    ,Water(DrawTerrainImages.getAirImage()){
+        @Override
+        public void moveTo(Locomotion locomotion) {
+            locomotion.moveToWater();
+        }
+    };
 
     private BufferedImage image;
 
-    public Terrain(BufferedImage image){
+    Terrain(BufferedImage image){
         this.image = image;
     }
 

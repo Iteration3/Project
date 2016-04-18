@@ -1,8 +1,10 @@
 package models.Map.MapEditor;
 
 
+import models.AreaEffect.AreaEffect;
 import models.Entity.Entity;
 import models.Map.*;
+import utilities.Load_Save.LoadMap;
 import utilities.Location.Location;
 import views.DrawTerrainImages;
 import views.MapView;
@@ -17,42 +19,26 @@ public class MapOperator {
     private Map map;
 
     public MapOperator(int maxRowSize, int maxColSize, int maxHeightSize){
-        map = new Map(maxRowSize,maxColSize,maxHeightSize);
-        init();
-    }
-
-    public void init() {
-        int row = map.getRowSize();
-        int col = map.getColSize();
-        int height = map.getHeightSize();
-
-        for (int r = 0; r < row; r++) {
-            for (int c = 0; c < col; c++) {
-                for (int h = 0; h < height; h++) {
-                    Location loc = new Location(r, c, h);
-
-                    Random rng = new Random();
-                    double random =   rng.nextGaussian();
-
-                    if (random < -0.5) {
-                        map.addTileAt(new Tile(new MountainTerrain(DrawTerrainImages.getMountainImage())),loc);
-                    } else if (random < 1) {
-                        map.addTileAt(new Tile(new GroundTerrain(DrawTerrainImages.getGrassImage())),loc);
-                    }
-                    else {
-                        map.addTileAt(new Tile(new GroundTerrain(DrawTerrainImages.getAirImage())),loc);
-                    }
-                }
-            }
-        }
+       map = LoadMap.loadMap("res/Map/Map.txt");
     }
 
 
     public boolean addNewEntityAt(Entity entity, Location loc){
         Tile tile = map.getTileAt(loc);
+        entity.setLocation(loc);
 
         if(!tile.hasEntity()){
             tile.addEntity(entity);
+            return true;
+        }
+        return false;
+    }
+    public boolean addNewAreaEffect(AreaEffect ae, Location loc){
+        Tile tile = map.getTileAt(loc);
+        ae.setLocation(loc);
+
+        if(!tile.hasAreaEffect()){
+            tile.addAreaEffect(ae);
             return true;
         }
         return false;

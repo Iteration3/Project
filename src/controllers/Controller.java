@@ -35,4 +35,6 @@ public abstract class Controller{
     }
 
     public abstract void loadKeyCommand();
+
+    public abstract void updateModel();
 }
