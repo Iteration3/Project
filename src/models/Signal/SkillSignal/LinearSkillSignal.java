@@ -1,5 +1,6 @@
 package models.Signal.SkillSignal;
 
+import models.Decal.CircleDash;
 import models.Decal.Decal;
 import models.Decal.FireBallDecal;
 import models.Entity.Entity;
@@ -22,7 +23,7 @@ public class LinearSkillSignal extends SkillSignal {
 
     protected void useSkill(Skill skill) {
 
-        Decal decal = new FireBallDecal();
+        Decal decal = new CircleDash();
 
        if (skill.canUseSkill(avatar)) {
             Timer t = new Timer();

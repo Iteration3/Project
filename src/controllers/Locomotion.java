@@ -21,6 +21,7 @@ public abstract class Locomotion {
     }
 
     //TODO add description of Locomotion/Terrain interaction
+    // Moves Entity one tile forward
     public void move(Direction direction) {
 
         boolean tileBlocked = false;
@@ -28,6 +29,27 @@ public abstract class Locomotion {
         Location currentLocation = entity.getLocation();
         Location nextLocation = direction.getNextLocation(currentLocation);
         Tile nextTile = map.getTileAt(nextLocation);
+
+        if ( checkForEntities(nextTile) || checkForObstacles(nextTile) ) { tileBlocked = true; }
+
+        if (!tileBlocked) {
+            Terrain terrain = nextTile.getTerrain();
+            terrain.moveTo(this);
+        }
+
+        //this might be wrong
+        if(checkForAreaEffects(nextTile)){
+            System.out.println("AreaEffect should take effect");
+            nextTile.activateAreaEffect(entity);
+        }
+
+    }
+
+    public void move(Location location) {
+
+        boolean tileBlocked = false;
+
+        Tile nextTile = map.getTileAt(location);
 
         if ( checkForEntities(nextTile) || checkForObstacles(nextTile) ) { tileBlocked = true; }
 
@@ -51,14 +73,12 @@ public abstract class Locomotion {
     // Returns true if an Entity is occupying the Tile to be moved to
     private boolean checkForEntities(Tile tile) {
 
-        // Guard for map out of bounds
-        if (tile == null) { return true; }
+        return tile.hasEntity();
 
-        boolean isOccupied = true;
+    }
 
-        if ( tile.hasEntity() == false ) { isOccupied = false; }
-
-        return isOccupied;
+    private boolean checkForAreaEffects(Tile tile){
+        return tile.hasAreaEffect();
 
     }
 
@@ -78,6 +98,7 @@ public abstract class Locomotion {
         */
         return false;
     }
+
 
     // Helper methods
     protected void updateEntityLocation() {
@@ -105,5 +126,7 @@ public abstract class Locomotion {
 
         System.out.println("Entity's Location: " + entity.getLocation().toString());
     }
+
+
 
 }

@@ -30,7 +30,8 @@ public class Amphibious extends Locomotion {
         updateMap();
     }
 
-    // Cannot move to Mountain; does nothing
+    // Entities cannot move to Mountain
+    // If the Entity can move to the Terrain above the Mountain, it will
     // If falling, kills the Entity instantly
     @Override
     public void moveToMountain() {
@@ -40,7 +41,23 @@ public class Amphibious extends Locomotion {
             livesMap.put("Lives", -1d);
             entity.modifyStats(livesMap);
         } else {
-            System.out.println("Terrestial Entities cannot move over Mountains");
+            // Get the location one in front, and one above the Entity's current location
+            Direction direction = entity.getDirection();
+            Location oldLocation = entity.getLocation();
+            Location newLocation = direction.getNextLocation(oldLocation).add(0,0,1);
+
+            // Entitys move slower when moving up Mountains
+            double weight = 0.5;
+            double speedDelta = entity.statValue("Movement") * weight;
+            HashMap<String, Double> decreaseSpeedMap = new HashMap();
+           decreaseSpeedMap.put("Movement", -speedDelta);
+
+            // Recursive call
+            move(newLocation);
+
+            // Revert speed
+            HashMap<String, Double> increaseSpeedMap = new HashMap();
+            increaseSpeedMap.put("Movement", speedDelta);
         }
     }
 
@@ -51,7 +68,7 @@ public class Amphibious extends Locomotion {
         updateMap();
     }
 
-    // If the Terrestial Entity moves to an Air tile it falls until it reaches a non-air terrain
+    // If the Amphibious Entity moves to an Air tile it falls until it reaches a non-air terrain
     // If it reaches a...
     //      GroundTerrain: The Entity takes damage based on the number of Tiles it fell.
     //      WaterTerrain: The Entity drowns and dies
@@ -74,14 +91,15 @@ public class Amphibious extends Locomotion {
 
             // As the Entity is falling, deal increase speed
             double speedDelta = 5;
-            HashMap<String, Double> decrementSpeedMap = new HashMap();
-            decrementSpeedMap.put("Movement", speedDelta);
+            HashMap<String, Double> increaseSpeedMap = new HashMap();
+            increaseSpeedMap.put("Movement", speedDelta);
 
+            // Recursive call
             super.move(entity.getDirection());
 
             // Leaving recursion...change the movement speed back
-            HashMap<String, Double> incrementSpeedMap = new HashMap();
-            incrementSpeedMap.put("Movement", speedDelta);
+            HashMap<String, Double> decreaseSpeedMap = new HashMap();
+            decreaseSpeedMap.put("Movement", -speedDelta);
 
             entity.setDirection(oldD);
         }

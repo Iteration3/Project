@@ -47,11 +47,12 @@ public class StatusView {
 
         titleFont = new Font("Serif", Font.BOLD, (int) (this.height * .3));
         g.setFont(titleFont);
+        fm = g.getFontMetrics();
 
         String skillsString = statusViewController.getSkillsString();
         Rectangle2D rectangle2 = fm.getStringBounds(skillsString,g);
         x = this.width / 2 - (int)rectangle2.getWidth() / 2;
-        y = (int)rectangle2.getHeight() + (int) (y * .7);
+        y = (int)rectangle2.getHeight() + (int) (y * .9);
 
         g.setColor(Color.BLACK);
         g.drawString(skillsString, x, y);

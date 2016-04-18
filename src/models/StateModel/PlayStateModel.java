@@ -4,6 +4,7 @@ package models.StateModel;
 import AI.AIController;
 import controllers.NPCController;
 import controllers.PetController;
+import models.AreaEffect.*;
 import models.Entity.Entity;
 import models.Entity.NPC;
 import models.Entity.Pet;
@@ -36,6 +37,16 @@ public class PlayStateModel{
     public PlayStateModel(Entity avatar) {
 
         this.avatar = avatar;
+
+        //TODO Place any model instantiation here
+        Location l = new Location(48,0,0);
+        Location l2 = new Location(46,0,0);
+       // LoseHealth lh = new LoseHealth(l,20); works
+        //GainHealth gh = new GainHealth(l,20); works
+        //LevelUp lu = new LevelUp(l,1); works
+       // InstantDeath id = new InstantDeath(l); works
+       // Teleport tp = new Teleport(l,l2); works
+        //Trap tp = new Trap(l); not working yet
 
         mapOperator = new MapOperator(20,20,10);
 

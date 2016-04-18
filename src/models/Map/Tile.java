@@ -66,6 +66,7 @@ public class Tile {
         areaEffect = null;
     }
     public AreaEffect getAreaEffect(){return areaEffect;}
+    public void activateAreaEffect(Entity e){areaEffect.execute(e);}
 
     //Item
     public void addItem(Item item){

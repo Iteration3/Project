@@ -21,6 +21,7 @@ public class PauseMenuController extends Controller {
         this.model = model;
         currentPoint = 0;
     }
+    
 
     @Override
     public void loadKeyCommand() {
