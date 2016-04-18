@@ -29,6 +29,9 @@ public class PlayStateView extends View {
 
     @Override
     protected void render(Graphics g) {
+
+        g.drawImage(Assets.BGIMAGE,0,0,getScreenWidth(),getScreenHeight(),null);
+
         mapView.setCenter(model.getFocus());
         mapView.render(getScreenWidth(),getScreenHeight(),g);
     }

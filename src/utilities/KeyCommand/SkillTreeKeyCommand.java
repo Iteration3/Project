@@ -25,7 +25,6 @@ public class SkillTreeKeyCommand implements KeyCommand {
         this.gsm = gsm;
     }
 
-
     @Override
     public void execute() {
         SkillTreeModel model = new SkillTreeModel(entity.getOccupation());

@@ -26,7 +26,6 @@ public class RunGame extends JFrame implements ActionListener {
     private Canvas canvas;
     private Timer timer;
 
-
     public static void main(String[] args){
         EventQueue.invokeLater(new Runnable() {
             @Override
