@@ -95,9 +95,7 @@ public class PlayStateController extends Controller {
         keyMap.put(KeyEvent.VK_T, openSkillTree);
 
         KeyCommand pause = new PauseKeyCommand(gsm);
-        keyMap.put(KeyEvent.VK_ESCAPE,pause)
-
-;
+        keyMap.put(KeyEvent.VK_ESCAPE,pause);
     }
 
 
