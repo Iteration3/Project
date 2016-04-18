@@ -38,7 +38,7 @@ public class StatsKeyCommand implements KeyCommand {
     @Override
     public void execute() {
         StatsModel model = new StatsModel(entity.getStatContainer());
-        View view = new StatsView(500,500,gsm.getCurrentView().getCanvas(),model, null);
+        View view = new StatsView(500,500,gsm.getCurrentCanvas(),model, null);
         Controller controller = new StatsViewController(model, gsm);
         State state = new State(view, controller);
         gsm.changeState(state);

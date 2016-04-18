@@ -201,7 +201,9 @@ public class MapView {
         g.setColor(Color.RED);
         g.fillRect(x-20,y-20,40,40);
 
+
         // BufferedImage image = temp.getImage();
         // g.drawImage(image,x - image.getWidth()/2,y - image.getHeight()/2,null);
     }
 }
+
