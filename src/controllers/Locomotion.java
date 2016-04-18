@@ -4,8 +4,12 @@ import models.Entity.Entity;
 import models.Map.Map;
 import models.Map.Terrain;
 import models.Map.Tile;
+import models.StateModel.MainMenuModel;
 import utilities.Direction.Direction;
 import utilities.Location.Location;
+import utilities.State.State;
+import views.MainMenuView;
+import views.View;
 
 import java.util.HashMap;
 
@@ -40,7 +44,7 @@ public abstract class Locomotion {
         if ( nextTile == null ) {
             System.out.println("Tile was null");
             HashMap<String, Double> livesMap = new HashMap<>();
-            livesMap.put("LIVES", -1d);
+            livesMap.put("CURRENT_LIVES", -1d);
             entity.modifyStats(livesMap);
             tileBlocked = true;
         } else if ( checkForEntities(nextTile) || checkForObstacles(nextTile) ) {

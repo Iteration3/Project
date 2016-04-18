@@ -43,7 +43,7 @@ public class Amphibious extends Locomotion {
         // Falling
         if ( entity.getDirection() == Direction.Down ) {
             HashMap<String, Double> livesMap = new HashMap<>();
-            livesMap.put("LIVES", -1d);
+            livesMap.put("CURRENT_LIVES", -1d);
             entity.modifyStats(livesMap);
         } else {
 
@@ -107,7 +107,7 @@ public class Amphibious extends Locomotion {
             Location location = entity.getLocation();
             if ( location.getHeight() < 0 ) {
                 HashMap<String, Double> livesMap = new HashMap<>();
-                livesMap.put("LIVES", -1d);
+                livesMap.put("CURRENT_LIVES", -1d);
                 entity.modifyStats(livesMap);
             }
 
