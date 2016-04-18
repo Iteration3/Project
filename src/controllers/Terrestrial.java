@@ -128,6 +128,7 @@ public class Terrestrial extends Locomotion {
 
             entity.setDirection(oldD);
         }
+
     }
 
 

@@ -93,9 +93,9 @@ public class PlayStateController extends Controller {
                 if (inAction) {
                     // do nothing
                 } else {
-//                    inAction = true;;
-//                    keyMap.get(e.getKeyCode()).execute();
-//                    inAction = false;
+                    inAction = true;;
+                    keyMap.get(e.getKeyCode()).execute();
+                    inAction = false;
                 }
                 wait = time;
             }else{
@@ -103,11 +103,13 @@ public class PlayStateController extends Controller {
             }
         }
 
+        /*
         if (keyMap.get(e.getKeyCode()) != null) {
             keyMap.get(e.getKeyCode()).execute();
         } else {
             System.out.println("Key mapping does not exist");
         }
+        */
     }
 
     public void updateModel() {
