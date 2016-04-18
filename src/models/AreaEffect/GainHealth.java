@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class GainHealth extends AreaEffect {
 
-    int health;
+    double health;
 
 
    public GainHealth(Location l, int h){

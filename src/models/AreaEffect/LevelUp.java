@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class LevelUp extends AreaEffect {
 
-    private int levels;
+    private double levels;
 
     public LevelUp(Location l, int lev){
         loc = l;
