@@ -6,10 +6,7 @@ import models.Map.Map;
 import models.StateModel.PlayStateModel;
 import utilities.Direction.Direction;
 import utilities.GameStateManager;
-import utilities.KeyCommand.KeyCommand;
-import utilities.KeyCommand.MovementKeyCommand;
-import utilities.KeyCommand.SkillKeyCommand;
-import utilities.KeyCommand.StatsKeyCommand;
+import utilities.KeyCommand.*;
 
 import java.awt.event.KeyEvent;
 
@@ -83,11 +80,14 @@ public class PlayStateController extends Controller {
 
 
 
-        moveNorth = new SkillKeyCommand(map, avatar);
+        moveNorth = new SkillKeyCommand(map, avatar); //as a note this is just reusing moveNorth to add it
         keyMap.put(KeyEvent.VK_F, moveNorth);
 
         moveNorth = new StatsKeyCommand(avatar, gsm);
         keyMap.put(KeyEvent.VK_K, moveNorth);
+
+        KeyCommand pause = new PauseKeyCommand(gsm);
+        keyMap.put(KeyEvent.VK_ESCAPE,pause)
 
 ;
     }
