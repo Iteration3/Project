@@ -30,7 +30,7 @@ public abstract class Entity implements Action {
      */
     //
     protected void setName(String name) {this.name = name;}
-    protected void setLocation(Location location) {this.location = location;}
+    public void setLocation(Location location) {this.location = location;}
     protected void setDirection(Direction direction) {this.direction = direction;}
     protected void setOccupation(Occupation occupation) {this.occupation = occupation;}
     protected void setStats(StatContainer stats) {this.stats = stats;}
