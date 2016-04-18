@@ -41,13 +41,6 @@ public class PlayStateModel{
 
         mapOperator.addNewEntityAt(avatar,new Location(43,4,2));
 
-        try {
-            String xml = new XmlGenerator().generateXml(mapOperator.getMap());
-            System.out.println(xml);
-            new XmlReader().getMapFromXmlString(xml);
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        }
 //        mapOperator.addNewEntityAt(pet,new Location(0,1,0));
 //        mapOperator.addNewEntityAt(npc, new Location(0,2,0));
 
