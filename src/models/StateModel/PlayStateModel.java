@@ -67,8 +67,8 @@ public class PlayStateModel{
 
         //mapOperator.addNewEntityAt(avatar,new Location(49,0,0));
 
-        FlowTile ft = new FlowTile(l,10,Direction.South,getMap());
-        mapOperator.addNewAreaEffect(ft,l);
+        //FlowTile ft = new FlowTile(l,10,Direction.South,getMap());
+        //mapOperator.addNewAreaEffect(ft,l);
 
         //mapOperator.addNewEntityAt(avatar,new Location(43,4,2));
 
