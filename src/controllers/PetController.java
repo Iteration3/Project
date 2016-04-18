@@ -56,46 +56,17 @@ public class PetController extends AIController {
 
 
         long nowTime = System.currentTimeMillis();
-        if (pet.getCurrentState() == Entity.States.WANDER && nowTime - lastTimer > wait) {
 
-            lastTimer = nowTime;
+        if(pet.getAvatarLocation() != pet.getLocation()){
 
-//            //TODO Sorry Austin..CANCER!!!!!!
-//            if (pet.getLocation().getRow() < avatarLocation.getRow()) {
-//
-//                double num = Math.random();
-//                if (num > 0.5)
-//                    petLoco.move(Direction.NorthEast);
-//                else if(num > 0.75)
-//                    petLoco.move(Direction.SouthWest);
-//                else
-//                    petLoco.move(Direction.NorthWest);
-//
-//            } else if (pet.getLocation().getRow() > avatarLocation.getRow()) {
-//
-//                double num = Math.random();
-//                if (num < 0.5)
-//                    petLoco.move(Direction.South);
-////                else if(num < 0.75)
-////                    petLoco.move(Direction.SouthEast);
-//                else
-//                    petLoco.move(Direction.SouthWest);
-//
-//            } else if (pet.getLocation().getCol() < avatarLocation.getCol()) {
-//                double num = Math.random();
-//                if (num < 0.5)
-//                    petLoco.move(Direction.NorthWest);
-//                else
-//                    petLoco.move(Direction.SouthWest);
-//
-//
-//            } else if (pet.getLocation().getCol() > avatarLocation.getCol()) {
-//                double num = Math.random();
-//                if (num < 0.5)
-//                    petLoco.move(Direction.NorthEast);
-//                else
-//                    petLoco.move(Direction.SouthEast);
-//            }
+            if(rand > 0.75){
+                System.out.println("Pet: " + pet.getLocation().getRow());
+//                petLoco.move(Direction.South);
+            }
+            else if(rand > 0.1){
+                System.out.println("North Pet: " + pet.getLocation().getRow());
+                petLoco.move(Direction.North);
+            }
         }
     }
 }
