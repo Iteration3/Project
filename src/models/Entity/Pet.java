@@ -21,6 +21,7 @@ public class Pet extends Entity {
         setOccupation(occupation);
         setStats(new PetStats(occupationModifier(), level));
         setInventory(new Inventory(12, 25));
+        setCurrentState(States.WANDER);
 //        setEquipment(new models.Equipment());
     }
 

@@ -28,6 +28,11 @@ public class PlayStateController extends Controller {
         map = model.getMap();
         keyCommand();
         inAction = false;
+
+        //register them under the GSM for model update
+        for(int i=0;i<model.getEntityControllers().size();i++) {
+            gsm.registerEntityController(model.getEntityControllers().get(i));
+        }
     }
 
     @Override

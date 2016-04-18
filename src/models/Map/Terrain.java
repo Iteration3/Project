@@ -24,7 +24,7 @@ public enum Terrain implements Saveable {
     ,Mountain(DrawTerrainImages.getMountainImage()){
         @Override
         public void moveTo(Locomotion locomotion) {
-            locomotion.moveToWater();
+            locomotion.moveToMountain();
         }
     }
     ,Water(DrawTerrainImages.getAirImage()){

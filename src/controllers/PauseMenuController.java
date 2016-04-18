@@ -46,16 +46,16 @@ public class PauseMenuController extends Controller {
         });
     }
 
-    @Override
-    public void updateModel() {
-
-    }
-
     private void statsStateTransition() {
         gsm.removeState();
         View view = gsm.getCurrentView();
         Controller controller = gsm.getCurrentController();
         State state = new State(view, controller);
         gsm.changeState(state);
+    }
+
+    @Override
+    public void updateModel() {
+
     }
 }

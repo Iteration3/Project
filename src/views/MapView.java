@@ -52,8 +52,6 @@ public class MapView {
 
         sight = MapSightView.basicArea(map,center,radius);
 
-
-
         heightRange = 10;
         rowRange = 15;
         colRange = 15;
