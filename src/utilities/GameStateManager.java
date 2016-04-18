@@ -76,7 +76,6 @@ public class GameStateManager {
         wait = timePerTick - elapsed;
 
         if(wait > 0 ) {
-            System.out.println(wait);
             getCurrentController().updateModel();
             for (int i = 0; i < currentNPCs.size(); i++) {
                 currentNPCs.get(i).act();
