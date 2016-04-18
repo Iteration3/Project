@@ -83,6 +83,10 @@ public class Inventory implements ItemContainer, Saveable {
         return false;
     }
 
+    public TakeableItem getItemByIndex(int index){
+        return items[index];
+    }
+
     public void addGold(int amount){
         goldAmount += amount;
         return;

@@ -16,6 +16,7 @@ import java.util.TimerTask;
 public class Trap extends AreaEffect {
 
     private boolean active;
+    private double test;
     private Timer timer = new Timer();
     public Trap(Location l){
         loc = l;
@@ -32,16 +33,26 @@ public class Trap extends AreaEffect {
             Map<String, Double> statChange = new HashMap<>();
             Map<String, Double> statChange2 = new HashMap<>();
             statChange.put("MOVEMENT", -100.0);
-            statChange2.put("MOVEMENT",100.0);
+            //statChange2.put("MOVEMENT",100.0);
             e.modifyStats(statChange);
             System.out.println("This is before forceToWait()");
             forceToWait();              //this should cause it to wait 5 seconds before executing this
-            System.out.println("This is after forceToWait()");
+            //System.out.println("This is after forceToWait()");
+            //System.out.println("test:"+test);
+            //statChange2.put("MOVEMENT",test);
             e.modifyStats(statChange2);
 
         }
 
         //disable();
+    }
+
+    private double changeStat(){
+       // Map<String, Double> statChange = new HashMap<>();
+        //statChange.put("MOVEMENT",100.0);
+        //e.modifyStats(statChange);
+        return 100.0;
+
     }
 
     public synchronized void forceToWait() {
@@ -51,16 +62,14 @@ public class Trap extends AreaEffect {
         TimerTask action = new TimerTask() {
             public void run() {
                 disable(); //as you said in the comments: abc is a static method
+                changeStat();
+                test = 100;
             }
 
 
         };
 
-        this.timer.schedule(action, 5000); //this starts the task
-    }
-
-    private void disable() {
-        active = false;
+        this.timer.schedule(action, 2000); //this starts the task
     }
 
     @Override
@@ -82,5 +91,9 @@ public class Trap extends AreaEffect {
         Element locationElement = (Element) element.getElementsByTagName("location").item(0);
         loc = Location.fromXmlElement(locationElement);
         active = Boolean.parseBoolean(element.getAttribute("active"));
+    }
+    private void disable(){
+        active = false;
+        System.out.println("Is disabled biiiitch");
     }
 }

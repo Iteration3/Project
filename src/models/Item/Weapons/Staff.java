@@ -26,4 +26,3 @@ public class Staff extends Weapon{
 
     protected String getXmlTagName() { return "staff-weapon"; }
 }
-

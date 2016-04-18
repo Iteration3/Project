@@ -25,11 +25,6 @@ public class Trinket extends Armor {
         return new Trinket(id, name, rating);
     }
 
-    @Override
-    public void initWithXmlElement(Element element) {
-
-    }
-
     public Trinket( int id,  String name, double rating){
         super(Assets.trinket, id,name ,rating);
     }

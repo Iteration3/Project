@@ -1,16 +1,15 @@
 package models.Item.Armors;
 
+import models.Entity.Entity;
 import models.Item.EquipableItem;
 
-import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import models.Entity.Entity;
+
+import models.Item.Requirement;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import models.Item.Requirement;
-import utilities.Location.Location;
 
 
 /**

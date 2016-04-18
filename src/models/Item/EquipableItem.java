@@ -32,7 +32,7 @@ public abstract class EquipableItem extends TakeableItem {
     public abstract void unapplyRating(Entity entity);
 
     public void use(Entity entity){
-       entity.equip(this);
+        entity.equip(this);
     }
 
     public double getRating(){

@@ -17,6 +17,8 @@ import utilities.SaveLoad.Saveable;
 import java.awt.image.BufferedImage;
 
 abstract class InteractiveItem extends Item implements Saveable {
+
+
     /* Attributes */
     protected Requirement requirement;
 

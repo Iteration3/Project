@@ -3,6 +3,8 @@ package models.AreaEffect;
 import models.Entity.Entity;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import models.Map.Map;
+import utilities.Direction.Direction;
 import utilities.Location.Location;
 
 /**
@@ -11,10 +13,14 @@ import utilities.Location.Location;
 public class FlowTile extends AreaEffect {
 
     private int flowRate;
+    private Direction d;
+    private Map map; //i fucking hate this
 
-    public FlowTile(Location l, int rate){
+    public FlowTile(Location l, int rate, Direction di, Map m){
         loc = l;
         flowRate = rate;
+        d = di;
+        map = m;
     }
 
     public void execute(Entity e){
@@ -23,8 +29,13 @@ public class FlowTile extends AreaEffect {
 
     private void flow(Entity e){
         //yeah I should probably figure this out.
-        Location l = getMoveLocation();
-        e.changeLocation(l);
+        //Location l = getMoveLocation();
+        //e.changeLocation(l);
+        e.changeDirection(d);
+        e.changeLocation(d.getNextLocation(loc));
+        //map.getTileAt(loc).removeEntity();
+        map.removeEntityAt(loc);
+
     }
 
     private Location getMoveLocation(){
@@ -40,12 +51,13 @@ public class FlowTile extends AreaEffect {
     public Element generateXml(Document doc) {
         Element element = super.generateDefaultXml(doc, "flow-tile-area-effect");
         element.setAttribute("flowRate", String.valueOf(flowRate));
+        element.setAttribute("direction", d.toString());
         return element;
     }
 
     @Override
-    protected AreaEffect clone() {
-        return new FlowTile(loc,  flowRate);
+    protected AreaEffect clone(){
+        return new FlowTile(loc,  flowRate, d, map);
     }
 
     @Override
@@ -53,5 +65,6 @@ public class FlowTile extends AreaEffect {
         Element location = (Element) element.getElementsByTagName("location").item(0);
         loc = Location.fromXmlElement(location);
         flowRate = Integer.parseInt(element.getAttribute("flowRate"));
+        d = Direction.valueOf(element.getAttribute("direction"));
     }
 }

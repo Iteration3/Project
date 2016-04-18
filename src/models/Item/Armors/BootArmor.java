@@ -26,7 +26,6 @@ public class BootArmor extends Armor{
         return null;
     }
 
-
     public BootArmor( int id, String name, double rating){
         super(Assets.bootArmor , id, name ,rating);
     }

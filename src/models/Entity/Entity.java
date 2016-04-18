@@ -122,14 +122,14 @@ public abstract class Entity implements Action, Saveable {
     }
 
     /*
-        models.Equipment specific functionality
-     */
+          models.Equipment specific functionality
+       */
     //
     public void equip(EquipableItem item) {
-        item.equip(this, equipment, inventory);
+        item.equip(this, equipment , inventory);
     }
     public void unequip(EquipableItem item) {
-        item.unequip(this, equipment, inventory);
+        item.unequip(this, equipment , inventory);
     }
 
     public Equipment getEquipment(){

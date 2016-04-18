@@ -3,6 +3,7 @@ package models.AreaEffect;
 import models.Entity.Entity;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import models.Map.Map;
 import utilities.Location.Location;
 
 /**
@@ -10,10 +11,12 @@ import utilities.Location.Location;
  */
 public class Teleport extends AreaEffect {
     Location toLoc;
+    Map map;
 
-    public Teleport(Location from,Location to){
+    public Teleport(Location from,Location to, Map m){
         loc = from;
         toLoc = to;
+        map = m;
     }
 
     public void execute(Entity e){
@@ -22,6 +25,8 @@ public class Teleport extends AreaEffect {
 
     private void teleportEntity(Entity e){
         e.changeLocation(toLoc);
+       // map.getTileAt(loc).removeEntity();
+        map.removeEntityAt(loc);
     }
 
     @Override
@@ -34,7 +39,7 @@ public class Teleport extends AreaEffect {
 
     @Override
     protected AreaEffect clone() {
-        return new Teleport(loc, toLoc);
+        return new Teleport(loc, toLoc, map);
     }
 
     @Override

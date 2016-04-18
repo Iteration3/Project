@@ -22,6 +22,7 @@ public class PauseMenuController extends Controller {
         currentPoint = 0;
     }
 
+
     @Override
     public void loadKeyCommand() {
         keyMap.put(KeyEvent.VK_ESCAPE, new KeyCommand() {

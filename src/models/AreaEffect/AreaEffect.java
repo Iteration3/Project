@@ -3,6 +3,7 @@ package models.AreaEffect;
 import models.Entity.Entity;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import utilities.Direction.Direction;
 import utilities.Location.Location;
 import utilities.SaveLoad.Saveable;
 
@@ -34,12 +35,12 @@ public abstract class AreaEffect implements Saveable {
 
     private static HashMap<String, AreaEffect> prototypes = new HashMap<>();
     static {
-        prototypes.put("flow-tile-area-effect", new FlowTile(null, 0));
+        prototypes.put("flow-tile-area-effect", new FlowTile(null, 0, Direction.Down, null));
         prototypes.put("gain-health-area-effect", new GainHealth(null, 0));
         prototypes.put("instant-death-area-effect", new InstantDeath(null));
         prototypes.put("level-up-area-effect", new LevelUp(null, 0));
         prototypes.put("lose-health-area-effect", new LoseHealth(null, 0));
-        prototypes.put("teleport-area-effect", new Teleport(null, null));
+        prototypes.put("teleport-area-effect", new Teleport(null, null, null));
         prototypes.put("trap-area-effect", new Trap(null));
     }
 

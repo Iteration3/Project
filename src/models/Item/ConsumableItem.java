@@ -24,7 +24,6 @@ public class ConsumableItem extends TakeableItem {
         super();
     }
 
-
     public ConsumableItem(String statName , double modifier , BufferedImage image , int id, String name){
         super(image, id, name);
         statModifier = new LinkedHashMap<>();
@@ -34,6 +33,7 @@ public class ConsumableItem extends TakeableItem {
     /* Methods */
     public void use(Entity entity){
         entity.modifyStats(this.statModifier);
+        entity.destroyItem(this.id);
     }
 
     @Override

@@ -3,9 +3,13 @@ package controllers;
 
 import models.Entity.Avatar;
 import models.Map.Map;
+import models.StateModel.MainMenuModel;
 import models.StateModel.PlayStateModel;
 import utilities.GameStateManager;
 import utilities.KeyCommand.*;
+import utilities.State.State;
+import views.MainMenuView;
+import views.View;
 
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
@@ -97,6 +101,18 @@ public class PlayStateController extends Controller {
     }
 
     public void updateModel() {
+        // If Entity has no lives remaining, transition to death menu
+        double lives = avatar.getStatContainer().value("CURRENT_LIVES");
+        if (lives <= 0) { deathStateTransition(); }
+    }
+
+    private void deathStateTransition() {
+        MainMenuModel model = new MainMenuModel();
+        View view = new MainMenuView("GAME OVER", 500, 500, gsm.getCurrentView().getCanvas(), model);
+        Controller controller = new MainMenuViewController(model, gsm);
+        State state = new State(view, controller);
+        gsm.changeState(state);
 
     }
+
 }

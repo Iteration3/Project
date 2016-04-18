@@ -127,6 +127,9 @@ public class Map implements Saveable {
         }
         return m;
     }
+    public void removeEntityAt(Location loc){
+        tiles.get(loc).removeEntity();
+    }
 
     public boolean groundTileAbove(Location location) {
         Location tmpLocation = location.add(0, 0, 1);

@@ -4,8 +4,12 @@ import models.Entity.Entity;
 import models.Map.Map;
 import models.Map.Terrain;
 import models.Map.Tile;
+import models.StateModel.MainMenuModel;
 import utilities.Direction.Direction;
 import utilities.Location.Location;
+import utilities.State.State;
+import views.MainMenuView;
+import views.View;
 
 import java.util.HashMap;
 
@@ -38,13 +42,14 @@ public abstract class Locomotion {
 
         // If Entity attempts to move out of bounds, remove a life and prevent movement
         if ( nextTile == null ) {
+            System.out.println("Tile was null");
             HashMap<String, Double> livesMap = new HashMap<>();
-            livesMap.put("LIVES", -1d);
+            livesMap.put("CURRENT_LIVES", -1d);
             entity.modifyStats(livesMap);
             tileBlocked = true;
+        } else if ( checkForEntities(nextTile) || checkForObstacles(nextTile) ) {
+            tileBlocked = true;
         }
-
-        if ( checkForEntities(nextTile) || checkForObstacles(nextTile) ) { tileBlocked = true; }
 
         if (!tileBlocked) {
             Terrain terrain = nextTile.getTerrain();
@@ -53,8 +58,10 @@ public abstract class Locomotion {
 
         updateMap();
 
-        //this might be wrong
-        if(checkForAreaEffects(nextTile)){
+        // Check for AreaEffects
+        Location finalLocation = entity.getLocation();
+        Tile finalTile = map.getTileAt(finalLocation);
+        if(checkForAreaEffects(finalTile)){
             System.out.println("AreaEffect should take effect");
             nextTile.activateAreaEffect(entity);
         }

@@ -23,7 +23,6 @@ public class HeadArmor extends Armor {
     public Item clone() {
         return new HeadArmor(id, name, rating);
     }
-
     public HeadArmor(int id, String name, double rating){
         super(Assets.headArmor, id,  name ,rating);
     }

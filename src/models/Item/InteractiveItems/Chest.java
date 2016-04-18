@@ -15,6 +15,7 @@ import org.w3c.dom.Element;
 import java.awt.image.BufferedImage;
 
 public class Chest extends InteractiveItem {
+
     /* Attributes */
     private Inventory inventory;
 
@@ -54,7 +55,7 @@ public class Chest extends InteractiveItem {
             entity.addItem(inventory.removeItemByIndex(i));
         }
 
-        entity.destroyItem(0); // Chest Key
+        entity.destroyItem(32); // Chest Key
     }
 
     @Override

@@ -10,13 +10,19 @@ import java.util.HashMap;
 import views.Assets;
 
 
+import views.Assets;
+
+import java.util.Random;
+
+
 /**
- * Implemented by Peter Camejo
+ * This factory is suppose to be capable of generating every item found in the game.
  */
 public class ItemFactory {
     /* Attributes */
-    private static final int CHEST_KEY = 0;
-
+    /*
+     * Basic Equipment is the lowest tier equipment and has no item level.
+     */
     private static final int BASIC_ONEHAND = 1;
     private static final int BASIC_TWOHAND = 2;
     private static final int BASIC_FIST = 3;
@@ -29,6 +35,9 @@ public class ItemFactory {
     private static final int BASIC_BOOT_ARMOR = 10;
     private static final int BASIC_TRINKET = 11;
 
+    /*
+     * Powerful Equipment is the second and highest tier equipment and requires a level of 5 to equip.
+     */
     private static final int POWERFUL_ONEHAND = 12;
     private static final int POWERFUL_TWOHAND = 13;
     private static final int POWERFUL_FIST = 14;
@@ -41,17 +50,15 @@ public class ItemFactory {
     private static final int POWERFUL_GLOVE_ARMOR = 20;
     private static final int POWERFUL_BOOT_ARMOR = 21;
     private static final int POWERFUL_TRINKET = 22;
-
+    /*
+     * Potions are consumable from the inventory and buff the stat in their name.
+     */
     private static final int HEALTH_POTION = 23;
     private static final int MANA_POTION = 24;
     private static final int STRENGTH_POTION = 25;
     private static final int AGILITY_POTION = 26;
     private static final int INTELLECT_POTION = 27;
     private static final int EXPERIENCE_POTION = 28;
-
-    private static final int ITEM_CHEST = 29;
-    private static final int DOOR = 30;
-    private static final int DOOR_KEY = 31;
 
     private static final HashMap<String, Item> itemPrototypes = new HashMap<>();
 
@@ -74,6 +81,17 @@ public class ItemFactory {
 
     /* Constructor */
     public ItemFactory() { };
+
+    /*
+     * Item chests come with 3 random items in them.
+     * Doors are supposed to dissappear/become passable when interacted with
+     * The Keys are required to interact with them.
+     */
+    private static final int ITEM_CHEST = 29;
+    private static final int DOOR = 30;
+    private static final int DOOR_KEY = 31;
+    private static final int CHEST_KEY = 32;
+
 
     /** Methods **/
     /* Weapons */
@@ -117,4 +135,43 @@ public class ItemFactory {
         item.initWithXmlElement(element);
         return item;
     }
+
+    /* Interactive Items */
+    public static Chest getItemChest(){
+        Random rand = new Random();
+        TakeableItem[] loot = new TakeableItem[3];
+        TakeableItem tempItem = null;
+
+        //Generate random loot
+        for(int i = 0 ; i < 3 ; i++){
+            switch(rand.nextInt(8)){
+                case 0 : tempItem = getHealthPotion();
+                    break;
+                case 1 : tempItem = getManaPotion();
+                    break;
+                case 2 : tempItem = getStrengthPotion();
+                    break;
+                case 3 :  tempItem = getIntellectPotion();
+                    break;
+                case 4 : tempItem = getAgilityPotion();
+                    break;
+                case 5 : tempItem = getExperiencePotion();
+                    break;
+                case 6 : tempItem = getPowerfulChestArmor();
+                    break;
+                case 7 : tempItem = getPowerfulLegArmor();
+                    break;
+                case 8 : tempItem = getPowerfulTrinket();
+                    break;
+            }
+            loot[i] = tempItem;
+        }
+
+        return new Chest(Assets.itemChest , ITEM_CHEST , "Item Chest" , getChestKey() , loot , rand.nextInt(51));
+    }
+
+    /* Misc Items */
+    public static MiscItem getChestKey(){return new MiscItem(Assets.chestKey , CHEST_KEY , "Item Chest Key");}
+    public static MiscItem getDoorKey(){ return new MiscItem(Assets.doorKey  , DOOR_KEY , "Door Key");}
+
 }
