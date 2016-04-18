@@ -37,13 +37,15 @@ public class Assets {
     public static BufferedImage grassTerrain;
     public static BufferedImage mountainTerrain;
     public static BufferedImage airTerrain;
-
+    
     /* Interactive Item */
     public static BufferedImage itemChest;
 
     /* Misc Items */
     public static BufferedImage chestKey;
     public static BufferedImage doorKey;
+
+    public static BufferedImage BGIMAGE;
 
 
     /* Methods */
@@ -108,6 +110,6 @@ public class Assets {
         airTerrain = DrawTerrainImages.getAirImage();
         */
 
-
+        BGIMAGE = new ImageLoader().loadImage("/BackGround.jpg");
     }
 }

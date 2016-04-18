@@ -32,7 +32,7 @@ public class Amphibious extends Locomotion {
             damageMap.put("CURRENT_LIFE", -speed);
             entity.modifyStats(damageMap);
         }
-        updateMap();
+        updateEntityLocation();
     }
 
     // Entities cannot move to Mountain
@@ -82,7 +82,7 @@ public class Amphibious extends Locomotion {
     // No additional behavior if falling
     @Override
     public void moveToWater() {
-        updateMap();
+        updateEntityLocation();
     }
 
     // If the Amphibious Entity moves to an Air tile it falls until it reaches a non-air terrain
@@ -100,7 +100,7 @@ public class Amphibious extends Locomotion {
         } else {
             Direction oldD = entity.getDirection();
 
-            updateMap();
+            updateEntityLocation();
             entity.setDirection(Direction.Down);
 
             // If Height is negative, the Entity is out of bounds and dies

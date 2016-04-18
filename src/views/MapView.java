@@ -37,13 +37,12 @@ public class MapView {
     public MapView(Map map) {
         sight = new HashMap<>();
         this.map = map;
-        radius = 5;
+        radius = 7;
     }
 
     public void setCenter(Location pos){
         this.center = pos;
     }
-
 
     protected void render(int width, int height, Graphics g) {
         this.height = height;
@@ -138,9 +137,6 @@ public class MapView {
             return;
         }
 
-        if( tile.getTerrain() == Terrain.Air && !loc.equals(center)){
-            return;
-        }
 
         Location temp = new Location(loc.getRow(),loc.getCol(),0);
         if(!sight.containsKey(temp)){
@@ -153,13 +149,11 @@ public class MapView {
         float[] offsets = new float[4];
         RescaleOp rop = new RescaleOp(scales, offsets, null);
 
-        renderTerrain(x,y,tile,g,rop);
-
-
-
+        if(tile.getTerrain() != Terrain.Air) {
+            renderTerrain(x, y, tile, g, rop);
+        }
 
         renderElements(x,y,tile,g);
-
     }
 
     private void renderTerrain(int x,int y, Tile tile, Graphics2D g,  RescaleOp rop){

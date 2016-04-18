@@ -13,6 +13,8 @@ import java.util.ArrayList;
  */
 public class RadialPlanarSkillSignal extends RadialSkill {
 
+
+
     public RadialPlanarSkillSignal(Map map, Entity avatar, Skill skill) {
         super(map, avatar, skill);
     }
@@ -50,10 +52,11 @@ public class RadialPlanarSkillSignal extends RadialSkill {
             if (map.isOutOfBound(locationToAttack)) {
                 newList.remove(i);
             }
-            else if (map.groundTileAbove(locationToAttack)) {
-                //newList.remove(i);
+            else if (map.getTileAt(locationToAttack).isMountain()) {
+                newList.remove(i);
             }
         }
+
 
         return newList;
     }

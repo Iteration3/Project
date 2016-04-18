@@ -27,11 +27,8 @@ public class StatsViewController extends Controller {
     }
 
 
-
-
     @Override
     public void loadKeyCommand() {
-
         keyMap.put(KeyEvent.VK_K, new KeyCommand(){
             @Override
             public void execute() {
@@ -43,9 +40,12 @@ public class StatsViewController extends Controller {
 
     private void statsStateTransition() {
         gsm.removeState();
+
         View view = gsm.getCurrentView();
         Controller controller = gsm.getCurrentController();
         State state = new State(view, controller);
+        gsm.removeState();
+
         gsm.changeState(state);
     }
 
