@@ -2,11 +2,15 @@ package controllers;
 
 
 import models.Entity.Avatar;
+import models.Item.Item;
+import models.Item.TakeableItem;
 import models.Map.Map;
+import models.Map.Tile;
 import models.StateModel.MainMenuModel;
 import models.StateModel.PlayStateModel;
 import utilities.GameStateManager;
 import utilities.KeyCommand.*;
+import utilities.Location.Location;
 import utilities.State.State;
 import views.MainMenuView;
 import views.View;
@@ -26,7 +30,6 @@ public class PlayStateController extends Controller {
     private Map map;
     boolean inAction;
 
-    long action = 0;
 
     public PlayStateController(PlayStateModel model, GameStateManager gsm, Avatar avatar){
         super(gsm);
@@ -58,17 +61,34 @@ public class PlayStateController extends Controller {
         KeyCommand openSkillTree = new SkillTreeKeyCommand(avatar, gsm);
         keyMap.put(KeyEvent.VK_T, openSkillTree);
 
-
         KeyCommand pause = new PauseKeyCommand(gsm);
         keyMap.put(KeyEvent.VK_ESCAPE,pause);
 
         KeyCommand config = new ConfigKeyCommand(gsm, avatar);
         keyMap.put(KeyEvent.VK_P, config);
 
-        KeyCommand inventory = new InventoryKeyCommand(gsm, avatar);
+        KeyCommand inventory = new InventoryKeyCommand(gsm, avatar, map);
         keyMap.put(KeyEvent.VK_I, inventory);
 
+        keyMap.put(KeyEvent.VK_G, new KeyCommand() {
+            @Override
+            public void execute() {
 
+                if (avatar.getInventory().isFull()){
+                    return;
+                }
+                Location loc = avatar.getLocation();
+                Tile tile = map.getTileAt(loc);
+                if(tile != null){
+                    Item item =tile.getItem();
+
+                    if(item instanceof TakeableItem){
+                        tile.removeItem();
+                        avatar.addItem((TakeableItem)item);
+                    }
+                }
+            }
+        });
     }
 
     private void loadKeyMap(HashMap<Integer,KeyCommand> newKeyMap){

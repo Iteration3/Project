@@ -1,5 +1,6 @@
 package models.Map;
 
+import models.Entity.Entity;
 import utilities.Geometry.Hexagon;
 import utilities.Location.Location;
 import views.DrawTerrainImages;
@@ -83,6 +84,7 @@ public class Map {
     public void removeEntityAt(Location loc){
         tiles.get(loc).removeEntity();
     }
+    public void addEntityAt(Location loc,Entity e){tiles.get(loc).addEntity(e);}
 
     public boolean groundTileAbove(Location location) {
         Location tmpLocation = location.add(0,0,1);

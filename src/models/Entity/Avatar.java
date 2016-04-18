@@ -5,10 +5,8 @@ import controllers.Amphibious;
 import controllers.Arial;
 import controllers.Locomotion;
 
-import models.Equipment.Equipment;
-
 import controllers.Terrestrial;
-
+import models.Equipment.Equipment;
 import models.Occupation.*;
 import models.StatContainer.*;
 import models.Inventory.*;

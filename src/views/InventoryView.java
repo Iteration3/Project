@@ -18,7 +18,8 @@ public class InventoryView extends View{
     private InventoryViewModel model;
 
     public InventoryView(int width, int height, Canvas canvas, InventoryViewModel model){
-        super(width,height , canvas);
+        super(width,height, canvas);
+        this.model = model;
     }
 
     @Override
@@ -27,6 +28,7 @@ public class InventoryView extends View{
         Graphics2D g2 = image.createGraphics();
 
         renderTitle(g2);
+        renderSlots(g2);
 
         g.drawImage(image,(int)(getScreenWidth()*0.2),(int)( getScreenHeight()*0.2),(int)( getScreenWidth()*0.6),(int)( getScreenHeight()*0.6),null);
 
@@ -45,7 +47,6 @@ public class InventoryView extends View{
 
         g.setColor(Color.WHITE);
         g.drawString(TITLE, x, y);
-
     }
 
     private void renderSlots(Graphics g){
@@ -53,25 +54,48 @@ public class InventoryView extends View{
         g.setFont(titleFont);
         FontMetrics fm = g.getFontMetrics();
 
-        Color selectedColor = Color.WHITE;
+        Color selectedColor = Color.YELLOW;
         Color regularColor = Color.WHITE;
         g.setColor(regularColor);
 
-        int xpos = 50;
-        int ypos = 50;
-        for(int  i = 0 ; i < 22 ; i++){
-            if(model.getCurrentIndex() == i){
+
+
+        int Xinc = (int)(getScreenWidth()*0.16);
+        int Yinc = (int)(getScreenHeight()*0.18);
+
+        int blockW = (int)(getScreenWidth()*0.14);
+        int blockH = (int)(getScreenHeight()*0.16);
+
+        int size = model.getInventorySize();
+
+        int xStart = (int)(getScreenWidth()*0.1);
+        int yStart = (int)(getScreenHeight()*0.2);
+
+        int xpos = xStart;
+        int ypos = yStart;
+
+        for(int  i = 0 ; i < size ; i++) {
+
+            if (model.getCurrentIndex() == i) {
                 g.setColor(selectedColor);
-                g.fillRect(xpos++ , ypos , 10 ,10);
-            }else{
+                g.fillRect(xpos, ypos, blockW, blockH);
+            } else {
                 g.setColor(regularColor);
-                g.fillRect(xpos++ , ypos , 10 , 10);
-
+                g.fillRect(xpos, ypos, blockW, blockH);
             }
-            g.drawImage(model.getItemImageAt(i) , 0 , 0 , 50 , 50 , null );
+
+            BufferedImage image = model.getItemImageAt(i);
+
+            if (image != null) {
+                g.drawImage(model.getItemImageAt(i), xpos, ypos, blockW, blockH, null);
+            }
+            xpos += Xinc;
+            if(i%5 == 4){
+                xpos = xStart;
+                ypos += Yinc
+                ;
+            }
         }
-
-
-
     }
+
 }

@@ -2,19 +2,17 @@ package models.Map.MapEditor;
 
 
 import models.AreaEffect.AreaEffect;
+import models.Decal.*;
 import models.Entity.Entity;
+import models.Item.Item;
+import models.Item.TakeableItem;
 import models.Map.*;
 import utilities.Load_Save.LoadMap;
 import utilities.Location.Location;
 import utilities.Observer.entityObserver;
-import views.DrawTerrainImages;
 import views.MapView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Random;
 
 /**
  * Created by jcvarela on 4/15/2016.
@@ -26,7 +24,7 @@ public class MapOperator {
     private Location startLocation;
 
     public MapOperator(int maxRowSize, int maxColSize, int maxHeightSize){
-       map = LoadMap.loadMap("res/Map/Map.txt");
+        map = LoadMap.loadMap("res/Map/Map.txt");
         initMap();
         this.observers = new ArrayList<>();
         this.startLocation = new Location(44,0,0);
@@ -81,10 +79,7 @@ public class MapOperator {
         }
     }
 
-
-
     public MapView getMapView(){
-
         return new MapView(map);
     }
 
@@ -102,6 +97,8 @@ public class MapOperator {
         Entity entity = eo.getEntity();
         double livesRemaining = entity.getLives();
         if (livesRemaining > 0) {
+            Location oldLocation = entity.getLocation();
+            map.removeEntityAt(oldLocation);
             entity.changeLocation(startLocation);
             Tile startTile = map.getTileAt(startLocation);
             startTile.addEntity(entity);
@@ -109,6 +106,48 @@ public class MapOperator {
             Location location = entity.getLocation();
             map.removeEntityAt(location);
         }
+    }
+
+
+    public void addItemAt(TakeableItem item,Location loc){
+        Tile tile=map.getTileAt(loc);
+        if(tile != null){
+            tile.addItem(item);
+        }
+    }
+    public Item takeItemAt(Location loc){
+        Tile tile = map.getTileAt(loc);
+        if(tile != null){
+            Item item = tile.getItem();
+            tile.removeItem();
+            return item;
+        }
+        return null;
+    }
+
+    public void addDecalForTakeDamage(Location location) {
+        Decal decal = new TakeDamageDecal();
+        map.getTileAt(location).addDecal(decal);
+    }
+
+    public void addDecalForInstantDeath(Location location) {
+        Decal decal = new InstantDeathDecal();
+        map.getTileAt(location).addDecal(decal);
+    }
+
+    public void addDecalForTeleport(Location location) {
+        Decal decal = new TeleportDecal();
+        map.getTileAt(location).addDecal(decal);
+    }
+
+    public void addDecalForLevelUp(Location location) {
+        Decal decal = new LevelUpDecal();
+        map.getTileAt(location).addDecal(decal);
+    }
+
+    public void addDecalForGainHealth(Location location) {
+        Decal decal = new GainHealthDecal();
+        map.getTileAt(location).addDecal(decal);
     }
 
 }

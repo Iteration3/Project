@@ -15,7 +15,7 @@ import java.awt.image.BufferedImage;
 public class HeadArmor extends Armor{
     /*Constructors*/
     public HeadArmor(){
-        super();
+        super(Assets.headArmor,1,"Head Armor",2,1);
     }
 
     public HeadArmor(int id, String name, double rating){

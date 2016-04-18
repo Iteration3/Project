@@ -1,8 +1,10 @@
 package views;
 
 
+import models.AreaEffect.AreaEffect;
 import models.Decal.Decal;
 import models.Entity.Entity;
+import models.Item.Item;
 import models.Map.Map;
 import models.Map.Terrain;
 import models.Map.Tile;
@@ -50,7 +52,7 @@ public class MapView {
 
         sight = MapSightView.basicArea(map,center,radius);
 
-        heightRange = 10;
+        heightRange = 20;
         rowRange = 15;
         colRange = 15;
 
@@ -137,7 +139,6 @@ public class MapView {
             return;
         }
 
-
         Location temp = new Location(loc.getRow(),loc.getCol(),0);
         if(!sight.containsKey(temp)){
             return;
@@ -153,8 +154,42 @@ public class MapView {
             renderTerrain(x, y, tile, g, rop);
         }
 
-        renderElements(x,y,tile,g);
+        if(value > 0.2f) {
+            renderElements(x, y,tile, g,rop);
+        }
     }
+
+    private void renderElements(int x, int y, Tile tile, Graphics2D g, RescaleOp rop){
+        BufferedImage image;
+
+        //draw decal
+        Decal decal = tile.getDecal();
+        if (decal != null) {
+            image = decal.getBufferedImage();
+            g.drawImage(image,x - image.getWidth()/2,y - image.getHeight()/2,null);
+        }
+
+        //draw AreaEffect
+        AreaEffect areaEffect = tile.getAreaEffect();
+        if(areaEffect != null){
+            //TODO: MAT PUT STUFF HERE
+        }
+
+        //draw Item
+        Item item = tile.getItem();
+        if(item != null){
+            image = item.getImage();
+            g.drawImage(image,x - image.getWidth()/2,y - image.getHeight()/2,null);
+        }
+
+        //draw entity
+        Entity temp = tile.getEntity();
+        if(temp != null){
+           Image im = temp.getImage();
+            g.drawImage(im,x - im.getWidth(null)/2,y - im.getHeight(null)/2,null);
+        }
+    }
+
 
     private void renderTerrain(int x,int y, Tile tile, Graphics2D g,  RescaleOp rop){
         Terrain temp = tile.getTerrain();
@@ -173,28 +208,12 @@ public class MapView {
     }
 
 
-
-    private void renderElements(int x, int y, Tile tile, Graphics2D g){
-        Entity temp = tile.getEntity();
-        if(temp == null){
-            return;
-        }
-
-
-         Image image = temp.getImage();
-         g.drawImage(image,x - image.getWidth(null)/2,y - image.getHeight(null)/2,null);
-    }
-
-
-
-
     private void renderTerrain(int x, int y, Tile tile, Graphics2D g){
         Terrain temp = tile.getTerrain();
         Decal decal = tile.getDecal();
         if(temp == null) {
             return;
         }
-
 
         if (decal != null) {
             BufferedImage image = decal.getBufferedImage();

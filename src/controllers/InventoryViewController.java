@@ -26,28 +26,28 @@ public class InventoryViewController extends Controller{
     @Override
     public void loadKeyCommand() {
 
-        keyMap.put(KeyEvent.VK_NUMPAD8, new KeyCommand(){
+        keyMap.put(KeyEvent.VK_UP, new KeyCommand(){
             @Override
             public void execute() {
                 model.up();
             }
         });
 
-        keyMap.put(KeyEvent.VK_NUMPAD4, new KeyCommand() {
+        keyMap.put(KeyEvent.VK_LEFT, new KeyCommand() {
             @Override
             public void execute() {
                 model.left();
             }
         });
 
-        keyMap.put(KeyEvent.VK_NUMPAD6, new KeyCommand(){
+        keyMap.put(KeyEvent.VK_RIGHT, new KeyCommand(){
             @Override
             public void execute() {
                 model.right();
             }
         });
 
-        keyMap.put(KeyEvent.VK_NUMPAD2, new KeyCommand() {
+        keyMap.put(KeyEvent.VK_DOWN, new KeyCommand() {
             @Override
             public void execute() {
                 model.down();
@@ -69,6 +69,12 @@ public class InventoryViewController extends Controller{
             @Override
             public void execute() {
                 gameStateTransition();
+            }
+        });
+        keyMap.put(KeyEvent.VK_D, new KeyCommand() {
+            @Override
+            public void execute() {
+                model.dropItem();
             }
         });
     }

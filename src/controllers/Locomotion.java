@@ -30,7 +30,7 @@ public abstract class Locomotion{
     // Moves Entity one tile forward
     public void move(Direction direction) {
 
-        boolean tileBlocked = false;
+          boolean tileBlocked = false;
 
         Location currentLocation = entity.getLocation();
         Tile oldTile = map.getTileAt(currentLocation);
