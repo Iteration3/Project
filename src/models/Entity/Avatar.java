@@ -1,6 +1,7 @@
 package models.Entity;
 
 
+import AI.AIController;
 import controllers.Amphibious;
 import controllers.Arial;
 import controllers.Locomotion;
@@ -46,6 +47,13 @@ public class Avatar extends Entity {
     public Image getImage(){
         Image image = new ImageIcon("res/fireball.png").getImage();
         return image;
+    }
+
+    public boolean isAvatar() { return true; }
+
+    @Override
+    public AIController createNewController(Map map) {
+        return null;
     }
 
     public void setKeyCommand(Map map){

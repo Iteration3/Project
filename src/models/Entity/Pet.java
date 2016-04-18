@@ -1,8 +1,10 @@
 package models.Entity;
 
+import AI.AIController;
+import controllers.PetController;
 import models.Inventory.Inventory;
 import models.Occupation.*;
-import models.StatContainer.*;
+import models.Map.Map;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import models.StatContainer.PetStats;
@@ -23,6 +25,11 @@ public class Pet extends Entity {
         setInventory(new Inventory(12, 25));
         setCurrentState(States.WANDER);
 //        setEquipment(new models.Equipment());
+    }
+
+    @Override
+    public AIController createNewController(Map map) {
+        return new PetController(this, map);
     }
 
     @Override

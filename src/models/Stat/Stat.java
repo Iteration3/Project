@@ -33,4 +33,8 @@ public abstract class Stat implements Saveable {
         s.value = Double.parseDouble(element.getTextContent());
         return s;
     }
+
+    public void set(double value) {
+        this.value = value;
+    }
 }

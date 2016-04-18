@@ -1,6 +1,9 @@
 package models.Entity;
 
 
+import AI.AIController;
+import controllers.NPCController;
+import models.Map.Map;
 import models.Occupation.*;
 import models.StatContainer.*;
 import models.Inventory.*;
@@ -26,6 +29,12 @@ public class NPC extends Entity {
     public Element generateXml(Document doc) {
         return super.generateXml(doc, "npc");
     }
+
+    @Override
+    public AIController createNewController(Map map) {
+        return new NPCController(this, map);
+    }
+
     public Image getImage() {
         System.out.println("I am drawing the entity");
         Image image = new ImageIcon("res/twoHand.png").getImage();

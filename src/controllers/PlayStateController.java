@@ -52,8 +52,7 @@ public class PlayStateController extends Controller {
         KeyCommand openSkillTree = new SkillTreeKeyCommand(avatar, gsm);
         keyMap.put(KeyEvent.VK_T, openSkillTree);
 
-
-        KeyCommand pause = new PauseKeyCommand(gsm);
+        KeyCommand pause = new PauseKeyCommand(gsm, map);
         keyMap.put(KeyEvent.VK_ESCAPE,pause);
 
     }

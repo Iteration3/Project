@@ -1,5 +1,7 @@
 package models.Map;
 
+import models.Entity.Avatar;
+import models.Entity.Entity;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -11,7 +13,10 @@ import utilities.Geometry.Hexagon;
 import utilities.Location.Location;
 import views.DrawTerrainImages;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class Map implements Saveable {
 
@@ -22,14 +27,14 @@ public class Map implements Saveable {
     private int colSize;
     private int heightSize;
 
-    public Map(int rowSize, int colSize, int heightSize){
+    public Map(int rowSize, int colSize, int heightSize) {
         this.rowSize = rowSize;
         this.colSize = colSize;
         this.heightSize = heightSize;
         tiles = new HashMap<>();
     }
 
-    public boolean isOutOfBound(Location loc){
+    public boolean isOutOfBound(Location loc) {
         if (loc.getRow() < 0 || loc.getRow() >= getRowSize()) {
             return true;
         }
@@ -42,45 +47,52 @@ public class Map implements Saveable {
         return false;
     }
 
-    public boolean isTileEmpty(Location loc){
-        if(isOutOfBound(loc)) {
+    public boolean isTileEmpty(Location loc) {
+        if (isOutOfBound(loc)) {
             return false;
         }
         return tiles.containsKey(loc);
     }
 
-    public int getRowSize(){return rowSize;}
-    public int getColSize(){return colSize;}
-    public int getHeightSize(){return heightSize;}
+    public int getRowSize() {
+        return rowSize;
+    }
 
-    public Tile getTileAt(Location loc){
-        if(isOutOfBound(loc)) {
+    public int getColSize() {
+        return colSize;
+    }
+
+    public int getHeightSize() {
+        return heightSize;
+    }
+
+    public Tile getTileAt(Location loc) {
+        if (isOutOfBound(loc)) {
             return null;
         }
-        if(!tiles.containsKey(loc)) {
+        if (!tiles.containsKey(loc)) {
             return getDefaultTile();
-        }
-        else {
+        } else {
             return tiles.get(loc);
         }
     }
 
-    public Tile getDefaultTile(){
+    public Tile getDefaultTile() {
         Terrain terrain = Terrain.Air;
         Tile temp = new Tile(terrain);
         return temp;
     }
 
-    public void addTileAt(Tile tile, Location loc){
-        if(isOutOfBound(loc)) {
+    public void addTileAt(Tile tile, Location loc) {
+        if (isOutOfBound(loc)) {
             return;
-        }
-        else {
+        } else {
             tiles.put(loc, tile);
         }
     }
-    public void removeTileAt(Location loc){
-        if(tiles.containsKey(loc)){
+
+    public void removeTileAt(Location loc) {
+        if (tiles.containsKey(loc)) {
             tiles.remove(loc);
         }
     }
@@ -101,11 +113,11 @@ public class Map implements Saveable {
     }
 
     public static Map fromXmlDocument(Document doc) {
-        Element e = (Element)doc.getElementsByTagName("map").item(0);
+        Element e = (Element) doc.getElementsByTagName("map").item(0);
         int rowSize = Integer.parseInt(e.getAttribute("rows"));
         int colSize = Integer.parseInt(e.getAttribute("cols"));
         int heightSize = Integer.parseInt(e.getAttribute("height"));
-        Map m = new Map(rowSize,  colSize, heightSize);
+        Map m = new Map(rowSize, colSize, heightSize);
         NodeList nodes = e.getElementsByTagName("map-tile");
         for (int i = 0; i < nodes.getLength(); ++i) {
             Element tile = (Element) nodes.item(i);
@@ -117,7 +129,7 @@ public class Map implements Saveable {
     }
 
     public boolean groundTileAbove(Location location) {
-        Location tmpLocation = location.add(0,0,1);
+        Location tmpLocation = location.add(0, 0, 1);
         if (isOutOfBound(tmpLocation)) {
             return false;
         }
@@ -125,5 +137,38 @@ public class Map implements Saveable {
             return true;
         }
         return false;
+    }
+
+    public Avatar findAvatar() {
+        for (Entity e : entities()) {
+            System.out.println(e);
+            if (e.isAvatar()) return (Avatar) e;
+        }
+        return null;
+    }
+
+    public Iterable<? extends Entity> entities() {
+        return () -> new Iterator<Entity>() {
+            int i = 0;
+            ArrayList<Location> keys = new ArrayList<>(tiles.keySet());
+
+            @Override
+            public boolean hasNext() {
+                while (i < keys.size()) {
+                    Tile tile = tiles.get(keys.get(i));
+                    if (tile.hasEntity())
+                        return true;
+                    ++i;
+                }
+                return false;
+            }
+
+            @Override
+            public Entity next() {
+                Tile tile = tiles.get(keys.get(i));
+                ++i;
+                return tile.getEntity();
+            }
+        };
     }
 }

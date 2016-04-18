@@ -1,6 +1,7 @@
 package models.Entity;
 
 
+import AI.AIController;
 import models.Action.Action;
 import models.Skill.Skill;
 import utilities.Direction.Direction;
@@ -28,6 +29,14 @@ public abstract class Entity implements Action, Saveable {
     protected Inventory inventory;
     protected Equipment equipment;
     private States state;
+
+    public boolean isAvatar() { return false; }
+
+    /**
+     * Get a controller for this entity. Returns null if this entity doesn't need a controller.
+     * @return
+     */
+    public abstract AIController createNewController(models.Map.Map map);
 
     public enum States{
         WANDER,

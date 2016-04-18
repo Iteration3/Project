@@ -25,6 +25,11 @@ public class MapOperator {
         initMap();
     }
 
+    public MapOperator(Map map) {
+        this.map = map;
+        initMap();
+    }
+
     public void initMap(){
 
         int row = map.getRowSize();

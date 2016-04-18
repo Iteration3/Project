@@ -65,6 +65,19 @@ public class PlayStateModel{
         Assets.init();
     }
 
+    public PlayStateModel(Map map) {
+        mapOperator = new MapOperator(map);
+        avatar = map.findAvatar();
+        statusView = new StatusView(avatar);
+        focus = avatar.getLocation();
+        for (Entity e : map.entities()) {
+            AIController c = e.createNewController(map);
+            if (c != null) {
+                entityController.add(c);
+            }
+        }
+    }
+
     public void setDefaultFocus(){
         setFocus(avatar.getLocation());
     }

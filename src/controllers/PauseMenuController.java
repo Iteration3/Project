@@ -44,6 +44,13 @@ public class PauseMenuController extends Controller {
                 model.down();
             }
         });
+
+        keyMap.put(KeyEvent.VK_ENTER, new KeyCommand() {
+            @Override
+            public void execute() {
+                model.getSelected().performAction(gsm, model);
+            }
+        });
     }
 
     @Override

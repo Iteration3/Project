@@ -39,9 +39,4 @@ public abstract class Secondary extends Stat {
         if(value() < 0)
             setValue(0);
     }
-
-    @Override
-    public Element generateXml(Document document) {
-        return null;
-    }
 }

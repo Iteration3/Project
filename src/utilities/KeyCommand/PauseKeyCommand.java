@@ -2,6 +2,7 @@ package utilities.KeyCommand;
 
 import controllers.Controller;
 import controllers.PauseMenuController;
+import models.Map.Map;
 import models.StateModel.PauseMenuModel;
 import utilities.GameStateManager;
 import utilities.State.State;
@@ -15,13 +16,15 @@ public class PauseKeyCommand implements KeyCommand {
 
 
     private GameStateManager gsm;
-    public PauseKeyCommand(GameStateManager gsm){
+    private Map map;
+    public PauseKeyCommand(GameStateManager gsm, Map map){
+        this.map = map;
         this.gsm = gsm;
     }
 
     @Override
-    public void execute(){
-        PauseMenuModel model = new PauseMenuModel();
+    public void execute() {
+        PauseMenuModel model = new PauseMenuModel(map);
         View view = new PauseMenuView(500,500,gsm.getCurrentCanvas(),null,model);
         Controller controller = new PauseMenuController(model,gsm);
         State state = new State(view,controller);

@@ -29,7 +29,7 @@ public class SkillParser {
         prototypes.put("one-handed-weapon", new OneHandedWeapon());
         prototypes.put("two-handed-weapon", new TwoHandedWeapon());
         prototypes.put("creep", new Creep());
-        prototypes.put("detect-remote-trap", new DetectRemoveTrap());
+        prototypes.put("detect-remove-trap", new DetectRemoveTrap());
         prototypes.put("pick-pocket", new PickPocket());
         prototypes.put("ranged-weapon", new RangedWeapon());
         prototypes.put("bane", new Bane());

@@ -26,15 +26,17 @@ public class StatusViewController {
     public void initVariables(Entity avatar) {
         this.avatar = avatar;
 
-        health = Integer.toString((int) (avatar.getStatContainer().value("CURRENT_LIFE")));
-        mana = Integer.toString((int) (avatar.getStatContainer().value("CURRENT_MANA")));
-        lives = Integer.toString((int) (avatar.getStatContainer().value("CURRENT_LIVES")));
+        if (avatar != null) {
+            health = Integer.toString((int) (avatar.getStatContainer().value("CURRENT_LIFE")));
+            mana = Integer.toString((int) (avatar.getStatContainer().value("CURRENT_MANA")));
+            lives = Integer.toString((int) (avatar.getStatContainer().value("CURRENT_LIVES")));
 
-        ArrayList<Skill> list = avatar.getOccupation().getActiveSkills();
-        skill1 = list.get(0).getName();
-        skill2 = list.get(1).getName();
-        skill3 = list.get(2).getName();
-        skill4 = list.get(3).getName();
+            ArrayList<Skill> list = avatar.getOccupation().getActiveSkills();
+            skill1 = list.get(0).getName();
+            skill2 = list.get(1).getName();
+            skill3 = list.get(2).getName();
+            skill4 = list.get(3).getName();
+        }
     }
 
     public void updateVariables() {

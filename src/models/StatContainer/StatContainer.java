@@ -88,8 +88,8 @@ public abstract class StatContainer implements Saveable {
         NodeList statsList = stats.getElementsByTagName("stat");
         for (int i = 0; i < statsList.getLength(); ++i) {
             Element stat = (Element) statsList.item(i);
-            Stat value = Stat.fromXmlElement(stat);
-            s.stats.put(stat.getAttribute("key"), value);
+            Stat theStat = Stat.fromXmlElement(stat);
+            s.stats.get(stat.getAttribute("key")).set(theStat.value());
         }
         return s;
     }

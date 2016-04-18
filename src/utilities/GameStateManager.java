@@ -6,6 +6,7 @@ import Main.InputManager;
 import controllers.Controller;
 import controllers.NPCController;
 import models.Entity.NPC;
+import models.Map.Map;
 import utilities.State.State;
 import views.Canvas;
 import views.View;

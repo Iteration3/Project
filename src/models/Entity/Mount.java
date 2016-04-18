@@ -1,6 +1,8 @@
 package models.Entity;
 
 
+import AI.AIController;
+import models.Map.Map;
 import models.Occupation.*;
 import models.StatContainer.*;
 import org.w3c.dom.Document;
@@ -25,6 +27,11 @@ public class Mount extends Entity {
     @Override
     public Element generateXml(Document doc) {
         return super.generateXml(doc, "mount");
+    }
+
+    @Override
+    public AIController createNewController(Map map) {
+        return null;
     }
 
     @Override
