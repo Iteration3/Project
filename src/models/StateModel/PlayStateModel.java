@@ -11,6 +11,7 @@ import models.Occupation.Summoner;
 import utilities.Direction.Direction;
 import utilities.Location.Location;
 import views.MapView;
+import views.StatusView;
 
 
 /**
@@ -21,6 +22,7 @@ public class PlayStateModel{
     private Location focus;
     private Entity avatar;
     private MapOperator mapOperator;
+    private StatusView statusView;
 
     private Pet pet;
 
@@ -33,6 +35,8 @@ public class PlayStateModel{
         NPC npc = new NPC(3,new Summoner());
 
         mapOperator = new MapOperator(20,20,10);
+
+        statusView = new StatusView(avatar);
 
         focus  = new Location(0,0,0);
 
@@ -58,6 +62,10 @@ public class PlayStateModel{
     }
     public Map getMap() {
         return mapOperator.getMap();
+    }
+
+    public StatusView getStatusView() {
+        return statusView;
     }
 
 //    //TODO:fast function, remove

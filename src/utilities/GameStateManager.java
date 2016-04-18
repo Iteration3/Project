@@ -42,7 +42,8 @@ public class GameStateManager {
     public void changeState(State state){
         stateStack.add(state);
         //TODO: This should not be written like this
-        getCurrentView().getCanvas().setActiveView(state.getView());
+        //getCurrentView().getCanvas().setActiveView(state.getView());
+        getCurrentCanvas().setActiveView(state.getView());
     }
 
     //remove state
@@ -54,5 +55,10 @@ public class GameStateManager {
     public void update(Canvas canvas){
         canvas.repaint();
     }
+
     public void updateModel() { getCurrentController().updateModel(); };
+
+    public Canvas getCurrentCanvas(){
+        return getCurrentView().getCanvas();
+    }
 }
