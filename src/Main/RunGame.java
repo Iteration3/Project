@@ -48,6 +48,7 @@ public class RunGame extends JFrame implements ActionListener {
 
     public void playSound(){
         try{
+            System.out.println("What");
             String filepath = "res/test.wav";
             AudioInputStream in = AudioSystem.getAudioInputStream(new File(("res/test1.wav")));
             Clip clip = AudioSystem.getClip();
