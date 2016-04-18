@@ -3,6 +3,8 @@ package models.AreaEffect;
 import models.Entity.Entity;
 import utilities.Location.Location;
 
+import java.awt.*;
+
 public abstract class AreaEffect {
     Location loc;
 
@@ -14,5 +16,7 @@ public abstract class AreaEffect {
     }
 
     public abstract void execute(Entity e);
+
+    public abstract Image getImage();
 
 }

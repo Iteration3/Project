@@ -3,6 +3,8 @@ package models.AreaEffect;
 import models.Entity.Entity;
 import utilities.Location.Location;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,12 +21,16 @@ public class InstantDeath extends AreaEffect {
         killEntity(e);
     }
 
-    private void  killEntity(Entity e){
+    private void  killEntity(Entity e) {
         //double a = e.statValue("Life");
         //a = a*-1;
         Map<String, Double> statChange = new HashMap<>();
-        statChange.put("LIVES",-1.0);
+        statChange.put("LIVES", -1.0);
         e.modifyStats(statChange);
+    }
 
+    public Image getImage(){
+        Image image = new ImageIcon("res/circle-dash.png").getImage();
+        return image;
     }
 }

@@ -3,6 +3,8 @@ package models.AreaEffect;
 import models.Entity.Entity;
 import utilities.Location.Location;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
@@ -75,5 +77,10 @@ public class Trap extends AreaEffect {
     private void disable(){
         active = false;
         System.out.println("Is disabled biiiitch");
+    }
+
+    public Image getImage(){
+        Image image = new ImageIcon("res/circle-dash.png").getImage();
+        return image;
     }
 }

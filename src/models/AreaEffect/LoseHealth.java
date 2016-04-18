@@ -3,6 +3,8 @@ package models.AreaEffect;
 import models.Entity.Entity;
 import utilities.Location.Location;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +31,11 @@ public class LoseHealth extends AreaEffect {
         statChange.put("CURRENT_LIFE",healthLoss);
         e.modifyStats(statChange);
 
+    }
+
+    public Image getImage(){
+        Image image = new ImageIcon("res/circle-dash.png").getImage();
+        return image;
     }
 
 }

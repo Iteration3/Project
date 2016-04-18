@@ -5,6 +5,9 @@ import models.Map.Map;
 import utilities.Direction.Direction;
 import utilities.Location.Location;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * Created by Andy on 4/14/2016.
  */
@@ -45,5 +48,10 @@ public class FlowTile extends AreaEffect {
         z = loc.getHeight();
         Location temp = new Location(x,y,z);
         return temp;
+    }
+
+    public Image getImage(){
+        Image image = new ImageIcon("res/circle-dash.png").getImage();
+        return image;
     }
 }
