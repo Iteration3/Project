@@ -30,10 +30,11 @@ public class Assets {
     public static BufferedImage mountainTerrain;
     public static BufferedImage airTerrain;
 
+    /*Map Background*/
+    public static BufferedImage mapBG;
 
     /* Methods */
     public static void init() {
-
 
         SpriteSheet oneHandSheet = new SpriteSheet(new ImageLoader().loadImage("/oneHand.png"));
         SpriteSheet twoHandSheet = new SpriteSheet(new ImageLoader().loadImage("/twoHand.png"));
@@ -61,6 +62,10 @@ public class Assets {
         bootArmor = bootArmorSheet.crop(0 , 0 , width , height);
         trinket = trinketSheet.crop(0 , 0 , width , height);
 
+
+
+        // MAP
+        mapBG = new ImageLoader().loadImage("/MapBg.jpg");
         /*
         grassTerrain = DrawTerrainImages.getGrassImage();
         mountainTerrain = DrawTerrainImages.getMountainImage();

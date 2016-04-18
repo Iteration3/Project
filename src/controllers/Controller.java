@@ -21,7 +21,6 @@ public abstract class Controller extends InputManager{
     // update method
     public void handleInput(){
 
-
         for(Integer i: super.getActiveKey()){
             if(map.containsKey(i)){
                 map.get(i).execute();

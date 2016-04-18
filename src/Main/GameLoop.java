@@ -70,6 +70,7 @@ public class GameLoop implements Runnable{
                     e.printStackTrace();
                 }
             }
+            System.out.println(wait);
         }
     }
 

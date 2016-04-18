@@ -14,7 +14,7 @@ import views.other.MapView;
  */
 public class PlayStateModel implements StateModel{
 
-    private Entity focus;
+    private EnittyForTesting focus;
     private Avatar avatar;
     private MapOperator mapOperator;
 
@@ -22,7 +22,7 @@ public class PlayStateModel implements StateModel{
         mapOperator = new MapOperator(20,20,10);
 
         focus  = new EnittyForTesting();
-        ((EnittyForTesting)focus).setLocation(new Location(0,0,0));
+        ((EnittyForTesting)focus).setLocation(new Location(49,0,0));
         focus.getLocation();
 
         mapOperator.addNewEntityAt(avatar,new Location(0,0,0));
@@ -46,7 +46,7 @@ public class PlayStateModel implements StateModel{
         setFocus(avatar);
     }
     public void setFocus(Entity focus){
-        this.focus = focus;
+        //this.focus = ()focus;
     }
     public Entity getFocus(){return focus;}
 
@@ -55,6 +55,7 @@ public class PlayStateModel implements StateModel{
 
     //TODO:fast function, remove
     public void setFocusDirection(Direction dir){
+        focus.setDirection(dir);
         ((EnittyForTesting)focus).setLocation(dir.getNextLocation(focus.getLocation()));
         //avatar.setDirection(dir);
         //avatar.setAction(Action.Move);

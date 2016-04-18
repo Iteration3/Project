@@ -16,7 +16,7 @@ public class PlayState extends State{
         PlayStateController controller = new PlayStateController(model);
         PlayStateView view = new PlayStateView(model);
 
-       // Assets.init();
+        Assets.init();
 
         super.setMVC(model,view,controller);
     }

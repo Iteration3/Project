@@ -7,7 +7,7 @@ import utilities.Location.Location;
  */
 public enum Direction {
     //TODO: I DONT THINK THIS ONE SHOULD CREATE NEXT LOCATION
-
+    //odd-q
     North(new Location(-1,0,0), new Location(-1,0,0)),
     NorthWest(new Location(-1,-1,0), new Location(0,-1,0)),
     SouthWest(new Location(0,-1,0), new Location(1,-1,0)),

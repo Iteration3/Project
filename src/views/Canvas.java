@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
  */
 public class Canvas extends JPanel{
 
-    private final static int WIDTH = 500;
+    private final static int WIDTH = 600;
     private final static int HEIGHT = WIDTH*4/5;
 
     private final static int SCALE = 1;

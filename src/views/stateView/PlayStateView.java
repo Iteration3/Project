@@ -2,6 +2,7 @@ package views.StateView;
 
 import models.StateModel.PlayStateModel;
 import utilities.Location.Location;
+import views.Assets;
 import views.View;
 import views.other.MapView;
 
@@ -27,10 +28,18 @@ public class PlayStateView extends View {
         int width = getWidth();
         int height = getHeight();
 
-        BufferedImage image = new BufferedImage(width,height,1);
+
+        paintBackground(g);
+
+        BufferedImage image = new BufferedImage(width,height,BufferedImage.TYPE_4BYTE_ABGR);
         mapView.setCenter(model.getFocus().getLocation());
         mapView.render(image);
 
         g.drawImage(image,0,0,width,height,null);
+    }
+
+    private void paintBackground(Graphics2D g){
+
+        g.drawImage(Assets.mapBG,0,0,getWidth(),getHeight(),null);
     }
 }

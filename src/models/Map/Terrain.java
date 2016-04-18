@@ -7,9 +7,9 @@ import views.other.DrawTerrainImages;
 import java.awt.image.BufferedImage;
 
 public enum Terrain {
-    Grass(DrawTerrainImages.getGrassImage())
-    ,Mountain(DrawTerrainImages.getMountainImage())
-    ,Air(DrawTerrainImages.getAirImage());
+    Air(DrawTerrainImages.getAirImage())
+    ,Grass(DrawTerrainImages.getGrassImage())
+    ,Mountain(DrawTerrainImages.getMountainImage());
 
     private BufferedImage image;
 
