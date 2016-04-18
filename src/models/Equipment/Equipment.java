@@ -1,5 +1,6 @@
 package models.Equipment;
 
+import com.sun.xml.internal.ws.message.MimeAttachmentSet;
 import models.ArmorContainer.ArmorContainer;
 import models.Item.Armors.*;
 import models.Item.Item;
@@ -24,9 +25,16 @@ public class Equipment implements ArmorContainer, Saveable {
     public Equipment(){
         armor = new Armor[MAX_CONTAINER_SIZE];
         equippedWeapon = null;
+        init();
     }
 
     /* Methods */
+    public void init(){
+        for(int i = 0 ; i < MAX_CONTAINER_SIZE ; i++){
+            armor[i] = null;
+        }
+    }
+
     /*******************  HEAD  ************************/
     public void addHead(HeadArmor headArmor){
         if(armor[HEAD_SLOT] != null){

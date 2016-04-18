@@ -12,6 +12,15 @@ import utilities.SaveLoad.XmlReader;
 import views.MapView;
 
 import javax.xml.parsers.ParserConfigurationException;
+import utilities.Observer.entityObserver;
+import views.DrawTerrainImages;
+import views.MapView;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+import java.util.Random;
 
 /**
  * Created by jcvarela on 4/15/2016.
@@ -19,6 +28,8 @@ import javax.xml.parsers.ParserConfigurationException;
 public class MapOperator {
 
     private Map map;
+    private ArrayList<entityObserver> observers;
+    private Location startLocation;
 
     public MapOperator(int maxRowSize, int maxColSize, int maxHeightSize){
         map = LoadMap.loadMap("res/Map/Map.txt");
@@ -28,6 +39,8 @@ public class MapOperator {
     public MapOperator(Map map) {
         this.map = map;
         initMap();
+        this.observers = new ArrayList<>();
+        this.startLocation = new Location(44,0,0);
     }
 
     public void initMap(){
@@ -39,7 +52,7 @@ public class MapOperator {
         for(int r = 0; r < row; r++){
             for(int c = 0; c < col; c++){
                 for(int h =0; h < height; h++){
-                    
+
                     Tile tile = map.getTileAt(new Location(r,c,h));
                     map.addTileAt(tile,new Location(r,c,h));
                 }
@@ -86,4 +99,24 @@ public class MapOperator {
     public Map getMap() {
         return map;
     }
+
+    public void addEntityObserver(Entity entity) {
+        entityObserver eo = new entityObserver(this, entity);
+        observers.add(eo);
+        entity.addObserver(eo);
+    }
+
+    public void handleDeath(entityObserver eo) {
+        Entity entity = eo.getEntity();
+        double livesRemaining = entity.getLives();
+        if (livesRemaining > 0) {
+            entity.changeLocation(startLocation);
+            Tile startTile = map.getTileAt(startLocation);
+            startTile.addEntity(entity);
+        } else {
+            Location location = entity.getLocation();
+            map.removeEntityAt(location);
+        }
+    }
+
 }

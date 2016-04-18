@@ -12,6 +12,8 @@ import models.Item.*;
 
 import java.awt.*;
 import java.util.Map;
+import java.util.Observable;
+
 import models.Inventory.*;
 import models.Equipment.Equipment;
 import org.w3c.dom.Document;
@@ -20,7 +22,8 @@ import utilities.Location.Location;
 import utilities.SaveLoad.Saveable;
 import utilities.SaveLoad.XmlReader;
 
-public abstract class Entity implements Action, Saveable {
+public abstract class Entity extends Observable implements Action, Saveable {
+
     protected String name;
     protected Location location;
     protected Direction direction;
@@ -38,7 +41,7 @@ public abstract class Entity implements Action, Saveable {
      */
     public abstract AIController createNewController(models.Map.Map map);
 
-    public enum States{
+    public enum States {
         WANDER,
         ATTACK
     }
@@ -54,6 +57,7 @@ public abstract class Entity implements Action, Saveable {
     public void setOccupation(Occupation occupation) {this.occupation = occupation;}
     public void setStats(StatContainer stats) {this.stats = stats;}
     public void setInventory(Inventory inventory) {this.inventory = inventory;}
+    public void setEquipment(Equipment equipment){this.equipment = equipment;}
 
     //state functions
     public States getCurrentState(){ return state;}
@@ -85,7 +89,7 @@ public abstract class Entity implements Action, Saveable {
         Location specific functionality
      */
     //
-    public Location getLocation() { return location; }
+    public Location getLocation() { return this.location; }
     public void changeLocation(Location location) { this.location = location; }
 
     /*
@@ -110,8 +114,13 @@ public abstract class Entity implements Action, Saveable {
         models.StatContainer specific functionality
      */
     //
-    public void modifyStats(Map<String, Double> stat_to_modify) {this.stats.modifyStats(stat_to_modify);}
     public void levelUp() { this.stats.levelUp();}
+    public void modifyStats(Map<String, Double> stat_to_modify) {
+        this.stats.modifyStats(stat_to_modify);
+        // for observable
+        setChanged();
+        notifyObservers();
+    }
     public double statValue(String stat_to_get) {return this.stats.value(stat_to_get);}
     public String statName(String stat_to_get) {return this.stats.name(stat_to_get);}
     public void printStats(String stat_to_print) {this.stats.print(stat_to_print);}
@@ -129,6 +138,9 @@ public abstract class Entity implements Action, Saveable {
         item.equip(this, equipment , inventory);
     }
     public void unequip(EquipableItem item) {
+        if(item == null){
+            return;
+        }
         item.unequip(this, equipment , inventory);
     }
 
@@ -152,6 +164,9 @@ public abstract class Entity implements Action, Saveable {
         inventory.removeItem(id);
     }
     public void useItem(TakeableItem item){
+        if(item == null){
+            return;
+        }
         item.use(this);
     }
 
@@ -209,4 +224,9 @@ public abstract class Entity implements Action, Saveable {
 
     //Every entity is in charge of getting its own image
     public abstract Image getImage();
+
+    public double getLives() {
+        return this.stats.value("CURRENT_LIVES");
+    }
+
 }

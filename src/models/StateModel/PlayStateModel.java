@@ -3,6 +3,7 @@ package models.StateModel;
 import AI.AIController;
 import controllers.NPCController;
 import controllers.PetController;
+import models.Entity.Avatar;
 import models.Entity.Entity;
 import models.Map.MapEditor.MapOperator;
 import utilities.Direction.Direction;
@@ -49,14 +50,18 @@ public class PlayStateModel{
 
 
         mapOperator = new MapOperator(20,20,10);
+        // For observers
+        mapOperator.addEntityObserver(avatar);
+        mapOperator.addEntityObserver(pet);
+        mapOperator.addEntityObserver(npc);
 
         statusView = new StatusView(avatar);
 
         focus  = new Location(0,0,0);
 
         //TODO Place any model instantiation here
-        //Pet pet = new Pet(3,new Sneak());
-        PetController petController = new PetController(pet,mapOperator.getMap());
+        pet = new Pet(3,new Summoner());
+        PetController petController = new PetController(pet,mapOperator.getMap(),(Avatar)avatar);
         entityController.add(petController);
 
 
@@ -75,7 +80,7 @@ public class PlayStateModel{
 
         mapOperator.addNewEntityAt(avatar, startLocation);
         mapOperator.addNewEntityAt(pet,new Location(43,0,0));
-//        mapOperator.addNewEntityAt(npc, new Location(44,4,0));
+        mapOperator.addNewEntityAt(npc, new Location(44,4,0));
 
         //setDefaultFocus();
         Assets.init();

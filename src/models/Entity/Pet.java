@@ -15,6 +15,8 @@ import java.awt.*;
 
 public class Pet extends Entity {
 
+    private Avatar avatar;
+
     public Pet(int level, Occupation occupation) {
 
         setName("Pet");
@@ -29,7 +31,7 @@ public class Pet extends Entity {
 
     @Override
     public AIController createNewController(Map map) {
-        return new PetController(this, map);
+        return new PetController(this, map, avatar);
     }
 
     @Override
@@ -41,5 +43,14 @@ public class Pet extends Entity {
     @Override
     public Element generateXml(Document doc) {
         return super.generateXml(doc, "pet");
+    }
+
+    public void setOwnership(Avatar avatar){
+        this.avatar = avatar;
+    }
+
+
+    public Location getAvatarLocation(){
+        return avatar.getLocation();
     }
 }
