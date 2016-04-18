@@ -36,6 +36,13 @@ public abstract class Locomotion {
             Terrain terrain = nextTile.getTerrain();
             terrain.moveTo(this);
         }
+
+        //this might be wrong
+        if(checkForAreaEffects(nextTile)){
+            System.out.println("AreaEffect should take effect");
+            nextTile.activateAreaEffect(entity);
+        }
+
     }
 
     public void move(Location location) {
@@ -66,11 +73,13 @@ public abstract class Locomotion {
     // Returns true if an Entity is occupying the Tile to be moved to
     private boolean checkForEntities(Tile tile) {
 
-        if ( tile == null || tile.hasEntity() ) {
-            return true;
-        } else {
-            return false;
-        }
+        return tile.hasEntity();
+
+    }
+
+    private boolean checkForAreaEffects(Tile tile){
+        return tile.hasAreaEffect();
+
     }
 
 

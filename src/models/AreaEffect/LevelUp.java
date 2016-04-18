@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class LevelUp extends AreaEffect {
 
-    private int levels;
+    private double levels;
 
     public LevelUp(Location l, int lev){
         loc = l;
@@ -24,8 +24,8 @@ public class LevelUp extends AreaEffect {
     }
 
     private void levelUp(Entity e){
-        Map statChange = new HashMap<>();
-        statChange.put("Level", 1);
+        Map<String, Double> statChange = new HashMap<>();
+        statChange.put("LEVEL",levels);
         e.modifyStats(statChange);
     }
 

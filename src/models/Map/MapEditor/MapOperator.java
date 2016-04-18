@@ -1,6 +1,7 @@
 package models.Map.MapEditor;
 
 
+import models.AreaEffect.AreaEffect;
 import models.Entity.Entity;
 import models.Map.Map;
 import models.Map.Tile;
@@ -30,6 +31,16 @@ public class MapOperator {
 
         if(!tile.hasEntity()){
             tile.addEntity(entity);
+            return true;
+        }
+        return false;
+    }
+    public boolean addNewAreaEffect(AreaEffect ae, Location loc){
+        Tile tile = map.getTileAt(loc);
+        ae.setLocation(loc);
+
+        if(!tile.hasAreaEffect()){
+            tile.addAreaEffect(ae);
             return true;
         }
         return false;

@@ -22,10 +22,10 @@ public class InstantDeath extends AreaEffect {
     }
 
     private void  killEntity(Entity e){
-        double a = e.statValue("Life");
-        a = a*-1;
-        Map statChange = new HashMap<>();
-        statChange.put("Life",a);
+        //double a = e.statValue("Life");
+        //a = a*-1;
+        Map<String, Double> statChange = new HashMap<>();
+        statChange.put("LIVES",-1.0);
         e.modifyStats(statChange);
 
     }

@@ -29,14 +29,16 @@ public class Trap extends AreaEffect {
         if(active) {
             //double previous = e.statValue("Movement");
 
-            Map statChange = new HashMap<>();
-            Map statChange2 = new HashMap<>();
-            statChange.put("Movement", -100);
-            statChange2.put("Movement",100);
+            Map<String, Double> statChange = new HashMap<>();
+            Map<String, Double> statChange2 = new HashMap<>();
+            statChange.put("MOVEMENT", -100.0);
+            statChange2.put("MOVEMENT",100.0);
             e.modifyStats(statChange);
-
+            System.out.println("This is before forceToWait()");
             forceToWait();              //this should cause it to wait 5 seconds before executing this
+            System.out.println("This is after forceToWait()");
             e.modifyStats(statChange2);
+
         }
 
         //disable();
@@ -50,6 +52,7 @@ public class Trap extends AreaEffect {
             public void run() {
                 disable(); //as you said in the comments: abc is a static method
             }
+
 
         };
 
