@@ -10,6 +10,8 @@ import java.awt.*;
 
 public class Pet extends Entity {
 
+    private Avatar avatar;
+
     public Pet(int level, Occupation occupation) {
 
         setName("Pet");
@@ -26,5 +28,14 @@ public class Pet extends Entity {
     public Image getImage() {
         Image image = new ImageIcon("res/staff.png").getImage();
         return image;
+    }
+
+    public void setOwnership(Avatar avatar){
+        this.avatar = avatar;
+    }
+
+
+    public Location getAvatarLocation(){
+        return avatar.getLocation();
     }
 }

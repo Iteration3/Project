@@ -16,7 +16,7 @@ import java.util.HashMap;
 /**
  * Created by clayhausen on 4/15/16.
  */
-public abstract class Locomotion {
+public abstract class Locomotion{
 
     protected Entity entity;
     protected Map map;
@@ -127,6 +127,9 @@ public abstract class Locomotion {
         Direction direction = entity.getDirection();
         Location newLocation = direction.getNextLocation(oldLocation);
         entity.changeLocation(newLocation);
+        System.out.println("Old Location: " + oldLocation.toString() );
+        System.out.println("New Location: " + newLocation.toString() );
+
     }
 
     // sync the map with the Entities current location
@@ -151,9 +154,6 @@ public abstract class Locomotion {
             entity.changeLocation(newLocation);
             newTile.addEntity(entity);
         }
-
-        System.out.println("Entity's Location: " + entity.getLocation().toString());
-        System.out.println("Map location consistent?: " + map.getTileAt(entity.getLocation()).hasEntity());
     }
 
 

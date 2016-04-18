@@ -3,21 +3,42 @@ package controllers;
 import AI.AIController;
 import AI.FSM;
 import AI.FSMState;
+import models.Entity.Avatar;
 import models.Entity.Entity;
 import models.Entity.NPC;
 import models.Entity.Pet;
 import models.Map.Map;
+import models.Skill.Skill;
+import utilities.Direction.Direction;
 import utilities.Location.Location;
+
+import java.util.Random;
 
 /**
  * Created by denzel on 4/16/16.
  */
-public class PetController extends AIController{
+public class PetController extends AIController {
 
-    public PetController(Pet pet,Map map){
-        super(pet,map);
+
+    public Locomotion petLoco;
+    private Pet pet;
+    private double rand;
+    long wait = 300;
+    long lastTimer = System.currentTimeMillis();
+
+    public PetController(Pet pet, Map map, Avatar avatar) {
+        super(pet, map);
+        this.pet = pet;
+        pet.setOwnership(avatar);
+        //movement controller
+        petLoco = new Amphibious(pet, map);
+
+        rand = Math.random();
     }
 
+    public Skill getSpecificSkill(int number){
+        return pet.getOccupation().getSpecificSkills().get(number);
+    }
 
     @Override
     public void reset() {
@@ -28,27 +49,54 @@ public class PetController extends AIController{
     public void act() {
 
         //Have the entity
-        Pet pet = (Pet)getEntity();
+        Pet pet = (Pet) getEntity();
+
+        //Get Avatars Location
+        Location avatarLocation = pet.getAvatarLocation();
 
 
-        if(pet.getCurrentState() == Entity.States.WANDER){
+        long nowTime = System.currentTimeMillis();
+        if (pet.getCurrentState() == Entity.States.WANDER && nowTime - lastTimer > wait) {
+            lastTimer = nowTime;
 
-            //change direction
-            pet.getLocation().add(1,0,0);
-            pet.getLocation().add(0,1,0);
-            
-            //check range of vision of tiles
+            //TODO Sorry Austin..CANCER!!!!!!
+            if (pet.getLocation().getRow() < avatarLocation.getRow()) {
+                double num = Math.random();
+                if (num < 0.5)
+                    petLoco.move(Direction.North);
+                else if (num < 0.75)
+                    petLoco.move(Direction.NorthEast);
+                else
+                    petLoco.move(Direction.NorthWest);
 
-            //if entity registered
+            } else if (pet.getLocation().getRow() > avatarLocation.getRow()) {
 
-            //change state to attack
+                double num = Math.random();
+                if (num < 0.5)
+                    petLoco.move(Direction.South);
+//                else if(num < 0.75)
+//                    petLoco.move(Direction.SouthEast);
+                else
+                    petLoco.move(Direction.SouthWest);
 
-            //else
+            } else if (pet.getLocation().getCol() < avatarLocation.getCol()) {
+                double num = Math.random();
+                if (num < 0.5)
+                    petLoco.move(Direction.NorthWest);
+                else
+                    petLoco.move(Direction.SouthWest);
 
-            //state is wander
 
-        }else{
+            } else if (pet.getLocation().getCol() > avatarLocation.getCol()) {
+                double num = Math.random();
+                if (num < 0.5)
+                    petLoco.move(Direction.NorthEast);
+                else
+                    petLoco.move(Direction.SouthEast);
+            } else {
+                System.out.println("Switching state to attack");
+                pet.setCurrentState(Entity.States.ATTACK);
+            }
         }
-
     }
 }

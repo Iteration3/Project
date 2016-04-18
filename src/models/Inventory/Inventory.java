@@ -21,10 +21,10 @@ public class Inventory implements ItemContainer {
         goldAmount = 0;
     }
 
-    public Inventory(int size){
-        this.size = size;
-        items = new TakeableItem[size];
-        goldAmount = 0;
+    public Inventory(int goldAmount){
+        size = DEFAULT_SIZE;
+        items = new TakeableItem[DEFAULT_SIZE];
+        this.goldAmount = goldAmount;
     }
 
     public Inventory(int size , int goldAmount){
