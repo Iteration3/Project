@@ -14,6 +14,7 @@ import models.Occupation.Sneak;
 import models.Occupation.Summoner;
 import utilities.Direction.Direction;
 import utilities.Location.Location;
+import views.Assets;
 import views.MapView;
 import views.StatusView;
 
@@ -68,6 +69,7 @@ public class PlayStateModel{
 //        mapOperator.addNewEntityAt(npc, new Location(44,4,0));
 
         //setDefaultFocus();
+        Assets.init();
     }
 
     public void setDefaultFocus(){

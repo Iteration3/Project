@@ -37,13 +37,12 @@ public class MapView {
     public MapView(Map map) {
         sight = new HashMap<>();
         this.map = map;
-        radius = 5;
+        radius = 7;
     }
 
     public void setCenter(Location pos){
         this.center = pos;
     }
-
 
     protected void render(int width, int height, Graphics g) {
         this.height = height;
