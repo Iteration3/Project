@@ -48,8 +48,6 @@ public class PlayStateController extends Controller {
 
         loadKeyMap(avatar.getKeyMap());
 
-
-
         KeyCommand openStats = new StatsKeyCommand(avatar, gsm);
         keyMap.put(KeyEvent.VK_K, openStats);
 
@@ -79,7 +77,7 @@ public class PlayStateController extends Controller {
     public void handleInput(KeyEvent e) {
 
         long time = System.currentTimeMillis();
-        if(time - wait > 50){
+        if(time - wait > 200){
             if(keyMap.get(e.getKeyCode())!= null) {
                 if (inAction) {
                     // do nothing
