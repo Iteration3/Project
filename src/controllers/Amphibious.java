@@ -69,10 +69,12 @@ public class Amphibious extends Locomotion {
             Location tempLocation = oldLocation.add(0,0,1);
             entity.changeLocation(tempLocation);
             move(direction);
+            climbDelta = 0;
 
             // Revert speed
             HashMap<String, Double> increaseSpeedMap = new HashMap<>();
             increaseSpeedMap.put("MOVEMENT", speedDelta);
+
         }
     }
 
