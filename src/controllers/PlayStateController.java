@@ -86,9 +86,9 @@ public class PlayStateController extends Controller {
                 if (inAction) {
                     // do nothing
                 } else {
-                    inAction = true;;
-                    keyMap.get(e.getKeyCode()).execute();
-                    inAction = false;
+//                    inAction = true;;
+//                    keyMap.get(e.getKeyCode()).execute();
+//                    inAction = false;
                 }
                 wait = time;
             }else{
