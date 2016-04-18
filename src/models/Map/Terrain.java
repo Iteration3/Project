@@ -49,8 +49,7 @@ public enum Terrain {
         public void moveTo(Locomotion locomotion) {
             locomotion.moveToGround();
         }
-    },
-    ;
+    }  ;
 
 
     private BufferedImage image;
@@ -71,7 +70,5 @@ public enum Terrain {
     Grass(DrawTerrainImages.getGrassImage())
     ,Mountain(DrawTerrainImages.getMountainImage())
     ,Air(DrawTerrainImages.getAirImage());
-
-
 }
 */

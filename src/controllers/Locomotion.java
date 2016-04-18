@@ -38,11 +38,10 @@ public abstract class Locomotion {
         }
 
         //this might be wrong
-        if(checkForAreaEffects(nextTile)){
-            System.out.println("AreaEffect should take effect");
-            nextTile.activateAreaEffect(entity);
-        }
-
+       // if(checkForAreaEffects(nextTile)){
+        //    System.out.println("AreaEffect should take effect");
+        //    nextTile.activateAreaEffect(entity);
+        //}
     }
 
     public void move(Location location) {
