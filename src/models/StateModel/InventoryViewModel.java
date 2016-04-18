@@ -111,4 +111,8 @@ public class InventoryViewModel{
             entity.useItem(currentItem);
         }
     }
+
+    public TakeableItem getCurrentItem(){
+        return this.currentItem;
+    }
 }

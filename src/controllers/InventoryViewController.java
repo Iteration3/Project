@@ -3,7 +3,10 @@ package controllers;
 import models.Inventory.Inventory;
 import models.Item.ConsumableItem;
 import models.StateModel.InventoryViewModel;
+import models.StateModel.MainMenuModel;
 import utilities.GameStateManager;
+import utilities.KeyCommand.KeyCommand;
+
 import java.awt.event.KeyEvent;
 
 /**
@@ -17,51 +20,50 @@ public class InventoryViewController extends Controller{
         super(gsm);
         this.model = model;
     }
-   /* private InventoryEquipmentModel model;
 
-    public InventoryEquipmentController(InventoryEquipmentModel model){
-        this.model = model;
-    }
-
+    @Override
     public void loadKeyCommand() {
 
-        map.put(KeyEvent.VK_NUMPAD8, new KeyCommand(){
+        keyMap.put(KeyEvent.VK_NUMPAD8, new KeyCommand(){
             @Override
             public void execute() {
                 model.up();
             }
         });
 
-        map.put(KeyEvent.VK_NUMPAD2, new KeyCommand() {
-            @Override
-            public void execute() {
-                model.down();
-            }
-        });
-
-        map.put(KeyEvent.VK_NUMPAD4, new KeyCommand() {
+        keyMap.put(KeyEvent.VK_NUMPAD4, new KeyCommand() {
             @Override
             public void execute() {
                 model.left();
             }
         });
 
-        map.put(KeyEvent.VK_NUMPAD6, new KeyCommand() {
+        keyMap.put(KeyEvent.VK_NUMPAD6, new KeyCommand(){
             @Override
             public void execute() {
                 model.right();
             }
         });
 
-
-        map.put(KeyEvent.VK_ENTER, new KeyCommand() {
+        keyMap.put(KeyEvent.VK_NUMPAD2, new KeyCommand() {
             @Override
             public void execute() {
-                model.select();
+                model.down();
             }
         });
 
-        /* map.put(KeyEvent.VK_ESC ============= go back to last state */
+        keyMap.put(KeyEvent.VK_ENTER, new KeyCommand() {
+            @Override
+            public void execute(){model.select(); }
+        });
+
+        keyMap.put(KeyEvent.VK_ESCAPE, new KeyCommand() {
+            @Override
+            public void execute() {
+                gsm.removeState(); //Go back to playState
+            }
+        });
+    }
 
     @Override
     public void handleInput(KeyEvent e) {
@@ -70,11 +72,6 @@ public class InventoryViewController extends Controller{
 
     @Override
     public void updateModel() {
-
-    }
-
-    @Override
-    public void loadKeyCommand() {
 
     }
 }
