@@ -1,14 +1,15 @@
 package models.Entity;
 
 
+import controllers.Amphibious;
 import controllers.Locomotion;
-import controllers.Terrestrial;
 import models.Occupation.*;
 import models.StatContainer.*;
 import models.Inventory.*;
 import utilities.Direction.Direction;
 import utilities.KeyCommand.KeyCommand;
 import utilities.KeyCommand.MovementKeyCommand;
+import utilities.KeyCommand.SkillKeyCommand;
 import utilities.Location.Location;
 import models.Map.Map;
 
@@ -29,6 +30,7 @@ public class Avatar extends Entity {
         setOccupation(occupation);
         setStats(new AvatarStats(occupationModifier(), level));
         setInventory(new Inventory(12, 25));
+        setCurrentState(States.ATTACK);
         //setEquipment(new models.Equipment());
     }
 
@@ -40,7 +42,7 @@ public class Avatar extends Entity {
     public void setKeyCommand(Map map){
 
         keyMap = new HashMap<>();
-        Locomotion locomotion = new Terrestrial(this, map);
+        Locomotion locomotion = new Amphibious(this, map);
         // Movement
         KeyCommand moveNorth = new MovementKeyCommand(map, this, Direction.North, locomotion);
         keyMap.put(KeyEvent.VK_8, moveNorth);
@@ -83,6 +85,18 @@ public class Avatar extends Entity {
 
         moveNorth = new MovementKeyCommand(map, this, Direction.North, locomotion);
         keyMap.put(KeyEvent.VK_W, moveNorth);
+
+        KeyCommand skill1 = new SkillKeyCommand(map, this, 0);
+        keyMap.put(KeyEvent.VK_1, skill1);
+
+        KeyCommand skill2 = new SkillKeyCommand(map, this, 1);
+        keyMap.put(KeyEvent.VK_2, skill2);
+
+        KeyCommand skill3 = new SkillKeyCommand(map, this, 2);
+        keyMap.put(KeyEvent.VK_3, skill3);
+
+        KeyCommand skill4 = new SkillKeyCommand(map, this, 3);
+        keyMap.put(KeyEvent.VK_4, skill4);
     }
 
     public HashMap<Integer,KeyCommand> getKeyMap(){

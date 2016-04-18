@@ -75,5 +75,8 @@ public class SkillTreeViewController extends Controller {
         gsm.changeState(state);
     }
 
+    @Override
+    public void updateModel() {
 
+    }
 }

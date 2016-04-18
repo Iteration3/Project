@@ -2,10 +2,8 @@ package controllers;
 
 
 import models.Entity.Avatar;
-import models.Entity.Entity;
 import models.Map.Map;
 import models.StateModel.PlayStateModel;
-import sun.security.x509.AVA;
 import utilities.GameStateManager;
 import utilities.KeyCommand.*;
 
@@ -22,6 +20,9 @@ public class PlayStateController extends Controller {
     private PlayStateModel model;
     private Avatar avatar;
     private Map map;
+    boolean inAction;
+
+    long action = 0;
 
     public PlayStateController(PlayStateModel model, GameStateManager gsm, Avatar avatar){
         super(gsm);
@@ -30,6 +31,12 @@ public class PlayStateController extends Controller {
         map = model.getMap();
         avatar.setKeyCommand(map);
         keyCommand();
+        inAction = false;
+
+        //register them under the GSM for model update
+        for(int i=0;i<model.getEntityControllers().size();i++) {
+            gsm.registerEntityController(model.getEntityControllers().get(i));
+        }
     }
 
     @Override
@@ -38,16 +45,20 @@ public class PlayStateController extends Controller {
     }
 
     public void keyCommand() {
+
         loadKeyMap(avatar.getKeyMap());
 
-        KeyCommand useFireball = new SkillKeyCommand(map, avatar);
-        keyMap.put(KeyEvent.VK_F, useFireball);
+
 
         KeyCommand openStats = new StatsKeyCommand(avatar, gsm);
         keyMap.put(KeyEvent.VK_K, openStats);
 
         KeyCommand openSkillTree = new SkillTreeKeyCommand(avatar, gsm);
         keyMap.put(KeyEvent.VK_T, openSkillTree);
+
+
+        KeyCommand pause = new PauseKeyCommand(gsm);
+        keyMap.put(KeyEvent.VK_ESCAPE,pause);
 
     }
 
@@ -66,14 +77,31 @@ public class PlayStateController extends Controller {
     long wait = 0;
     @Override
     public void handleInput(KeyEvent e) {
+
         long time = System.currentTimeMillis();
         if(time - wait > 50){
             if(keyMap.get(e.getKeyCode())!= null) {
-                keyMap.get(e.getKeyCode()).execute();
+                if (inAction) {
+                    // do nothing
+                } else {
+                    inAction = true;;
+                    keyMap.get(e.getKeyCode()).execute();
+                    inAction = false;
+                }
                 wait = time;
             }else{
                 System.out.println("Key Mapping Does Not Exist");
             }
         }
+
+        if (keyMap.get(e.getKeyCode()) != null) {
+            keyMap.get(e.getKeyCode()).execute();
+        } else {
+            System.out.println("Key mapping does not exist");
+        }
+    }
+
+    public void updateModel() {
+
     }
 }

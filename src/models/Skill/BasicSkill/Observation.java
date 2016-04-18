@@ -35,4 +35,8 @@ public class Observation extends BasicSkill {
         }
         return calculatorMultiplier * amount * distance * 0.5;
     }
+
+    public void createSignal(models.Map.Map map, Entity entity) {
+
+    }
 }

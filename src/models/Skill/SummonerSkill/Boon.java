@@ -1,5 +1,6 @@
 package models.Skill.SummonerSkill;
 import models.Entity.*;
+import models.Signal.SkillSignal.SelfSkillSignal;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,5 +35,9 @@ public class Boon extends SummonerSkill {
         modifyAmountArray[1] = 20 * level;
         modifyAmountArray[2] = 2 * level;
         return modifyAmountArray;
+    }
+
+    public void createSignal(models.Map.Map map, Entity entity) {
+        new SelfSkillSignal(map, entity, this);
     }
 }

@@ -55,11 +55,14 @@ public class MainMenuViewController extends Controller {
 
     private void avatarCreationStateTransition() {
         AvatarCreationModel model = new AvatarCreationModel();
-        View view = new AvatarCreationView(500,500,gsm.getCurrentView().getCanvas(),model);
+        View view = new AvatarCreationView(500,500,gsm.getCurrentCanvas(),model);
         Controller controller = new AvatarCreationViewController(model, gsm);
         State state = new State(view, controller);
         gsm.changeState(state);
     }
 
+    @Override
+    public void updateModel() {
 
+    }
 }

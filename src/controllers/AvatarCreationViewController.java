@@ -74,6 +74,8 @@ public class AvatarCreationViewController extends Controller {
         gsm.changeState(playState);
     }
 
+    @Override
+    public void updateModel() {
 
-
+    }
 }

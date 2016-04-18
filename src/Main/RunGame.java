@@ -73,7 +73,9 @@ public class RunGame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         //calls update
+        gsm.updateModel();
         gsm.update(canvas);
+
 
     }
 }

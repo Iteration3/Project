@@ -34,6 +34,10 @@ public enum Direction {
 
     public static Direction counterCloclwise(Direction selected){
         int pos = selected.ordinal();
+        if(pos > Direction.values().length - 3){
+            return Direction.North;
+        }
+
         if(pos == 0){
             return Direction.values()[Direction.values().length -3];
         }
@@ -42,6 +46,9 @@ public enum Direction {
     public static Direction clockwise(Direction selected){
 
         int pos = selected.ordinal();
+        if(pos > Direction.values().length - 3){
+            return Direction.North;
+        }
         if(pos == Direction.values().length-3){
             return Direction.values()[0];
         }

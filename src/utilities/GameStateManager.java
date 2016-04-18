@@ -1,12 +1,17 @@
 package utilities;
 
 
+import AI.AIController;
 import Main.InputManager;
 import controllers.Controller;
+import controllers.NPCController;
+import models.Entity.NPC;
 import utilities.State.State;
 import views.Canvas;
 import views.View;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -16,12 +21,13 @@ import java.util.Stack;
 
 public class GameStateManager {
 
-    //State
-    private State state;
-
-
     //Stack of states
     private Stack<State> stateStack;
+
+
+    //List of NPCs
+    ArrayList<AIController> currentNPCs = new ArrayList<>();
+
 
     public GameStateManager(){
         //initialize the stack of states
@@ -42,7 +48,8 @@ public class GameStateManager {
     public void changeState(State state){
         stateStack.add(state);
         //TODO: This should not be written like this
-        getCurrentView().getCanvas().setActiveView(state.getView());
+        //getCurrentView().getCanvas().setActiveView(state.getView());
+        getCurrentCanvas().setActiveView(state.getView());
     }
 
     //remove state
@@ -54,4 +61,20 @@ public class GameStateManager {
     public void update(Canvas canvas){
         canvas.repaint();
     }
+
+    public void updateModel() {
+        getCurrentController().updateModel();
+        for(int i=0;i<currentNPCs.size();i++){
+            currentNPCs.get(i).act();
+        }
+    }
+
+    public Canvas getCurrentCanvas() {
+        return getCurrentView().getCanvas();
+    }
+
+    public void registerEntityController(AIController aiController){
+        currentNPCs.add(aiController);
+    }
+
 }

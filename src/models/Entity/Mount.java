@@ -14,6 +14,7 @@ public class Mount extends Entity {
         //setDirection(models.Direction.South);
         setOccupation(occupation);
         setStats(new MountStats());
+        setCurrentState(States.WANDER);
         //setInventory(new models.Inventory());
         //setEquipment(new models.Equipment());
     }

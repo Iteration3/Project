@@ -23,7 +23,7 @@ public enum Terrain {
     ,Mountain(DrawTerrainImages.getFullTerrain(new Color(150,100,0),new Color(100,50,0))){
         @Override
         public void moveTo(Locomotion locomotion) {
-            locomotion.moveToWater();
+            locomotion.moveToMountain();
         }
     }
     ,

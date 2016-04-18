@@ -18,7 +18,7 @@ import models.Equipment.Equipment;
 import utilities.Location.Location;
 
 public abstract class Entity implements Action {
-    //
+
     protected String name;
     protected Location location;
     protected Direction direction;
@@ -26,17 +26,30 @@ public abstract class Entity implements Action {
     protected StatContainer stats;
     protected Inventory inventory;
     protected Equipment equipment;
+    private States state;
+
+    public enum States{
+        WANDER,
+        ATTACK
+    }
 
     /*
         Methods used in constructors
      */
     //
-    protected void setName(String name) {this.name = name;}
+    public void setName(String name) {this.name = name;}
     public void setLocation(Location location) {this.location = location;}
-    protected void setDirection(Direction direction) {this.direction = direction;}
-    protected void setOccupation(Occupation occupation) {this.occupation = occupation;}
-    protected void setStats(StatContainer stats) {this.stats = stats;}
-    protected void setInventory(Inventory inventory) {this.inventory = inventory;}
+    public void setDirection(Direction direction) {this.direction = direction;}
+    public void setOccupation(Occupation occupation) {this.occupation = occupation;}
+    public void setStats(StatContainer stats) {this.stats = stats;}
+    public void setInventory(Inventory inventory) {this.inventory = inventory;}
+
+    //state functions
+    public States getCurrentState(){ return state;}
+    public void setCurrentState(States state){
+        this.state = state;
+    }
+
     //protected void setEquipment(models.Equipment equipment) {this.equipment = equipment;)
 
     /*
@@ -132,6 +145,12 @@ public abstract class Entity implements Action {
 
     public Inventory getInventory(){
         return this.inventory;
+    }
+
+
+    //skills
+    public Skill getActiveSkill(int n) {
+        return occupation.getActiveSkill(n);
     }
 
 
