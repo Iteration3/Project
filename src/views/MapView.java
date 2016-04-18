@@ -161,8 +161,14 @@ public class MapView {
             return;
         }
 
-        Image image = temp.getImage();
-        g.drawImage(image,x - image.getWidth(null)/2,y - image.getHeight(null)/2,null);
+        if (decal != null) {
+            BufferedImage image = decal.getBufferedImage();
+            g.drawImage(image,x - image.getWidth(null)/2,y - image.getHeight(null)/2,null);
+        }
+        else if (temp != null) {
+            Image image = temp.getImage();
+            g.drawImage(image,x - image.getWidth(null)/2,y - image.getHeight(null)/2,null);
+        }
     }
 
 

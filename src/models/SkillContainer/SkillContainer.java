@@ -9,6 +9,8 @@ public abstract class SkillContainer {
     protected ArrayList<Skill> listOfSkillsNotAdded;
 
     public SkillContainer() {
+        listOfSkills = new ArrayList<>();
+        listOfSkillsNotAdded = new ArrayList<>();
     }
 
     protected void addSkillToList(Skill skill) {
@@ -25,6 +27,14 @@ public abstract class SkillContainer {
             listOfSkillsNotAdded.remove(indexOfSkill);
             listOfSkills.add(skill);
         }
+    }
+
+    public void setSkillDeactivated(Skill skill) {
+        listOfSkills.remove(skill);
+    }
+
+    public void setSkillActive(Skill skill) {
+        listOfSkills.add(skill);
     }
 
     public ArrayList<Skill> getListOfSkills() {
