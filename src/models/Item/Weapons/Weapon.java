@@ -25,28 +25,34 @@ public class Weapon extends EquipableItem {
         requirement = new Requirement();
     }
 
-    public Weapon(double weaponSpeed, String requiredOccupation, BufferedImage image, int id, Location location, String name, double attackRating) {
-        super(image, id, location, name, attackRating);
+    public Weapon(double weaponSpeedString,String requiredOccupation, BufferedImage image, int id, String name, double attackRating) {
+        super(image, id, name, attackRating);
         requirement = new Requirement(null, 0, requiredOccupation);
         this.weaponSpeed = weaponSpeed;
     }
 
-    public Weapon(double weaponSpeed, String requiredOccupation, int requiredLevel, BufferedImage image, int id, Location location, String name, double attackRating) {
-        super(image, id, location, name, attackRating);
+    public Weapon(double weaponSpeed, String requiredOccupation, int requiredLevel, BufferedImage image, int id, String name, double attackRating) {
+        super(image, id, name, attackRating);
         requirement = new Requirement(null, requiredLevel, requiredOccupation);
         this.weaponSpeed = weaponSpeed;
 
     }
 
     /* Methods */
-    public void equip(Equipment equipment, Inventory inventory) {
+    public void equip(Entity entity, Equipment equipment, Inventory inventory) {
+        if(requirement.meetsRequirements(entity) == false){
+            System.out.println("Can't Equip! You must be a "+ requirement.getRequiredOccupation() + " over level "+ requirement.getRequiredLevel());
+            return; //do nothing
+        }
         equipment.setEquippedWeapon(this);
         inventory.removeItem(id);
+        this.applyRating(entity);
     }
 
-    public void unequip(Equipment equipment, Inventory inventory) {
+    public void unequip(Entity entity, Equipment equipment, Inventory inventory) {
         equipment.setEquippedWeapon(null);
         inventory.addItem(this);
+        this.unapplyRating(entity);
     }
 
 

@@ -11,7 +11,7 @@ import utilities.Location.Location;
 * Implemented by Peter Camejo
 */
 
-public abstract class ConsumableItem extends TakeableItem {
+public class ConsumableItem extends TakeableItem {
     /* Attributes */
     private Map<String , Double> statModifier;
 
@@ -20,8 +20,8 @@ public abstract class ConsumableItem extends TakeableItem {
         super();
     }
 
-    public ConsumableItem(String statName , double modifier , BufferedImage image , int id, Location location, String name){
-        super(image, id, location, name);
+    public ConsumableItem(String statName , double modifier , BufferedImage image , int id, String name){
+        super(image, id, name);
         statModifier = new LinkedHashMap<>();
         statModifier.put(statName , modifier);
     }
@@ -29,6 +29,7 @@ public abstract class ConsumableItem extends TakeableItem {
     /* Methods */
     public void use(Entity entity){
         entity.modifyStats(this.statModifier);
+        entity.destroyItem(this.id);
     }
 
 }

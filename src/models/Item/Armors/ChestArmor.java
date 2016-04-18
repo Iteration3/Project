@@ -1,8 +1,10 @@
 package models.Item.Armors;
 
+import models.Entity.Entity;
 import models.Equipment.Equipment;
 import models.Inventory.Inventory;
 import utilities.Location.Location;
+import views.Assets;
 
 import java.awt.image.BufferedImage;
 
@@ -15,19 +17,25 @@ public class ChestArmor extends Armor {
         super();
     }
 
-    public ChestArmor(BufferedImage image , int id, Location location, String name, double rating){
-        super(image, id, location, name ,rating);
+    public ChestArmor( int id,  String name, double rating){
+        super(Assets.chestArmor , id, name ,rating);
+    }
+
+    public ChestArmor( int id,  String name, double rating, int requiredLevel){
+        super(Assets.chestArmor , id, name ,rating , requiredLevel);
     }
 
     /* Methods */
-    public void equip(Equipment equipment , Inventory inventory){
+    public void equip(Entity entity , Equipment equipment , Inventory inventory){
         equipment.addChest(this);
         inventory.removeItem(id);
+        this.applyRating(entity);
     }
 
-    public void unequip(Equipment equipment , Inventory inventory){
+    public void unequip(Entity entity, Equipment equipment , Inventory inventory){
         equipment.removeChest();
         inventory.addItem(this);
+        this.unapplyRating(entity);
     }
 
 }

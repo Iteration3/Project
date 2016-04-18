@@ -1,7 +1,7 @@
 package models.Item.Weapons;
 
 import utilities.Location.Location;
-
+import views.Assets;
 import java.awt.image.BufferedImage;
 
 /**
@@ -14,12 +14,12 @@ import java.awt.image.BufferedImage;
 public class Fist extends Weapon{
     /* Constructors */
     //No level requirement
-    public Fist(BufferedImage image , int id, Location location, String name , double attackRating){
-        super(3.00 , "Smasher" , image, id, location, name, attackRating);
+    public Fist(int id, String name , double attackRating){
+        super(3.00 , "Smasher" , Assets.fist , id, name, attackRating);
     }
 
     //Level requirement
-    public Fist(int requiredLevel ,  BufferedImage image , int id, Location location, String name , double attackRating){
-        super(3.00 , "Smasher" , requiredLevel , image, id, location, name, attackRating);
+    public Fist(int requiredLevel ,  int id,  String name , double attackRating){
+        super(3.00 , "Smasher" , requiredLevel , Assets.fist, id,  name, attackRating);
     }
 }

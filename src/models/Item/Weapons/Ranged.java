@@ -1,6 +1,7 @@
 package models.Item.Weapons;
 
 import utilities.Location.Location;
+import views.Assets;
 
 import java.awt.image.BufferedImage;
 
@@ -14,12 +15,12 @@ import java.awt.image.BufferedImage;
 public class Ranged extends Weapon{
     /* Constructors */
     //No level requirement
-    public Ranged(BufferedImage image , int id, Location location, String name , double attackRating){
-        super(2.00 , "Sneak" , image, id, location, name, attackRating);
+    public Ranged( int id, String name , double attackRating){
+        super(2.00 , "Sneak" , Assets.ranged, id,  name, attackRating);
     }
 
     //Level requirement
-    public Ranged(int requiredLevel ,  BufferedImage image , int id, Location location, String name , double attackRating){
-        super(2.00 , "Sneak" , requiredLevel , image, id, location, name, attackRating);
+    public Ranged(int requiredLevel , int id,  String name , double attackRating){
+        super(2.00 , "Sneak" , requiredLevel , Assets.ranged, id, name, attackRating);
     }
 }
