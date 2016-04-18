@@ -12,16 +12,17 @@ public class NPC extends Entity {
     //
     public NPC(int level, Occupation occupation) {
         setName("NPC");
-        //setLocation(new Location());
-        //setDirection(models.Direction.South);
+//        setDirection(models.Direction.South);
         setOccupation(occupation);
         setStats(new NPCStats(occupationModifier(), level));
         setInventory(new Inventory(12));
+        setCurrentState(States.WANDER);
         //setEquipment(new models.Equipment());
     }
 
     @Override
     public Image getImage() {
+        System.out.println("I am drawing the entity");
         Image image = new ImageIcon("res/twoHand.png").getImage();
         return image;
     }
