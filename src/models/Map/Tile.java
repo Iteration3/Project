@@ -40,7 +40,6 @@ public class Tile {
     public boolean isGround() {
         boolean isGround = terrain.equals(Terrain.Grass);
         boolean isMountain = terrain.equals(Terrain.Mountain);
-        System.out.println(terrain);
         return (!isGround && !isMountain);
     }
 

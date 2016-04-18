@@ -1,6 +1,7 @@
 package views;
 
 
+import models.Decal.Decal;
 import models.Entity.Entity;
 import models.Map.Map;
 import models.Map.Terrain;
@@ -178,12 +179,20 @@ public class MapView {
 
     private void renderTerrain(int x, int y, Tile tile, Graphics2D g){
         Terrain temp = tile.getTerrain();
+        Decal decal = tile.getDecal();
         if(temp == null) {
             return;
         }
 
-        BufferedImage image = temp.getImage();
-        g.drawImage(image,x - image.getWidth()/2,y - image.getHeight()/2,null);
+
+        if (decal != null) {
+            BufferedImage image = decal.getBufferedImage();
+            g.drawImage(image,x - image.getWidth(null)/2,y - image.getHeight(null)/2,null);
+        }
+        else if (temp != null) {
+            Image image = temp.getImage();
+            g.drawImage(image,x - image.getWidth(null)/2,y - image.getHeight(null)/2,null);
+        }
     }
 
     private void renderEntityAt(int x, int y, Tile tile, Graphics2D g){
