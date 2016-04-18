@@ -3,11 +3,13 @@ package models.Entity;
 
 import models.Action.Action;
 import models.Map.Terrain;
+import models.Skill.Skill;
 import utilities.Direction.Direction;
 import models.Occupation.*;
 import models.StatContainer.*;
 import models.Item.*;
 
+import java.util.ArrayList;
 import java.util.Map;
 import models.Inventory.*;
 import models.Equipment.Equipment;
@@ -73,6 +75,10 @@ public abstract class Entity implements Action {
     //
     public String occupationName() {return this.occupation.name();}
     protected Map<String, Double> occupationModifier() {return this.occupation.occupationModifier();}
+
+    public Occupation getOccupation() {
+        return occupation;
+    }
 
     /*
         models.StatContainer specific functionality
