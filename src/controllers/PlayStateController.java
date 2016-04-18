@@ -45,22 +45,23 @@ public class PlayStateController extends Controller {
         Locomotion locomotion = new Amphibious(avatar, map);
         // Movement
         KeyCommand moveNorth = new MovementKeyCommand(map, avatar, Direction.North, locomotion);
-        keyMap.put(KeyEvent.VK_8, moveNorth);
+        //keyMap.put(KeyEvent.VK_8, moveNorth);
 
         KeyCommand moveNorthWest = new MovementKeyCommand(map, avatar, Direction.NorthWest, locomotion);
-        keyMap.put(KeyEvent.VK_7, moveNorthWest);
+        //keyMap.put(KeyEvent.VK_7, moveNorthWest);
 
         KeyCommand moveSouthWest = new MovementKeyCommand(map, avatar, Direction.SouthWest, locomotion);
-        keyMap.put(KeyEvent.VK_1, moveSouthWest);
+        //keyMap.put(KeyEvent.VK_1, moveSouthWest);
 
         KeyCommand moveSouth = new MovementKeyCommand(map, avatar, Direction.South, locomotion);
-        keyMap.put(KeyEvent.VK_2, moveSouth);
+        //keyMap.put(KeyEvent.VK_2, moveSouth);
 
         KeyCommand moveSouthEast = new MovementKeyCommand(map, avatar, Direction.SouthEast, locomotion);
-        keyMap.put(KeyEvent.VK_3, moveSouthEast);
+        //keyMap.put(KeyEvent.VK_3, moveSouthEast);
 
         KeyCommand moveNorthEast = new MovementKeyCommand(map, avatar, Direction.NorthEast, locomotion);
-        keyMap.put(KeyEvent.VK_9, moveNorthEast);
+        //keyMap.put(KeyEvent.VK_9, moveNorthEast);
+
 
         KeyCommand moveUp = new MovementKeyCommand(map, avatar, Direction.Up, locomotion);
         keyMap.put(KeyEvent.VK_SPACE, moveUp);

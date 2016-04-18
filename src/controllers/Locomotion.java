@@ -64,21 +64,19 @@ public abstract class Locomotion {
     public abstract void moveToWater();
     public abstract void moveToAir();
 
-    /** ACCESSOR METHODS **/
-    protected Entity getEntity() { return entity; }
-    protected Map getMap() { return map; }
 
     /** HELPER METHODS **/
     //TODO modify once Map/Obstacle have been implemented
     // Returns true if an Entity is occupying the Tile to be moved to
     private boolean checkForEntities(Tile tile) {
 
-        return tile.hasEntity();
+        return ( tile == null || tile.hasEntity() );
 
     }
 
     private boolean checkForAreaEffects(Tile tile){
-        return tile.hasAreaEffect();
+
+        return ( tile != null && tile.hasAreaEffect() );
 
     }
 

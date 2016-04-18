@@ -60,8 +60,6 @@ public class PauseMenuController extends Controller {
         gsm.changeState(state);
     }
 
-    @Override
-    public void updateModel() {
 
-    }
+
 }
