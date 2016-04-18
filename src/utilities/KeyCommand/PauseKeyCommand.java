@@ -22,7 +22,7 @@ public class PauseKeyCommand implements KeyCommand {
     @Override
     public void execute(){
         PauseMenuModel model = new PauseMenuModel();
-        View view = new PauseMenuView(500,500,gsm.getCurrentCanvas(),null);
+        View view = new PauseMenuView(500,500,gsm.getCurrentCanvas(),null,model);
         Controller controller = new PauseMenuController(model,gsm);
         State state = new State(view,controller);
         gsm.changeState(state);

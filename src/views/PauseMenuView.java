@@ -1,5 +1,7 @@
 package views;
 
+import models.StateModel.PauseMenuModel;
+
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -14,14 +16,20 @@ public class PauseMenuView extends View {
     private final String TITLE = "Pause Menu";
     private BufferedImage bg;
 
+    private static final int WIDTH = 700;
+    private static final int HEIGHT = 700;
+
     // Styling properties
     private Font titleFont;
     private Font generalFont;
     private int titleButtonMargin;
 
-    public PauseMenuView(int width, int height, Canvas canvas, BufferedImage bg){
+    private PauseMenuModel model;
+
+    public PauseMenuView(int width, int height, Canvas canvas, BufferedImage bg, PauseMenuModel model){
         super(width, height, canvas);
         this.bg = bg;
+        this.model = model;
     }
 
     @Override
@@ -70,6 +78,28 @@ public class PauseMenuView extends View {
         Color selectedColor = Color.BLACK;
         g.setColor(selectedColor);
 
+        g.setFont(titleFont);
+        //FontMetrics fm = g.getFontMetrics();
+
+        //int x = WIDTH*6/10;
+        //int y = HEIGHT*4/10;
+
+        Color defaultColor = Color.YELLOW;
+        //Color selectedColor = Color.RED;
+
+        for(PauseMenuModel.PauseMenuOption option: PauseMenuModel.PauseMenuOption.values()){
+            Rectangle2D rectangle = fm.getStringBounds(option.toString(),g);
+
+            if(option.toString().equals(model.getSelected().toString())){
+                g.setColor(selectedColor);
+                g.drawString(option.toString(), x, y);
+            } else {
+                g.setColor(defaultColor);
+                g.drawString(option.toString(), x, y);
+            }
+
+            y += fm.getHeight();
+        }
 
     }
 

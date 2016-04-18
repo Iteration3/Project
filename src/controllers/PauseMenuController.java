@@ -30,6 +30,20 @@ public class PauseMenuController extends Controller {
                 statsStateTransition();
             }
         });
+
+        keyMap.put(KeyEvent.VK_U, new KeyCommand(){
+            @Override
+            public void execute() {
+                model.up();
+            }
+        });
+
+        keyMap.put(KeyEvent.VK_J, new KeyCommand() {
+            @Override
+            public void execute() {
+                model.down();
+            }
+        });
     }
 
     private void statsStateTransition() {
