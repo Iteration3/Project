@@ -4,21 +4,24 @@ package models.StateModel;
 import AI.AIController;
 import controllers.NPCController;
 import controllers.PetController;
-import models.AreaEffect.*;
+import models.Entity.Avatar;
 import models.Entity.Entity;
 import models.Entity.NPC;
 import models.Entity.Pet;
+import models.Item.Armors.ChestArmor;
+import models.Item.Armors.HeadArmor;
+import models.Item.TakeableItem;
+import models.Item.Weapons.Fist;
+import models.Item.Weapons.Staff;
 import models.Map.Map;
 import models.Map.MapEditor.MapOperator;
 import models.Occupation.Sneak;
 import models.Occupation.Summoner;
 import utilities.Direction.Direction;
 import utilities.Location.Location;
-import views.Assets;
-import views.MapView;
-import views.StatusView;
+import views.*;
 
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 
 
@@ -32,12 +35,15 @@ public class PlayStateModel{
     private MapOperator mapOperator;
     private StatusView statusView;
     private ArrayList<AIController> entityController = new ArrayList<>();
+    private Location startLocation;
 
     private Pet pet;
 
     public PlayStateModel(Entity avatar) {
+        Assets.init();
 
         this.avatar = avatar;
+        this.startLocation = new Location(44,0,0);
 
         //TODO Place any model instantiation here
         Pet pet = new Pet(3,new Sneak());
@@ -54,14 +60,18 @@ public class PlayStateModel{
 
 
         mapOperator = new MapOperator(20,20,10);
+        // For observers
+        mapOperator.addEntityObserver(avatar);
+        mapOperator.addEntityObserver(pet);
+        mapOperator.addEntityObserver(npc);
 
         statusView = new StatusView(avatar);
 
         focus  = new Location(0,0,0);
 
         //TODO Place any model instantiation here
-        //Pet pet = new Pet(3,new Sneak());
-        PetController petController = new PetController(pet,mapOperator.getMap());
+        pet = new Pet(3,new Summoner());
+        PetController petController = new PetController(pet,mapOperator.getMap(),(Avatar)avatar);
         entityController.add(petController);
 
 
@@ -77,13 +87,14 @@ public class PlayStateModel{
         NPCController npcController = new NPCController(npc,mapOperator.getMap());
         entityController.add(npcController);
 
-
-        mapOperator.addNewEntityAt(avatar,new Location(44,0,0));
+        mapOperator.addNewEntityAt(avatar, startLocation);
         mapOperator.addNewEntityAt(pet,new Location(43,0,0));
-//        mapOperator.addNewEntityAt(npc, new Location(44,4,0));
+        mapOperator.addNewEntityAt(npc, new Location(44,4,0));
+
+        mapOperator.addItemAt(new HeadArmor(),new Location(46,7,0));
+        mapOperator.addItemAt(new ChestArmor(),new Location(44,9,0));
 
         //setDefaultFocus();
-        Assets.init();
     }
 
     public void setDefaultFocus(){
@@ -116,5 +127,9 @@ public class PlayStateModel{
     //get the entity controllers
     public ArrayList<AIController> getEntityControllers(){
         return entityController;
+    }
+
+    public void update() {
+
     }
 }

@@ -22,7 +22,6 @@ public class NPC extends Entity {
 
     @Override
     public Image getImage() {
-        System.out.println("I am drawing the entity");
         Image image = new ImageIcon("res/twoHand.png").getImage();
         return image;
     }

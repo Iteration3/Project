@@ -9,11 +9,11 @@ import java.awt.image.PackedColorModel;
 public class MainMenuView extends View {
 
     // Constants
-    private final String TITLE = "Kanye 2020";
+    private String TITLE = "TEAM WTF 69";
 
     // Scalable variables.
-    private static final int WIDTH = 700;
-    private static final int HEIGHT = 700;
+    private static int WIDTH = 700;
+    private static int HEIGHT = 700;
 
     // Styling properties
     private Font titleFont;
@@ -27,11 +27,18 @@ public class MainMenuView extends View {
         this.model = model;
     }
 
-
+    public MainMenuView(String title, int width, int height, Canvas canvas,MainMenuModel model) {
+        super(width, height, canvas);
+        this.TITLE = title;
+        this.model = model;
+    }
 
 
     @Override
     public void render(Graphics g) {
+
+        this.WIDTH = getScreenWidth();
+        this.HEIGHT = getScreenHeight();
 
         renderBackground(g);
         renderTitle(g);

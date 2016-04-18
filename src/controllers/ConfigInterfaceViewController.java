@@ -1,69 +1,63 @@
 package controllers;
 
-import models.StateModel.PauseMenuModel;
+
+import models.StateModel.ConfigInterfaceModel;
+import models.StateModel.StatsModel;
 import utilities.GameStateManager;
 import utilities.KeyCommand.KeyCommand;
 import utilities.State.State;
+import views.StatsView;
 import views.View;
+
 
 import java.awt.event.KeyEvent;
 
-/**
- * Created by Andy on 4/16/2016.
- */
-public class PauseMenuController extends Controller {
 
-    private PauseMenuModel model;
+
+public class ConfigInterfaceViewController extends Controller {
+
+
+    private ConfigInterfaceModel model;
     private int currentPoint;
 
-    public PauseMenuController(PauseMenuModel model, GameStateManager gsm){
+    public ConfigInterfaceViewController(ConfigInterfaceModel model, GameStateManager gsm){
         super(gsm);
         this.model = model;
         currentPoint = 0;
     }
-    
+
+
 
 
     @Override
     public void loadKeyCommand() {
-        keyMap.put(KeyEvent.VK_ESCAPE, new KeyCommand(){
+
+        keyMap.put(KeyEvent.VK_P, new KeyCommand(){
             @Override
             public void execute() {
                 statsStateTransition();
             }
         });
-
-        keyMap.put(KeyEvent.VK_U, new KeyCommand(){
-            @Override
-            public void execute() {
-                model.up();
-            }
-        });
-
-        keyMap.put(KeyEvent.VK_J, new KeyCommand() {
-            @Override
-            public void execute() {
-                model.down();
-            }
-        });
-
         keyMap.put(KeyEvent.VK_UP, new KeyCommand(){
             @Override
             public void execute() {
-                model.up();
+                model.down();
             }
         });
 
         keyMap.put(KeyEvent.VK_DOWN, new KeyCommand() {
             @Override
             public void execute() {
-                model.down();
+                model.up();
             }
         });
-    }
 
-    @Override
-    public void updateModel() {
+        keyMap.put(KeyEvent.VK_ENTER, new KeyCommand() {
+            @Override
+            public void execute() {
+
+            }
+        });
 
     }
 
@@ -75,6 +69,8 @@ public class PauseMenuController extends Controller {
         gsm.changeState(state);
     }
 
+    @Override
+    public void updateModel() {
 
-
+    }
 }

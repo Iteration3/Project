@@ -8,6 +8,7 @@ import models.ItemContainer.ItemContainer;
 */
 
 public class Inventory implements ItemContainer {
+
     /* Attributes */
     public int size;
     private TakeableItem[] items;
@@ -21,10 +22,10 @@ public class Inventory implements ItemContainer {
         goldAmount = 0;
     }
 
-    public Inventory(int size){
-        this.size = size;
-        items = new TakeableItem[size];
-        goldAmount = 0;
+    public Inventory(int goldAmount){
+        size = DEFAULT_SIZE;
+        items = new TakeableItem[DEFAULT_SIZE];
+        this.goldAmount = goldAmount;
     }
 
     public Inventory(int size , int goldAmount){
@@ -36,15 +37,24 @@ public class Inventory implements ItemContainer {
     /* Methods */
 
     public void addItem(TakeableItem item) {
+
         for(int i = 0; i < size; i++){
-            if(items[i] != null){
+            if(items[i] == null){
                 items[i] = item;
                 return;
             }
         }
 
         System.out.println("Take models.Item failed: models.Inventory full.");
+    }
 
+    public boolean isFull(){
+        for(int i = 0; i < size; i++){
+            if(items[i] == null){
+                return false;
+            }
+        }
+        return true;
     }
 
     public TakeableItem removeItem(int id){
@@ -100,4 +110,20 @@ public class Inventory implements ItemContainer {
         return goldAmount;
     }
 
+
+    @Override
+    public String toString(){
+        String value = "[";
+
+        for(int i = 0; i < size; i++){
+            if(items[i] == null){
+                value += " Empty ";
+            }else {
+                value += " Item ";
+            }
+        }
+        value += "]";
+
+        return value;
+    }
 }

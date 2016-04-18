@@ -3,39 +3,32 @@ package models.StateModel;
 import models.Entity.Entity;
 import models.Equipment.Equipment;
 import models.Inventory.Inventory;
-import models.Item.EquipableItem;
 import models.Item.TakeableItem;
+import utilities.Location.Location;
 import utilities.State.State;
+import models.Map.Map;
+
+import java.awt.image.BufferedImage;
 
 /**
  * Implemented by Peter Camejo
  */
 public class InventoryViewModel{
+
     private Entity entity;
     private Inventory inventory;
     private Equipment equipment;
-    private TakeableItem[] items;
-    private TakeableItem currentItem;
     private int goldAmount;
+    private Map map;
     int index;
 
-    public InventoryViewModel(){
-        entity = null;
-        equipment = null;
-        inventory = null;
-        items = null;
-        currentItem = null;
-        index = 0;
-        goldAmount = 0;
-    }
 
-    public InventoryViewModel(Entity entity){
+    public InventoryViewModel(Entity entity, Map map){
         this.entity = entity;
         inventory = entity.getInventory();
         equipment = entity.getEquipment();
-        items = new TakeableItem[22];
         index = 0;
-        currentItem = items[index];
+        this.map = map;
     }
 
 
@@ -45,6 +38,7 @@ public class InventoryViewModel{
     }
 
     public void update() {
+        /*int count = 0;
         items[0] = equipment.getHead();
         items[1] = equipment.getChest();
         items[2] = equipment.getGloves();
@@ -54,61 +48,65 @@ public class InventoryViewModel{
         items[6] = equipment.getWeapon();
 
         for(int i = 7; i < 22; i++){
-            items[i] = inventory.getItemByIndex(index++);
+            items[i] = inventory.getItemByIndex(count++);
         }
 
         goldAmount = inventory.getGold();
         currentItem = items[index];
+        System.out.println( " Current index: " + index);*/
     }
 
     public void up(){
-        if(index > 6){ //Index is in Inventory portion.
-            if(index + 5 <= 21){
-                index += 5;
-                return;
-            }
+        if(index > 4){ //Index is in Inventory portion.
+            index = index - 5;
         }else{ //Index is in Equipment portion.
-            index--;
-            return;
+            index = inventory.size - (5 - index);
         }
     }
 
+
     public void down(){
-        if(index > 6){
-            if(index - 5 > 6){
-                index -= 5;
-                return;
-            }
-        }else{
-            index++;
-            return;
-        }
+        index = (index +5)%(inventory.size);
     }
 
     public void right(){
-        if(index > 6){
-            index++;
-        }else{
-            index = 7;
-        }
+        index = (index/5)*5 +  (index + 1)%5;
     }
 
     public void left(){
-        if(index == 7 || index == 12 || index == 17){
-            index = 6;
-            return;
-        }else if(index < 7){
-            return; //do nothing
-        }else{
-            index--;
-        }
+        index = (index/5)*5 + (index - 1)%5;
+        if(index < 0)
+            index = 4;
     }
 
     public void select(){
-        if (index < 7) {
-            entity.unequip((EquipableItem) currentItem);
-        }else{
-            entity.useItem(currentItem);
+
+    }
+
+    public TakeableItem getCurrentItem(){
+        return inventory.getItemByIndex(index);
+    }
+
+    public BufferedImage getItemImageAt(int index){
+        if(inventory.getItemByIndex(index) == null)
+            return null;
+        return inventory.getItemByIndex(index).getImage();
+    }
+
+    public int getCurrentIndex(){
+        return this.index;
+    }
+
+    public int getInventorySize(){
+        return  inventory.size;
+    }
+
+    public void dropItem(){
+        TakeableItem item = inventory.getItemByIndex(index);
+        if(item != null){
+            inventory.removeItemByIndex(index);
+            Location loc =entity.getLocation();
+            map.getTileAt(loc).addItem(item);
         }
     }
 }

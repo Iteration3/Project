@@ -4,15 +4,19 @@ import models.Entity.Entity;
 import models.Map.Map;
 import models.Map.Terrain;
 import models.Map.Tile;
+import models.StateModel.MainMenuModel;
 import utilities.Direction.Direction;
 import utilities.Location.Location;
+import utilities.State.State;
+import views.MainMenuView;
+import views.View;
 
 import java.util.HashMap;
 
 /**
  * Created by clayhausen on 4/15/16.
  */
-public abstract class Locomotion {
+public abstract class Locomotion{
 
     protected Entity entity;
     protected Map map;
@@ -38,9 +42,8 @@ public abstract class Locomotion {
 
         // If Entity attempts to move out of bounds, remove a life and prevent movement
         if ( nextTile == null ) {
-            System.out.println("Tile was null");
             HashMap<String, Double> livesMap = new HashMap<>();
-            livesMap.put("LIVES", -1d);
+            livesMap.put("CURRENT_LIVES", -1d);
             entity.modifyStats(livesMap);
             tileBlocked = true;
         } else if ( checkForEntities(nextTile) || checkForObstacles(nextTile) ) {
@@ -123,6 +126,9 @@ public abstract class Locomotion {
         Direction direction = entity.getDirection();
         Location newLocation = direction.getNextLocation(oldLocation);
         entity.changeLocation(newLocation);
+        System.out.println("Old Location: " + oldLocation.toString() );
+        System.out.println("New Location: " + newLocation.toString() );
+
     }
 
     // sync the map with the Entities current location
@@ -147,9 +153,6 @@ public abstract class Locomotion {
             entity.changeLocation(newLocation);
             newTile.addEntity(entity);
         }
-
-        System.out.println("Entity's Location: " + entity.getLocation().toString());
-        System.out.println("Map location consistent?: " + map.getTileAt(entity.getLocation()).hasEntity());
     }
 
 

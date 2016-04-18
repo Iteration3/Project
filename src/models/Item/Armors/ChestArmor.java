@@ -14,7 +14,7 @@ import java.awt.image.BufferedImage;
 public class ChestArmor extends Armor {
     /* Constructor */
     public ChestArmor(){
-        super();
+        super(Assets.chestArmor,1,"Chess Armor", 5,1);
     }
 
     public ChestArmor( int id,  String name, double rating){

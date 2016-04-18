@@ -7,6 +7,8 @@ import models.Skill.SummonerSkill.Staff;
 import utilities.Direction.Direction;
 import utilities.Location.Location;
 
+import java.util.HashMap;
+
 
 public abstract class SkillSignal {
 
@@ -34,6 +36,17 @@ public abstract class SkillSignal {
     private void setAvatarLocations() {
         avatarLocation = avatar.getLocation();
         direction = avatar.getDirection();
+    }
+
+    protected void checkForExperienceGain(Entity entityToAttack) {
+        if (entityToAttack == null ) {
+            return;
+        }
+//        HashMap<String, Double> map = new HashMap<>();
+//        double xpToGain = entityToAttack.getExperience();
+//        map.put("CURRENT_EXPERIENCE", xpToGain);
+//        avatar.modifyStats(map);
+//        avatar.levelUpIfReady();
     }
 
     protected abstract void useSkill(Skill skill);
