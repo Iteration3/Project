@@ -30,7 +30,7 @@ public abstract class Locomotion {
         Location nextLocation = direction.getNextLocation(currentLocation);
         Tile nextTile = map.getTileAt(nextLocation);
 
-        if ( checkForEntities(nextTile) || checkForObstacles(nextTile) ) { tileBlocked = true; }
+        //if ( checkForEntities(nextTile) || checkForObstacles(nextTile) ) { tileBlocked = true; }
 
         if (!tileBlocked) {
             Terrain terrain = nextTile.getTerrain();
@@ -114,15 +114,35 @@ public abstract class Locomotion {
 
         // Remove the Entity from the old Tile
         Tile oldTile = map.getTileAt(oldLocation);
-        if (oldTile != null) { oldTile.removeEntity(); }
+        if (oldTile != null) {
+            oldTile.removeEntity();
+        }
         // Add the Entity to the new Tile
         Tile newTile = map.getTileAt(newLocation);
         if (newTile != null) {
             updateEntityLocation();
             newTile.addEntity(entity);
         }
+    }
+
+
+    protected void jumpToLocation(Location newLocation) {
+        // Get old and new Locations so we can get the Tiles
+        Location oldLocation = entity.getLocation();
+
+        // Remove the Entity from the old Tile
+        Tile oldTile = map.getTileAt(oldLocation);
+        if (oldTile != null) { oldTile.removeEntity(); }
+
+        // Add the Entity to the new Tile
+        Tile newTile = map.getTileAt(newLocation);
+        if (newTile != null) {
+            entity.changeLocation(newLocation);
+            newTile.addEntity(entity);
+        }
 
         System.out.println("Entity's Location: " + entity.getLocation().toString());
+        System.out.println("Map location consistent?: " + map.getTileAt(entity.getLocation()).hasEntity());
     }
 
 
