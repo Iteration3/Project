@@ -1,6 +1,9 @@
 package models.StateModel;
 
 
+import AI.AIController;
+import controllers.NPCController;
+import controllers.PetController;
 import models.Entity.Entity;
 import models.Entity.NPC;
 import models.Entity.Pet;
@@ -13,6 +16,9 @@ import utilities.Location.Location;
 import views.MapView;
 import views.StatusView;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 
 /**
  * Created by jcvarela on 4/15/2016.
@@ -23,6 +29,7 @@ public class PlayStateModel{
     private Entity avatar;
     private MapOperator mapOperator;
     private StatusView statusView;
+    private ArrayList<AIController> entityController = new ArrayList<>();
 
     private Pet pet;
 
@@ -30,20 +37,24 @@ public class PlayStateModel{
 
         this.avatar = avatar;
 
-        //TODO Place any model instantiation here
-        Pet pet = new Pet(3,new Sneak());
-        NPC npc = new NPC(3,new Summoner());
-
         mapOperator = new MapOperator(20,20,10);
 
         statusView = new StatusView(avatar);
 
         focus  = new Location(0,0,0);
 
-        mapOperator.addNewEntityAt(avatar,new Location(43,4,2));
+        //TODO Place any model instantiation here
+        Pet pet = new Pet(3,new Sneak());
+        PetController petController = new PetController(pet,mapOperator.getMap());
+        entityController.add(petController);
 
-//        mapOperator.addNewEntityAt(pet,new Location(0,1,0));
-//        mapOperator.addNewEntityAt(npc, new Location(0,2,0));
+        NPC npc = new NPC(3,new Summoner());
+        NPCController npcController = new NPCController(npc,mapOperator.getMap());
+        entityController.add(npcController);
+
+        mapOperator.addNewEntityAt(avatar,new Location(43,4,2));
+        mapOperator.addNewEntityAt(pet,new Location(0,1,0));
+        mapOperator.addNewEntityAt(npc, new Location(0,2,0));
 
         //setDefaultFocus();
     }
@@ -73,5 +84,10 @@ public class PlayStateModel{
        avatar.changeLocation(dir.getNextLocation(avatar.getLocation()));
         avatar.changeDirection(dir);
         //avatar.setAction(Action.Move);
+    }
+
+    //get the entity controllers
+    public ArrayList<AIController> getEntityControllers(){
+        return entityController;
     }
 }

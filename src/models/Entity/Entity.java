@@ -18,7 +18,7 @@ import models.Equipment.Equipment;
 import utilities.Location.Location;
 
 public abstract class Entity implements Action {
-    //
+
     protected String name;
     protected Location location;
     protected Direction direction;
@@ -26,6 +26,12 @@ public abstract class Entity implements Action {
     protected StatContainer stats;
     protected Inventory inventory;
     protected Equipment equipment;
+    private States state;
+
+    public enum States{
+        WANDER,
+        ATTACK
+    }
 
     /*
         Methods used in constructors
@@ -37,6 +43,13 @@ public abstract class Entity implements Action {
     public void setOccupation(Occupation occupation) {this.occupation = occupation;}
     public void setStats(StatContainer stats) {this.stats = stats;}
     public void setInventory(Inventory inventory) {this.inventory = inventory;}
+
+    //state functions
+    public States getCurrentState(){ return state;}
+    public void setCurrentState(States state){
+        this.state = state;
+    }
+
     //protected void setEquipment(models.Equipment equipment) {this.equipment = equipment;)
 
     /*

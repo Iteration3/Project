@@ -19,6 +19,7 @@ public class Avatar extends Entity {
         setOccupation(occupation);
         setStats(new AvatarStats(occupationModifier(), level));
         setInventory(new Inventory(12, 25));
+        setCurrentState(States.ATTACK);
         //setEquipment(new models.Equipment());
     }
 

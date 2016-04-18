@@ -53,4 +53,9 @@ public class PauseMenuController extends Controller {
         State state = new State(view, controller);
         gsm.changeState(state);
     }
+
+    @Override
+    public void updateModel() {
+
+    }
 }
