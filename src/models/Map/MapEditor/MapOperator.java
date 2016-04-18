@@ -2,19 +2,15 @@ package models.Map.MapEditor;
 
 
 import models.AreaEffect.AreaEffect;
+import models.Decal.*;
 import models.Entity.Entity;
 import models.Map.*;
 import utilities.Load_Save.LoadMap;
 import utilities.Location.Location;
 import utilities.Observer.entityObserver;
-import views.DrawTerrainImages;
 import views.MapView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Random;
 
 /**
  * Created by jcvarela on 4/15/2016.
@@ -102,6 +98,8 @@ public class MapOperator {
         Entity entity = eo.getEntity();
         double livesRemaining = entity.getLives();
         if (livesRemaining > 0) {
+            Location oldLocation = entity.getLocation();
+            map.removeEntityAt(oldLocation);
             entity.changeLocation(startLocation);
             Tile startTile = map.getTileAt(startLocation);
             startTile.addEntity(entity);
@@ -109,6 +107,31 @@ public class MapOperator {
             Location location = entity.getLocation();
             map.removeEntityAt(location);
         }
+    }
+
+    public void addDecalForTakeDamage(Location location) {
+        Decal decal = new TakeDamageDecal();
+        map.getTileAt(location).addDecal(decal);
+    }
+
+    public void addDecalForInstantDeath(Location location) {
+        Decal decal = new InstantDeathDecal();
+        map.getTileAt(location).addDecal(decal);
+    }
+
+    public void addDecalForTeleport(Location location) {
+        Decal decal = new TeleportDecal();
+        map.getTileAt(location).addDecal(decal);
+    }
+
+    public void addDecalForLevelUp(Location location) {
+        Decal decal = new LevelUpDecal();
+        map.getTileAt(location).addDecal(decal);
+    }
+
+    public void addDecalForGainHealth(Location location) {
+        Decal decal = new GainHealthDecal();
+        map.getTileAt(location).addDecal(decal);
     }
 
 }

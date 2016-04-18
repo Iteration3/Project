@@ -36,7 +36,7 @@ public abstract class Skill {
 
     public boolean canUseSkill(Entity entity) {
         boolean canPerform = canPerform();
-        double hasEnoughMana = 100;
+        double hasEnoughMana = entity.statValue("CURRENT_MANA");
         if (hasEnoughMana >= manaCost && canPerform) {
             Map<String, Double> modifyManaCostMap = getManaCostMap();
             entity.modifyStats(modifyManaCostMap);

@@ -25,6 +25,7 @@ public class Teleport extends AreaEffect {
         e.changeLocation(toLoc);
        // map.getTileAt(loc).removeEntity();
         map.removeEntityAt(loc);
+        map.addEntityAt(toLoc, e);
     }
 
 
