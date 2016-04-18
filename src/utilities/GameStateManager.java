@@ -54,4 +54,5 @@ public class GameStateManager {
     public void update(Canvas canvas){
         canvas.repaint();
     }
+    public void updateModel() { getCurrentController().updateModel(); };
 }

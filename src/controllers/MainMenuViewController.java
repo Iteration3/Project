@@ -61,5 +61,8 @@ public class MainMenuViewController extends Controller {
         gsm.changeState(state);
     }
 
+    @Override
+    public void updateModel() {
 
+    }
 }
