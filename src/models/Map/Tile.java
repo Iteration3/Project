@@ -51,6 +51,11 @@ public class Tile implements Saveable {
         return (!isGround && !isMountain);
     }
 
+    public boolean isMountain() {
+        boolean isMountain = terrain.equals(Terrain.Mountain);
+        return (isMountain);
+    }
+
     //Enity
     public void addEntity(Entity entity){
         this.entity = entity;

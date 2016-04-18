@@ -22,6 +22,24 @@ public class MapOperator {
 
     public MapOperator(int maxRowSize, int maxColSize, int maxHeightSize){
         map = LoadMap.loadMap("res/Map/Map.txt");
+        initMap();
+    }
+
+    public void initMap(){
+
+        int row = map.getRowSize();
+        int col = map.getColSize();
+        int height = map.getHeightSize();
+
+        for(int r = 0; r < row; r++){
+            for(int c = 0; c < col; c++){
+                for(int h =0; h < height; h++){
+                    
+                    Tile tile = map.getTileAt(new Location(r,c,h));
+                    map.addTileAt(tile,new Location(r,c,h));
+                }
+            }
+        }
     }
 
 

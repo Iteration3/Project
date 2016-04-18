@@ -32,7 +32,7 @@ public class Amphibious extends Locomotion {
             damageMap.put("CURRENT_LIFE", -speed);
             entity.modifyStats(damageMap);
         }
-        updateMap();
+        updateEntityLocation();
     }
 
     // Entities cannot move to Mountain
@@ -57,9 +57,6 @@ public class Amphibious extends Locomotion {
                 return;
             }
 
-            // Get the location one in front, and one above the Entity's current location
-            Location newLocation = direction.getNextLocation(oldLocation).add(0,0,1);
-
             // Entities move slower when moving up Mountains
             double weight = 0.5;
             double speedDelta = entity.statValue("MOVEMENT") * weight;
@@ -71,14 +68,13 @@ public class Amphibious extends Locomotion {
             // Place entity one tile up
             Location tempLocation = oldLocation.add(0,0,1);
             entity.changeLocation(tempLocation);
-            move(newLocation);
-            System.out.println("Moving to mountain");
-
-
+            move(direction);
+            climbDelta = 0;
 
             // Revert speed
             HashMap<String, Double> increaseSpeedMap = new HashMap<>();
             increaseSpeedMap.put("MOVEMENT", speedDelta);
+
         }
     }
 
@@ -86,7 +82,7 @@ public class Amphibious extends Locomotion {
     // No additional behavior if falling
     @Override
     public void moveToWater() {
-        updateMap();
+        updateEntityLocation();
     }
 
     // If the Amphibious Entity moves to an Air tile it falls until it reaches a non-air terrain
@@ -97,9 +93,6 @@ public class Amphibious extends Locomotion {
     // In all cases, its speed increases as it falls, and returns to normal upon landing.
     @Override
     public void moveToAir() {
-        Entity entity = getEntity();
-        Map map = getMap();
-
         if ( entity.getDirection() == Direction.Up ) {
 
            // implement jump?
@@ -107,7 +100,7 @@ public class Amphibious extends Locomotion {
         } else {
             Direction oldD = entity.getDirection();
 
-            updateMap();
+            updateEntityLocation();
             entity.setDirection(Direction.Down);
 
             // If Height is negative, the Entity is out of bounds and dies

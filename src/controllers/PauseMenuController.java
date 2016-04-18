@@ -24,7 +24,7 @@ public class PauseMenuController extends Controller {
 
     @Override
     public void loadKeyCommand() {
-        keyMap.put(KeyEvent.VK_ESCAPE, new KeyCommand(){
+        keyMap.put(KeyEvent.VK_ESCAPE, new KeyCommand() {
             @Override
             public void execute() {
                 statsStateTransition();
@@ -46,6 +46,11 @@ public class PauseMenuController extends Controller {
         });
     }
 
+    @Override
+    public void updateModel() {
+
+    }
+
     private void statsStateTransition() {
         gsm.removeState();
         View view = gsm.getCurrentView();
@@ -54,8 +59,6 @@ public class PauseMenuController extends Controller {
         gsm.changeState(state);
     }
 
-    @Override
-    public void updateModel() {
 
-    }
+
 }

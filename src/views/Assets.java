@@ -38,6 +38,7 @@ public class Assets {
     public static BufferedImage mountainTerrain;
     public static BufferedImage airTerrain;
 
+    public static BufferedImage BGIMAGE;
 
     /* Methods */
     public static void init() {
@@ -82,6 +83,12 @@ public class Assets {
         intellectPotion = intellectPotionSheet.crop(0 , 0 , width , height);
         agilityPotion = agilityPotionSheet.crop(0 , 0 , width , height);
         experiencePotion = experiencePotionSheet.crop(0 , 0 , width , height);
+        /*
+        grassTerrain = DrawTerrainImages.getGrassImage();
+        mountainTerrain = DrawTerrainImages.getMountainImage();
+        airTerrain = DrawTerrainImages.getAirImage();
+        */
 
+        BGIMAGE = new ImageLoader().loadImage("/BackGround.jpg");
     }
 }

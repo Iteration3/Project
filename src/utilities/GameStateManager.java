@@ -24,10 +24,8 @@ public class GameStateManager {
     //Stack of states
     private Stack<State> stateStack;
 
-
     //List of NPCs
     ArrayList<AIController> currentNPCs = new ArrayList<>();
-
 
     public GameStateManager(){
         //initialize the stack of states
