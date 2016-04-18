@@ -28,6 +28,8 @@ public abstract class Skill implements Saveable {
 
     public abstract void activate(Entity entity);
 
+    public abstract void createSignal(models.Map.Map map, Entity entity);
+
     public int getRadius() {
         return radius;
     }

@@ -34,4 +34,7 @@ public class DetectRemoveTrap extends SneakSkill {
     public Element generateXml(Document doc) {
         return super.generateDefaultXml(doc);
     }
+    public void createSignal(models.Map.Map map, Entity entity) {
+
+    }
 }

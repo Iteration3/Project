@@ -43,13 +43,13 @@ public class LoseHealth extends AreaEffect {
 
     @Override
     protected AreaEffect clone() {
-        return new LoseHealth(loc, healthLoss);
+        return new LoseHealth(loc, (int) healthLoss);
     }
 
     @Override
     protected void initWithXml(Element element) {
         Element location = (Element) element.getElementsByTagName("location").item(0);
         loc = Location.fromXmlElement(location);
-        healthLoss = Integer.parseInt(element.getAttribute("amount"));
+        healthLoss = Double.parseDouble(element.getAttribute("amount"));
     }
 }

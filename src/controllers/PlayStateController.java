@@ -82,15 +82,24 @@ public class PlayStateController extends Controller {
 
 
 
-        KeyCommand useFireball = new SkillKeyCommand(map, avatar);
-        keyMap.put(KeyEvent.VK_F, useFireball);
-
-
         KeyCommand openStats = new StatsKeyCommand(avatar, gsm);
         keyMap.put(KeyEvent.VK_K, openStats);
 
         KeyCommand openSkillTree = new SkillTreeKeyCommand(avatar, gsm);
         keyMap.put(KeyEvent.VK_T, openSkillTree);
+
+
+        KeyCommand skill1 = new SkillKeyCommand(map, avatar, 0);
+        keyMap.put(KeyEvent.VK_1, skill1);
+
+        KeyCommand skill2 = new SkillKeyCommand(map, avatar, 1);
+        keyMap.put(KeyEvent.VK_2, skill2);
+
+        KeyCommand skill3 = new SkillKeyCommand(map, avatar, 2);
+        keyMap.put(KeyEvent.VK_3, skill3);
+
+        KeyCommand skill4 = new SkillKeyCommand(map, avatar, 3);
+        keyMap.put(KeyEvent.VK_4, skill4);
 
         KeyCommand pause = new PauseKeyCommand(gsm);
         keyMap.put(KeyEvent.VK_ESCAPE,pause);

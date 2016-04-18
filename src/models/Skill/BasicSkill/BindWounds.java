@@ -3,6 +3,7 @@ import models.Entity.*;
 import models.Skill.Skill;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import models.Signal.SkillSignal.SelfSkillSignal;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +39,10 @@ public class BindWounds extends BasicSkill {
         double modifyByAmount = getModifyAmount();
         map.put(statAbv, modifyByAmount);
         return map;
+    }
+
+    public void createSignal(models.Map.Map map, Entity entity) {
+        new SelfSkillSignal(map, entity, this);
     }
 
     protected double getModifyAmount() {

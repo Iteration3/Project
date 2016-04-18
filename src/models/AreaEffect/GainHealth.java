@@ -34,13 +34,13 @@ public class GainHealth extends AreaEffect {
     @Override
     public Element generateXml(Document doc) {
         Element element = super.generateDefaultXml(doc, "gain-health-area-effect");
-        element.setAttribute("amount", Integer.toString(health));
+        element.setAttribute("amount", Integer.toString((int) health));
         return element;
     }
 
     @Override
     protected AreaEffect clone() {
-        return new GainHealth(loc, health);
+        return new GainHealth(loc, (int) health);
     }
 
     @Override

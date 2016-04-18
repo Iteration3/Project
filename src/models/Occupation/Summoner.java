@@ -1,5 +1,6 @@
 package models.Occupation;
 
+import models.SkillContainer.ActiveSkillContianer;
 import models.SkillContainer.BasicSkillContainer;
 import models.SkillContainer.SummonerSkillContainer;
 import org.w3c.dom.Document;
@@ -17,6 +18,7 @@ public class Summoner extends Occupation {
     protected void setSkillContainer() {
         basic_skills = new BasicSkillContainer();
         specific_skills = new SummonerSkillContainer();
+        activeSkills = new ActiveSkillContianer(basic_skills, specific_skills);
     }
 
     @Override

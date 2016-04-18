@@ -3,6 +3,7 @@ import models.Entity.Entity;
 import models.Skill.Skill;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import models.Signal.SkillSignal.RadialSkill.RadialPlanarSkillSignal;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +39,10 @@ public class Bane extends SummonerSkill {
         double modifyAmount = getModifyAmount();
         map.put("CURRENT_LIFE", -modifyAmount);
         return map;
+    }
+
+    public void createSignal(models.Map.Map map, Entity entity) {
+        new RadialPlanarSkillSignal(map, entity, this);
     }
 
     private double getModifyAmount() {

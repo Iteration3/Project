@@ -3,6 +3,7 @@ import models.Entity.*;
 import models.Skill.Skill;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import models.Signal.SkillSignal.LinearSkillSignal;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +39,10 @@ public class Staff extends SummonerSkill {
         double modifyAmount = getModifyAmount();
         map.put("CURRENT_LIFE", -modifyAmount);
         return map;
+    }
+
+    public void createSignal(models.Map.Map map, Entity entity) {
+        new LinearSkillSignal(map, entity, this);
     }
 
     private double getModifyAmount() {

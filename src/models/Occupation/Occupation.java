@@ -61,6 +61,10 @@ public abstract class Occupation implements Saveable {
         return activeSkills.getListOfSkills();
     }
 
+    public Skill getActiveSkill(int n) {
+        return activeSkills.getSkill(n);
+    }
+
     public int getSkillPoints() {
         return skillPoints;
     }

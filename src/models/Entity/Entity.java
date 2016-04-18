@@ -2,6 +2,7 @@ package models.Entity;
 
 
 import models.Action.Action;
+import models.Skill.Skill;
 import utilities.Direction.Direction;
 import models.Occupation.*;
 import models.StatContainer.*;
@@ -103,10 +104,10 @@ public abstract class Entity implements Action, Saveable {
      */
     //
     public void equip(EquipableItem item) {
-        item.equip(this, equipment , inventory);
+        item.equip(this, equipment, inventory);
     }
     public void unequip(EquipableItem item) {
-        item.unequip(this, equipment , inventory);
+        item.unequip(this, equipment, inventory);
     }
 
     public Equipment getEquipment(){
@@ -177,6 +178,12 @@ public abstract class Entity implements Action, Saveable {
         }
         return entity;
     }
+
+    //skills
+    public Skill getActiveSkill(int n) {
+        return occupation.getActiveSkill(n);
+    }
+
 
     //Every entity is in charge of getting its own image
     public abstract Image getImage();

@@ -56,7 +56,7 @@ public class Amphibious extends Locomotion {
             move(newLocation);
 
             // Revert speed
-            HashMap<String, Double> increaseSpeedMap = new HashMap();
+            HashMap<String, Double> increaseSpeedMap = new HashMap<>();
             increaseSpeedMap.put("Movement", speedDelta);
         }
     }
@@ -91,14 +91,14 @@ public class Amphibious extends Locomotion {
 
             // As the Entity is falling, deal increase speed
             double speedDelta = 5;
-            HashMap<String, Double> increaseSpeedMap = new HashMap();
+            HashMap<String, Double> increaseSpeedMap = new HashMap<>();
             increaseSpeedMap.put("Movement", speedDelta);
 
             // Recursive call
             super.move(entity.getDirection());
 
             // Leaving recursion...change the movement speed back
-            HashMap<String, Double> decreaseSpeedMap = new HashMap();
+            HashMap<String, Double> decreaseSpeedMap = new HashMap<>();
             decreaseSpeedMap.put("Movement", -speedDelta);
 
             entity.setDirection(oldD);

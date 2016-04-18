@@ -5,6 +5,7 @@ import models.Entity.*;
 import models.Skill.Skill;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import models.Signal.SkillSignal.LinearSkillSignal;
 
 public class RangedWeapon extends SneakSkill {
 
@@ -27,6 +28,10 @@ public class RangedWeapon extends SneakSkill {
         double modifyByAmount = getModifyAmount();
         map.put("CURRENT_LIFE", -modifyByAmount);
         return map;
+    }
+
+    public void createSignal(models.Map.Map map, Entity entity) {
+        new LinearSkillSignal(map, entity, this);
     }
 
     protected double getModifyAmount() {

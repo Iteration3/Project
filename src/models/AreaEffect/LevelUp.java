@@ -38,13 +38,13 @@ public class LevelUp extends AreaEffect {
 
     @Override
     protected AreaEffect clone() {
-        return new LevelUp(loc, levels);
+        return new LevelUp(loc, (int) levels);
     }
 
     @Override
     protected void initWithXml(Element element) {
         Element location = (Element) element.getElementsByTagName("location").item(0);
         loc = Location.fromXmlElement(location);
-        levels = Integer.parseInt(element.getAttribute("levels"));
+        levels = Double.parseDouble(element.getAttribute("levels"));
     }
 }

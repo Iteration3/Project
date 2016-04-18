@@ -12,7 +12,5 @@ public abstract class SneakSkill extends Skill {
         super(name, manaCost, radius);
     }
 
-    public void activate(Entity entity) {
 
-    }
 }

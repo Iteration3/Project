@@ -1,5 +1,6 @@
 package models.Skill.SmasherSkill;
 import models.Entity.*;
+import models.Signal.SkillSignal.LinearSkillSignal;
 import models.Skill.*;
 
 import java.util.HashMap;
@@ -28,6 +29,10 @@ public abstract class SmasherSkill extends Skill {
         double modifyByAmount = getModifyAmount();
         map.put("CURRENT_LIFE", -modifyByAmount);
         return map;
+    }
+
+    public void createSignal(models.Map.Map map, Entity entity) {
+        new LinearSkillSignal(map, entity, this);
     }
 
     protected double getModifyAmount() {

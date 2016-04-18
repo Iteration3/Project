@@ -51,7 +51,6 @@ public class MapView {
         this.width = width;
 
         sight = MapSightView.basicArea(map,center,radius);
-        System.out.println("size ->" +sight.size());
 
 
 
@@ -163,8 +162,6 @@ public class MapView {
         if(loc.equals(center)){
             renderEntityAt(x,y,tile,g);
         }
-
-        //renderTerrain(0,0,tile,g);
     }
 
     private void renderTerrain(int x,int y, Tile tile, Graphics2D g,  RescaleOp rop){
@@ -175,25 +172,15 @@ public class MapView {
 
         BufferedImage image = temp.getImage();
         g.drawImage(image,rop ,x - image.getWidth()/2,y - image.getHeight()/2);
-    }
 
-    private void renderTerrain(int x, int y, Tile tile, Graphics2D g){
-        Terrain temp = tile.getTerrain();
         Decal decal = tile.getDecal();
-        if(temp == null) {
-            return;
-        }
-
-
         if (decal != null) {
-            BufferedImage image = decal.getBufferedImage();
-            g.drawImage(image,x - image.getWidth(null)/2,y - image.getHeight(null)/2,null);
-        }
-        else if (temp != null) {
-            Image image = temp.getImage();
-            g.drawImage(image,x - image.getWidth(null)/2,y - image.getHeight(null)/2,null);
+           image = decal.getBufferedImage();
+            g.drawImage(image,x - image.getWidth()/2,y - image.getHeight()/2,null);
         }
     }
+
+
 
     private void renderEntityAt(int x, int y, Tile tile, Graphics2D g){
         //Entity temp = tile.getEntity();
@@ -205,5 +192,26 @@ public class MapView {
         // BufferedImage image = temp.getImage();
         // g.drawImage(image,x - image.getWidth()/2,y - image.getHeight()/2,null);
     }
-}
 
+
+
+
+    private void renderTerrain(int x, int y, Tile tile, Graphics2D g){
+        Terrain temp = tile.getTerrain();
+        Decal decal = tile.getDecal();
+        if(temp == null) {
+            return;
+        }
+
+
+        if (decal != null) {
+            BufferedImage image = decal.getBufferedImage();
+            System.out.println(image.getWidth() + " "+ image.getHeight());
+            g.drawImage(image,x - image.getWidth()/2,y - image.getHeight()/2,null);
+        }
+        else if (temp != null) {
+            Image image = temp.getImage();
+            g.drawImage(image,x - image.getWidth(null)/2,y - image.getHeight(null)/2,null);
+        }
+    }
+}

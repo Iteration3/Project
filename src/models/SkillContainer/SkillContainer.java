@@ -85,4 +85,9 @@ public abstract class SkillContainer implements Saveable {
         }
         return container;
     }
+
+    public Skill getSkill(int n) {
+        return listOfSkills.get(n);
+    }
+
 }
