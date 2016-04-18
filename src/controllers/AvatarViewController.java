@@ -29,7 +29,7 @@
 //
 //    @Override
 //    public void loadKeyCommand() {
-//        Locomotion locomotion = new Terrestrial(avatar, map);
+//        Locomotion locomotion = new Amphibious(avatar, map);
 //
 //        // Movement
 //        KeyCommand moveNorth = new MovementKeyCommand(map, avatar, Direction.North, locomotion);

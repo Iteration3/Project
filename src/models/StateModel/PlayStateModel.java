@@ -12,6 +12,7 @@ import models.Occupation.Summoner;
 import utilities.SaveLoad.XmlGenerator;
 import utilities.SaveLoad.XmlReader;
 import views.MapView;
+import views.StatusView;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -20,6 +21,7 @@ public class PlayStateModel{
     private Location focus;
     private Entity avatar;
     private MapOperator mapOperator;
+    private StatusView statusView;
 
     private Pet pet;
 
@@ -33,9 +35,11 @@ public class PlayStateModel{
 
         mapOperator = new MapOperator(20,20,10);
 
+        statusView = new StatusView(avatar);
+
         focus  = new Location(0,0,0);
 
-        mapOperator.addNewEntityAt(avatar,new Location(49,0,0));
+        mapOperator.addNewEntityAt(avatar,new Location(43,4,2));
 
         try {
             String xml = new XmlGenerator().generateXml(mapOperator.getMap());
@@ -64,6 +68,10 @@ public class PlayStateModel{
     }
     public Map getMap() {
         return mapOperator.getMap();
+    }
+
+    public StatusView getStatusView() {
+        return statusView;
     }
 
 //    //TODO:fast function, remove
