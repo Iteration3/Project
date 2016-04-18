@@ -65,8 +65,8 @@ public class PlayStateController extends Controller {
         KeyCommand config = new ConfigKeyCommand(gsm, avatar);
         keyMap.put(KeyEvent.VK_P, config);
 
-        KeyCommand inventory = new ConfigKeyCommand(gsm, avatar);
-        keyMap.put(KeyEvent.VK_P, inventory);
+        KeyCommand inventory = new InventoryKeyCommand(gsm, avatar);
+        keyMap.put(KeyEvent.VK_I, inventory);
 
 
     }

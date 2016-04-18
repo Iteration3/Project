@@ -46,6 +46,20 @@ public class PauseMenuController extends Controller {
                 model.down();
             }
         });
+
+        keyMap.put(KeyEvent.VK_UP, new KeyCommand(){
+            @Override
+            public void execute() {
+                model.up();
+            }
+        });
+
+        keyMap.put(KeyEvent.VK_DOWN, new KeyCommand() {
+            @Override
+            public void execute() {
+                model.down();
+            }
+        });
     }
 
     @Override
