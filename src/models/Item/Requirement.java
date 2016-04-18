@@ -9,7 +9,7 @@ import models.Inventory.Inventory;
 public class Requirement {
     /* Attributes */
     private TakeableItem requiredItem;
-    private double requiredLevel;
+    private int requiredLevel;
     private String requiredOccupation;
 
     /* Constructors */
@@ -34,7 +34,7 @@ public class Requirement {
     }
 
     public Boolean hasLevel(Entity entity){
-        return entity.getLevel() >= requiredLevel;
+        return (int)entity.getLevel() >= requiredLevel;
     }
 
     public Boolean hasOccupation(Entity entity){
@@ -47,5 +47,15 @@ public class Requirement {
     public Boolean meetsRequirements(Entity entity){
         return hasOccupation(entity) && hasLevel(entity) && hasItem(entity.getInventory());
     }
+
+    public String getRequiredOccupation(){
+        return this.requiredOccupation;
+    }
+
+    public int getRequiredLevel(){
+        return this.requiredLevel;
+    }
+
+    public String getRequiredItemName(){ return this.requiredItem.getName();}
 
 }

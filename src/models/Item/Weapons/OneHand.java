@@ -3,6 +3,7 @@ package models.Item.Weapons;
 import utilities.Location.Location;
 
 import java.awt.image.BufferedImage;
+import views.Assets;
 
 /**
  *   Implemented by Peter Camejo
@@ -14,12 +15,12 @@ import java.awt.image.BufferedImage;
 public class OneHand extends Weapon{
     /* Constructors */
     //No level requirement
-    public OneHand(BufferedImage image , int id, Location location, String name , double attackRating){
-        super(2.00 , "Smasher" , image, id, location, name, attackRating);
+    public OneHand( int id,  String name , double attackRating){
+        super(2.00 , "Smasher" , Assets.oneHand, id, name, attackRating);
     }
 
     //Level requirement
-    public OneHand(int requiredLevel ,  BufferedImage image , int id, Location location, String name , double attackRating){
-        super(2.00 , "Smasher" , requiredLevel , image, id, location, name, attackRating);
+    public OneHand(int requiredLevel ,   int id, String name , double attackRating){
+        super(2.00 , "Smasher" , requiredLevel , Assets.oneHand, id, name, attackRating);
     }
 }
