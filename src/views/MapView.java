@@ -181,14 +181,14 @@ public class MapView {
 
 
     private void renderEntityAt(int x, int y, Tile tile, Graphics2D g){
-        //Entity temp = tile.getEntity();
+//        Entity temp = tile.getEntity();
 
         g.setColor(Color.RED);
         g.fillRect(x-20,y-20,40,40);
 
 
-        // BufferedImage image = temp.getImage();
-        // g.drawImage(image,x - image.getWidth()/2,y - image.getHeight()/2,null);
+//         Image image = temp.getImage();
+//         g.drawImage(image,x - image.getWidth(null)/2,y - image.getHeight(null)/2,null);
     }
 
 
