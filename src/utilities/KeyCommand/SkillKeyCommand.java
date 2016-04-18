@@ -18,17 +18,19 @@ public class SkillKeyCommand implements KeyCommand {
 
     private Map map;
     private Entity entity;
+    private int numberOfSkill;
 
-    public SkillKeyCommand(Map map, Entity entity) {
+    public SkillKeyCommand(Map map, Entity entity, int numberOfSkill) {
         this.map = map;
         this.entity = entity;
+        this.numberOfSkill = numberOfSkill;
     }
 
 
     @Override
     public void execute() {
-        Skill skill = new Bane();
-        new RadialPlanarSkillSignal(map, entity, skill);
+        Skill skill = entity.getActiveSkill(numberOfSkill);
+        skill.createSignal(map, entity);
     }
 
 }

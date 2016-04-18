@@ -2,6 +2,7 @@ package models.Skill.SneakSkill;
 import java.util.HashMap;
 import java.util.Map;
 import models.Entity.*;
+import models.Signal.SkillSignal.LinearSkillSignal;
 
 public class RangedWeapon extends SneakSkill {
 
@@ -24,6 +25,10 @@ public class RangedWeapon extends SneakSkill {
         double modifyByAmount = getModifyAmount();
         map.put("CURRENT_LIFE", -modifyByAmount);
         return map;
+    }
+
+    public void createSignal(models.Map.Map map, Entity entity) {
+        new LinearSkillSignal(map, entity, this);
     }
 
     protected double getModifyAmount() {

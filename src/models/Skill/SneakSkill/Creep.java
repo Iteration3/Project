@@ -14,4 +14,8 @@ public class Creep extends SneakSkill {
         }
     }
 
+    public void createSignal(models.Map.Map map, Entity entity) {
+
+    }
+
 }
