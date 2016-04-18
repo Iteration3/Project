@@ -13,11 +13,13 @@ import models.Item.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Map;
+import java.util.Observable;
+
 import models.Inventory.*;
 import models.Equipment.Equipment;
 import utilities.Location.Location;
 
-public abstract class Entity implements Action {
+public abstract class Entity extends Observable implements Action {
 
     protected String name;
     protected Location location;
@@ -100,7 +102,12 @@ public abstract class Entity implements Action {
         models.StatContainer specific functionality
      */
     //
-    public void modifyStats(Map<String, Double> stat_to_modify) {this.stats.modifyStats(stat_to_modify);}
+    public void modifyStats(Map<String, Double> stat_to_modify) {
+        this.stats.modifyStats(stat_to_modify);
+        // for observable
+        setChanged();
+        notifyObservers();
+    }
     public void levelUp() {this.stats.levelUp();}
     public double statValue(String stat_to_get) {return this.stats.value(stat_to_get);}
     public String statName(String stat_to_get) {return this.stats.name(stat_to_get);}
@@ -158,4 +165,9 @@ public abstract class Entity implements Action {
 
     //Every entity is in charge of getting its own image
     public abstract Image getImage();
+
+    public double getLives() {
+        return this.stats.value("CURRENT_LIVES");
+    }
+
 }

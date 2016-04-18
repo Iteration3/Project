@@ -57,6 +57,10 @@ public class PlayStateModel{
 
 
         mapOperator = new MapOperator(20,20,10);
+        // For observers
+        mapOperator.addEntityObserver(avatar);
+        mapOperator.addEntityObserver(pet);
+        mapOperator.addEntityObserver(npc);
 
         statusView = new StatusView(avatar);
 
