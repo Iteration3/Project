@@ -31,16 +31,15 @@ public class Tile {
     }
     public void setTerrain(Terrain terrain){
         if(terrain == null){
-            this.terrain = new AirTerrain(DrawTerrainImages.getAirImage());
+            this.terrain = Terrain.Air;
         }
         else {
             this.terrain = terrain;
         }
     }
     public boolean isGround() {
-        boolean isGround = terrain.equals(new GroundTerrain(DrawTerrainImages.getGrassImage()));
-        boolean isMountain = terrain.equals(new MountainTerrain(DrawTerrainImages.getMountainImage()));
-        System.out.println(terrain);
+        boolean isGround = terrain.equals(Terrain.Grass);
+        boolean isMountain = terrain.equals(Terrain.Mountain);
         return (!isGround && !isMountain);
     }
 

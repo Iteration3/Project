@@ -80,11 +80,16 @@ public class PlayStateController extends Controller {
 
 
 
-        moveNorth = new SkillKeyCommand(map, avatar); //as a note this is just reusing moveNorth to add it
-        keyMap.put(KeyEvent.VK_F, moveNorth);
 
-        moveNorth = new StatsKeyCommand(avatar, gsm);
-        keyMap.put(KeyEvent.VK_K, moveNorth);
+        KeyCommand useFireball = new SkillKeyCommand(map, avatar);
+        keyMap.put(KeyEvent.VK_F, useFireball);
+
+
+        KeyCommand openStats = new StatsKeyCommand(avatar, gsm);
+        keyMap.put(KeyEvent.VK_K, openStats);
+
+        KeyCommand openSkillTree = new SkillTreeKeyCommand(avatar, gsm);
+        keyMap.put(KeyEvent.VK_T, openSkillTree);
 
         KeyCommand pause = new PauseKeyCommand(gsm);
         keyMap.put(KeyEvent.VK_ESCAPE,pause)
@@ -92,6 +97,8 @@ public class PlayStateController extends Controller {
 ;
     }
 
+
+    
 
     //TODO:REMOVE
     long wait = 0;

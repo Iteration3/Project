@@ -3,10 +3,12 @@ package models.Entity;
 
 import models.Action.Action;
 import models.Map.Terrain;
+import models.Skill.Skill;
 import utilities.Direction.Direction;
 import models.Occupation.*;
 import models.StatContainer.*;
 import models.Item.*;
+
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -30,7 +32,7 @@ public abstract class Entity implements Action {
      */
     //
     protected void setName(String name) {this.name = name;}
-    protected void setLocation(Location location) {this.location = location;}
+    public void setLocation(Location location) {this.location = location;}
     protected void setDirection(Direction direction) {this.direction = direction;}
     protected void setOccupation(Occupation occupation) {this.occupation = occupation;}
     protected void setStats(StatContainer stats) {this.stats = stats;}
@@ -75,6 +77,10 @@ public abstract class Entity implements Action {
     //
     public String occupationName() {return this.occupation.name();}
     protected Map<String, Double> occupationModifier() {return this.occupation.occupationModifier();}
+
+    public Occupation getOccupation() {
+        return occupation;
+    }
 
     /*
         models.StatContainer specific functionality

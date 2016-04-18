@@ -9,18 +9,26 @@ import models.Entity.Entity;
 
 public abstract class AIController {
 
-    private Entity entity;
-    private FSM fsm;
-
-    //Takes in the entity to be AI'ed and the FSM to do the AI'ing
-    public AIController(Entity entity){
-
-        //this entity will be the one to be controlled
-        this.entity = entity;
+    //Whether the State Machine is running
+    public enum States{
+        SUCCESS,
+        FAILURE,
+        RUNNING
     }
 
+    protected States currentState;
 
-    public void update(){
+    public AIController(){
 
     }
+
+    //starting function
+    public void start(){
+        this.currentState = States.RUNNING;
+    }
+
+    //Every subController will define the reset state
+    public abstract void reset();
+
+    //
 }

@@ -1,14 +1,11 @@
 package models.StateModel;
 
-import models.Action.Action;
-import models.Entity.Avatar;
+
 import models.Entity.Entity;
-//import models.Entity.Pet;
 import models.Entity.NPC;
 import models.Entity.Pet;
 import models.Map.Map;
 import models.Map.MapEditor.MapOperator;
-import models.Occupation.Occupation;
 import models.Occupation.Sneak;
 import models.Occupation.Summoner;
 import utilities.Direction.Direction;
@@ -39,9 +36,10 @@ public class PlayStateModel{
 
         focus  = new Location(0,0,0);
 
-        mapOperator.addNewEntityAt(avatar,new Location(0,0,0));
-        mapOperator.addNewEntityAt(pet,new Location(0,1,0));
-        mapOperator.addNewEntityAt(npc, new Location(0,2,0));
+        mapOperator.addNewEntityAt(avatar,new Location(49,0,0));
+
+//        mapOperator.addNewEntityAt(pet,new Location(0,1,0));
+//        mapOperator.addNewEntityAt(npc, new Location(0,2,0));
 
         //setDefaultFocus();
     }
