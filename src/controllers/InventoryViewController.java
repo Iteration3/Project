@@ -6,6 +6,8 @@ import models.StateModel.InventoryViewModel;
 import models.StateModel.MainMenuModel;
 import utilities.GameStateManager;
 import utilities.KeyCommand.KeyCommand;
+import utilities.State.State;
+import views.View;
 
 import java.awt.event.KeyEvent;
 
@@ -60,7 +62,7 @@ public class InventoryViewController extends Controller{
         keyMap.put(KeyEvent.VK_ESCAPE, new KeyCommand() {
             @Override
             public void execute() {
-                gsm.removeState(); //Go back to playState
+                gameStateTransition();
             }
         });
     }
@@ -73,5 +75,14 @@ public class InventoryViewController extends Controller{
     @Override
     public void updateModel() {
         this.model.update();
+    }
+
+    public void gameStateTransition(){
+        gsm.removeState();
+        View view = gsm.getCurrentView();
+        Controller controller = gsm.getCurrentController();
+        State state = new State(view, controller);
+        gsm.changeState(state);
+        System.out.println("Does this work");
     }
 }
