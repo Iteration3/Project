@@ -42,7 +42,6 @@ public abstract class Locomotion{
 
         // If Entity attempts to move out of bounds, remove a life and prevent movement
         if ( nextTile == null ) {
-            System.out.println("Tile was null");
             HashMap<String, Double> livesMap = new HashMap<>();
             livesMap.put("CURRENT_LIVES", -1d);
             entity.modifyStats(livesMap);
