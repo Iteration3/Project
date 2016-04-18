@@ -14,6 +14,11 @@ import java.util.HashMap;
  */
 public class Amphibious extends Locomotion {
 
+    // Used for checking the maximum Mountain height an Entity can scale
+    private int climbDelta = 0;
+    // The maximum Mountain height an Entity can scale
+    private int maxClimbHeight = 1;
+
     public Amphibious(Entity entity, Map map) { super(entity, map); }
 
     // Can move to Ground
@@ -22,12 +27,12 @@ public class Amphibious extends Locomotion {
     public void moveToGround() {
         // Falling
         if (entity.getDirection() == Direction.Down) {
-            double speed = entity.statValue("Movement");
-            HashMap<String, Double> damageMap = null;
-            damageMap.put("Movement", speed);
+            double speed = entity.statValue("MOVEMENT");
+            HashMap<String, Double> damageMap = new HashMap<>();
+            damageMap.put("CURRENT_LIFE", -speed);
             entity.modifyStats(damageMap);
         }
-        updateMap();
+        updateEntityLocation();
     }
 
     // Entities cannot move to Mountain
@@ -37,27 +42,39 @@ public class Amphibious extends Locomotion {
     public void moveToMountain() {
         // Falling
         if ( entity.getDirection() == Direction.Down ) {
-            HashMap<String, Double> livesMap = new HashMap();
-            livesMap.put("Lives", -1d);
+            HashMap<String, Double> livesMap = new HashMap<>();
+            livesMap.put("LIVES", -1d);
             entity.modifyStats(livesMap);
         } else {
-            // Get the location one in front, and one above the Entity's current location
+
             Direction direction = entity.getDirection();
             Location oldLocation = entity.getLocation();
-            Location newLocation = direction.getNextLocation(oldLocation).add(0,0,1);
 
-            // Entitys move slower when moving up Mountains
+            // Base case
+            if (climbDelta >= maxClimbHeight) {
+                entity.changeLocation(oldLocation.sub(0,0,climbDelta));
+                climbDelta = 0;
+                return;
+            }
+
+            // Entities move slower when moving up Mountains
             double weight = 0.5;
-            double speedDelta = entity.statValue("Movement") * weight;
-            HashMap<String, Double> decreaseSpeedMap = new HashMap();
-           decreaseSpeedMap.put("Movement", -speedDelta);
+            double speedDelta = entity.statValue("MOVEMENT") * weight;
+            HashMap<String, Double> decreaseSpeedMap = new HashMap<>();
+            decreaseSpeedMap.put("MOVEMENT", -speedDelta);
 
             // Recursive call
-            move(newLocation);
+            ++climbDelta;
+            // Place entity one tile up
+            Location tempLocation = oldLocation.add(0,0,1);
+            entity.changeLocation(tempLocation);
+            move(direction);
+            climbDelta = 0;
 
             // Revert speed
-            HashMap<String, Double> increaseSpeedMap = new HashMap();
-            increaseSpeedMap.put("Movement", speedDelta);
+            HashMap<String, Double> increaseSpeedMap = new HashMap<>();
+            increaseSpeedMap.put("MOVEMENT", speedDelta);
+
         }
     }
 
@@ -65,7 +82,7 @@ public class Amphibious extends Locomotion {
     // No additional behavior if falling
     @Override
     public void moveToWater() {
-        updateMap();
+        updateEntityLocation();
     }
 
     // If the Amphibious Entity moves to an Air tile it falls until it reaches a non-air terrain
@@ -76,30 +93,35 @@ public class Amphibious extends Locomotion {
     // In all cases, its speed increases as it falls, and returns to normal upon landing.
     @Override
     public void moveToAir() {
-        Entity entity = getEntity();
-        Map map = getMap();
-
         if ( entity.getDirection() == Direction.Up ) {
 
-            // Maybe implement jump?
+           // implement jump?
 
         } else {
             Direction oldD = entity.getDirection();
 
+            updateEntityLocation();
             entity.setDirection(Direction.Down);
-            updateMap();
+
+            // If Height is negative, the Entity is out of bounds and dies
+            Location location = entity.getLocation();
+            if ( location.getHeight() < 0 ) {
+                HashMap<String, Double> livesMap = new HashMap<>();
+                livesMap.put("LIVES", -1d);
+                entity.modifyStats(livesMap);
+            }
 
             // As the Entity is falling, deal increase speed
             double speedDelta = 5;
-            HashMap<String, Double> increaseSpeedMap = new HashMap();
-            increaseSpeedMap.put("Movement", speedDelta);
+            HashMap<String, Double> increaseSpeedMap = new HashMap<>();
+            increaseSpeedMap.put("MOVEMENT", speedDelta);
 
             // Recursive call
             super.move(entity.getDirection());
 
             // Leaving recursion...change the movement speed back
-            HashMap<String, Double> decreaseSpeedMap = new HashMap();
-            decreaseSpeedMap.put("Movement", -speedDelta);
+            HashMap<String, Double> decreaseSpeedMap = new HashMap<>();
+            decreaseSpeedMap.put("MOVEMENT", -speedDelta);
 
             entity.setDirection(oldD);
         }

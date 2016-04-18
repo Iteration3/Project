@@ -19,12 +19,14 @@ public abstract class Tertiary extends Stat {
                      stat.value = 10
                      stat.modify(2.0) -> stat.value = 12.0
  */
+
     public void modify(double amt) {
         if(abs(amt) < 1.00)
             setValue(this.value + (amt * this.value));
         else
             setValue(this.value + amt);
     }
+
     //
     public void calculate() {}
 }

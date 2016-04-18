@@ -1,6 +1,9 @@
 package models.StateModel;
 
 
+import AI.AIController;
+import controllers.NPCController;
+import controllers.PetController;
 import models.AreaEffect.*;
 import models.Entity.Entity;
 import models.Entity.NPC;
@@ -11,8 +14,12 @@ import models.Occupation.Sneak;
 import models.Occupation.Summoner;
 import utilities.Direction.Direction;
 import utilities.Location.Location;
+import views.Assets;
 import views.MapView;
 import views.StatusView;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 
 /**
@@ -24,6 +31,7 @@ public class PlayStateModel{
     private Entity avatar;
     private MapOperator mapOperator;
     private StatusView statusView;
+    private ArrayList<AIController> entityController = new ArrayList<>();
 
     private Pet pet;
 
@@ -35,6 +43,7 @@ public class PlayStateModel{
         Pet pet = new Pet(3,new Sneak());
         NPC npc = new NPC(3,new Summoner());
         Location l = new Location(47,0,0);
+
         Location l2 = new Location(46,0,0);
        // LoseHealth lh = new LoseHealth(l,20); works
         //GainHealth gh = new GainHealth(l,20); works
@@ -50,8 +59,13 @@ public class PlayStateModel{
 
         focus  = new Location(0,0,0);
 
+        //TODO Place any model instantiation here
+        //Pet pet = new Pet(3,new Sneak());
+        PetController petController = new PetController(pet,mapOperator.getMap());
+        entityController.add(petController);
 
-        mapOperator.addNewEntityAt(avatar,new Location(49,0,0));
+
+        //mapOperator.addNewEntityAt(avatar,new Location(49,0,0));
 
         FlowTile ft = new FlowTile(l,10,Direction.South,getMap());
         mapOperator.addNewAreaEffect(ft,l);
@@ -59,10 +73,17 @@ public class PlayStateModel{
         //mapOperator.addNewEntityAt(avatar,new Location(43,4,2));
 
 
-//        mapOperator.addNewEntityAt(pet,new Location(0,1,0));
-//        mapOperator.addNewEntityAt(npc, new Location(0,2,0));
+        //NPC npc = new NPC(3,new Summoner());
+        NPCController npcController = new NPCController(npc,mapOperator.getMap());
+        entityController.add(npcController);
+
+
+        mapOperator.addNewEntityAt(avatar,new Location(44,0,0));
+        mapOperator.addNewEntityAt(pet,new Location(43,0,0));
+//        mapOperator.addNewEntityAt(npc, new Location(44,4,0));
 
         //setDefaultFocus();
+        Assets.init();
     }
 
     public void setDefaultFocus(){
@@ -90,5 +111,10 @@ public class PlayStateModel{
        avatar.changeLocation(dir.getNextLocation(avatar.getLocation()));
         avatar.changeDirection(dir);
         //avatar.setAction(Action.Move);
+    }
+
+    //get the entity controllers
+    public ArrayList<AIController> getEntityControllers(){
+        return entityController;
     }
 }

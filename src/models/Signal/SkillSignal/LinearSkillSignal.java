@@ -1,5 +1,6 @@
 package models.Signal.SkillSignal;
 
+import models.Decal.CircleDash;
 import models.Decal.Decal;
 import models.Decal.FireBallDecal;
 import models.Entity.Entity;
@@ -22,7 +23,7 @@ public class LinearSkillSignal extends SkillSignal {
 
     protected void useSkill(Skill skill) {
 
-        Decal decal = new FireBallDecal();
+        Decal decal = new CircleDash();
 
        if (skill.canUseSkill(avatar)) {
             Timer t = new Timer();
@@ -33,12 +34,18 @@ public class LinearSkillSignal extends SkillSignal {
                     map.getTileAt(avatarLocation).removeDecal();
                     Location nextLocation = direction.getNextLocation(avatarLocation);
 
-                    map.getTileAt(nextLocation).addDecal(decal);
-                    Entity entityToAttack = map.getTileAt(nextLocation).getEntity();
+                    if (!map.isOutOfBound(nextLocation)) {
 
-                    skill.activate(entityToAttack);
-                    avatarLocation = nextLocation;
+                        if (map.getTileAt(nextLocation).isMountain()) {
+                            currentRadius = radius;
+                        } else {
+                            map.getTileAt(nextLocation).addDecal(decal);
+                            Entity entityToAttack = map.getTileAt(nextLocation).getEntity();
 
+                            skill.activate(entityToAttack);
+                            avatarLocation = nextLocation;
+                        }
+                    }
                     if (currentRadius == radius) {
                         map.getTileAt(avatarLocation).removeDecal();
                         t.cancel();

@@ -24,6 +24,7 @@ public class AvatarStats extends StatContainer {
         this.stats.put("AGILITY", new Agility(this.BASE_MODIFIER, this.OCCUPATION_MODIFIER.get("AGILITY"), level));
         this.stats.put("INTELLECT", new Intellect(this.BASE_MODIFIER, this.OCCUPATION_MODIFIER.get("INTELLECT"), level));
         this.stats.put("HARDINESS", new Hardiness(this.BASE_MODIFIER, this.OCCUPATION_MODIFIER.get("HARDINESS"), level));
+        this.stats.put("RANGE",new Range(this.BASE_MODIFIER,2,level));
         // set secondary stats
         this.stats.put("LIFE", new Life(this.stats.get("HARDINESS"), this.stats.get("LEVEL")));
         this.stats.put("CURRENT_LIFE", new CurrentLife(this.stats.get("LIFE")));

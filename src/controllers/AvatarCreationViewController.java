@@ -29,10 +29,22 @@ public class AvatarCreationViewController extends Controller {
         this.model = model;
     }
 
-
-
     @Override
     public void loadKeyCommand() {
+
+        keyMap.put(KeyEvent.VK_UP, new KeyCommand(){
+            @Override
+            public void execute() {
+                model.up();
+            }
+        });
+
+        keyMap.put(KeyEvent.VK_DOWN, new KeyCommand() {
+            @Override
+            public void execute() {
+                model.down();
+            }
+        });
 
         keyMap.put(KeyEvent.VK_U, new KeyCommand(){
             @Override
@@ -52,15 +64,15 @@ public class AvatarCreationViewController extends Controller {
             @Override
             public void execute() {
                 if(model.getSelected() == AvatarCreationModel.AvatarCreationMenu.SMASHER){
-                    Entity newAvatar = new Avatar(1, new Smasher());
+                    Avatar newAvatar = new Avatar(1, new Smasher());
                     playStateTransition(newAvatar);
                 }
                 if(model.getSelected() == AvatarCreationModel.AvatarCreationMenu.SNEAK){
-                    Entity newAvatar = new Avatar(1, new Sneak());
+                    Avatar newAvatar = new Avatar(1, new Sneak());
                     playStateTransition(newAvatar);
                 }
                 if(model.getSelected() == AvatarCreationModel.AvatarCreationMenu.SUMMONER){
-                    Entity newAvatar = new Avatar(1, new Summoner());
+                    Avatar newAvatar = new Avatar(1, new Summoner());
                     playStateTransition(newAvatar);
                 }
             }
@@ -68,7 +80,7 @@ public class AvatarCreationViewController extends Controller {
     }
 
     // TODO change to appropriate state transition
-    private void playStateTransition(Entity avatar) {
+    private void playStateTransition(Avatar avatar) {
         PlayStateModel model = new PlayStateModel(avatar);
         PlayStateView view = new PlayStateView(500,500,gsm.getCurrentView().getCanvas(),model);
         PlayStateController controller = new PlayStateController(model,gsm, avatar);

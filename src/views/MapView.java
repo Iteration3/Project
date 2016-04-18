@@ -9,7 +9,6 @@ import models.Map.Tile;
 import utilities.Geometry.Hexagon;
 import utilities.Location.Location;
 import views.MapHelper.MapSightView;
-import views.View;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -38,22 +37,18 @@ public class MapView {
     public MapView(Map map) {
         sight = new HashMap<>();
         this.map = map;
-        radius = 5;
+        radius = 7;
     }
 
     public void setCenter(Location pos){
         this.center = pos;
     }
 
-
     protected void render(int width, int height, Graphics g) {
         this.height = height;
         this.width = width;
 
         sight = MapSightView.basicArea(map,center,radius);
-        System.out.println("size ->" +sight.size());
-
-
 
         heightRange = 10;
         rowRange = 15;
@@ -141,16 +136,17 @@ public class MapView {
         if(tile == null) {
             return;
         }
+
         if( tile.getTerrain() == Terrain.Air && !loc.equals(center)){
             return;
         }
+
         Location temp = new Location(loc.getRow(),loc.getCol(),0);
         if(!sight.containsKey(temp)){
             return;
         }
 
         float value = (float)(radius - sight.get(temp))/radius;
-
 
         float[] scales = { value, value, value, 1f};
         float[] offsets = new float[4];
@@ -160,11 +156,9 @@ public class MapView {
 
 
 
-        if(loc.equals(center)){
-            renderEntityAt(x,y,tile,g);
-        }
 
-        //renderTerrain(0,0,tile,g);
+        renderElements(x,y,tile,g);
+
     }
 
     private void renderTerrain(int x,int y, Tile tile, Graphics2D g,  RescaleOp rop){
@@ -175,7 +169,29 @@ public class MapView {
 
         BufferedImage image = temp.getImage();
         g.drawImage(image,rop ,x - image.getWidth()/2,y - image.getHeight()/2);
+
+        Decal decal = tile.getDecal();
+        if (decal != null) {
+           image = decal.getBufferedImage();
+            g.drawImage(image,x - image.getWidth()/2,y - image.getHeight()/2,null);
+        }
     }
+
+
+
+    private void renderElements(int x, int y, Tile tile, Graphics2D g){
+        Entity temp = tile.getEntity();
+        if(temp == null){
+            return;
+        }
+
+
+         Image image = temp.getImage();
+         g.drawImage(image,x - image.getWidth(null)/2,y - image.getHeight(null)/2,null);
+    }
+
+
+
 
     private void renderTerrain(int x, int y, Tile tile, Graphics2D g){
         Terrain temp = tile.getTerrain();
@@ -187,23 +203,12 @@ public class MapView {
 
         if (decal != null) {
             BufferedImage image = decal.getBufferedImage();
-            g.drawImage(image,x - image.getWidth(null)/2,y - image.getHeight(null)/2,null);
+            System.out.println(image.getWidth() + " "+ image.getHeight());
+            g.drawImage(image,x - image.getWidth()/2,y - image.getHeight()/2,null);
         }
         else if (temp != null) {
             Image image = temp.getImage();
             g.drawImage(image,x - image.getWidth(null)/2,y - image.getHeight(null)/2,null);
         }
     }
-
-    private void renderEntityAt(int x, int y, Tile tile, Graphics2D g){
-        //Entity temp = tile.getEntity();
-
-        g.setColor(Color.RED);
-        g.fillRect(x-20,y-20,40,40);
-
-
-        // BufferedImage image = temp.getImage();
-        // g.drawImage(image,x - image.getWidth()/2,y - image.getHeight()/2,null);
-    }
 }
-

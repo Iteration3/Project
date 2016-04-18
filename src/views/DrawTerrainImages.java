@@ -19,7 +19,7 @@ public class DrawTerrainImages {
         return image;
     }
 
-    public static BufferedImage getMountainImage(){
+    public static BufferedImage getFullTerrain(Color baseColor, Color topColor){
         BufferedImage image = new BufferedImage(LENGTH,HEIGHT+WIDTH,BufferedImage.TYPE_4BYTE_ABGR);
         Graphics2D g = (Graphics2D)image.getGraphics();
 
@@ -58,7 +58,7 @@ public class DrawTerrainImages {
         }
 
         Polygon ground = new Polygon(xPoly2,yPoly2,xPoly2.length);
-        g.setColor(new Color(150,90,15));
+        g.setColor(baseColor);
         g.fill(ground);
 
         //paint grass----------------------------------------------------
@@ -75,13 +75,14 @@ public class DrawTerrainImages {
 
 
         Polygon p = new Polygon(xPoly,yPoly,xPoly.length);
-        g.setColor(new Color(120,60,7));
+        g.setColor(topColor);
         g.fill(p);
 
         return image;
     }
 
-    public static BufferedImage getGrassImage(){
+
+    public static BufferedImage makeHalfTerrain(Color baseColor, Color topColor){
         BufferedImage image = new BufferedImage(LENGTH,HEIGHT+WIDTH,BufferedImage.TYPE_4BYTE_ABGR);
         Graphics2D g = (Graphics2D)image.getGraphics();
 
@@ -120,7 +121,7 @@ public class DrawTerrainImages {
         }
 
         Polygon ground = new Polygon(xPoly2,yPoly2,xPoly2.length);
-        g.setColor(new Color(196,128,31));
+        g.setColor(baseColor);
         g.fill(ground);
 
         //paint grass----------------------------------------------------
@@ -137,7 +138,7 @@ public class DrawTerrainImages {
 
 
         Polygon p = new Polygon(xPoly,yPoly,xPoly.length);
-        g.setColor(new Color(60,150,30));
+        g.setColor(topColor);
         g.fill(p);
 
         return image;

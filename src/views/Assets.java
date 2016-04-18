@@ -30,6 +30,7 @@ public class Assets {
     public static BufferedImage mountainTerrain;
     public static BufferedImage airTerrain;
 
+    public static BufferedImage BGIMAGE;
 
     /* Methods */
     public static void init() {
@@ -67,6 +68,6 @@ public class Assets {
         airTerrain = DrawTerrainImages.getAirImage();
         */
 
-
+        BGIMAGE = new ImageLoader().loadImage("/BackGround.jpg");
     }
 }

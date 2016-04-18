@@ -21,8 +21,8 @@ public class PauseMenuController extends Controller {
         this.model = model;
         currentPoint = 0;
     }
+    
 
-    public void updateModel(){}
 
     @Override
     public void loadKeyCommand() {
@@ -48,6 +48,11 @@ public class PauseMenuController extends Controller {
         });
     }
 
+    @Override
+    public void updateModel() {
+
+    }
+
     private void statsStateTransition() {
         gsm.removeState();
         View view = gsm.getCurrentView();
@@ -55,4 +60,7 @@ public class PauseMenuController extends Controller {
         State state = new State(view, controller);
         gsm.changeState(state);
     }
+
+
+
 }

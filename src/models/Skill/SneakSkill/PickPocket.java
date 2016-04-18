@@ -18,9 +18,13 @@ public class PickPocket extends SneakSkill {
        // avatar.addItem(entity.getRandomItem());
     }
 
-    /*public boolean canUseSkill(Entity entity) {
+    public void createSignal(models.Map.Map map, Entity entity) {
+
+    }
+
+    public boolean canUseSkill(Entity entity) {
         boolean canPerform = canPerform();
-        double hasEnoughMana = entity.getMana();
+        double hasEnoughMana = 100;
         if (hasEnoughMana >= manaCost && canPerform) {
             Map<String, Double> modifyManaCostMap = getManaCostMap();
             entity.modifyStats(modifyManaCostMap);
@@ -28,5 +32,5 @@ public class PickPocket extends SneakSkill {
             return true;
         }
         return false;
-    }*/
+    }
 }
