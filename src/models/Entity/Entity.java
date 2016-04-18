@@ -44,6 +44,7 @@ public abstract class Entity implements Action {
     public void setOccupation(Occupation occupation) {this.occupation = occupation;}
     public void setStats(StatContainer stats) {this.stats = stats;}
     public void setInventory(Inventory inventory) {this.inventory = inventory;}
+    public void setEquipment(Equipment equipment){this.equipment = equipment;}
 
     //state functions
     public States getCurrentState(){ return state;}

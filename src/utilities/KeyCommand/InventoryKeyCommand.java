@@ -13,13 +13,11 @@ import views.View;
 /**
  * Implemented by Peter Camejo
  */
-public class InventoryKeyCommand {
-    public class PauseKeyCommand implements KeyCommand {
-
+public class InventoryKeyCommand implements KeyCommand{
 
         private GameStateManager gsm;
         private Entity entity;
-        public PauseKeyCommand(GameStateManager gsm , Entity entity){
+        public InventoryKeyCommand(GameStateManager gsm , Entity entity){
             this.gsm = gsm;
             this.entity = entity;
         }
@@ -31,7 +29,6 @@ public class InventoryKeyCommand {
             Controller controller = new InventoryViewController(gsm,model);
             State state = new State(view,controller);
             gsm.changeState(state);
-
         };
-    }
 }
+

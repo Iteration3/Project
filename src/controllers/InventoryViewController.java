@@ -72,6 +72,6 @@ public class InventoryViewController extends Controller{
 
     @Override
     public void updateModel() {
-
+        this.model.update();
     }
 }

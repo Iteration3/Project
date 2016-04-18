@@ -58,6 +58,9 @@ public class PlayStateController extends Controller {
         KeyCommand pause = new PauseKeyCommand(gsm);
         keyMap.put(KeyEvent.VK_ESCAPE,pause);
 
+        KeyCommand inventory = new InventoryKeyCommand(gsm , avatar);
+        keyMap.put(KeyEvent.VK_I , inventory);
+
     }
 
     private void loadKeyMap(HashMap<Integer,KeyCommand> newKeyMap){

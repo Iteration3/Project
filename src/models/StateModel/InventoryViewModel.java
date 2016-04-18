@@ -45,6 +45,7 @@ public class InventoryViewModel{
     }
 
     public void update() {
+        int count = 0;
         items[0] = equipment.getHead();
         items[1] = equipment.getChest();
         items[2] = equipment.getGloves();
@@ -54,7 +55,7 @@ public class InventoryViewModel{
         items[6] = equipment.getWeapon();
 
         for(int i = 7; i < 22; i++){
-            items[i] = inventory.getItemByIndex(index++);
+            items[i] = inventory.getItemByIndex(count++);
         }
 
         goldAmount = inventory.getGold();
